@@ -3,13 +3,19 @@ import { Bot } from './bot';
 
 import { ReadyEvent } from './events/ready';
 import { MessageEvent } from './events/message';
+import { GuildMemberAddEvent } from './events/guildMemberAdd';
 
-import { TestCommand } from './commands/test';
-import { GifCommand } from './commands/gif';
-import { WeatherCommand } from './commands/weather';
+import { PingCommand } from './commands/fun/ping';
+import { GifCommand } from './commands/fun/gif';
+import { WeatherCommand } from './commands/fun/weather';
+import { CalculateCommand } from './commands/math/calculate';
+import { AutoroleCommand } from './commands/admin/autorole';
+import { GreetingCommand } from './commands/admin/greeting';
+import { SolveCommand } from './commands/math/solve';
 
 export function loadEvents(bot: Bot) {
-    bot.events.push(new ReadyEvent(), new MessageEvent());
+    bot.events.push(new ReadyEvent(), new MessageEvent(),
+        new GuildMemberAddEvent());
 
     bot.events.forEach(event => {
         bot.client.on(event.name, event.run);
@@ -19,8 +25,9 @@ export function loadEvents(bot: Bot) {
 }
 
 export function loadCommands(bot: Bot) {
-    bot.commands.push(new TestCommand(), new GifCommand(),
-        new WeatherCommand());
+    bot.commands.push(new PingCommand(), new GifCommand(),
+        new WeatherCommand(), new CalculateCommand(), new AutoroleCommand(),
+        new GreetingCommand(), new SolveCommand());
     
     console.log(blue(`Loaded ${bot.commands.length} commands`));
     console.log('');

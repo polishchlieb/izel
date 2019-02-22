@@ -1,5 +1,9 @@
-# Izel
-Discord bot written in Typescript
+<p align="center">
+    <img src="https://imgur.com/epINEbt">
+</p>
+<p align="center">
+    <img src="https://img.shields.io/badge/version-1.1-blue.svg">
+</p>
 
 # Setup
 - Install node.js [here](https://nodejs.org/)
@@ -8,4 +12,27 @@ Discord bot written in Typescript
 - Add your OpenWeatherApi's app_id to `src/commands/weather.ts`
 - Use one of these following commands:
     - `npm run build` to build bot and output files to `compile/`
-    - `npm start` to compile and start the bot
+    - `npm start` to start the bot (requires compiled files in `compile/`)
+    - `npm test` to build and start the bot
+
+# Changelog
+- Grouped commands
+- Moved OpenWeatherApi's token to `config.json` file
+- Modified `package.json`'s scripts
+- Added commands: `autorole`, `ban`, `greeting`, `ping`, `calculate`, `solve`
+- Added `guildMemberAdd` event
+- Removed `test` command
+- Created `data` directory including `guildInfo.json`
+- Extended `Bot` class by `GuildDataHandler`
+
+# TODO
+- Commands:
+    - [ ] giveaway
+    - [ ] kick
+    - [ ] mute
+    - [ ] poll
+    - [ ] eval
+- [ ] Livestream & new Youtube video notifications
+- [ ] Music
+- [ ] Stat channels
+- [ ] Webpanel

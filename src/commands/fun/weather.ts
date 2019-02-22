@@ -1,4 +1,4 @@
-import { Command } from '../interfaces/command';
+import { Command } from '../../interfaces/command';
 import { Client, Message, RichEmbed } from 'discord.js';
 import fetch from 'node-fetch';
 
@@ -12,6 +12,8 @@ export class WeatherCommand implements Command {
     }
 
     run(bot: Client, message: Message, args: string[]) {
+        if(args.length == 0)
+            return message.reply('')
         fetch(`http://api.openweathermap.org/data/2.5/weather?APPID=${appid}&units=metric&q=${encodeURI(args.join(' '))}`)
             .then(res => res.json())
             .then(json => message.channel.send(new RichEmbed()

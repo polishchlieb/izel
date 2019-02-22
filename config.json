@@ -1,4 +1,5 @@
 {
     "prefix": "&",
-    "token": "your token"
+    "token": "your token",
+    "openWeatherAPI": "your openweatherapi app_id"
 }
