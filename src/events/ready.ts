@@ -9,5 +9,6 @@ export class ReadyEvent implements Event {
         console.log(green('Bot is ready'));
         console.log(green(`Running on ${bot.client.guilds.size} servers`));
         console.log(green(`Serving ${bot.client.users.size} users`));
+        console.log('');
     }
 }

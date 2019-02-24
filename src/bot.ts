@@ -1,8 +1,8 @@
 import { Client } from 'discord.js'
 import { Command } from './interfaces/command';
-import { loadCommands, loadEvents } from './loader';
+import { loadCommands, loadEvents } from './utils/loader';
 import { Event } from './interfaces/event';
-import { GuildDataHandler } from './guildDataHandler';
+import { GuildDataHandler } from './utils/guildDataHandler';
 
 export class Bot extends GuildDataHandler {
     client: Client;
