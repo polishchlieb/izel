@@ -14,6 +14,7 @@ import { GreetingCommand } from '../commands/admin/greeting';
 import { SolveCommand } from '../commands/math/solve';
 import { GiveawayCommand } from '../commands/fun/giveaway';
 import { BanCommand } from '../commands/admin/ban';
+import { PollCommand } from '../commands/fun/poll';
 
 export function loadEvents(bot: Bot) {
     bot.events.push(new ReadyEvent(), new MessageEvent(),
@@ -30,7 +31,7 @@ export function loadCommands(bot: Bot) {
     bot.commands.push(new PingCommand(), new GifCommand(),
         new WeatherCommand(), new CalculateCommand(), new AutoroleCommand(),
         new GreetingCommand(), new SolveCommand(), new GiveawayCommand(),
-        new BanCommand());
+        new BanCommand(), new PollCommand());
     
     console.log(blue(`Loaded ${bot.commands.length} commands`));
     console.log('');

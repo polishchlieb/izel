@@ -1,8 +1,8 @@
 {
 	"name": "izel",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"description": "",
-	"main": "index.js",
+	"main": "compile/index.js",
 	"scripts": {
 		"build": "tsc src/index.ts --lib es2018 --outDir compile",
 		"test": "npm run build && npm start",
