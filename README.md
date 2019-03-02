@@ -24,7 +24,7 @@ older versions [here](CHANGELOG.md)
 # TODO
 - Commands:
     - [x] giveaway
-    - [ ] kick
+    - [x] kick
     - [ ] mute
     - [x] poll
     - [ ] eval

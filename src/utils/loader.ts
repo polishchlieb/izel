@@ -1,20 +1,21 @@
 import { blue } from 'colors';
 import { Bot } from '../bot';
 
-import { ReadyEvent } from '../events/ready';
-import { MessageEvent } from '../events/message';
 import { GuildMemberAddEvent } from '../events/guildMemberAdd';
+import { MessageEvent } from '../events/message';
+import { ReadyEvent } from '../events/ready';
 
-import { PingCommand } from '../commands/fun/ping';
+import { AutoroleCommand } from '../commands/admin/autorole';
+import { BanCommand } from '../commands/admin/ban';
+import { GreetingCommand } from '../commands/admin/greeting';
+import { KickCommand } from '../commands/admin/kick';
 import { GifCommand } from '../commands/fun/gif';
+import { PingCommand } from '../commands/fun/ping';
+import { GiveawayCommand } from '../commands/fun/giveaway';
+import { PollCommand } from '../commands/fun/poll';
 import { WeatherCommand } from '../commands/fun/weather';
 import { CalculateCommand } from '../commands/math/calculate';
-import { AutoroleCommand } from '../commands/admin/autorole';
-import { GreetingCommand } from '../commands/admin/greeting';
 import { SolveCommand } from '../commands/math/solve';
-import { GiveawayCommand } from '../commands/fun/giveaway';
-import { BanCommand } from '../commands/admin/ban';
-import { PollCommand } from '../commands/fun/poll';
 
 export function loadEvents(bot: Bot) {
     bot.events.push(new ReadyEvent(), new MessageEvent(),
@@ -31,7 +32,7 @@ export function loadCommands(bot: Bot) {
     bot.commands.push(new PingCommand(), new GifCommand(),
         new WeatherCommand(), new CalculateCommand(), new AutoroleCommand(),
         new GreetingCommand(), new SolveCommand(), new GiveawayCommand(),
-        new BanCommand(), new PollCommand());
+        new BanCommand(), new PollCommand(), new KickCommand());
     
     console.log(blue(`Loaded ${bot.commands.length} commands`));
     console.log('');
