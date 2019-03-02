@@ -16,10 +16,9 @@
     - `npm test` to build and start the bot
 
 # Changelog
-older versions [here](CHANGELOG.md)
-## 2.0.2 (newest):
-- Added `poll` command
-- Added `CHANGELOG.md`
+Older versions [here](CHANGELOG.md)
+## 2.0.3 (newest):
+- Added `kick` command
 
 # TODO
 - Commands:

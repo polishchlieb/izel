@@ -1,6 +1,8 @@
 # Changelog
 
-## 2.0.2 (newest):
+## 2.0.3 (newest):
+- Added `kick` command
+## 2.0.2:
 - Added `poll` command
 - Added `CHANGELOG.md`
 ## 2.0.1:

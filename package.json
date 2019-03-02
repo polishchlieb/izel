@@ -1,6 +1,6 @@
 {
 	"name": "izel",
-	"version": "2.0.2",
+	"version": "2.0.3",
 	"description": "",
 	"main": "compile/index.js",
 	"scripts": {
@@ -14,7 +14,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/polishchlieb"
+		"url": "git+https://github.com/polishchlieb/izel"
 	},
 	"author": "chlebek",
 	"license": "MIT",
