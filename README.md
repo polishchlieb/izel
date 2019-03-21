@@ -8,9 +8,9 @@
 # Setup
 - Install node.js [here](https://nodejs.org/)
 - Install typescript using `npm i -g typescript`
-- Add your token to `config.json` file
-- Add your OpenWeatherApi's app_id to `src/commands/weather.ts`
-- Use one of these following commands:
+- Install dependencies using `npm i`
+- Add your data to `config.json` file
+- Use one of the following commands:
     - `npm run build` to build bot and output files to `compile/`
     - `npm start` to start the bot (requires compiled files in `compile/`)
     - `npm test` to build and start the bot

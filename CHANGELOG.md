@@ -2,6 +2,7 @@
 
 ## 2.0.3 (newest):
 - Added `kick` command
+- Modified `weather` command, `README.md` and `config.json` files
 ## 2.0.2:
 - Added `poll` command
 - Added `CHANGELOG.md`

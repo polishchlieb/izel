@@ -2,7 +2,7 @@ import { Command } from '../../interfaces/command';
 import { Client, Message, RichEmbed } from 'discord.js';
 import fetch from 'node-fetch';
 
-const appid: string = 'your openweatherapi appid';
+const appid = require('../../../config.json').openWeatherAPI;
 
 export class WeatherCommand implements Command {
     info = {
