@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://i.imgur.com/epINEbt.png" height="220">
+    <img src="https://i.imgur.com/epINEbt.png">
 </p>
 <p align="center">
     <img src="https://img.shields.io/badge/version-2.0.2-blue.svg">
@@ -22,10 +22,10 @@ Older versions [here](CHANGELOG.md)
 
 # TODO
 - Commands:
-    - [x] giveaway
-    - [x] kick
+    - [ ] giveaway
+    - [ ] kick
     - [ ] mute
-    - [x] poll
+    - [ ] poll
     - [ ] eval
 - [ ] Livestream & new Youtube video notifications
 - [ ] Music

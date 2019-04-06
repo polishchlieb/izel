@@ -4,9 +4,9 @@
 	"description": "",
 	"main": "compile/index.js",
 	"scripts": {
-		"build": "tsc src/index.ts --lib es2018 --outDir compile",
+		"build": "rm -rf dist && tsc",
 		"test": "npm run build && npm start",
-		"start": "node compile"
+		"start": "node dist"
 	},
 	"keywords": [
 		"discord.js",

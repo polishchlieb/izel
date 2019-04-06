@@ -1,26 +1,22 @@
-// https://gist.github.com/polishchlieb/966457040e9788050eb3becc66612f44
-
-const limit = 7 * 86400;
-
-const factors = ['s', 'm', 'h', 'd'];
+const limit = 7 * 86400 * 1000;
+const pattern = /[0-9]+(?=s|m|h|d)/;
 
 export function parseTime(time: string) {
-    const factor = time.slice(-1);
-    if(!factors.includes(factor.toLocaleLowerCase()))
+    if(!pattern.test(time))
         return false;
 
-    const parsedTime = parseInt(time);
-    if(isNaN(parsedTime) || parsedTime < 0)
-        return false;
+    const parsed = time.split(/[0-9]+(?=s|m|h|d)/);
+    let parsedTime = parseInt(parsed[0]);
 
-    let parsedSeconds;
-    if(factor == 's') parsedSeconds = parsedTime;
-    if(factor == 'm') parsedSeconds = parsedTime * 60;
-    if(factor == 'h') parsedSeconds = parsedTime * 3600;
-    if(factor == 'd') parsedSeconds = parsedTime * 86400;
+    switch(parsed[1]) {
+        case 's': parsedTime = parsedTime * 1000; break;
+        case 'm':  parsedTime = parsedTime * 60000; break;
+        case 'h': parsedTime = parsedTime * 3600000; break;
+        case 'd': parsedTime = parsedTime * 86400000; break;
+    }
 
-    if(parsedSeconds > limit && limit != -1)
-        return false;
-
-    return parsedSeconds * 1000;
+    return (
+        (parsedTime > limit && limit != -1) ? false
+        : parsedTime
+    );
 }
