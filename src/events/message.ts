@@ -1,28 +1,33 @@
 import { Message } from 'discord.js';
-import { Command } from '../interfaces/command';
 import { Event } from '../interfaces/event';
+import { handleCommand } from '../utils/commandHandler';
 import { bot } from '..';
-
-const { prefix }: { prefix: string } = require('../../config.json');
+import { Collection } from 'mongodb';
 
 export class MessageEvent implements Event {
     name = 'message';
 
-    run(message: Message) {
-        if(!message.content.startsWith(prefix)
-           || message.author.bot
+    async run(message: Message): Promise<void> {
+        if(message.author.bot
            || !message.guild) return;
 
-        const args: string[] = message.content
-            .substring(prefix.length)
-            .split(' '),
-        name: string = args.shift().toLowerCase(),
-        command: Command = bot.commands.find(c => 
-            c.info.names.includes(name)
-        );
+        let collection: Collection<any> = bot.database.collection(message.guild.id);
+        let data: any = await collection.findOne({ id: message.author.id });
+        let options: any = await collection.findOne({ options: true });
 
-        if(command)
-            command.run(bot.client, message, args);
-        else message.react('❓');
+        if(!data)
+            collection.insertOne({
+                id: message.author.id,
+                messages: 1,
+                level: 0
+            });
+        else collection.updateOne({ id: message.author.id }, {
+            $set: {
+                messages: data.messages + 1,
+                level: data.messages % 200 == 0 ? data.level + 1 : data.level
+            }
+        });
+
+        if(message.content.startsWith(options.prefix)) handleCommand(message);
     }
 }

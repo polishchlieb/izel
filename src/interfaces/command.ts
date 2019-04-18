@@ -1,7 +1,8 @@
-import { Client, Message } from 'discord.js';
+import { Message } from 'discord.js';
 
 export interface Command {
-    run: (bot: Client, message: Message, args: string[]) => any;
+    // any to do things like return message.reply(...);
+    run: (message: Message, args: string[]) => any;
 
     info: {
         names: string[],

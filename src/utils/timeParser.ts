@@ -15,8 +15,5 @@ export function parseTime(time: string) {
         case 'd': parsedTime = parsedTime * 86400000; break;
     }
 
-    return (
-        (parsedTime > limit && limit != -1) ? false
-        : parsedTime
-    );
+    return (parsedTime > limit && limit != -1) ? false : parsedTime;
 }

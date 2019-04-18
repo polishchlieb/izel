@@ -9,25 +9,10 @@
 - Install node.js [here](https://nodejs.org/)
 - Install typescript using `npm i -g typescript`
 - Install dependencies using `npm i`
+- Install MongoDB and run the server
+- Create the database by running the `initMongo.js` file
 - Add your data to `config.json` file
 - Use one of the following commands:
     - `npm run build` to build bot and output files to `compile/`
     - `npm start` to start the bot (requires compiled files in `compile/`)
     - `npm test` to build and start the bot
-
-# Changelog
-Older versions [here](CHANGELOG.md)
-## 2.0.3 (newest):
-- Added `kick` command
-
-# TODO
-- Commands:
-    - [ ] giveaway
-    - [ ] kick
-    - [ ] mute
-    - [ ] poll
-    - [ ] eval
-- [ ] Livestream & new Youtube video notifications
-- [ ] Music
-- [ ] Stat channels
-- [ ] Webpanel

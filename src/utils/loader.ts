@@ -1,16 +1,15 @@
 import { blue } from 'colors';
 import { Bot } from '../bot';
 
-import { GuildMemberAddEvent } from '../events/guildMemberAdd';
 import { MessageEvent } from '../events/message';
 import { ReadyEvent } from '../events/ready';
 
-import { HelloCommand } from '../commands/hello';
+import { RankCommand } from '../commands/rank';
+import { TopCommand } from '../commands/top';
+import { EvalCommand } from '../commands/eval';
 
-export function loadEvents(bot: Bot) {
-    bot.events.push(new ReadyEvent(), new MessageEvent(),
-        new GuildMemberAddEvent());
-
+export const loadEvents = (bot: Bot): void => {
+    bot.events.push(new ReadyEvent, new MessageEvent);
     bot.events.forEach(event => {
         bot.client.on(event.name, event.run);
     });
@@ -18,8 +17,8 @@ export function loadEvents(bot: Bot) {
     console.log(blue(`Loaded ${bot.events.length} events`));
 }
 
-export function loadCommands(bot: Bot) {
-    bot.commands.push(new HelloCommand());
+export const loadCommands = (bot: Bot): void => {
+    bot.commands.push(new RankCommand, new TopCommand, new EvalCommand);
     
     console.log(blue(`Loaded ${bot.commands.length} commands\n`));
 }

@@ -1,10 +1,11 @@
 import { Event } from '../interfaces/event';
-import { GuildMember } from 'discord.js';
+import { GuildMember, TextChannel, Attachment, GuildChannel } from 'discord.js';
+import fetch from 'node-fetch';
 
 export class GuildMemberAddEvent implements Event {
     name = 'guildMemberAdd';
 
-    run(member: GuildMember) {
+    run(member: GuildMember): void {
         
     }
 }
