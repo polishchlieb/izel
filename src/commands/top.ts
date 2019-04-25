@@ -10,11 +10,11 @@ export class TopCommand implements Command {
     }
 
     async run(message: Message, args: string[]): Promise<void> {
-        const data: any[] = await bot.database.collection(message.guild.id)
+        let data: any[] = await bot.database.collection(message.guild.id)
             .find()
             .sort({ messages: -1 }).limit(10).toArray();
 
-        const embed: RichEmbed = new RichEmbed()
+        let embed: RichEmbed = new RichEmbed()
             .setTitle('Top 10 pionkow')
             .setColor('RANDOM');
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.1:
+- Some fixes
+- Added `calc` command
+
 ## 2.1.0:
 ### Patch 1
 - Added a ranking system

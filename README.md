@@ -5,6 +5,8 @@
     <img src="https://img.shields.io/badge/version-2.0.2-blue.svg">
 </p>
 
+## We're going to add a dashboard awww
+
 # Setup
 - Install node.js [here](https://nodejs.org/)
 - Install typescript using `npm i -g typescript`

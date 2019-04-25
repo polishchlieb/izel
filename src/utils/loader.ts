@@ -7,7 +7,7 @@ import { ReadyEvent } from '../events/ready';
 import { RankCommand } from '../commands/rank';
 import { TopCommand } from '../commands/top';
 import { EvalCommand } from '../commands/eval';
-import { SolveCommand } from '../commands/solve';
+import { MathCommand } from '../commands/calc';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent);
@@ -19,7 +19,7 @@ export const loadEvents = (bot: Bot): void => {
 }
 
 export const loadCommands = (bot: Bot): void => {
-    bot.commands.push(new RankCommand, new TopCommand, new EvalCommand, new SolveCommand);
+    bot.commands.push(new RankCommand, new TopCommand, new EvalCommand, new MathCommand);
     
     console.log(blue(`Loaded ${bot.commands.length} commands\n`));
 }
