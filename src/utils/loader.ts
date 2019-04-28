@@ -1,8 +1,11 @@
 import { blue } from 'colors';
+
 import { Bot } from '../bot';
+import { Dashboard } from '../dashboard';
 
 import { MessageEvent } from '../events/message';
 import { ReadyEvent } from '../events/ready';
+import { GuildCreateEvent } from '../events/guildCreate';
 
 import { RankCommand } from '../commands/rank';
 import { TopCommand } from '../commands/top';
@@ -10,7 +13,7 @@ import { EvalCommand } from '../commands/eval';
 import { MathCommand } from '../commands/calc';
 
 export const loadEvents = (bot: Bot): void => {
-    bot.events.push(new ReadyEvent, new MessageEvent);
+    bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent);
     bot.events.forEach(event => {
         bot.client.on(event.name, event.run);
     });
@@ -22,4 +25,10 @@ export const loadCommands = (bot: Bot): void => {
     bot.commands.push(new RankCommand, new TopCommand, new EvalCommand, new MathCommand);
     
     console.log(blue(`Loaded ${bot.commands.length} commands\n`));
+}
+
+export const loadDashboard = (bot: Bot): void => {
+    const dashboard: Dashboard = new Dashboard(bot);
+    dashboard.init();
+    dashboard.start();
 }
