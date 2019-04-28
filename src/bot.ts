@@ -23,7 +23,7 @@ export class Bot {
                 loadEvents(this);
                 loadCommands(this);
                 loadDashboard(this);
-                notify('Izel', 'Bot is ready')
+                notify('Izel', 'Bot is ready');
 
                 this.client.login(token);
             })

@@ -1,7 +1,7 @@
 const limit = 7 * 86400 * 1000;
 const pattern = /[0-9]+(?=s|m|h|d)/;
 
-export function parseTime(time: string) {
+export const parseTime = (time: string): boolean | number => {
     if(!pattern.test(time))
         return false;
 
