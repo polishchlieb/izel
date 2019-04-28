@@ -10,7 +10,7 @@ export function parseTime(time: string) {
 
     switch(parsed[1]) {
         case 's': parsedTime = parsedTime * 1000; break;
-        case 'm':  parsedTime = parsedTime * 60000; break;
+        case 'm': parsedTime = parsedTime * 60000; break;
         case 'h': parsedTime = parsedTime * 3600000; break;
         case 'd': parsedTime = parsedTime * 86400000; break;
     }

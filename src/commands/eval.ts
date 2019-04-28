@@ -12,7 +12,7 @@ export class EvalCommand implements Command {
         if(message.author.id != '372459063339909120')
             return message.reply('masz cos lepszego do roboty');
 
-        let val;
+        let val: any;
 
         try {
             val = eval(args.join(' '));

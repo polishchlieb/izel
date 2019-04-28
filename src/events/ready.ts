@@ -9,9 +9,10 @@ export class ReadyEvent implements Event {
         bot.client.guilds.forEach(async guild => {
             await bot.database.collection(guild.id);
 
-            let data = bot.database.collection(guild.id).findOne({
+            let data: any = bot.database.collection(guild.id).findOne({
                 options: true
             });
+
             if(!data)
                 bot.database.collection(guild.id).insertOne({
                     options: true,

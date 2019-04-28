@@ -13,5 +13,6 @@ export const handleCommand = (message: Message): void => {
 
     if(command)
         command.run(message, args);
-    else message.react('❓');
+    else
+        message.react('❓');
 }

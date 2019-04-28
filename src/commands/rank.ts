@@ -25,7 +25,7 @@ export class RankCommand implements Command {
         });
 
         let canvas: Canvas = createCanvas(800, 220);
-        let ctx = canvas.getContext('2d');
+        let ctx: any = canvas.getContext('2d');
 
         let text: string = `${data.messages} wiadomosci`;
         let image: Image = await loadImage(message.author.avatarURL);

@@ -1,5 +1,5 @@
 import { Command } from '../interfaces/command';
-import { Message, RichEmbed } from 'discord.js';
+import { Message, RichEmbed, GuildMember } from 'discord.js';
 import { bot } from '..';
 
 export class TopCommand implements Command {
@@ -19,7 +19,7 @@ export class TopCommand implements Command {
             .setColor('RANDOM');
 
         data.forEach((user: any, i: number) => {
-            let member = message.guild.member(user.id);
+            let member: GuildMember = message.guild.member(user.id);
             if(member)
                 embed.addField(
                     `${i + 1}. ${member.displayName}`,
