@@ -1,4 +1,7 @@
 {
     "prefix": "&",
-    "token": "your token here"
+    "token": "",
+    "id": "",
+    "secret": "",
+    "callback": ""
 }
