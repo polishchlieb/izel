@@ -12,7 +12,7 @@ export class GuildCreateEvent implements Event {
         // Creates collection if it doesn't exist
         await bot.database.collection(guild.id);
 
-        bot.database.collection(guild.id).insertOne({
+        await bot.database.collection(guild.id).insertOne({
             options: true,
             prefix: '&',
             language: 'en'

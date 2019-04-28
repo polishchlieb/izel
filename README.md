@@ -15,6 +15,7 @@
 - Create the database by running the `initMongo.js` file
 - Add your data to `config.json` file
 - Use one of the following commands:
-    - `npm run build` to build bot and output files to `compile/`
-    - `npm start` to start the bot (requires compiled files in `compile/`)
+    - `npm run build` to build bot and output files to `dist/`
+    - `npm start` to start the bot (requires compiled files in `dist/`)
     - `npm test` to build and start the bot
+    - `npm run test-dev` to start dashboard with hot reload
