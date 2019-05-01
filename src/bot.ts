@@ -3,7 +3,6 @@ import { loadCommands, loadEvents, loadDashboard } from './utils/loader';
 import { Command } from './interfaces/command';
 import { Event } from './interfaces/event';
 import { Db, MongoClient } from 'mongodb';
-import { notify } from 'notify-send';
 import { bot } from '.';
 
 export class Bot {
@@ -23,7 +22,6 @@ export class Bot {
                 loadEvents(this);
                 loadCommands(this);
                 loadDashboard(this);
-                notify('Izel', 'Bot is ready');
 
                 this.client.login(token);
             })

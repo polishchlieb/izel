@@ -25,11 +25,13 @@ export const loadEvents = (bot: Bot): void => {
 export const loadCommands = (bot: Bot): void => {
     bot.commands.push(new RankCommand, new TopCommand, new EvalCommand, new MathCommand);
     
-    console.log(blue(`Loaded ${bot.commands.length} commands\n`));
+    console.log(blue(`Loaded ${bot.commands.length} commands`));
 }
 
 export const loadDashboard = (bot: Bot): void => {
     const dashboard: Dashboard = new Dashboard(bot);
     dashboard.init();
     dashboard.start();
+
+    console.log(blue('Loaded dashboard\n'));
 }

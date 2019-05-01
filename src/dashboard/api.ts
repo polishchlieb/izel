@@ -1,8 +1,8 @@
 import { Request, Response, Router } from 'express';
 import fetch from 'node-fetch';
 import * as cookie from 'cookie-parser';
-import { Bot } from "../bot";
-import { GuildMember, Guild, MessageMentions } from 'discord.js';
+import { Bot } from '../bot';
+import { GuildMember, Guild } from 'discord.js';
 
 const router: Router = Router();
 const { id, secret, callback }: { id: string, secret: string, callback: string} = require("../../config.json");
@@ -11,23 +11,24 @@ const redirect: string = encodeURIComponent(callback);
 interface BotRequest extends Request {
     bot: Bot
 }
+
 // logging in things
 router.get('/login', (req: Request, res: Response) => {
     res.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=${id}&redirect_uri=${redirect}&response_type=code&scope=identify guilds`);
-})
+});
 
 router.get('/callback', (req: Request, res: Response) => {
-    if (!req.query.code) throw new Error("NoCodeProvidd");
+    if (!req.query.code) throw new Error('NoCodeProvided');
 
     const code: string = req.query.code;
-    const creds = Buffer.from(`${id}:${secret}`).toString('base64');
+    const creds: string = Buffer.from(`${id}:${secret}`).toString('base64');
 
     fetch(
         `https://discordapp.com/api/oauth2/token?grant_type=authorization_code&code=${code}&redirect_uri=${redirect}`,
         {
             headers: {
                 'Authorization': `Basic ${creds}`,
-                'User-Agent': 'Discord-Bot Izel'
+                'User-Agent': 'Discord-Bot izel'
             },
             method: 'post'
         }
@@ -35,11 +36,12 @@ router.get('/callback', (req: Request, res: Response) => {
     .then(resp => resp.json())
     .then(data => {
         res.cookie('token', data.access_token, {
-            maxAge: 1000 * 60 * 60 * 24 * 3
+            // 1000 (ms) * 60 (s) * 60 (min) * 24 (h) * 3 (d) => 3 days
+            maxAge: 259200000
         });
-        res.redirect('/')
-    })
-})
+        res.redirect('/');
+    });
+});
 
 router.use(cookie())
 
@@ -58,11 +60,11 @@ router.get('/logout', (req: Request, res: Response) => {
 // checking authorization
 router.get('/check', (req: BotRequest, res: Response) => {
     if(req.cookies.token === null || req.cookies.token === undefined) {
-        res.status(401)
-        return res.send({ status: "ERROR", message: "No authorization token"})
+        res.status(401);
+        return res.send({ status: 'ERROR', message: 'No authorization token' });
     }
 
-    fetch("https://discordapp.com/api/users/@me", {
+    fetch('https://discordapp.com/api/users/@me', {
             headers: {
                 'Authorization': "Bearer "+req.cookies.token
             }
@@ -101,8 +103,8 @@ router.get('/getId', (req: Request, res: Response) => {
         .then(data => {
             res.send(data)
         })
-        .catch(err => res.send(new Error(err.message)))
-})
+        .catch(err => res.send(new Error(err.message)));
+});
 
 router.get('/guilds', (req: BotRequest, res: Response) => {
     fetch('https://discordapp.com/api/users/@me/guilds', {
@@ -120,10 +122,9 @@ router.get('/guilds', (req: BotRequest, res: Response) => {
             }
         })
         
-        res.send(matches)
-
-    })
-})
+        res.send(matches);
+    });
+});
 
 router.get('/guild', (req: BotRequest, res: Response) => {
     fetch('https://discordapp.com/api/users/@me',
@@ -142,20 +143,18 @@ router.get('/guild', (req: BotRequest, res: Response) => {
             .find()
             .sort({ messages: -1 }).toArray()
             .then(guild => {
-                console.dir(guild);
                 let result: any[] = [];
 
                 guild.forEach((user: any, i: number) => {
                     let member: GuildMember = Tguild.member(user.id);
                     if(member) {
                         result.push({
-                            i: i+1,
                             id: member.id,
-                            name: member.user.username,
-                            dsc: member.user.discriminator,
+                            tag: member.user.tag,
                             av: `https://cdn.discordapp.com/avatars/${member.id}/${member.user.avatar}?size=128`,
-                            messages: user.messages
-                        })
+                            messages: user.messages,
+                            level: user.level
+                        });
                     }
                 })
 
@@ -167,7 +166,7 @@ router.get('/guild', (req: BotRequest, res: Response) => {
                 });
             })
         })
-        .catch(err => res.send(new Error(err.message)))
-})
+        .catch(err => res.send(new Error(err.message)));
+});
 
 export default router;

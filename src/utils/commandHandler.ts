@@ -4,7 +4,7 @@ import { Command } from '../interfaces/command';
 const { prefix }: { prefix: string } = require('../../config.json');
 
 export const handleCommand = (message: Message): void => {
-    const args = message.content
+    const args: string[] = message.content
         .substring(prefix.length)
         .split(' ');
     const name: string = args.shift().toLowerCase();
@@ -12,6 +12,5 @@ export const handleCommand = (message: Message): void => {
 
     if(command)
         command.run(message, args);
-    else
-        message.react('❓');
+    else message.react('❓');
 }

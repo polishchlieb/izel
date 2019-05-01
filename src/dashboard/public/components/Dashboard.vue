@@ -41,7 +41,6 @@
 
 <script>
 import Guild from './Guild.vue';
-
 export default {
     data: function() {
         return {
@@ -91,5 +90,4 @@ export default {
 </script>
 
 <style>
-
 </style>

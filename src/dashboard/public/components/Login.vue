@@ -21,7 +21,6 @@
 
 <script>
 import BetterLogo from '../assets/better-logo.png';
-
 export default {
     data: function() {
         return {
@@ -38,6 +37,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
-

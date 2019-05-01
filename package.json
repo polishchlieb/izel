@@ -20,6 +20,7 @@
 	"author": "chlebek",
 	"license": "MIT",
 	"dependencies": {
+		"@types/cookie-parser": "^1.4.1",
 		"@types/express": "^4.16.1",
 		"@types/express-session": "^1.15.12",
 		"@types/html2canvas": "0.0.35",
@@ -48,7 +49,6 @@
 		"copy-webpack-plugin": "^5.0.3",
 		"css-loader": "^2.1.1",
 		"file-loader": "^3.0.1",
-		"notify-send": "^0.1.2",
 		"vue-loader": "^15.7.0",
 		"vue-style-loader": "^4.1.2",
 		"vue-template-compiler": "^2.6.10",
