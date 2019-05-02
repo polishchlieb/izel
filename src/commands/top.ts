@@ -1,8 +1,8 @@
-import { Command } from '../interfaces/command';
+import Command from '../interfaces/command';
 import { Message, RichEmbed, GuildMember } from 'discord.js';
-import { bot } from '..';
+import bot from '..';
 
-export class TopCommand implements Command {
+export default class TopCommand implements Command {
     info = {
         names: ['top', 'leaderboard'],
         description: 'Topka serwerkowa',

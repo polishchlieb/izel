@@ -1,9 +1,9 @@
 import * as e from 'express';
 import { join } from 'path';
-import { Bot } from '../bot';
+import Bot from '../bot';
 import api from './api';
 
-export class Dashboard {
+export default class Dashboard {
     app: e.Express = e();
     bot: Bot;
 

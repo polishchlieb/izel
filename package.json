@@ -1,12 +1,12 @@
 {
 	"name": "izel",
-	"version": "2.1.1",
+	"version": "2.2.0",
 	"description": "multifunctional Discord bot",
 	"main": "compile/index.js",
 	"scripts": {
 		"build": "rm -rf dist && tsc && webpack --config webpack.config.prod.js",
 		"test": "npm run build && npm start",
-		"test-dev": " webpack-dev-server --port 3000 --config webpack.config.dev.js",
+		"test-dev": "webpack-dev-server --port 3000 --config webpack.config.dev.js",
 		"start": "node dist"
 	},
 	"keywords": [

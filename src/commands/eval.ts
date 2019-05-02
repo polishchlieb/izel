@@ -1,7 +1,7 @@
-import { Command } from '../interfaces/command';
+import Command from '../interfaces/command';
 import { Message, RichEmbed } from 'discord.js';
 
-export class EvalCommand implements Command {
+export default class EvalCommand implements Command {
     info = {
         names: ['eval'],
         description: 'tylko dla rzadu',

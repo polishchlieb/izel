@@ -1,6 +1,6 @@
-import { Command } from '../interfaces/command';
+import Command from '../interfaces/command';
 import { Message, Attachment } from 'discord.js';
-import { bot } from '..';
+import bot from '..';
 import { createCanvas, loadImage, Image, Canvas } from 'canvas';
 
 let bg: Image, fg: Image;
@@ -9,7 +9,7 @@ let bg: Image, fg: Image;
     fg = await loadImage('assets/fg0.png');
 })();
 
-export class RankCommand implements Command {
+export default class RankCommand implements Command {
     info = {
         names: ['rank'],
         description: 'Shows your rank',

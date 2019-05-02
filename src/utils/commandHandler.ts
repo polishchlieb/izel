@@ -1,9 +1,9 @@
 import { Message } from 'discord.js';
-import { bot } from '..';
-import { Command } from '../interfaces/command';
+import bot from '..';
+import Command from '../interfaces/command';
 const { prefix }: { prefix: string } = require('../../config.json');
 
-export const handleCommand = (message: Message): void => {
+const handleCommand = (message: Message, messages: any): void => {
     const args: string[] = message.content
         .substring(prefix.length)
         .split(' ');
@@ -11,6 +11,8 @@ export const handleCommand = (message: Message): void => {
     const command: Command = bot.commands.find((c: Command) => c.info.names.includes(name));
 
     if(command)
-        command.run(message, args);
+        command.run(message, args, messages);
     else message.react('❓');
 }
+
+export default handleCommand;

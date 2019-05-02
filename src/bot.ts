@@ -1,11 +1,11 @@
 import { Client } from 'discord.js'
 import { loadCommands, loadEvents, loadDashboard } from './utils/loader';
-import { Command } from './interfaces/command';
-import { Event } from './interfaces/event';
+import Command from './interfaces/command';
+import Event from './interfaces/event';
 import { Db, MongoClient } from 'mongodb';
-import { bot } from '.';
+import bot from '.';
 
-export class Bot {
+export default class Bot {
     client: Client = new Client();
     commands: Command[] = [];
     events: Event[] = [];

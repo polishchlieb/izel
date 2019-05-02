@@ -1,8 +1,8 @@
-import { Command } from '../interfaces/command';
+import Command from '../interfaces/command';
 import { Message } from 'discord.js';
 import { eval as calc } from 'mathjs';
 
-export class MathCommand implements Command {
+export default class MathCommand implements Command {
     info = {
         names: ['calc'],
         description: 'Calculates something',

@@ -1,11 +1,8 @@
-import { Event } from '../interfaces/event';
+import Event from '../interfaces/event';
 import { Guild } from 'discord.js';
-import { bot } from '..';
+import bot from '..';
 
-/**
- * Event emitted whether the bot joins a guild
- */
-export class GuildCreateEvent implements Event {
+export default class GuildCreateEvent implements Event {
     name = 'guildCreate';
 
     async run(guild: Guild): Promise<void> {

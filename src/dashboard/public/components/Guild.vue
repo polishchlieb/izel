@@ -31,11 +31,8 @@
                 guildname: null
             };
         },
-        mounted: function() { // cannot use () => {}
+        mounted: function() {
             this.guildname = this.$props.guild.guildName;
-            // this.$props.guild.top.forEach(u => {
-            //     this.top.push(u);
-            // });
             this.top = this.$props.guild.top;
         }
     }

@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express';
 import fetch from 'node-fetch';
 import * as cookie from 'cookie-parser';
-import { Bot } from '../bot';
+import Bot from '../bot';
 import { GuildMember, Guild } from 'discord.js';
 
 const router: Router = Router();
@@ -136,33 +136,33 @@ router.get('/guild', (req: BotRequest, res: Response) => {
         })
         .then(resp => resp.json())
         .then(user => {
-            let userId: string = user.id;
             let Tguild: Guild = req.bot.client.guilds.get(req.query.guild);
 
             req.bot.database.collection(req.query.guild)
-            .find()
-            .sort({ messages: -1 }).toArray()
-            .then(guild => {
-                let result: any[] = [];
+                .find()
+                .sort({ messages: -1 })
+                .limit(10)
+                .toArray()
+                .then(guild => {
+                    let result: any[] = [];
 
-                guild.forEach((user: any, i: number) => {
-                    let member: GuildMember = Tguild.member(user.id);
-                    if(member) {
-                        result.push({
-                            id: member.id,
-                            tag: member.user.tag,
-                            av: `https://cdn.discordapp.com/avatars/${member.id}/${member.user.avatar}?size=128`,
-                            messages: user.messages,
-                            level: user.level
-                        });
-                    }
-                })
+                    guild.forEach((user: any, i: number) => {
+                        let member: GuildMember = Tguild.member(user.id);
+                        if(member) {
+                            result.push({
+                                id: member.id,
+                                tag: member.user.tag,
+                                av: `https://cdn.discordapp.com/avatars/${member.id}/${member.user.avatar}?size=128`,
+                                messages: user.messages,
+                                level: user.level
+                            });
+                        }
+                    })
 
-                let rank = result.find(x => x.id == userId);
                 res.send({
                     top: result,
-                    rank,
-                    guildName: Tguild.name
+                    guildName: Tguild.name,
+                    userID: user.id
                 });
             })
         })

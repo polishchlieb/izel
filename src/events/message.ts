@@ -1,10 +1,15 @@
 import { Message } from 'discord.js';
-import { Event } from '../interfaces/event';
-import { handleCommand } from '../utils/commandHandler';
-import { bot } from '..';
+import Event from '../interfaces/event';
+import handleCommand from '../utils/commandHandler';
+import bot from '..';
 import { Collection } from 'mongodb';
 
-export class MessageEvent implements Event {
+const messages: any = {
+    pl: require('../../languages/pl.json'),
+    en: require('../../languages/en.json')
+};
+
+export default class MessageEvent implements Event {
     name = 'message';
 
     async run(message: Message): Promise<void> {
@@ -28,6 +33,6 @@ export class MessageEvent implements Event {
             }
         });
 
-        if(message.content.startsWith(options.prefix)) handleCommand(message);
+        if(message.content.startsWith(options.prefix)) handleCommand(message, messages[options.language]);
     }
 }

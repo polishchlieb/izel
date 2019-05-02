@@ -1,6 +1,7 @@
-import { Bot } from './bot';
+import Bot from './bot';
 
 const { token }: { token: string } = require('../config.json');
-export const bot: Bot = new Bot();
+const bot: Bot = new Bot();
+export default bot;
 
 bot.start(token);

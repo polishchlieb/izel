@@ -1,8 +1,8 @@
-import { Event } from '../interfaces/event';
-import { bot } from '..';
+import Event from '../interfaces/event';
+import bot from '..';
 import { Guild } from 'discord.js';
 
-export class GuildDeleteEvent implements Event {
+export default class GuildDeleteEvent implements Event {
     name = 'guildDelete';
 
     run(guild: Guild): void {

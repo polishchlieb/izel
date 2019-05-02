@@ -1,8 +1,8 @@
 import { green } from 'colors';
-import { Event } from '../interfaces/event';
-import { bot } from '..';
+import Event from '../interfaces/event';
+import bot from '..';
 
-export class ReadyEvent implements Event {
+export default class ReadyEvent implements Event {
     name = 'ready';
 
     run(): void {
