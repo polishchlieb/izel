@@ -3,9 +3,18 @@
         <v-app dark>
             <v-layout align-center justify-center>
                 <v-flex xs12 sm4 text-xs-center column>
-                    <div v-for="(command, i) in commands" :key="i">
-                        {{ command.names[Math.floor(Math.random() * command.names.length)] }}
-                    </div>
+                    <v-card>
+                        <v-toolbar flat class="primary">
+                            <v-toolbar-title>Commands</v-toolbar-title>
+                        </v-toolbar>
+
+                        <v-list>
+                            <div v-for="(command, i) in commands" :key="i">
+                                <div class="usage">{{ command.usage }}</div>
+                                <div class="description">{{ command.description }}</div>
+                            </div>
+                        <v-list>
+                    </v-card>
                 </v-flex>
             </v-layout>
         </v-app>
@@ -28,3 +37,11 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.usage, .description {
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    font-weight: 500;
+}
+</style>

@@ -19,10 +19,14 @@
                 </v-list>
             </v-card>
 
-            <v-card v-if="true">
+            <v-card v-if="isAdmin">
                 <v-toolbar flat class="primary">
                     <v-toolbar-title>Administrator</v-toolbar-title>
                 </v-toolbar>
+
+                <v-container>
+                    admin, masz opa!
+                </v-container>
             </v-card>
         </v-flex>
     </v-layout>
@@ -41,39 +45,40 @@ export default {
     mounted: function() {
         this.guildname = this.$props.guild.guildName;
         this.top = this.$props.guild.top;
+        this.isAdmin = this.$props.guild.isAdmin;
     }
 }
 </script>
 
 <style scoped>
-    .tile {
-        display: flex;
-        align-items: center;
-    }
-    .paddin {
-        background: #0173bb;
-    }
-    .rank, .nick, .score {
-        overflow: hidden;
-        overflow-wrap: anywhere;
-        font-weight: 500;
-    }
-    .rank {
-        width: 30px;
-        margin: 10px;
-    }
-    .progress {
-        border-radius: 10px;
-    }
-    .nick {
-        display: block;
-        width: 250px;
-        max-width: 200px;
-        text-overflow: ellipsis;
-        text-align: center;
-    }
-    .score {
-        width: 100px;
-        text-align: center;
-    }
+.tile {
+    display: flex;
+    align-items: center;
+}
+.paddin {
+    background: #0173bb;
+}
+.rank, .nick, .score {
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    font-weight: 500;
+}
+.rank {
+    width: 30px;
+    margin: 10px;
+}
+.progress {
+    border-radius: 10px;
+}
+.nick {
+    display: block;
+    width: 250px;
+    max-width: 200px;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+.score {
+    width: 100px;
+    text-align: center;
+}
 </style>

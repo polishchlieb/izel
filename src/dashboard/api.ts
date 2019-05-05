@@ -157,7 +157,8 @@ router.get('/guild', (req: Request, res: Response) => {
                     res.send({
                         top: result,
                         guildName: Tguild.name,
-                        userID: user.id
+                        userID: user.id,
+                        isAdmin: Tguild.member(user.id).hasPermission('ADMINISTRATOR')
                     });
                 });
         })

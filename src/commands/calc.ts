@@ -10,6 +10,8 @@ export default class MathCommand implements Command {
     }
 
     async run(message: Message, args: string[]): Promise<void> {
-        message.channel.send(calc(args.join(' ')));
+        const scope: any = {};
+
+        message.channel.send(calc(args.join(' '), scope));
     }
 }

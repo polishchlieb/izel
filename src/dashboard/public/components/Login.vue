@@ -11,9 +11,9 @@
                     </div>
                     <div>
                         <a href="/api/login">
-                        <v-btn large color="primary">Login with Discord
-                            <v-icon right dark>arrow_forward</v-icon>
-                        </v-btn>
+                            <v-btn large color="primary">Login with Discord
+                                <v-icon right dark>arrow_forward</v-icon>
+                            </v-btn>
                         </a>
                     </div>
                 </v-flex>
