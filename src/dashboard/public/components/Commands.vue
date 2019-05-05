@@ -13,7 +13,7 @@
                                 <div class="usage">{{ command.usage }}</div>
                                 <div class="description">{{ command.description }}</div>
                             </div>
-                        <v-list>
+                        </v-list>
                     </v-card>
                 </v-flex>
             </v-layout>
