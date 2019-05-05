@@ -1,3 +1,9 @@
 {
-    "poll": "Ankieta"
+    "poll": "Ankieta",
+    "use": "użyj",
+    "help": "Pomoc",
+    "helpDescription": "W podanym linku znajdziesz listę komend.",
+    "requestedBy": "dla",
+    "myPrefix": "Mój prefix na tym serwerze to",
+    "setPrefix": "Ustawiono prefix na"
 }

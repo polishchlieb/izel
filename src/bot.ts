@@ -11,20 +11,16 @@ export default class Bot {
     events: Event[] = [];
     database: Db;
 
-    start(token: string): void {
-        process.on('unhandledRejection', err => {
-            console.log(err);
-        });
+    async start(token: string): Promise<void> {
+        process.on('unhandledRejection', console.error);
 
-        MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true })
-            .then(conn => {
-                bot.database = conn.db('izel');
-                loadEvents(this);
-                loadCommands(this);
-                loadDashboard(this);
+        let conn: MongoClient = await MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true });
 
-                this.client.login(token);
-            })
-            .catch(console.error);
+        bot.database = conn.db('izel');
+        loadEvents(this);
+        loadCommands(this);
+        loadDashboard(this);
+
+        this.client.login(token);
     }
 }

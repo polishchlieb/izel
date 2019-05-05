@@ -16,11 +16,13 @@ import TopCommand from '../commands/top';
 import EvalCommand from '../commands/eval';
 import MathCommand from '../commands/calc';
 import PollCommand from '../commands/poll';
+import HelpCommand from '../commands/help';
+import PrefixCommand from '../commands/prefix';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent, new GuildDeleteEvent,
         new GuildMemberAddEvent, new GuildMemberRemoveEvent);
-    bot.events.forEach((event: Event) => {
+    bot.events.forEach((event: Event): void => {
         bot.client.on(event.name, event.run);
     });
     
@@ -29,13 +31,13 @@ export const loadEvents = (bot: Bot): void => {
 
 export const loadCommands = (bot: Bot): void => {
     bot.commands.push(new RankCommand, new TopCommand, new EvalCommand, new MathCommand,
-        new PollCommand);
+        new PollCommand, new HelpCommand, new PrefixCommand);
     
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }
 
 export const loadDashboard = (bot: Bot): void => {
-    const dashboard: Dashboard = new Dashboard(bot);
+    const dashboard: Dashboard = new Dashboard;
     dashboard.init();
     dashboard.start();
 

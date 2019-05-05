@@ -18,24 +18,31 @@
                     </div>
                 </v-list>
             </v-card>
+
+            <v-card v-if="true">
+                <v-toolbar flat class="primary">
+                    <v-toolbar-title>Administrator</v-toolbar-title>
+                </v-toolbar>
+            </v-card>
         </v-flex>
     </v-layout>
 </template>
 
 <script>
-    export default {
-        props: ['guild'],
-        data: function() {
-            return {
-                top: [],
-                guildname: null
-            };
-        },
-        mounted: function() {
-            this.guildname = this.$props.guild.guildName;
-            this.top = this.$props.guild.top;
-        }
+export default {
+    props: ['guild'],
+    data: function() {
+        return {
+            top: [],
+            guildname: null,
+            isAdmin: false
+        };
+    },
+    mounted: function() {
+        this.guildname = this.$props.guild.guildName;
+        this.top = this.$props.guild.top;
     }
+}
 </script>
 
 <style scoped>

@@ -1,8 +1,8 @@
 import { Message } from 'discord.js';
 import Event from '../interfaces/event';
-import handleCommand from '../utils/commandHandler';
 import bot from '..';
 import { Collection } from 'mongodb';
+import Command from '../interfaces/command';
 
 const messages: any = {
     pl: require('../../languages/pl.json'),
@@ -33,6 +33,19 @@ export default class MessageEvent implements Event {
             }
         });
 
-        if(message.content.startsWith(options.prefix)) handleCommand(message, messages[options.language]);
+        if(!message.content.startsWith(options.prefix))
+            return;
+
+        const args: string[] = message.content
+            .substring(options.prefix.length)
+            .split(' ');
+        const name: string = args.shift().toLowerCase();
+        const command: Command = bot.commands.find((c: Command) =>
+            c.info.names.includes(name)
+        );
+
+        if(command)
+            command.run(message, args, messages[options.language], options);
+        else message.react('❓');
     }
 }

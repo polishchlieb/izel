@@ -1,3 +1,9 @@
 {
-    "poll": "POLL"
+    "poll": "POLL",
+    "use": "use",
+    "help": "Help",
+    "helpDescription": "Check out our commands",
+    "requestedBy": "requested by",
+    "myPrefix": "My prefix here is",
+    "setPrefix": "Your new prefix is"
 }
