@@ -9,13 +9,13 @@ export default class TopCommand implements Command {
         usage: 'top'
     }
 
-    async run(message: Message, args: string[]): Promise<void> {
-        let data: any[] = await bot.database.collection(message.guild.id)
-            .find()
+    async run(message: Message, _args: string[], messages: any): Promise<void> {
+        let data: any[] = await bot.users
+            .find({ guild: message.guild.id })
             .sort({ messages: -1 }).limit(10).toArray();
 
         let embed: RichEmbed = new RichEmbed()
-            .setTitle('Top 10 pionkow')
+            .setTitle(messages.top)
             .setColor('RANDOM');
 
         data.forEach((user: any, i: number) => {

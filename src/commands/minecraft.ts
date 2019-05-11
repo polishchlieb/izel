@@ -8,7 +8,7 @@ export default class MinecraftCommand implements Command {
         usage: '&minecraft (server ip)'
     }
 
-    run(message: Message, args: string[]): void {
+    run(message: Message, args: string[], messages: any): void {
 
     }
 }

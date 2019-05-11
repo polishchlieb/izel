@@ -8,5 +8,6 @@
     "setPrefix": "Ustawiono prefix na",
     "nextLevel": "Zdobyłeś poziom {}, gratulacje!",
     "messages": "wiadomosci",
-    "level": "POZIOM"
+    "level": "POZIOM",
+    "top": "Top 10 pionków"
 }

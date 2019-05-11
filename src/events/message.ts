@@ -3,13 +3,13 @@ import Event from '../interfaces/event';
 import bot from '..';
 import Command from '../interfaces/command';
 
+const msgs: any = {
+    pl: require('../../languages/pl.json'),
+    en: require('../../languages/en.json')
+}
+
 export default class MessageEvent implements Event {
     name = 'message';
-
-    messages: any = {
-        pl: require('../../languages/pl.json'),
-        en: require('../../languages/en.json')
-    }
 
     async run(message: Message): Promise<void> {
         if(message.author.bot
@@ -30,7 +30,7 @@ export default class MessageEvent implements Event {
                 language: 'en'
             });
 
-        let messages = this.messages[options.language];
+        let messages = msgs[options.language];
 
         if(!data)
             bot.users.insertOne({
@@ -57,11 +57,11 @@ export default class MessageEvent implements Event {
             });
         }
 
-        if(!message.content.startsWith(options.prefix))
+        if(!message.content.startsWith('&'))
             return;
 
         let args: string[] = message.content
-            .substring(options.prefix.length)
+            .substring(1)
             .split(' ');
         let name: string = args.shift().toLowerCase();
         let command: Command = bot.commands.find((c: Command) =>

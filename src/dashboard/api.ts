@@ -12,9 +12,9 @@ router.get('/login', (req: Request, res: Response): void => {
     res.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=${id}&redirect_uri=${redirect}&response_type=code&scope=identify guilds`);
 });
 
-router.get('/callback', (req: Request, res: Response): void => {
+router.get('/callback', (req: Request, res: Response): any => {
     if (!req.query.code)
-        throw new Error('NoCodeProvided');
+        return res.send('do you are have stupid');
 
     const code: string = req.query.code;
     const creds: string = Buffer.from(`${id}:${secret}`).toString('base64');
@@ -133,8 +133,8 @@ router.get('/guild', (req: Request, res: Response) => {
         .then((user: any): void => {
             let Tguild: Guild = bot.client.guilds.get(req.query.guild);
 
-            bot.database.collection(req.query.guild)
-                .find()
+            bot.users
+                .find({ guild: Tguild.id })
                 .sort({ messages: -1 })
                 .limit(10)
                 .toArray()
