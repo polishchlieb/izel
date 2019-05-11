@@ -16,19 +16,20 @@ export default class RankCommand implements Command {
         usage: 'rank'
     }
 
-    async run(message: Message, args: string[]): Promise<void> {
+    async run(message: Message, args: string[], messages: any): Promise<void> {
         message.channel.startTyping();
 
-        let data: any = await bot.database.collection(message.guild.id).findOne({
-            id: message.author.id
+        let data: any = await bot.users.findOne({
+            id: message.author.id,
+            guild: message.guild.id
         });
 
         let canvas: Canvas = createCanvas(800, 220);
         let ctx = canvas.getContext('2d');
 
-        let text: string = `${data.messages} wiadomosci`;
+        let text: string = `${data.messages} ${messages.messages}`;
         let image: Image = await loadImage(message.author.avatarURL);
-        let lvl: string = 'LEVEL ' + data.level;
+        let lvl: string = `${messages.level} ${data.level}`;
 
         ctx.drawImage(bg, 0, 0);
         ctx.drawImage(image, 40, 30, 160, 160);

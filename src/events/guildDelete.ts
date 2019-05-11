@@ -6,6 +6,8 @@ export default class GuildDeleteEvent implements Event {
     name = 'guildDelete';
 
     run(guild: Guild): void {
-        bot.database.collection(guild.id).drop();
+        bot.servers.deleteOne({
+            id: guild.id
+        });
     }
 }

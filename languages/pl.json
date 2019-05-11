@@ -5,5 +5,8 @@
     "helpDescription": "W podanym linku znajdziesz listę komend.",
     "requestedBy": "dla",
     "myPrefix": "Mój prefix na tym serwerze to",
-    "setPrefix": "Ustawiono prefix na"
+    "setPrefix": "Ustawiono prefix na",
+    "nextLevel": "Zdobyłeś poziom {}, gratulacje!",
+    "messages": "wiadomosci",
+    "level": "POZIOM"
 }

@@ -1,5 +1,5 @@
 import Command from '../interfaces/command';
-import { Message, Collection } from 'discord.js';
+import { Message } from 'discord.js';
 
 // TODO
 

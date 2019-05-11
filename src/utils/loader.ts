@@ -17,7 +17,6 @@ import EvalCommand from '../commands/eval';
 import MathCommand from '../commands/calc';
 import PollCommand from '../commands/poll';
 import HelpCommand from '../commands/help';
-import PrefixCommand from '../commands/prefix';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent, new GuildDeleteEvent,
@@ -31,7 +30,7 @@ export const loadEvents = (bot: Bot): void => {
 
 export const loadCommands = (bot: Bot): void => {
     bot.commands.push(new RankCommand, new TopCommand, new EvalCommand, new MathCommand,
-        new PollCommand, new HelpCommand, new PrefixCommand);
+        new PollCommand, new HelpCommand);
     
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }

@@ -15,6 +15,11 @@ export default class PollCommand implements Command {
         message.channel.send(new RichEmbed()
             .setTitle(messages.poll)
             .setColor('RANDOM')
-            .setDescription(args.join(' ')));
+            .setDescription(args.join(' ')))
+            .then((message: Message) => {
+                message.react('🤷');
+                message.react('👍');
+                message.react('👎');
+            });
     }
 }

@@ -5,5 +5,8 @@
     "helpDescription": "Check out our commands",
     "requestedBy": "requested by",
     "myPrefix": "My prefix here is",
-    "setPrefix": "Your new prefix is"
+    "setPrefix": "Your new prefix is",
+    "nextLevel": "You've just got {} level, congratulations!",
+    "messages": "messages",
+    "level": "LEVEL"
 }

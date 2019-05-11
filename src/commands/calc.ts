@@ -9,9 +9,11 @@ export default class MathCommand implements Command {
         usage: 'calc (some math)'
     }
 
-    async run(message: Message, args: string[]): Promise<void> {
-        const scope: any = {};
+    scope: any = {};
 
-        message.channel.send(calc(args.join(' '), scope));
+    async run(message: Message, args: string[]): Promise<void> {
+        let result = calc(args.join(' '), this.scope);
+
+        message.reply(result);
     }
 }
