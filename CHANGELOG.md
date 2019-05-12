@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.x (2.3.0, 2.3.1 - the newest):
+- Added commands: `choose`, `giveaway`, `language`, `minecraft`, `poll`, `weather`
+- Added command list in webpanel
+
 ## 2.1.1:
 - Some fixes
 - Added `calc` command
@@ -8,7 +12,7 @@
 ### Patch 1
 - Added a ranking system
 - Added commands: `eval, rank, top`
-### Patch 2 (the newest)
+### Patch 2
 - Added `solve` command
 - Modified `CHANGELOG.md`
 

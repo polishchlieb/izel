@@ -8,9 +8,9 @@ export default class PollCommand implements Command {
         usage: 'poll (whatever..)'
     }
 
-    run(message: Message, args: string[], messages: any): void | Promise<Message | Message[]> {
+    run(message: Message, args: string[], messages: any): any {
         if(args.length == 0)
-            return message.reply(`use: \`${this.info.usage}\``);
+            return message.reply(`${messages.use}: \`${this.info.usage}\``);
         
         message.channel.send(new RichEmbed()
             .setTitle(messages.poll)

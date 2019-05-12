@@ -9,5 +9,20 @@
     "nextLevel": "You've just got {} level, congratulations!",
     "messages": "messages",
     "level": "LEVEL",
-    "top": "Top 10 users"
+    "top": "Top 10 users",
+    "players": "Players",
+    "choose": "I choose",
+    "version": "Version",
+    "weatherFor": "Weather for",
+    "temperature": "Temperature",
+    "windSpeed": "Wind speed",
+    "pressure": "Pressure",
+    "noPermission": "you don't have enough permissions.",
+    "setLanguage": "set the language to",
+    "reactGiveaway": "React {} to join",
+    "nobodyReacted": "nobody reacted to the giveaway :shrug:",
+    "cityNotFound": "city not found",
+    "giveawayEnded": "Giveaway ended.",
+    "winner": "Winner",
+    "won": "has won the **{}** giveaway"
 }

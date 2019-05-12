@@ -17,6 +17,11 @@ import EvalCommand from '../commands/eval';
 import MathCommand from '../commands/calc';
 import PollCommand from '../commands/poll';
 import HelpCommand from '../commands/help';
+import MinecraftCommand from '../commands/minecraft';
+import ChooseCommand from '../commands/choose';
+import WeatherCommand from '../commands/weather';
+import LanguageCommand from '../commands/language';
+import GiveawayCommand from '../commands/giveaway';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent, new GuildDeleteEvent,
@@ -30,7 +35,9 @@ export const loadEvents = (bot: Bot): void => {
 
 export const loadCommands = (bot: Bot): void => {
     bot.commands.push(new RankCommand, new TopCommand, new EvalCommand, new MathCommand,
-        new PollCommand, new HelpCommand);
+        new PollCommand, new HelpCommand, new MinecraftCommand,
+        new ChooseCommand, new WeatherCommand, new LanguageCommand,
+        new GiveawayCommand);
     
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }

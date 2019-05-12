@@ -1,5 +1,5 @@
 import Command from '../interfaces/command';
-import { Message, Attachment } from 'discord.js';
+import { Message, Attachment, User, GuildMember } from 'discord.js';
 import bot from '..';
 import { createCanvas, loadImage, Image, Canvas } from 'canvas';
 
@@ -16,26 +16,35 @@ export default class RankCommand implements Command {
         usage: 'rank'
     }
 
-    async run(message: Message, args: string[], messages: any): Promise<void> {
+    async run(message: Message, args: string[], messages: any): Promise<any> {
         message.channel.startTyping();
 
+        let member: GuildMember = message.mentions.members.first();
+        if(!member || !message.guild.member(member))
+            member = message.member;
+
         let data: any = await bot.users.findOne({
-            id: message.author.id,
+            id: member.user.id,
             guild: message.guild.id
         });
+
+        if(!data) {
+            message.channel.stopTyping();
+            return message.channel.send('somethin gon wrong');
+        }
 
         let canvas: Canvas = createCanvas(800, 220);
         let ctx = canvas.getContext('2d');
 
         let text: string = `${data.messages} ${messages.messages}`;
-        let image: Image = await loadImage(message.author.avatarURL);
+        let image: Image = await loadImage(member.user.avatarURL);
         let lvl: string = `${messages.level} ${data.level}`;
 
         ctx.drawImage(bg, 0, 0);
         ctx.drawImage(image, 40, 30, 160, 160);
 
         ctx.font = '50px Fredoka One';
-        ctx.fillText(message.member.displayName, 730 - ctx.measureText(message.member.displayName).width, 65);
+        ctx.fillText(member.displayName, 730 - ctx.measureText(member.displayName).width, 65);
 
         ctx.fillRect(230, 150, ((data.messages - 200 * data.level) / 200) * 525, 40);
 
