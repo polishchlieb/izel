@@ -9,6 +9,8 @@ export default class EvalCommand implements Command {
         usage: 'eval (code)'
     }
 
+    set: any = {};
+
     async run(message: Message, args: string[]): Promise<any> {
         let permissions = await _bot.permissions.findOne({
             action: 'eval'
@@ -17,22 +19,20 @@ export default class EvalCommand implements Command {
         if(!permissions.user_ids.includes(message.author.id))
             return message.reply('masz cos lepszego do roboty');
 
-        let val: any;
-
-        const set: any = {};
+        let value: any;
 
         try {
-            val = eval(args.join(' '));
+            value = eval(args.join(' '));
         } catch(e) {
             message.channel.send(new RichEmbed()
                 .setTitle('Evaluation Failed')
                 .addField('Error', e.message)
                 .setColor('RED'));
         } finally {
-            if(typeof val != 'undefined')
+            if(typeof value != 'undefined')
                 message.channel.send(new RichEmbed()
                     .setTitle('Evaluated')
-                    .addField('Value', val)
+                    .addField('Value', value)
                     .setColor('GREEN'));
         }
     }

@@ -17,7 +17,7 @@ export default class Bot {
         process.on('unhandledRejection', console.error);
 
         let conn: MongoClient = await MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true });
-        const database: Database = conn.db('izel');
+        let database: Database = conn.db('izel');
     
         this.users = database.collection('users');
         this.servers = database.collection('servers');
@@ -25,7 +25,7 @@ export default class Bot {
 
         loadEvents(this);
         loadCommands(this);
-        loadDashboard(this);
+        loadDashboard();
 
         this.client.login(token);
     }

@@ -22,6 +22,7 @@ import ChooseCommand from '../commands/choose';
 import WeatherCommand from '../commands/weather';
 import LanguageCommand from '../commands/language';
 import GiveawayCommand from '../commands/giveaway';
+import PingCommand from '../commands/ping';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent, new GuildDeleteEvent,
@@ -37,12 +38,12 @@ export const loadCommands = (bot: Bot): void => {
     bot.commands.push(new RankCommand, new TopCommand, new EvalCommand, new MathCommand,
         new PollCommand, new HelpCommand, new MinecraftCommand,
         new ChooseCommand, new WeatherCommand, new LanguageCommand,
-        new GiveawayCommand);
+        new GiveawayCommand, new PingCommand);
     
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }
 
-export const loadDashboard = (bot: Bot): void => {
+export const loadDashboard = (): void => {
     const dashboard: Dashboard = new Dashboard;
     dashboard.init();
     dashboard.start();

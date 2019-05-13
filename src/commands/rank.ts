@@ -16,7 +16,7 @@ export default class RankCommand implements Command {
         usage: 'rank'
     }
 
-    async run(message: Message, args: string[], messages: any): Promise<any> {
+    async run(message: Message, _args: string[], messages: any): Promise<any> {
         message.channel.startTyping();
 
         let member: GuildMember = message.mentions.members.first();
