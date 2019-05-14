@@ -37,7 +37,7 @@ export default class RankCommand implements Command {
         let ctx = canvas.getContext('2d');
 
         let text: string = `${data.messages} ${messages.messages}`;
-        let image: Image = await loadImage(member.user.avatarURL);
+        let image: Image = await loadImage(member.user.displayAvatarURL);
         let lvl: string = `${messages.level} ${data.level}`;
 
         ctx.drawImage(bg, 0, 0);
