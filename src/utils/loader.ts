@@ -14,7 +14,8 @@ import GuildMemberRemoveEvent from '../events/guildMemberRemove';
 import RankCommand from '../commands/rank';
 import TopCommand from '../commands/top';
 import EvalCommand from '../commands/eval';
-import MathCommand from '../commands/calc';
+import MathCommand from '../commands/math';
+import CalcCommand from '../commands/calc';
 import PollCommand from '../commands/poll';
 import HelpCommand from '../commands/help';
 import MinecraftCommand from '../commands/minecraft';
@@ -38,7 +39,7 @@ export const loadCommands = (bot: Bot): void => {
     bot.commands.push(new RankCommand, new TopCommand, new EvalCommand, new MathCommand,
         new PollCommand, new HelpCommand, new MinecraftCommand,
         new ChooseCommand, new WeatherCommand, new LanguageCommand,
-        new GiveawayCommand, new PingCommand);
+        new GiveawayCommand, new PingCommand, new MathCommand, new CalcCommand);
     
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }

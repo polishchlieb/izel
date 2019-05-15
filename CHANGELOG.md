@@ -1,6 +1,9 @@
 # Changelog
 
-## 2.3.x (2.3.0, 2.3.1 - the newest):
+## 2.3.2:
+- Added `math` command
+
+## 2.3.0, 2.3.1:
 - Added commands: `choose`, `giveaway`, `language`, `minecraft`, `poll`, `weather`
 - Added command list in webpanel
 
