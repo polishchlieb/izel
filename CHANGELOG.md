@@ -2,6 +2,7 @@
 
 ## 2.3.2:
 - Added `math` command
+- Bug fixes
 
 ## 2.3.0, 2.3.1:
 - Added commands: `choose`, `giveaway`, `language`, `minecraft`, `poll`, `weather`

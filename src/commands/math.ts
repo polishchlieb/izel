@@ -1,6 +1,7 @@
 import { Message } from 'discord.js';
-import fetch, { Response } from 'node-fetch';
 import Command from '../interfaces/command';
+import { get, IncomingMessage } from 'http';
+import { createWriteStream, WriteStream } from 'fs';
 
 export default class MathCommand implements Command {
     info = {
@@ -9,30 +10,16 @@ export default class MathCommand implements Command {
         usage: '&math (...)'
     }
 
-    run(message: Message, args: string[]): any {
+    run(message: Message, args: string[], messages: any): any {
         if(args.length == 0)
-            return message.reply(`use: \`${this.info.usage}\``);
+            return message.reply(`${messages.use}: \`${this.info.usage}\``);
 
-        fetch('https://www.quicklatex.com/latex3.f', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: JSON.stringify({
-                formula: args.join(' '),
-                fsize: '40px',
-                fcolor: '000000',
-                preamble: '\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}',
-                mode: '1',
-                out: '1'
-            })
-        })
-            .then((res: Response): Promise<string> => res.text())
-            .then((data: string): void => {
-                message.channel.send({
-                    files: [data.split('\n')[1].split(' ')[0]]
-                });
+        let file: WriteStream = createWriteStream('temp.jpg');
+        get(`http://latex.codecogs.com/png.latex?%5Cdpi%7B120%7D%20%5Chuge%20${encodeURIComponent(args.join(' '))}%24`, async (response: IncomingMessage): Promise<void> => {
+            await response.pipe(file);
+            message.channel.send({
+                file: './temp.jpg'
             });
-
+        });
     }
 }
