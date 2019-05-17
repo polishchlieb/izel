@@ -1,38 +1,31 @@
 import * as e from 'express';
 import { join } from 'path';
-import { magenta } from 'colors';
-import { Bot } from '../bot';
 import api from './api';
 
-export class Dashboard {
-    app:e.Express = e();
-    bot: Bot;
-
-    constructor(bot: Bot) {
-        this.bot = bot;
-    }
+export default class Dashboard {
+    app: e.Express = e();
     
     init(): void {
-        this.app.use(e.static(join(__dirname, "public")))
+        this.app.use(e.static(join(__dirname, 'public')));
 
-        // routes
-        this.app.get('/', (req: e.Request, res: e.Response) => {
-            res.sendFile(join(__dirname, './public/index.html'))
-        })
+        this.app.get('/', (req: e.Request, res: e.Response): void => {
+            res.sendFile(join(__dirname, './public/index.html'));
+        });
         
-        this.app.get('/dashboard', (req: e.Request, res: e.Response) => {
-            res.sendFile(join(__dirname, './public/index.html'))
-        })
+        this.app.get('/dashboard', (req: e.Request, res: e.Response): void => {
+            res.sendFile(join(__dirname, './public/index.html'));
+        });
 
-        this.app.use('/api', (req: (e.Request | any), res: e.Response, next: e.NextFunction) => {
-            req.bot = this.bot;
+        this.app.get('/commands', (req: e.Request, res: e.Response): void => {
+            res.sendFile(join(__dirname, './public/index.html'));
+        });
+
+        this.app.use('/api', (req: any, res: e.Response, next: e.NextFunction) => {
             next();
-        }, api)
-
-        console.log(magenta("Loaded dashboard\n"))
+        }, api);
     }
 
     start(): void {
-        this.app.listen(8090);
+        this.app.listen(80);
     }
 }

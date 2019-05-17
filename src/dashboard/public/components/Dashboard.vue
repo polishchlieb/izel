@@ -47,41 +47,42 @@ export default {
         return {
             drawer: true,
             guilds: [],
-            selected: null
+            selected: null,
+            commandsSelected: null
         }
     },
     beforeMount: function() {
         fetch('/api/guilds')
-        .then(resp => resp.json())
-        .then(data => {
-            data.forEach(guild => {
-                this.guilds.push(guild)
-            })
-        })
+            .then(resp => resp.json())
+            .then(data => {
+                data.forEach(guild => {
+                    this.guilds.push(guild);
+                });
+            });
     },
     created: function() {
         fetch('/api/check')
-        .then(resp => {
-            if(!resp.ok) {
-                this.$router.push('/')
-            }
-        })
-        .catch(err => {
-            this.$router.push('/')
-        })
+            .then(resp => {
+                if(!resp.ok) {
+                    this.$router.push('/');
+                }
+            })
+            .catch(err => {
+                this.$router.push('/');
+            });
     },
     methods: {
         select(id) {
             this.selected = null;
-            fetch('/api/guild?guild='+id)
-            .then(resp => resp.json())
-            .then(data => {
-                this.selected = data;
-            })
+            fetch('/api/guild?guild=' + id)
+                .then(resp => resp.json())
+                .then(data => {
+                    this.selected = data;
+                });
             this.drawer = false;
         },
         logout() {
-            window.location = '/api/logout'
+            window.location = '/api/logout';
         }
     },
     components: {
@@ -89,7 +90,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

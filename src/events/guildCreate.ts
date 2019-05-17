@@ -1,21 +1,16 @@
-import { Event } from '../interfaces/event';
-import { Guild } from 'discord.js';
-import { bot } from '..';
+import Event from '../interfaces/event';
+import { Guild, RichEmbed } from 'discord.js';
 
-/**
- * Event emitted whether the bot joins a guild
- */
-export class GuildCreateEvent implements Event {
+export default class GuildCreateEvent implements Event {
     name = 'guildCreate';
 
-    async run(guild: Guild): Promise<void> {
-        // Creates collection if it doesn't exist
-        await bot.database.collection(guild.id);
+    embed: RichEmbed = new RichEmbed()
+        .setTitle('Welcome!')
+        .setColor('GREEN')
+        .setDescription('ahoj comrade!')
+        .setURL('http://izel.chlebe.tk');
 
-        await bot.database.collection(guild.id).insertOne({
-            options: true,
-            prefix: '&',
-            language: 'en'
-        });
+    async run(guild: Guild): Promise<void> {
+        guild.owner.send(this.embed);
     }
 }

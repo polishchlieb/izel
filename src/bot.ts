@@ -1,32 +1,32 @@
 import { Client } from 'discord.js'
 import { loadCommands, loadEvents, loadDashboard } from './utils/loader';
-import { Command } from './interfaces/command';
-import { Event } from './interfaces/event';
-import { Db, MongoClient } from 'mongodb';
-import { notify } from 'notify-send';
-import { bot } from '.';
+import Command from './interfaces/command';
+import Event from './interfaces/event';
+import { MongoClient, Collection, Db as Database } from 'mongodb';
 
-export class Bot {
+export default class Bot {
     client: Client = new Client();
     commands: Command[] = [];
     events: Event[] = [];
-    database: Db;
 
-    start(token: string): void {
-        process.on('unhandledRejection', err => {
-            console.log(err);
-        });
+    users: Collection;
+    servers: Collection;
+    permissions: Collection;
 
-        MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true })
-            .then(conn => {
-                bot.database = conn.db('izel');
-                loadEvents(this);
-                loadCommands(this);
-                loadDashboard(this);
-                notify('Izel', 'Bot is ready')
+    async start(token: string): Promise<void> {
+        process.on('unhandledRejection', console.error);
 
-                this.client.login(token);
-            })
-            .catch(console.error);
+        let conn: MongoClient = await MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true });
+        let database: Database = conn.db('izel');
+    
+        this.users = database.collection('users');
+        this.servers = database.collection('servers');
+        this.permissions = database.collection('permissions');
+
+        loadEvents(this);
+        loadCommands(this);
+        loadDashboard();
+
+        this.client.login(token);
     }
 }

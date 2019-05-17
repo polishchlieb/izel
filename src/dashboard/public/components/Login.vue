@@ -4,13 +4,16 @@
             <v-layout align-center justify-center>
                 <v-flex xs12 sm4 text-xs-center column>
                     <div>
-                        <v-img height="100" contain v-bind:src="betterlogo"></v-img>
+                        <v-img height="200" contain :src="image"></v-img>
+                    </div>
+                    <div>
+                        <v-img height="100" contain :src="betterlogo"></v-img>
                     </div>
                     <div>
                         <a href="/api/login">
-                        <v-btn large color="primary">Login with Discord
-                            <v-icon right dark>arrow_forward</v-icon>
-                        </v-btn>
+                            <v-btn large color="primary">Login with Discord
+                                <v-icon right dark>arrow_forward</v-icon>
+                            </v-btn>
                         </a>
                     </div>
                 </v-flex>
@@ -20,24 +23,21 @@
 </template>
 
 <script>
+import Image from '../assets/izel.png';
 import BetterLogo from '../assets/better-logo.png';
 
 export default {
     data: function() {
         return {
-            betterlogo: BetterLogo
+            betterlogo: BetterLogo,
+            image: Image
         }
     },
     created: function() {
         fetch('/api/check')
-        .then(resp => {
-            if(resp.ok) this.$router.push({path: '/dashboard'});
-        })
+            .then(resp => {
+                if(resp.ok) this.$router.push({ path: '/dashboard' });
+            });
     }
 }
 </script>
-
-<style scoped>
-
-</style>
-

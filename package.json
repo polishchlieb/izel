@@ -1,12 +1,12 @@
 {
 	"name": "izel",
-	"version": "2.1.1",
+	"version": "2.3.2",
 	"description": "multifunctional Discord bot",
 	"main": "compile/index.js",
 	"scripts": {
 		"build": "rm -rf dist && tsc && webpack --config webpack.config.prod.js",
 		"test": "npm run build && npm start",
-		"test-dev": " webpack-dev-server --port 3000 --config webpack.config.dev.js",
+		"test-dev": "webpack-dev-server --port 3000 --config webpack.config.dev.js",
 		"start": "node dist"
 	},
 	"keywords": [
@@ -20,10 +20,9 @@
 	"author": "chlebek",
 	"license": "MIT",
 	"dependencies": {
+		"@types/cookie-parser": "^1.4.1",
 		"@types/express": "^4.16.1",
 		"@types/express-session": "^1.15.12",
-		"@types/html2canvas": "0.0.35",
-		"@types/jsdom": "^12.2.3",
 		"@types/mathjs": "^5.0.1",
 		"@types/mongodb": "^3.1.22",
 		"@types/node": "^11.9.4",
@@ -48,7 +47,6 @@
 		"copy-webpack-plugin": "^5.0.3",
 		"css-loader": "^2.1.1",
 		"file-loader": "^3.0.1",
-		"notify-send": "^0.1.2",
 		"vue-loader": "^15.7.0",
 		"vue-style-loader": "^4.1.2",
 		"vue-template-compiler": "^2.6.10",

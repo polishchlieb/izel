@@ -7,14 +7,17 @@ import VueRouter from 'vue-router';
 
 import Dashboard from './components/Dashboard.vue';
 import Login from './components/Login.vue';
+import Commands from './components/Commands.vue';
 
 const router = new VueRouter({
     mode: 'history',
     routes: [
         { path: '/', component: Login },
-        { path: '/dashboard', component: Dashboard }
+        { path: '/dashboard', component: Dashboard },
+        { path: '/commands', component: Commands }
     ]
-})
+});
+
 export default {
     router,
     components: {
@@ -22,7 +25,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

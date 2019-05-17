@@ -1,6 +1,6 @@
-import { Command } from '../interfaces/command';
-import { Message, Attachment } from 'discord.js';
-import { bot } from '..';
+import Command from '../interfaces/command';
+import { Message, Attachment, User, GuildMember } from 'discord.js';
+import bot from '..';
 import { createCanvas, loadImage, Image, Canvas } from 'canvas';
 
 let bg: Image, fg: Image;
@@ -9,40 +9,55 @@ let bg: Image, fg: Image;
     fg = await loadImage('assets/fg0.png');
 })();
 
-export class RankCommand implements Command {
+export default class RankCommand implements Command {
     info = {
         names: ['rank'],
         description: 'Shows your rank',
         usage: 'rank'
     }
 
-    async run(message: Message, args: string[]): Promise<void> {
+    async run(message: Message, _args: string[], messages: any): Promise<any> {
         message.channel.startTyping();
 
-        // find user -> const data
-        let data: any = await bot.database.collection(message.guild.id).findOne({
-            id: message.author.id
+        let member: GuildMember = message.mentions.members.first();
+        if(!member || !message.guild.member(member))
+            member = message.member;
+
+        let data: any = await bot.users.findOne({
+            id: member.user.id,
+            guild: message.guild.id
         });
+
+        if(!data) {
+            message.channel.stopTyping();
+            return message.channel.send('somethin gon wrong');
+        }
 
         let canvas: Canvas = createCanvas(800, 220);
         let ctx = canvas.getContext('2d');
 
-        let text: string = `${data.messages} wiadomosci`;
-        let image: Image = await loadImage(message.author.avatarURL);
-        let lvl: string = 'LEVEL ' + data.level;
+        let text: string = `${data.messages} ${messages.messages}`;
+        let image: Image = await loadImage(member.user.displayAvatarURL);
+        let lvl: string = `${messages.level} ${data.level}`;
 
         ctx.drawImage(bg, 0, 0);
         ctx.drawImage(image, 40, 30, 160, 160);
+
         ctx.font = '50px Fredoka One';
-        ctx.fillText(message.member.displayName, 730 - ctx.measureText(message.member.displayName).width, 65);
-        ctx.fillRect(230, 150, (data.messages / ((data.level + 1) * 200)) * 525, 40);
+        ctx.fillText(member.displayName, 730 - ctx.measureText(member.displayName).width, 65);
+
+        ctx.fillRect(230, 150, ((data.messages - 200 * data.level) / 200) * 525, 40);
+
         ctx.drawImage(fg, 0, 0);
+
         ctx.font = '30px Fredoka One';
         ctx.fillText(text, 730 - ctx.measureText(text).width, 110);
+
         ctx.fillStyle = '#ffffff';
         ctx.fillText(lvl, 485.5 - ctx.measureText(lvl).width / 2, 180);
 		
         message.channel.send('', new Attachment(canvas.createPNGStream(), ''));
+
         message.channel.stopTyping();
     }
 }

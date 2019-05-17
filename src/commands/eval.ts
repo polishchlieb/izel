@@ -1,31 +1,38 @@
-import { Command } from '../interfaces/command';
+import Command from '../interfaces/command';
 import { Message, RichEmbed } from 'discord.js';
+import _bot from '..';
 
-export class EvalCommand implements Command {
+export default class EvalCommand implements Command {
     info = {
         names: ['eval'],
         description: 'tylko dla rzadu',
         usage: 'eval (code)'
     }
 
-    run(message: Message, args: string[]): void | Promise<Message | Message[]> {
-        if(message.author.id != '372459063339909120')
+    set: any = {};
+
+    async run(message: Message, args: string[]): Promise<any> {
+        let permissions = await _bot.permissions.findOne({
+            action: 'eval'
+        });
+
+        if(!permissions.user_ids.includes(message.author.id))
             return message.reply('masz cos lepszego do roboty');
 
-        let val;
+        let value: any;
 
         try {
-            val = eval(args.join(' '));
+            value = eval(args.join(' '));
         } catch(e) {
             message.channel.send(new RichEmbed()
                 .setTitle('Evaluation Failed')
                 .addField('Error', e.message)
                 .setColor('RED'));
         } finally {
-            if(typeof val != 'undefined')
+            if(typeof value != 'undefined')
                 message.channel.send(new RichEmbed()
                     .setTitle('Evaluated')
-                    .addField('Value', val)
+                    .addField('Value', value)
                     .setColor('GREEN'));
         }
     }

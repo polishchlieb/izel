@@ -7,28 +7,27 @@
                 </v-toolbar>
 
                 <v-list>
-                    <div class="tile paddin">
-                        <span class="rank">{{ rank.i }}</span>
-                        <v-avatar size="32px" class="av">
-                            <img :src="rank.av">
-                        </v-avatar>
-                        <div class="nick">{{ rank.name }}#{{ rank.dsc }}</div>
-                        <v-progress-linear color="white" :value="(rank.messages/topscore)*100" class="progress"></v-progress-linear>
-                        <span class="score">{{ rank.messages }}</span>
-                    </div>
                     <div class="tile" v-for="(member, i) in top" :key="i">
-                        <span class="rank">{{ member.i }}</span>
+                        <span class="rank">{{ i + 1 }}</span>
                         <v-avatar size="32px" class="av">
                             <img :src="member.av">
                         </v-avatar>
-                        <div class="nick">{{ member.name }}#{{ member.dsc }}</div>
-                        <v-progress-linear :value="(member.messages/topscore)*100" color="#e0dbdb" class="progress"></v-progress-linear>
+                        <div class="nick">{{ member.tag }}</div>
+                        <v-progress-linear :value="(member.messages - 200 * member.level) / 2" color="#e0dbdb" class="progress"></v-progress-linear>
                         <span class="score">{{ member.messages }}</span>
                     </div>
                 </v-list>
-                
             </v-card>
-            
+
+            <v-card v-if="isAdmin">
+                <v-toolbar flat class="primary">
+                    <v-toolbar-title>Administrator</v-toolbar-title>
+                </v-toolbar>
+
+                <v-container>
+                    admin, masz opa!
+                </v-container>
+            </v-card>
         </v-flex>
     </v-layout>
 </template>
@@ -38,23 +37,15 @@ export default {
     props: ['guild'],
     data: function() {
         return {
-            rank: null,
             top: [],
-            topscore: 0,
-            guildname: null
-        }
+            guildname: null,
+            isAdmin: false
+        };
     },
     mounted: function() {
-        this.rank = this.$props.guild.rank;
         this.guildname = this.$props.guild.guildName;
-
-        this.$props.guild.top.forEach(g => {
-            if(g.messages > this.topscore) {
-                this.topscore = g.messages;
-            }
-            this.top.push(g);
-        })
-        console.log(this.guildname)
+        this.top = this.$props.guild.top;
+        this.isAdmin = this.$props.guild.isAdmin;
     }
 }
 </script>
@@ -72,16 +63,13 @@ export default {
     overflow-wrap: anywhere;
     font-weight: 500;
 }
-
 .rank {
     width: 30px;
     margin: 10px;
 }
-
 .progress {
     border-radius: 10px;
 }
-
 .nick {
     display: block;
     width: 250px;
@@ -94,4 +82,3 @@ export default {
     text-align: center;
 }
 </style>
-
