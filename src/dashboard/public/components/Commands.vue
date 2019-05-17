@@ -1,15 +1,16 @@
 <template>
     <div>
-        <v-app dark>
-            <v-layout align-center justify-center>
-                <v-flex xs12 sm4 text-xs-center column>
+        <v-app dark v-if="!$props.dashboard">
+            <v-layout>
+                <!-- xs12 sm4 text-xs-center -->
+                <v-flex xs12 sm10 offset-sm1 column>
                     <v-card>
                         <v-toolbar flat class="primary">
                             <v-toolbar-title>Commands</v-toolbar-title>
                         </v-toolbar>
 
                         <v-list>
-                            <div v-for="(command, i) in commands" :key="i">
+                            <div v-for="(command, i) in commands" :key="i" class="flex-list">
                                 <div class="usage">{{ command.usage }}</div>
                                 <div class="description">{{ command.description }}</div>
                             </div>
@@ -28,6 +29,7 @@ export default {
             commands: []
         }
     },
+    props: ['dashboard'],
     mounted: function() {
         fetch('/api/commands')
             .then(res => res.json())
@@ -43,5 +45,16 @@ export default {
     overflow: hidden;
     overflow-wrap: anywhere;
     font-weight: 500;
+    flex-grow: 1;
+    flex-basis: 50%;
+    padding: 15px;
+}
+
+.flex-list {
+    display: flex;
+}
+
+.flex-list:nth-child(even) {
+    background: #383838;
 }
 </style>
