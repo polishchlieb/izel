@@ -15,6 +15,9 @@
                                 <v-icon right dark>arrow_forward</v-icon>
                             </v-btn>
                         </a>
+                        <a class="a" href="/commands">
+                            <div class="commands">Command list</div>
+                        </a>
                     </div>
                 </v-flex>
             </v-layout>
@@ -41,3 +44,14 @@ export default {
     }
 }
 </script>
+
+<style>
+.a {
+    text-decoration: none;
+}
+
+.commands {
+    color: gray;
+
+}
+</style>

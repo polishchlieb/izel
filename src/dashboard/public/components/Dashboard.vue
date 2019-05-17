@@ -27,12 +27,22 @@
                             <v-list-tile-title>{{ guild.name }}</v-list-tile-title>
                         </v-list-tile-content>
                     </v-list-tile>
+                    <v-divider></v-divider>
+                    <v-list-tile @click="drawer = false; mode = 1">
+                        <v-list-tile-action>
+                            <v-icon>list</v-icon>
+                        </v-list-tile-action>
+                        <v-list-tile-content>
+                            <v-list-tile-title>Commands</v-list-tile-title>
+                        </v-list-tile-content>
+                    </v-list-tile>
                 </v-list>
             </v-navigation-drawer>
             
             <v-content>
                 <v-container fluid>
-                    <Guild v-if="selected" :guild="selected"></Guild>
+                    <Guild v-if="selected && mode == 0" :guild="selected"></Guild>
+                    <Commands v-if="mode == 1"></Commands>
                 </v-container>
             </v-content>
         </v-app>
@@ -41,6 +51,7 @@
 
 <script>
 import Guild from './Guild.vue';
+import Commands from './Commands.vue';
 
 export default {
     data: function() {
@@ -48,7 +59,8 @@ export default {
             drawer: true,
             guilds: [],
             selected: null,
-            commandsSelected: null
+            commandsSelected: null,
+            mode: 0
         }
     },
     beforeMount: function() {
@@ -80,13 +92,14 @@ export default {
                     this.selected = data;
                 });
             this.drawer = false;
+            this.mode = 0;
         },
         logout() {
             window.location = '/api/logout';
         }
     },
     components: {
-        Guild
+        Guild, Commands
     }
 }
 </script>
