@@ -15,8 +15,8 @@ export default class MinecraftCommand implements Command {
 
         message.channel.startTyping();
         fetch(`http://mcapi.us/server/query?ip=${args[0]}`)
-            .then((res: Response) => res.json())
-            .then((data: any) => {
+            .then((res: Response): Promise<any> => res.json())
+            .then((data: any): void => {
                 if(!data.online)
                     message.channel.send(new RichEmbed()
                         .setTitle(args[0])

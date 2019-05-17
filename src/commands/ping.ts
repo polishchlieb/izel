@@ -9,7 +9,7 @@ export default class PingCommand implements Command {
         usage: '&ping'
     }
 
-    run(message: Message) {
+    run(message: Message): void {
         message.reply(`Pong! \`${Math.floor(bot.client.ping)}ms\``);
     }
 }

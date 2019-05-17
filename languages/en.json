@@ -24,5 +24,9 @@
     "cityNotFound": "city not found",
     "giveawayEnded": "Giveaway ended.",
     "winner": "Winner",
-    "won": "has won the **{}** giveaway"
+    "won": "has won the **{}** giveaway",
+    "whotoBan": "who do you want me to ban? ( ͡° ͜ʖ ͡°)",
+    "tagNotFound": "I couldn't find that tag",
+    "tagAdded": "the ~~bomb has been planted~~ tag has been added ( ͡° ͜ʖ ͡°)",
+    "tags": "TAGS"
 }

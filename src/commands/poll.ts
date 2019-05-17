@@ -16,7 +16,7 @@ export default class PollCommand implements Command {
             .setTitle(messages.poll)
             .setColor('RANDOM')
             .setDescription(args.join(' ')))
-            .then((message: Message) => {
+            .then((message: Message): void => {
                 message.react('🤷');
                 message.react('👍');
                 message.react('👎');

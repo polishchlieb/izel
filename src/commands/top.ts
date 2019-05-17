@@ -18,7 +18,7 @@ export default class TopCommand implements Command {
             .setTitle(messages.top)
             .setColor('RANDOM');
 
-        data.forEach((user: any, i: number) => {
+        data.forEach((user: any, i: number): void => {
             let member: GuildMember = message.guild.member(user.id);
             if(member)
                 embed.addField(

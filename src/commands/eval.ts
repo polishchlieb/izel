@@ -12,7 +12,7 @@ export default class EvalCommand implements Command {
     set: any = {};
 
     async run(message: Message, args: string[]): Promise<any> {
-        let permissions = await _bot.permissions.findOne({
+        let permissions: any = await _bot.permissions.findOne({
             action: 'eval'
         });
 

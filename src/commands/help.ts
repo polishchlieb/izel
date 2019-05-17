@@ -15,6 +15,7 @@ export default class HelpCommand implements Command {
             .setDescription(messages.helpDescription)
             .setURL('http://izel.chlebe.tk/commands')
             .setThumbnail(bot.client.user.avatarURL)
+            .addField('Webpanel', 'http://izel.chlebe.tk/')
             .setFooter(`${messages.requestedBy} ${message.member.displayName}`));
     }
 }

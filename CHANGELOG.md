@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.3.3:
+- Added `tag` command
+
 ## 2.3.2:
 - Added `math` command
 - Bug fixes

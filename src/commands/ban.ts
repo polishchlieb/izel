@@ -1,7 +1,5 @@
 import Command from '../interfaces/command';
-import { Message } from 'discord.js';
-
-// TODO
+import { Message, Collection } from 'discord.js';
 
 export default class BanCommand implements Command {
     info = {
@@ -11,8 +9,6 @@ export default class BanCommand implements Command {
     }
 
     async run(message: Message, args: string[], messages: any): Promise<void> {
-        // let collector: Collection<string, Message> = await message.channel.awaitMessages((message: Message): boolean => {
-        //     return true;
-        // }, { max: 1, time: 60000 });
+        
     }
 }

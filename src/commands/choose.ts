@@ -9,8 +9,8 @@ export default class ChooseCommand implements Command {
     }
 
     run(message: Message, args: string[], messages: any): void {
-        let choose = args.join(' ').split('/');
-        let random = choose[Math.floor(Math.random() * choose.length)].trim();
+        let choose: string[] = args.join(' ').split('/');
+        let random: string = choose[Math.floor(Math.random() * choose.length)].trim();
 
         message.reply(`${messages.choose} **${random}** :thinking:`);
     }

@@ -12,8 +12,6 @@ export default class MathCommand implements Command {
     scope: any = {};
 
     async run(message: Message, args: string[]): Promise<void> {
-        let result = calc(args.join(' '), this.scope);
-
-        message.reply(result);
+        message.reply(calc(args.join(' '), this.scope));
     }
 }

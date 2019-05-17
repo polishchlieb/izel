@@ -24,5 +24,9 @@
     "cityNotFound": "nie udało mi się znaleźć takiego miasta",
     "giveawayEnded": "Giveaway się skończył.",
     "winner": "Zwycięzca",
-    "won": "wygrał giveaway **{}**"
+    "won": "wygrał giveaway **{}**",
+    "whotoBan": "kogo mam zbanować? ( ͡° ͜ʖ ͡°)",
+    "tagNotFound": "nie mogłem znaleźć takiego tagu",
+    "tagAdded": "dodałę tag",
+    "tags": "TAGI"
 }

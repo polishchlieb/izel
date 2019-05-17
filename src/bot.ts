@@ -5,13 +5,14 @@ import Event from './interfaces/event';
 import { MongoClient, Collection, Db as Database } from 'mongodb';
 
 export default class Bot {
-    client: Client = new Client();
+    client: Client = new Client({ disableEveryone: true });
     commands: Command[] = [];
     events: Event[] = [];
 
     users: Collection;
     servers: Collection;
     permissions: Collection;
+    tags: Collection;
 
     async start(token: string): Promise<void> {
         process.on('unhandledRejection', console.error);
@@ -22,6 +23,7 @@ export default class Bot {
         this.users = database.collection('users');
         this.servers = database.collection('servers');
         this.permissions = database.collection('permissions');
+        this.tags = database.collection('tags');
 
         loadEvents(this);
         loadCommands(this);
