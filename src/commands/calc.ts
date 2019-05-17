@@ -6,7 +6,7 @@ export default class MathCommand implements Command {
     info = {
         names: ['calc'],
         description: 'Calculates something',
-        usage: 'calc (some math)'
+        usage: '&calc (..)'
     }
 
     scope: any = {};

@@ -5,7 +5,7 @@ export default class PollCommand implements Command {
     info = {
         names: ['poll'],
         description: '',
-        usage: 'poll (whatever..)'
+        usage: '&poll (topic..)'
     }
 
     run(message: Message, args: string[], messages: any): any {

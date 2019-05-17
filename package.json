@@ -39,6 +39,7 @@
 		"mathjs": "^5.9.0",
 		"mongodb": "^3.2.3",
 		"node-fetch": "^2.3.0",
+		"opusscript": "0.0.6",
 		"vue": "^2.6.10",
 		"vue-router": "^3.0.6",
 		"vuetify": "^1.5.13"

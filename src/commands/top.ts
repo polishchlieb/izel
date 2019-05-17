@@ -6,7 +6,7 @@ export default class TopCommand implements Command {
     info = {
         names: ['top', 'leaderboard'],
         description: 'Topka serwerkowa',
-        usage: 'top'
+        usage: '&top'
     }
 
     async run(message: Message, _args: string[], messages: any): Promise<void> {

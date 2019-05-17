@@ -25,6 +25,7 @@ import LanguageCommand from '../commands/language';
 import GiveawayCommand from '../commands/giveaway';
 import PingCommand from '../commands/ping';
 import TagCommand from '../commands/tag';
+import JoinCommand from '../commands/join';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent, new GuildDeleteEvent,
@@ -41,7 +42,7 @@ export const loadCommands = (bot: Bot): void => {
         new PollCommand, new HelpCommand, new MinecraftCommand,
         new ChooseCommand, new WeatherCommand, new LanguageCommand,
         new GiveawayCommand, new PingCommand, new MathCommand, new CalcCommand,
-        new TagCommand);
+        new TagCommand, new JoinCommand);
     
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }

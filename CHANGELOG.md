@@ -2,6 +2,8 @@
 
 ## 2.3.3:
 - Added `tag` command
+- "Typescripted" (xD)
+- Bug fixes
 
 ## 2.3.2:
 - Added `math` command

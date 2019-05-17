@@ -13,7 +13,7 @@ export default class RankCommand implements Command {
     info = {
         names: ['rank'],
         description: 'Shows your rank',
-        usage: 'rank'
+        usage: '&rank {mention}'
     }
 
     async run(message: Message, _args: string[], messages: any): Promise<any> {
