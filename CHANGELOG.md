@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.4:
+- Added `prune` command
+- Bug fixes
+- Added default avatar into webpanel
+- Another "typescriptization" (thonk, this time)
+
 ## 2.3.3:
 - Added `tag` command
 - "Typescripted" (xD)

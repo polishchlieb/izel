@@ -28,5 +28,7 @@
     "whotoBan": "who do you want me to ban? ( ͡° ͜ʖ ͡°)",
     "tagNotFound": "I couldn't find that tag",
     "tagAdded": "the ~~bomb has been planted~~ tag has been added ( ͡° ͜ʖ ͡°)",
-    "tags": "TAGS"
+    "tags": "TAGS",
+    "noBotPermission": "I don't have enough permissions.. :(",
+    "deletedMessages": "deleted {} messages"
 }

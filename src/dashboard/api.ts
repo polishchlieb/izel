@@ -138,16 +138,16 @@ router.get('/guild', (req: Request, res: Response) => {
                 .sort({ messages: -1 })
                 .limit(10)
                 .toArray()
-                .then(guild => {
+                .then((guild: any[]): void => {
                     let result: any[] = [];
 
-                    guild.forEach((user: any, i: number) => {
+                    guild.forEach((user: any): void => {
                         let member: GuildMember = Tguild.member(user.id);
                         if(member) {
                             result.push({
                                 id: member.id,
                                 tag: member.user.tag,
-                                av: `https://cdn.discordapp.com/avatars/${member.id}/${member.user.avatar}?size=128`,
+                                av: `${member.user.displayAvatarURL}?size=128`,
                                 messages: user.messages,
                                 level: user.level
                             });

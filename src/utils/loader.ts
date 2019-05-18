@@ -26,10 +26,11 @@ import GiveawayCommand from '../commands/giveaway';
 import PingCommand from '../commands/ping';
 import TagCommand from '../commands/tag';
 import JoinCommand from '../commands/join';
+import PruneCommand from '../commands/prune';
 
 export const loadEvents = (bot: Bot): void => {
-    bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent, new GuildDeleteEvent,
-        new GuildMemberAddEvent, new GuildMemberRemoveEvent);
+    bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
+        new GuildDeleteEvent, new GuildMemberAddEvent, new GuildMemberRemoveEvent);
     bot.events.forEach((event: Event): void => {
         bot.client.on(event.name, event.run);
     });
@@ -42,15 +43,12 @@ export const loadCommands = (bot: Bot): void => {
         new PollCommand, new HelpCommand, new MinecraftCommand,
         new ChooseCommand, new WeatherCommand, new LanguageCommand,
         new GiveawayCommand, new PingCommand, new MathCommand, new CalcCommand,
-        new TagCommand, new JoinCommand);
+        new TagCommand, new JoinCommand, new PruneCommand);
     
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }
 
 export const loadDashboard = (): void => {
-    const dashboard: Dashboard = new Dashboard;
-    dashboard.init();
-    dashboard.start();
-
+    new Dashboard;
     console.log(blue('Loaded dashboard\n'));
 }

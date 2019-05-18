@@ -1,4 +1,4 @@
-import { Message } from 'discord.js';
+import { Message, TextChannel } from 'discord.js';
 import Event from '../interfaces/event';
 import bot from '..';
 import Command from '../interfaces/command';

@@ -28,5 +28,7 @@
     "whotoBan": "kogo mam zbanować? ( ͡° ͜ʖ ͡°)",
     "tagNotFound": "nie mogłem znaleźć takiego tagu",
     "tagAdded": "dodałę tag",
-    "tags": "TAGI"
+    "tags": "TAGI",
+    "noBotPermission": "nie mam uprawnień by to zrobić.. :(",
+    "deletedMessages": "usunięto {} wiadomości"
 }

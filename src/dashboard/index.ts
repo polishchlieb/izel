@@ -5,6 +5,11 @@ import api from './api';
 export default class Dashboard {
     app: e.Express = e();
     
+    constructor() {
+        this.init();
+        this.start();
+    }
+
     init(): void {
         this.app.use(e.static(join(__dirname, 'public')));
 
