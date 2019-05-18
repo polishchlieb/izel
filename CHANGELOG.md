@@ -5,6 +5,7 @@
 - Bug fixes
 - Added default avatar into webpanel
 - Another "typescriptization" (thonk, this time)
+- Fixed commands page
 
 ## 2.3.3:
 - Added `tag` command

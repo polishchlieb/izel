@@ -18,9 +18,9 @@ export default class PruneCommand implements Command {
         if(isNaN(count))
             return message.reply(`${messages.use} \`${this.info.usage}\``);
 
-        message.channel.bulkDelete(count)
+        message.channel.bulkDelete(count + 1)
             .then((msgs: Collection<string, Message>): void => {
-                message.reply(messages.deletedMessages.replace('{}', msgs.size))
+                message.reply(messages.deletedMessages.replace('{}', msgs.size - 1))
             });
     }
 }
