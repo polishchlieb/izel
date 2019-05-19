@@ -42,7 +42,8 @@
 		"opusscript": "0.0.6",
 		"vue": "^2.6.10",
 		"vue-router": "^3.0.6",
-		"vuetify": "^1.5.13"
+		"vuetify": "^1.5.13",
+		"ytdl-core": "^0.29.2"
 	},
 	"devDependencies": {
 		"copy-webpack-plugin": "^5.0.3",

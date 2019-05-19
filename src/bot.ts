@@ -1,4 +1,4 @@
-import { Client } from 'discord.js'
+import { Client, Collection as DiscordCollection } from 'discord.js'
 import { loadCommands, loadEvents, loadDashboard } from './utils/loader';
 import Command from './interfaces/command';
 import Event from './interfaces/event';
@@ -13,6 +13,8 @@ export default class Bot {
     servers: Collection;
     permissions: Collection;
     tags: Collection;
+
+    music: any = {};
 
     async start(token: string): Promise<void> {
         process.on('unhandledRejection', console.error);

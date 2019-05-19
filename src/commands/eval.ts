@@ -1,6 +1,6 @@
 import Command from '../interfaces/command';
 import { Message, RichEmbed } from 'discord.js';
-import _bot from '..';
+import bot from '..';
 
 export default class EvalCommand implements Command {
     info = {
@@ -12,7 +12,7 @@ export default class EvalCommand implements Command {
     set: any = {};
 
     async run(message: Message, args: string[]): Promise<any> {
-        let permissions: any = await _bot.permissions.findOne({
+        let permissions: any = await bot.permissions.findOne({
             action: 'eval'
         });
 
@@ -27,13 +27,19 @@ export default class EvalCommand implements Command {
             message.channel.send(new RichEmbed()
                 .setTitle('Evaluation Failed')
                 .addField('Error', e.message)
-                .setColor('RED'));
+                .setColor('RED'))
+                .then((msg: Message): void => {
+                    setTimeout((): any => msg.delete(), 5000);
+                });
         } finally {
             if(typeof value != 'undefined')
                 message.channel.send(new RichEmbed()
                     .setTitle('Evaluated')
                     .addField('Value', value)
-                    .setColor('GREEN'));
+                    .setColor('GREEN'))
+                    .then((msg: Message): void => {
+                        setTimeout((): any => msg.delete(), 5000);
+                    });
         }
     }
 }

@@ -1,11 +1,12 @@
 # Changelog
 
-## 2.3.4:
+## 2.3.4 ~~(to be honest with you, these are just daily commits)~~:
 - Added `prune` command
 - Bug fixes
 - Added default avatar into webpanel
 - Another "typescriptization" (thonk, this time)
 - Fixed commands page
+- We are going to add music aww (again something special)
 
 ## 2.3.3:
 - Added `tag` command
