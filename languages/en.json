@@ -30,5 +30,9 @@
     "tagAdded": "the ~~bomb has been planted~~ tag has been added ( ͡° ͜ʖ ͡°)",
     "tags": "TAGS",
     "noBotPermission": "I don't have enough permissions.. :(",
-    "deletedMessages": "deleted {} messages"
+    "deletedMessages": "deleted {} messages",
+    "specifyURL": "you need to specify the URL",
+    "connectVoice": "you must be in a voice channel",
+    "skipped": "skipped song",
+    "notPlaying": "not playing any song"
 }

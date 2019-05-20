@@ -27,6 +27,8 @@ import PingCommand from '../commands/ping';
 import TagCommand from '../commands/tag';
 import JoinCommand from '../commands/join';
 import PruneCommand from '../commands/prune';
+import PlayCommand from '../commands/play';
+import SkipCommand from '../commands/skip';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
@@ -43,7 +45,8 @@ export const loadCommands = (bot: Bot): void => {
         new PollCommand, new HelpCommand, new MinecraftCommand,
         new ChooseCommand, new WeatherCommand, new LanguageCommand,
         new GiveawayCommand, new PingCommand, new MathCommand, new CalcCommand,
-        new TagCommand, new JoinCommand, new PruneCommand);
+        new TagCommand, new JoinCommand, new PruneCommand, new PlayCommand,
+        new SkipCommand);
     
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }

@@ -30,5 +30,8 @@
     "tagAdded": "dodałę tag",
     "tags": "TAGI",
     "noBotPermission": "nie mam uprawnień by to zrobić.. :(",
-    "deletedMessages": "usunięto {} wiadomości"
+    "deletedMessages": "usunięto {} wiadomości",
+    "specifyURL": "musisz podać adres piosnki",
+    "connectVoice": "musisz być na kanale głosowym",
+    "skipped": "pominięto"
 }

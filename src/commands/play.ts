@@ -11,18 +11,30 @@ export default class PlayCommand implements Command {
     }
 
     play(vc: VoiceConnection, message: Message): void {
-
+        console.log(bot.music[message.guild.id]);
+        bot.music[message.guild.id].dispatcher = vc.playOpusStream(
+            ytdl(bot.music[message.guild.id].queue.shift(), { filter: 'audioonly' })
+        );
+        bot.music[message.guild.id].dispatcher.on('end', (): void => {
+            if(bot.music[message.guild.id].queue[0])
+                this.play(vc, message);
+            else vc.disconnect();
+        });
     }
 
-    run(message: Message, _args: string[], messages: any): any {
-        if(message.author.id != '372459063339909120')
-            return message.reply(messages.noPermission);
-    
+    run(message: Message, args: string[], messages: any): any {
+        if(!args[0])
+            return message.reply(messages.specifyURL);
+        
+        if(!message.member.voiceChannel)
+            return message.reply(messages.connectVoice);
+
         if(!bot.music[message.guild.id])
             bot.music[message.guild.id] = {
-                queue: [],
-                connection: null
+                queue: []
             };
+        
+        bot.music[message.guild.id].queue.push(args[0]);
 
         if(!message.guild.voiceConnection)
             message.member.voiceChannel.join().then((vc: VoiceConnection): void => {
