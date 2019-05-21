@@ -35,5 +35,6 @@
     "connectVoice": "you must be in a voice channel",
     "skipped": "skipped song",
     "notPlaying": "not playing any song",
-    "stopped": "stopped playing"
+    "stopped": "stopped playing",
+    "randomness": "Randomness intensifies.. ( ͡° ͜ʖ ͡°)"
 }
