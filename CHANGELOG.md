@@ -1,10 +1,18 @@
 # Changelog
 
-## 2.3.4:
+# 2.4 - the voice update
+## 2.4.0
+- Added commands: `join, play, stop, skip` (actually, the `join` command doesn't work but it'll be fixed in the next update kek)
+- Added `say` command (well, that's not into music)
+
+# Older updates
+## 2.3.4 ~~(to be honest with you, these are just daily commits)~~:
 - Added `prune` command
 - Bug fixes
 - Added default avatar into webpanel
 - Another "typescriptization" (thonk, this time)
+- Fixed commands page
+- We are going to add music aww (again something special)
 
 ## 2.3.3:
 - Added `tag` command

@@ -1,10 +1,10 @@
-<template>
+<template id="commands">
     <div>
         <v-app dark v-if="!$props.dashboard">
             <v-layout>
                 <!-- xs12 sm4 text-xs-center -->
                 <v-flex xs12 sm10 offset-sm1 column>
-                    <v-card>
+                    <v-card id="commands">
                         <v-toolbar flat class="primary">
                             <v-toolbar-title>Commands</v-toolbar-title>
                         </v-toolbar>
@@ -41,6 +41,11 @@ export default {
 </script>
 
 <style scoped>
+#commands {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
 .usage, .description {
     overflow: hidden;
     overflow-wrap: anywhere;

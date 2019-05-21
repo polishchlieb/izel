@@ -55,9 +55,6 @@ export default {
     display: flex;
     align-items: center;
 }
-.paddin {
-    background: #0173bb;
-}
 .rank, .nick, .score {
     overflow: hidden;
     overflow-wrap: anywhere;

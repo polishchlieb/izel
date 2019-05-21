@@ -52,6 +52,5 @@ export default {
 
 .commands {
     color: gray;
-
 }
 </style>

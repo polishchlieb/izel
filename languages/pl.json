@@ -30,5 +30,10 @@
     "tagAdded": "dodałę tag",
     "tags": "TAGI",
     "noBotPermission": "nie mam uprawnień by to zrobić.. :(",
-    "deletedMessages": "usunięto {} wiadomości"
+    "deletedMessages": "usunięto {} wiadomości",
+    "specifyURL": "musisz podać adres piosnki ( ͡° ͜ʖ ͡°)",
+    "connectVoice": "musisz być na kanale głosowym ( ͡° ͜ʖ ͡°)",
+    "skipped": "pominięto piosnkę ( ͡° ͜ʖ ͡°)",
+    "stopped": "zatrzymano piosnkę ( ͡° ͜ʖ ͡°)",
+    "randomness": "Budzenie Einsteina, proszę czekać.."
 }
