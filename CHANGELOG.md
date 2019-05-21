@@ -1,5 +1,10 @@
 # Changelog
 
+# 2.4 - the voice update
+## 2.4.0
+- Added commands: `join, play, stop, skip` (actually, the `join` command doesn't work but it'll be fixed in the next update kek)
+
+# Older updates
 ## 2.3.4 ~~(to be honest with you, these are just daily commits)~~:
 - Added `prune` command
 - Bug fixes

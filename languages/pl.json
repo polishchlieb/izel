@@ -31,7 +31,8 @@
     "tags": "TAGI",
     "noBotPermission": "nie mam uprawnień by to zrobić.. :(",
     "deletedMessages": "usunięto {} wiadomości",
-    "specifyURL": "musisz podać adres piosnki",
-    "connectVoice": "musisz być na kanale głosowym",
-    "skipped": "pominięto"
+    "specifyURL": "musisz podać adres piosnki ( ͡° ͜ʖ ͡°)",
+    "connectVoice": "musisz być na kanale głosowym ( ͡° ͜ʖ ͡°)",
+    "skipped": "pominięto piosnkę ( ͡° ͜ʖ ͡°)",
+    "stopped": "zatrzymano piosnkę ( ͡° ͜ʖ ͡°)"
 }

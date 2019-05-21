@@ -10,6 +10,9 @@ export default class SkipCommand implements Command {
     }
 
     run(message: Message, args: string[], messages: any): any {
+        if(!message.member.voiceChannel)
+            message.reply(messages.connectVoice);
+
         let server = bot.music[message.guild.id];
         if(server.dispatcher) {
             server.dispatcher.end();

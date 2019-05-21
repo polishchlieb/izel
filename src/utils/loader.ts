@@ -45,7 +45,7 @@ export const loadCommands = (bot: Bot): void => {
         new PollCommand, new HelpCommand, new MinecraftCommand,
         new ChooseCommand, new WeatherCommand, new LanguageCommand,
         new GiveawayCommand, new PingCommand, new MathCommand, new CalcCommand,
-        new TagCommand, new JoinCommand, new PruneCommand, new PlayCommand,
+        new TagCommand, /* new JoinCommand, */ new PruneCommand, new PlayCommand,
         new SkipCommand);
     
     console.log(blue(`Loaded ${bot.commands.length} commands`));
