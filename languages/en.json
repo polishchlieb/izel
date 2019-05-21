@@ -36,5 +36,6 @@
     "skipped": "skipped song",
     "notPlaying": "not playing any song",
     "stopped": "stopped playing",
-    "randomness": "Randomness intensifies.. ( ͡° ͜ʖ ͡°)"
+    "randomness": "Randomness intensifies.. ( ͡° ͜ʖ ͡°)",
+    "queue": "Queue"
 }

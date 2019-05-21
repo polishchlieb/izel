@@ -13,7 +13,7 @@ export default class StopCommand implements Command {
         if(!message.member.voiceChannel)
             return message.reply(messages.connectVoice);
 
-        let server = bot.music[message.guild.id];
+        let server: any = bot.music[message.guild.id];
         if(server.dispatcher) {
             delete bot.music[message.guild.id];
             message.member.voiceChannel.leave();

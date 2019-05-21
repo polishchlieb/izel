@@ -41,11 +41,13 @@ export default class MessageEvent implements Event {
             });
 
         else {
-            if(data.messages % 200 == 0)
+            data.level += 1;
+
+            if(data.messages % 200 == 0 && options.ranking != false)
                 message.reply(
-                    messages.nextLevel.replace('{}', data.level += 1)
+                    messages.nextLevel.replace('{}', data.level)
                 );
-            
+
             bot.users.updateOne({
                 id: message.author.id,
                 guild: message.guild.id

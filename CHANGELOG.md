@@ -3,7 +3,8 @@
 # 2.4 - the voice update
 ## 2.4.0
 - Added commands: `join, play, stop, skip` (actually, the `join` command doesn't work but it'll be fixed in the next update kek)
-- Added `say` command (well, that's not into music)
+- Added `say, dice` commands (well, not into music)
+- Added `ranking` command (well, this one too)
 
 # Older updates
 ## 2.3.4 ~~(to be honest with you, these are just daily commits)~~:
