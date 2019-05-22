@@ -1,4 +1,4 @@
-import { Message, TextChannel, GuildChannel } from 'discord.js';
+import { Message } from 'discord.js';
 import Event from '../interfaces/event';
 import bot from '..';
 import Command from '../interfaces/command';
@@ -30,7 +30,7 @@ export default class MessageEvent implements Event {
                 language: 'en'
             });
 
-        let messages = msgs[options.language];
+        let messages: any = msgs[options.language];
 
         if(!data)
             bot.users.insertOne({
@@ -41,11 +41,13 @@ export default class MessageEvent implements Event {
             });
 
         else {
-            if(data.messages % 200 == 0)
+            if(data.messages % 200 == 0 && options.ranking != false) {
+                data.level += 1;
                 message.reply(
-                    messages.nextLevel.replace('{}', data.level += 1)
+                    messages.nextLevel.replace('{}', data.level)
                 );
-            
+            }
+
             bot.users.updateOne({
                 id: message.author.id,
                 guild: message.guild.id

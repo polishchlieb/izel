@@ -31,6 +31,8 @@ import PlayCommand from '../commands/play';
 import SkipCommand from '../commands/skip';
 import SayCommand from '../commands/say';
 import DiceCommand from '../commands/dice';
+import RankingCommand from '../commands/ranking';
+import QueueCommand from '../commands/queue';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
@@ -43,12 +45,13 @@ export const loadEvents = (bot: Bot): void => {
 }
 
 export const loadCommands = (bot: Bot): void => {
-    bot.commands.push(new RankCommand, new TopCommand, new EvalCommand, new MathCommand,
-        new PollCommand, new HelpCommand, new MinecraftCommand,
+    bot.commands.push(new RankCommand, new TopCommand, new EvalCommand,
+        new MathCommand, new PollCommand, new HelpCommand, new MinecraftCommand,
         new ChooseCommand, new WeatherCommand, new LanguageCommand,
         new GiveawayCommand, new PingCommand, new MathCommand, new CalcCommand,
         new TagCommand, /* new JoinCommand, */ new PruneCommand, new PlayCommand,
-        new SkipCommand, new SayCommand, new DiceCommand);
+        new SkipCommand, new SayCommand, new DiceCommand, new RankingCommand,
+        new QueueCommand);
 
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }
