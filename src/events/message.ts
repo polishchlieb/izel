@@ -39,13 +39,13 @@ export default class MessageEvent implements Event {
                 messages: 1,
                 level: 0
             });
-
         else {
-            if(data.messages % 200 == 0 && options.ranking != false) {
+            if(data.messages % 200 == 0) {
                 data.level += 1;
-                message.reply(
-                    messages.nextLevel.replace('{}', data.level)
-                );
+                if(options.ranking != false)
+                    message.reply(
+                        messages.nextLevel.replace('{}', data.level)
+                    );
             }
 
             bot.users.updateOne({

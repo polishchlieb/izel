@@ -6,7 +6,7 @@
     "requestedBy": "dla",
     "myPrefix": "Mój prefix na tym serwerze to",
     "setPrefix": "Ustawiono prefix na",
-    "nextLevel": "Zdobyłeś poziom {}, gratulacje!",
+    "nextLevel": "zdobyłeś poziom {}, gratulacje!",
     "messages": "wiadomosci",
     "level": "POZIOM",
     "top": "Top 10 pionków",
@@ -25,7 +25,7 @@
     "giveawayEnded": "Giveaway się skończył.",
     "winner": "Zwycięzca",
     "won": "wygrał giveaway **{}**",
-    "whotoBan": "kogo mam zbanować? ( ͡° ͜ʖ ͡°)",
+    "whotoBan": "no więc, kogo mam zbanować? ( ͡° ͜ʖ ͡°)",
     "tagNotFound": "nie mogłem znaleźć takiego tagu",
     "tagAdded": "dodałę tag",
     "tags": "TAGI",
@@ -36,5 +36,7 @@
     "skipped": "pominięto piosnkę ( ͡° ͜ʖ ͡°)",
     "stopped": "zatrzymano piosnkę ( ͡° ͜ʖ ͡°)",
     "randomness": "Budzenie Einsteina, proszę czekać..",
-    "queue": "Kolejka ~~po karpie w lidlu~~"
+    "queue": "Kolejka ~~po karpie w lidlu~~",
+    "queued": "dodano do kolejki po karpie",
+    "joined": "dołączono do"
 }

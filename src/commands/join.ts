@@ -1,7 +1,5 @@
 import Command from '../interfaces/command';
-import { Message, VoiceConnection } from 'discord.js';
-import * as ytdl from 'ytdl-core';
-import bot from '..';
+import { Message } from 'discord.js';
 
 export default class JoinCommand implements Command {
     info = {
@@ -11,11 +9,8 @@ export default class JoinCommand implements Command {
     }
 
     run(message: Message, _args: string[], messages: any): any {
-        // if(message.author.id != '372459063339909120')
-        //     return message.reply(messages.noPermission);
-    
-        // message.member.voiceChannel.join().then((vc: VoiceConnection): void => {
-        //     if(!bot.music[])
-        // });
+        message.member.voiceChannel.join().then((): void => {
+            message.reply(`${messages.joined} ${message.member.voiceChannel.name}`);
+        });
     }
 }

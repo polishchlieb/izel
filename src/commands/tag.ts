@@ -13,7 +13,11 @@ export default class TagCommand implements Command {
         if(args[0] == 'list') {
             message.channel.send(new RichEmbed()
                 .setTitle(messages.tags)
-                .setDescription((await bot.tags.find().toArray()).map((e: any): string => e.title).join('\n'))
+                .setDescription(
+                    (await bot.tags.find({
+                        server: message.guild.id
+                    }).toArray()).map((e: any): string => e.title).join('\n')
+                )
                 .setFooter(`${messages.requestedBy} ${message.member.displayName}`, message.author.avatarURL)
                 .setColor('RANDOM')
             );

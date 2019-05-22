@@ -14,6 +14,9 @@ export default class RankingCommand implements Command {
             && message.author.id != '372459063339909120')
             return message.reply(messages.noPermission);
 
+        if(!args[0])
+            return message.reply(`${messages.use} \`${this.info.usage}\``);
+
         args[0] = args[0].toLowerCase();
         if(args[0] != 'on' && args[0] != 'off')
             return message.reply(`${messages.use} \`${this.info.usage}\``);
