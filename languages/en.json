@@ -25,7 +25,7 @@
     "giveawayEnded": "Giveaway ended.",
     "winner": "Winner",
     "won": "has won the **{}** giveaway",
-    "whotoBan": "who do you want me to ban? ( ͡° ͜ʖ ͡°)",
+    "whotoBan": "well, who do you want me to ban? ( ͡° ͜ʖ ͡°)",
     "tagNotFound": "I couldn't find that tag",
     "tagAdded": "the ~~bomb has been planted~~ tag has been added ( ͡° ͜ʖ ͡°)",
     "tags": "TAGS",
@@ -37,5 +37,7 @@
     "notPlaying": "not playing any song",
     "stopped": "stopped playing",
     "randomness": "Randomness intensifies.. ( ͡° ͜ʖ ͡°)",
-    "queue": "Queue"
+    "queue": "Queue",
+    "queued": "Added to the queue",
+    "joined": "joined"
 }

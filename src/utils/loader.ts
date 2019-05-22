@@ -25,7 +25,7 @@ import LanguageCommand from '../commands/language';
 import GiveawayCommand from '../commands/giveaway';
 import PingCommand from '../commands/ping';
 import TagCommand from '../commands/tag';
-// import JoinCommand from '../commands/join';
+import JoinCommand from '../commands/join';
 import PruneCommand from '../commands/prune';
 import PlayCommand from '../commands/play';
 import SkipCommand from '../commands/skip';
@@ -49,7 +49,7 @@ export const loadCommands = (bot: Bot): void => {
         new MathCommand, new PollCommand, new HelpCommand, new MinecraftCommand,
         new ChooseCommand, new WeatherCommand, new LanguageCommand,
         new GiveawayCommand, new PingCommand, new MathCommand, new CalcCommand,
-        new TagCommand, /* new JoinCommand, */ new PruneCommand, new PlayCommand,
+        new TagCommand, new JoinCommand, new PruneCommand, new PlayCommand,
         new SkipCommand, new SayCommand, new DiceCommand, new RankingCommand,
         new QueueCommand);
 

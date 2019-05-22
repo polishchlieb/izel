@@ -9,7 +9,7 @@ export default class QueueCommand implements Command {
         usage: '&queue'
     }
 
-    run(message: Message, args: string[], messages: any): void {
+    run(message: Message, _args: string[], messages: any): void {
         let server: any = bot.music[message.guild.id];
         if(server)
             message.channel.send(

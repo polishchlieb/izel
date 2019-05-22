@@ -18,14 +18,17 @@ export default class PlayCommand implements Command {
         bot.music[message.guild.id].dispatcher.on('end', (): void => {
             if(bot.music[message.guild.id].queue[0])
                 this.play(vc, message);
-            else vc.disconnect();
+            else {
+                vc.disconnect();
+                delete bot.music[message.guild.id];
+            }
         });
     }
 
     run(message: Message, args: string[], messages: any): any {
         if(!args[0])
             return message.reply(messages.specifyURL);
-        
+
         if(!message.member.voiceChannel)
             return message.reply(messages.connectVoice);
 
@@ -33,10 +36,12 @@ export default class PlayCommand implements Command {
             bot.music[message.guild.id] = {
                 queue: []
             };
-        
+
+        message.reply(messages.queued);
+
         bot.music[message.guild.id].queue.push(args[0]);
 
-        if(!message.guild.voiceConnection)
+        if(!message.guild.voiceConnection || !bot.music[message.guild.id].dispatcher)
             message.member.voiceChannel.join().then((vc: VoiceConnection): void => {
                 this.play(vc, message);
             });
