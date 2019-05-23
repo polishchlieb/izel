@@ -39,5 +39,9 @@
     "randomness": "Randomness intensifies.. ( ͡° ͜ʖ ͡°)",
     "queue": "Queue",
     "queued": "Added to the queue",
-    "joined": "joined"
+    "joined": "joined",
+    "couldNotFind": "couldn't find that user",
+    "couldNotBan": "couldn't ban this user",
+    "youWereBanned": "You were banned from **{}**",
+    "banned": "banned **{}**"
 }

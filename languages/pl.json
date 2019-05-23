@@ -38,5 +38,9 @@
     "randomness": "Budzenie Einsteina, proszę czekać..",
     "queue": "Kolejka ~~po karpie w lidlu~~",
     "queued": "dodano do kolejki po karpie",
-    "joined": "dołączono do"
+    "joined": "dołączono do",
+    "couldNotFind": "nie znaleziono takiego użyszkodnika",
+    "couldNotBan": "nie mogę, ten człowiek jest silniejszy!..",
+    "youWereBanned": "zostałeś zbanowany na **{}**",
+    "banned": "**{}** został zdzbanowany"
 }
