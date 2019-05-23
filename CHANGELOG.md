@@ -5,6 +5,7 @@
 - Fixed `ranking, top` commands
 - Added some messages to `play` command
 - Added (actually made it able to work) `join` command
+- Added `ban` command
 
 ## 2.4.0
 - Added commands: `join, play, stop, skip` (actually, the `join` command doesn't work but it'll be fixed in the next update kek)
