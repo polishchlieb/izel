@@ -2,6 +2,8 @@ import Command from '../interfaces/command';
 import { Message, RichEmbed } from 'discord.js';
 import fetch, { Response } from 'node-fetch';
 
+const appid: { appid: string } = require('../../config.json');
+
 export default class WeatherCommand implements Command {
     info = {
         names: ['weather'],
@@ -10,7 +12,7 @@ export default class WeatherCommand implements Command {
     }
 
     run(message: Message, args: string[], messages: any): void {
-        fetch(`http://api.openweathermap.org/data/2.5/weather?APPID=121a5f2255696f766cba3aeb00c73fad&units=metric&q=${encodeURIComponent(args.join(' '))}`)
+        fetch(`http://api.openweathermap.org/data/2.5/weather?APPID=${appid}&units=metric&q=${encodeURIComponent(args.join(' '))}`)
             .then((res: Response): any => res.json())
             .then((data: any): any => {
                 if(data.cod != 200)

@@ -6,6 +6,7 @@
 - Added some messages to `play` command
 - Made `join` command able to work
 - Added `ban` command
+- Added `serverinfo` command
 
 ## 2.4.0
 - Added commands: `join, play, stop, skip`
