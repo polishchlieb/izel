@@ -2,7 +2,7 @@ import Command from '../interfaces/command';
 import { Message, RichEmbed } from 'discord.js';
 import fetch, { Response } from 'node-fetch';
 
-const appid: { appid: string } = require('../../config.json');
+const { openWeatherApi }: { openWeatherApi: string } = require('../../config.json');
 
 export default class WeatherCommand implements Command {
     info = {
