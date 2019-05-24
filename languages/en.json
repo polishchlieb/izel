@@ -43,5 +43,9 @@
     "couldNotFind": "couldn't find that user",
     "couldNotBan": "couldn't ban this user",
     "youWereBanned": "You were banned from **{}**",
-    "banned": "banned **{}**"
+    "banned": "banned **{}**",
+    "owner": "Owner",
+    "members": "Members",
+    "channels": "Channels",
+    "region": "Region"
 }

@@ -34,6 +34,7 @@ import DiceCommand from '../commands/dice';
 import RankingCommand from '../commands/ranking';
 import QueueCommand from '../commands/queue';
 import BanCommand from '../commands/ban';
+import ServerInfoCommand from '../commands/serverinfo';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
@@ -52,7 +53,7 @@ export const loadCommands = (bot: Bot): void => {
         new GiveawayCommand, new PingCommand, new MathCommand, new CalcCommand,
         new TagCommand, new JoinCommand, new PruneCommand, new PlayCommand,
         new SkipCommand, new SayCommand, new DiceCommand, new RankingCommand,
-        new QueueCommand, new BanCommand);
+        new QueueCommand, new BanCommand, new ServerInfoCommand);
 
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }

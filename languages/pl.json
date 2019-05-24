@@ -42,5 +42,9 @@
     "couldNotFind": "nie znaleziono takiego użyszkodnika",
     "couldNotBan": "nie mogę, ten człowiek jest silniejszy!..",
     "youWereBanned": "zostałeś zbanowany na **{}**",
-    "banned": "**{}** został zdzbanowany"
+    "banned": "**{}** został zdzbanowany",
+    "owner": "Właściciel",
+    "members": "Członkowie",
+    "channels": "Kanały",
+    "region": "Region"
 }
