@@ -8,7 +8,7 @@
 # Setup
 - Things you need to install:
     - [Node.js](https://nodejs.org/)
-    - Install typescript using `npm i -g typescript`
+    - Install typescript: `npm i -g typescript`
     - Dependencies: `npm i`
     - [MongoDB](https://www.mongodb.com/download-center/community/)
     - [FFMpeg](https://ffmpeg.org/download.html) or `apt-get install ffmpeg` (this one is tricky, get help [here](https://discord.gg/bRCvFy9))
