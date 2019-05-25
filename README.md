@@ -6,10 +6,12 @@
 </p>
 
 # Setup
-- Install node.js [here](https://nodejs.org/)
-- Install typescript using `npm i -g typescript`
-- Install dependencies using `npm i`
-- Install MongoDB and run the server
+- Things you need to install:
+    - [Node.js](https://nodejs.org/)
+    - Install typescript: `npm i -g typescript`
+    - Dependencies: `npm i`
+    - [MongoDB](https://www.mongodb.com/download-center/community/)
+    - [FFMpeg](https://ffmpeg.org/download.html) or `apt-get install ffmpeg` (this one is tricky, get help [here](https://discord.gg/bRCvFy9))
 - Create the database by running the `initMongo.js` file
 - Add your data to `config.json` file
 - Use one of the following commands:

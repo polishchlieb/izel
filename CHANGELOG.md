@@ -7,6 +7,7 @@
 - Made `join` command able to work
 - Added `ban` command
 - Added `serverinfo` command
+- Updated `README.md`
 
 ## 2.4.0
 - Added commands: `join, play, stop, skip`
