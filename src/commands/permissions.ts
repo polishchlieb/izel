@@ -15,13 +15,17 @@ export default class MathCommand implements Command {
 
         if(args[0] == 'create')
             bot.permissions.insertOne({ action: args[1], user_ids: [] });
-        else if(args[0] == 'list') {
-            let permission: any = bot.permissions.findOne({ action: args[1] });
-            message.reply(permission.user_ids.join(', '));
+        else if(args[0] == 'add') {
+            let permission: any = await bot.permissions.findOne({ action: args[1] });
+            permission.user_ids.push(args[2]);
+            bot.permissions.updateOne({ action: args[1] }, { $set: permission });
         } else if(args[0] == 'set') {
-            let permission: any = bot.permissions.findOne({ action: args[1] });
+            let permission: any = await bot.permissions.findOne({ action: args[1] });
             permission.user_ids = args[2].split(',');
             bot.permissions.updateOne({ action: args[1] }, { $set: permission });
+        } else if(args[0] == 'list') {
+            let permission: any = await bot.permissions.findOne({ action: args[1] });
+            message.reply(permission.user_ids.join(', '));
         }
     }
 }
