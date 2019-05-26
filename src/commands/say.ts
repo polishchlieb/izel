@@ -13,7 +13,7 @@ export default class SayCommand implements Command {
     async run(message: Message, args: string[], messages: any): Promise<any> {
         let permissions: Permission = await bot.permissions.findOne({ action: 'say' });
         if(!permissions.user_ids.includes(message.author.id))
-            return message.reply(messages);
+            return message.reply(messages.noPermission);
 
         message.channel.send(args.join(' '));
         message.delete();

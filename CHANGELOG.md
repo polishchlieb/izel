@@ -1,6 +1,9 @@
 # Changelog
 
 # 2.4 - the voice update
+## 2.4.2
+- Added `permissions` command
+
 ## 2.4.1
 - Fixed `ranking, top` commands
 - Added some messages to `play` command
