@@ -23,9 +23,13 @@ export default class MathCommand implements Command {
             let permission: any = await bot.permissions.findOne({ action: args[1] });
             permission.user_ids = args[2].split(',');
             bot.permissions.updateOne({ action: args[1] }, { $set: permission });
+        } else if(args[0] == 'remove') {
+            let permission: any = bot.permissions.findOne({ action: args[1] });
+            permission.user_ids.splice(permission.user_ids.indexOf(args[2]), 1);
+            bot.permissions.updateOne({ action: args[1] }, { $set: permission });
         } else if(args[0] == 'list') {
             let permission: any = await bot.permissions.findOne({ action: args[1] });
-            message.reply(permission.user_ids.join(', '));
+            message.reply(permission.user_ids.map((id: string): string => bot.client.users.get(id).tag).join(', '));
         }
     }
 }
