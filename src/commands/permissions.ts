@@ -24,7 +24,7 @@ export default class MathCommand implements Command {
             permission.user_ids = args[2].split(',');
             bot.permissions.updateOne({ action: args[1] }, { $set: permission });
         } else if(args[0] == 'remove') {
-            let permission: any = bot.permissions.findOne({ action: args[1] });
+            let permission: any = await bot.permissions.findOne({ action: args[1] });
             permission.user_ids.splice(permission.user_ids.indexOf(args[2]), 1);
             bot.permissions.updateOne({ action: args[1] }, { $set: permission });
         } else if(args[0] == 'list') {
