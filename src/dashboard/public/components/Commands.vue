@@ -40,11 +40,6 @@ export default {
 </script>
 
 <style scoped>
-#commands {
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-
 .usage, .description {
     overflow: hidden;
     overflow-wrap: anywhere;

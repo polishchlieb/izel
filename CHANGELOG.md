@@ -3,6 +3,9 @@
 # 2.4 - the voice update
 ## 2.4.2
 - Added `permissions` command
+- Some dashboard updates
+- Added `kick` command
+- (probably) Fixed `ban, calc` commands
 
 ## 2.4.1
 - Fixed `ranking, top` commands
