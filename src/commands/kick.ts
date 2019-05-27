@@ -1,15 +1,15 @@
 import Command from '../interfaces/command';
-import { Message, Collection, GuildMember } from 'discord.js';
+import { Message, GuildMember } from 'discord.js';
 
-export default class BanCommand implements Command {
+export default class KickCommand implements Command {
     info = {
-        names: ['ban'],
-        description: 'bannin crazy',
-        usage: '&ban (ping | name..)'
+        names: ['kick'],
+        description: 'Kicks someone',
+        usage: '&kick (ping) { reason }'
     }
 
     run(message: Message, args: string[], messages: any): any {
-        if(!message.member.hasPermission('BAN_MEMBERS'))
+        if(!message.member.hasPermission('KICK_MEMBERS'))
             return message.reply(messages.noPermission);
         if(args.length == 0)
             return message.reply(`${messages.use} \`${this.info.usage}\``);
@@ -19,16 +19,16 @@ export default class BanCommand implements Command {
         let member: GuildMember = message.guild.member(args.shift().substring(2, 20));
         if(!member)
             return message.reply(messages.couldNotFind);
-        if(!member.bannable)
-            return message.reply(messages.couldNotBan);
+        if(!member.kickable)
+            return message.reply(messages.couldNotKick);
 
-        member.ban().then((member: GuildMember): void => {
+        member.kick().then((member: GuildMember): void => {
             member.user.send(
-                messages.youWereBanned.replace('{}', message.guild.name)
+                messages.youWereKicked.replace('{}', message.guild.name)
                 + args.length > 0 ? ': ' + args.join(' ') : ''
             );
 
-            message.reply(messages.banned.replace('{}', member.user.username));
+            message.reply(messages.kicked.replace('{}', member.user.username));
         });
     }
 }

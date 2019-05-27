@@ -40,11 +40,14 @@
     "queued": "dodano do kolejki po karpie",
     "joined": "dołączono do",
     "couldNotFind": "nie znaleziono takiego użyszkodnika",
-    "couldNotBan": "nie mogę, ten człowiek jest silniejszy!..",
+    "couldNotBan": "nie mogę, on jest silniejszy!..",
     "youWereBanned": "zostałeś zbanowany na **{}**",
     "banned": "**{}** został zdzbanowany",
     "owner": "Właściciel",
     "members": "Członkowie",
     "channels": "Kanały",
-    "region": "Region"
+    "region": "Region",
+    "couldNotKick": "nie mogę, on jest silniejszy!..",
+    "kicked": "wyrzucono **{}**",
+    "youWereKicked": "Zostałeś wyrzucony z **{}**"
 }
