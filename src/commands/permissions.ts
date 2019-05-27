@@ -29,7 +29,9 @@ export default class MathCommand implements Command {
             bot.permissions.updateOne({ action: args[1] }, { $set: permission });
         } else if(args[0] == 'list') {
             let permission: any = await bot.permissions.findOne({ action: args[1] });
-            message.reply(permission.user_ids.map((id: string): string => bot.client.users.get(id).tag).join(', '));
+            message.reply(permission.user_ids.map(
+                (id: string): string => bot.client.users.get(id).tag).join(', ')
+            );
         }
     }
 }

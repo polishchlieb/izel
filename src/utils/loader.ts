@@ -36,6 +36,7 @@ import QueueCommand from '../commands/queue';
 import BanCommand from '../commands/ban';
 import ServerInfoCommand from '../commands/serverinfo';
 import PermissionsCommand from '../commands/permissions';
+import KickCommand from '../commands/kick';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
@@ -55,7 +56,7 @@ export const loadCommands = (bot: Bot): void => {
         new TagCommand, new JoinCommand, new PruneCommand, new PlayCommand,
         new SkipCommand, new SayCommand, new DiceCommand, new RankingCommand,
         new QueueCommand, new BanCommand, new ServerInfoCommand,
-        new PermissionsCommand);
+        new PermissionsCommand, new KickCommand);
 
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }

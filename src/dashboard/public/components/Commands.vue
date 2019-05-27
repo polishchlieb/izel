@@ -2,7 +2,6 @@
     <div>
         <v-app dark v-if="!$props.dashboard">
             <v-layout>
-                <!-- xs12 sm4 text-xs-center -->
                 <v-flex xs12 sm10 offset-sm1 column>
                     <v-card id="commands">
                         <v-toolbar flat class="primary">

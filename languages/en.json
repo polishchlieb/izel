@@ -47,5 +47,8 @@
     "owner": "Owner",
     "members": "Members",
     "channels": "Channels",
-    "region": "Region"
+    "region": "Region",
+    "couldNotKick": "couldn't kick",
+    "kicked": "kicked **{}**",
+    "youWereKicked": "You were kicked from **{}**"
 }
