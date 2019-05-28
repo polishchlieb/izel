@@ -15,9 +15,9 @@
                                 <v-icon right dark>arrow_forward</v-icon>
                             </v-btn>
                         </a>
-                        <a class="a" href="/commands">
+                        <!-- <a class="a" href="/commands">
                             <div class="commands">Command list</div>
-                        </a>
+                        </a> -->
                     </div>
                 </v-flex>
             </v-layout>

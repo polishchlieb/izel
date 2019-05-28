@@ -1,6 +1,7 @@
 import Command from '../interfaces/command';
 import { Message, RichEmbed } from 'discord.js';
 import bot from '..';
+import { Tag } from '../interfaces/databaseStructures';
 
 export default class TagCommand implements Command {
     info = {
@@ -22,7 +23,7 @@ export default class TagCommand implements Command {
                 .setColor('RANDOM')
             );
         } else if(args.length == 1) {
-            let tag: any = await bot.tags.findOne({
+            let tag: Tag = await bot.tags.findOne({
                 server: message.guild.id,
                 title: args[0]
             });

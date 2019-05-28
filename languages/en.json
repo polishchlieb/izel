@@ -50,5 +50,6 @@
     "region": "Region",
     "couldNotKick": "couldn't kick",
     "kicked": "kicked **{}**",
-    "youWereKicked": "You were kicked from **{}**"
+    "youWereKicked": "You were kicked from **{}**",
+    "updated": "updated the guild"
 }

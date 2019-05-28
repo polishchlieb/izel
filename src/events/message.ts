@@ -2,6 +2,7 @@ import { Message } from 'discord.js';
 import Event from '../interfaces/event';
 import bot from '..';
 import Command from '../interfaces/command';
+import { User, Server } from '../interfaces/databaseStructures';
 
 const msgs: any = {
     pl: require('../../languages/pl.json'),
@@ -15,12 +16,12 @@ export default class MessageEvent implements Event {
         if(message.author.bot
            || !message.guild) return;
 
-        let data: any = await bot.users.findOne({
+        let data: User = await bot.users.findOne({
             id: message.author.id,
             guild: message.guild.id
         });
 
-        let options: any = await bot.servers.findOne({
+        let options: Server = await bot.servers.findOne({
             id: message.guild.id
         });
 
