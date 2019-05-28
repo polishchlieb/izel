@@ -1,7 +1,7 @@
 import Command from '../interfaces/command';
 import { Message } from 'discord.js';
 import bot from '..';
-import Permission from '../interfaces/permission';
+import { Permission } from '../interfaces/databaseStructures';
 
 export default class SayCommand implements Command {
     info = {

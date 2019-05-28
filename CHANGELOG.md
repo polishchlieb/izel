@@ -6,6 +6,8 @@
 - Some dashboard updates
 - Added `kick` command
 - (probably) Fixed `ban, calc` commands
+- Added database interfaces
+- Updated `ranking` command
 
 ## 2.4.1
 - Fixed `ranking, top` commands

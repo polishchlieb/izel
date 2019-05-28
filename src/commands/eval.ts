@@ -1,6 +1,7 @@
 import Command from '../interfaces/command';
 import { Message, RichEmbed } from 'discord.js';
 import bot from '..';
+import { Permission } from '../interfaces/databaseStructures';
 
 export default class EvalCommand implements Command {
     info = {
@@ -12,7 +13,7 @@ export default class EvalCommand implements Command {
     set: any = {};
 
     async run(message: Message, args: string[]): Promise<any> {
-        let permissions: any = await bot.permissions.findOne({
+        let permissions: Permission = await bot.permissions.findOne({
             action: 'eval'
         });
 

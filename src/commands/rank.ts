@@ -2,6 +2,7 @@ import Command from '../interfaces/command';
 import { Message, Attachment, User, GuildMember } from 'discord.js';
 import bot from '..';
 import { createCanvas, loadImage, Image, Canvas } from 'canvas';
+import { User as DatabaseUser } from '../interfaces/databaseStructures';
 
 let bg: Image, fg: Image;
 (async () => {
@@ -23,7 +24,7 @@ export default class RankCommand implements Command {
         if(!member || !message.guild.member(member))
             member = message.member;
 
-        let data: any = await bot.users.findOne({
+        let data: DatabaseUser = await bot.users.findOne({
             id: member.user.id,
             guild: message.guild.id
         });
@@ -55,7 +56,7 @@ export default class RankCommand implements Command {
 
         ctx.fillStyle = '#ffffff';
         ctx.fillText(lvl, 485.5 - ctx.measureText(lvl).width / 2, 180);
-		
+
         message.channel.send('', new Attachment(canvas.createPNGStream(), ''));
 
         message.channel.stopTyping();

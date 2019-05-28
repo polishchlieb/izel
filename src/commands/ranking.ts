@@ -24,5 +24,7 @@ export default class RankingCommand implements Command {
         bot.servers.updateOne({ id: message.guild.id }, { $set: {
             ranking: args[0] == 'on' ? true : false
         }});
+
+        message.reply(messages.updated);
     }
 }

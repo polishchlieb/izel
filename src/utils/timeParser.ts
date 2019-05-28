@@ -1,7 +1,7 @@
 // 7 * 86400 * 1000
 const limit: number = 604800000;
 
-export default (time: string): false | number => {
+export default (time: string): boolean | number => {
     if(!/[0-9]+(?=s|m|h|d)/g.test(time))
         return false;
 

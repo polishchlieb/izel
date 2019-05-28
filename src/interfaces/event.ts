@@ -1,5 +1,4 @@
 export default interface Event {
-    run: (...args: any[]) => void | Promise<void>;
-
+    run: (...args: any[]) => any;
     name: string;
 }
