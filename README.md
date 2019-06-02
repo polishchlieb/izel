@@ -5,10 +5,13 @@
     <img src="https://img.shields.io/badge/version-2.0.2-blue.svg">
 </p>
 
+# Note
+I recommend using `node-opus` package instead of `opusscript`. Opus didn't work for me so I selected an alternative.
+
 # Setup
 - Things you need to install:
     - [Node.js](https://nodejs.org/)
-    - Install typescript: `npm i -g typescript`
+    - `npm i -g typescript`
     - Dependencies: `npm i`
     - [MongoDB](https://www.mongodb.com/download-center/community/)
     - [FFMpeg](https://ffmpeg.org/download.html) or `apt-get install ffmpeg` (this one is tricky, get help [here](https://discord.gg/bRCvFy9))

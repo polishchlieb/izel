@@ -66,9 +66,9 @@ router.get('/check', (req: Request, res: Response): any => {
         }
     })
         .then((resp): Promise<any> => resp.json())
-        .then((data: any): any => {
+        .then((data: any): void => {
             res.status(200)
-            return res.send({
+            res.send({
                 status: 'OK',
                 message: 'Logged in',
                 data,
@@ -76,10 +76,10 @@ router.get('/check', (req: Request, res: Response): any => {
                 users: bot.client.users.size
             });
         })
-        .catch((): any => {
+        .catch((): void => {
             res.status(401);
             res.clearCookie('token');
-            return res.send({
+            res.send({
                 status: 'ERROR',
                 message: 'Not logged in'
             });
@@ -113,7 +113,7 @@ router.get('/guilds', (req: Request, res: Response): void => {
             let matches: any[] = [];
 
             data.forEach((guild: any): void => {
-                if (bot.client.guilds.get(guild.id))
+                if(bot.client.guilds.get(guild.id))
                     matches.push(guild);
             });
 
@@ -162,7 +162,9 @@ router.get('/guild', (req: Request, res: Response) => {
                     });
                 });
         })
-        .catch((err: Error) => res.send(new Error(err.message)));
+        .catch((err: Error): void => {
+            res.send(new Error(err.message))
+        });
 });
 
 router.get('/commands', (req: Request, res: Response): void => {

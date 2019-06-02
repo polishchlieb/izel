@@ -1,5 +1,9 @@
 # Changelog
 
+# 2.5 - (something)
+- Fixed `rank, ranking` commands
+- Added `profile` command
+
 # 2.4 - the voice update
 ## 2.4.2
 - Added `permissions` command

@@ -12,10 +12,12 @@ export default class HelpCommand implements Command {
     run(message: Message, args: string[], messages: any): void {
         message.channel.send(new RichEmbed()
             .setTitle(messages.help)
+            .setColor('RANDOM')
             .setDescription(messages.helpDescription)
             .setURL('http://izel.chlebe.tk/commands')
             .setThumbnail(bot.client.user.avatarURL)
             .addField('Webpanel', 'http://izel.chlebe.tk/')
-            .setFooter(`${messages.requestedBy} ${message.member.displayName}`));
+            .addField(messages.developers, '<@372459063339909120> (main),\n<@271728660963262464> (webpanel)')
+            .setFooter(`${messages.requestedBy} ${message.member.displayName}`, message.author.avatarURL));
     }
 }

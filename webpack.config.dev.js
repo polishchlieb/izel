@@ -1,10 +1,7 @@
-const { VueLoaderPlugin } = require("vue-loader");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-
-const webpack = require('webpack')
-
-
-const { resolve } = require("path");
+const { VueLoaderPlugin } = require('vue-loader');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
+const { resolve } = require('path');
 
 module.exports = {
     mode: 'development',
@@ -42,15 +39,6 @@ module.exports = {
             from: './src/dashboard/public/index.html',
             to: '.'
         }]),
-
-        /*
-        new HtmlWebpackPlugin({
-            title: 'izel',
-            template: './webpack-template.html',
-            inject: 'body',
-            alwaysWriteToDisk: true
-        }),
-        */
         new webpack.HotModuleReplacementPlugin({
             multiStep: true
         })
@@ -59,7 +47,6 @@ module.exports = {
         historyApiFallback: true,
         hot: true,
         inline: true,
-        
         host: '0.0.0.0',
         port: 3000,
         proxy: {
@@ -69,4 +56,4 @@ module.exports = {
             }
         }
     }
-}
+};

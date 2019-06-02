@@ -34,8 +34,6 @@
 		"discord.js": "^11.4.2",
 		"express": "^4.16.4",
 		"express-session": "^1.16.1",
-		"html2canvas": "^1.0.0-rc.1",
-		"jsdom": "^14.0.0",
 		"mathjs": "^5.9.0",
 		"mongodb": "^3.2.3",
 		"node-fetch": "^2.3.0",

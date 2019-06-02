@@ -28,7 +28,9 @@ export default class MessageEvent implements Event {
         if(!options)
             bot.servers.insertOne(options = {
                 id: message.guild.id,
-                language: 'en'
+                language: 'en',
+                prefix: '&',
+                ranking: true
             });
 
         let messages: any = msgs[options.language];
@@ -38,12 +40,18 @@ export default class MessageEvent implements Event {
                 id: message.author.id,
                 guild: message.guild.id,
                 messages: 1,
-                level: 0
+                level: 0,
+                cooldown: new Date().getTime()
             });
         else {
+            if(new Date().getTime() - data.cooldown >= 10000) {
+                data.messages += 1;
+                data.cooldown = new Date().getTime();
+            }
+
             if(data.messages % 200 == 0) {
                 data.level += 1;
-                if(options.ranking != false)
+                if(options.ranking)
                     message.reply(
                         messages.nextLevel.replace('{}', data.level)
                     );
@@ -53,21 +61,18 @@ export default class MessageEvent implements Event {
                 id: message.author.id,
                 guild: message.guild.id
             }, {
-                $set: {
-                    messages: data.messages + 1,
-                    level: data.level
-                }
+                $set: data
             });
         }
 
-        if(!message.content.startsWith('&'))
+        if(!message.content.startsWith(options.prefix))
             return;
 
         let args: string[] = message.content
-            .substring(1)
+            .substring(options.prefix.length)
             .split(' ');
         let name: string = args.shift().toLowerCase();
-        let command: Command = bot.commands.find((c: Command) =>
+        let command: Command = bot.commands.find((c: Command): boolean =>
             c.info.names.includes(name)
         );
 

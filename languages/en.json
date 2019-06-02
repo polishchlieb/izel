@@ -4,8 +4,8 @@
     "help": "Help",
     "helpDescription": "Check out our commands",
     "requestedBy": "requested by",
-    "myPrefix": "My prefix here is",
-    "setPrefix": "Your new prefix is",
+    "myPrefix": "my prefix here is",
+    "setPrefix": "your new prefix is",
     "nextLevel": "You've just got {} level, congratulations!",
     "messages": "messages",
     "level": "LEVEL",
@@ -51,5 +51,6 @@
     "couldNotKick": "couldn't kick",
     "kicked": "kicked **{}**",
     "youWereKicked": "You were kicked from **{}**",
-    "updated": "updated the guild"
+    "updated": "updated the guild",
+    "developers": "Developers"
 }
