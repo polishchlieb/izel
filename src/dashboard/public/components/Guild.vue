@@ -19,13 +19,14 @@
                 </v-list>
             </v-card>
 
-            <v-card v-if="isAdmin">
+            <v-card v-if="admin">
                 <v-toolbar flat class="primary">
                     <v-toolbar-title>Administrator</v-toolbar-title>
                 </v-toolbar>
 
                 <v-container>
-                    admin, masz opa!
+                    Prefix: <input type="text" v-model="a_prefix"><br>
+                    <button @click="save">Save</button>
                 </v-container>
             </v-card>
         </v-flex>
@@ -39,13 +40,30 @@ export default {
         return {
             top: [],
             guildname: null,
-            isAdmin: false
+            admin: null,
+            a_prefix: ''
         };
+    },
+    methods: {
+        save() {
+            fetch(`/api/admin?guild=${this.$props.guild.id}`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        prefix: this.a_prefix
+                    })
+                }
+            );
+        }
     },
     mounted: function() {
         this.guildname = this.$props.guild.guildName;
         this.top = this.$props.guild.top;
-        this.isAdmin = this.$props.guild.isAdmin;
+        this.admin = this.$props.guild.admin;
     }
 }
 </script>

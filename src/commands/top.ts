@@ -12,7 +12,7 @@ export default class TopCommand implements Command {
 
     async run(message: Message, args: string[], messages: any): Promise<void> {
         if(args[0] == 'global') {
-            let data: User[] = await bot.users
+            let data: User[] = await bot.stats
                 .find().sort({ messages: -1 }).limit(10).toArray();
             let embed: RichEmbed = new RichEmbed()
                 .setTitle(messages.top)
@@ -32,7 +32,7 @@ export default class TopCommand implements Command {
 
             message.channel.send(embed);
         } else {
-            let data: User[] = await bot.users
+            let data: User[] = await bot.stats
                 .find({ guild: message.guild.id }).sort({ messages: -1 })
                 .limit(10).toArray();
             let embed: RichEmbed = new RichEmbed()

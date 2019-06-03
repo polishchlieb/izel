@@ -3,10 +3,14 @@ import fetch from 'node-fetch';
 import * as cookie from 'cookie-parser';
 import bot from '..';
 import { GuildMember, Guild } from 'discord.js';
+import * as bodyParser from 'body-parser';
 
 const router: Router = Router();
 const { id, secret, callback }: { id: string, secret: string, callback: string } = require('../../config.json');
 const redirect: string = encodeURIComponent(callback);
+
+router.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.json());
 
 router.get('/login', (req: Request, res: Response): void => {
     res.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=${id}&redirect_uri=${redirect}&response_type=code&scope=identify guilds`);
@@ -133,7 +137,7 @@ router.get('/guild', (req: Request, res: Response) => {
         .then((user: any): void => {
             let Tguild: Guild = bot.client.guilds.get(req.query.guild);
 
-            bot.users
+            bot.stats
                 .find({ guild: Tguild.id })
                 .sort({ messages: -1 })
                 .limit(10)
@@ -155,10 +159,12 @@ router.get('/guild', (req: Request, res: Response) => {
                     });
 
                     res.send({
+                        id: Tguild.id,
                         top: result,
                         guildName: Tguild.name,
                         userID: user.id,
-                        isAdmin: Tguild.member(user.id).hasPermission('ADMINISTRATOR')
+                        admin: Tguild.member(user.id).hasPermission('ADMINISTRATOR') ?
+                            bot.servers.findOne({ id: Tguild.id }) : null
                     });
                 });
         })
@@ -169,6 +175,31 @@ router.get('/guild', (req: Request, res: Response) => {
 
 router.get('/commands', (req: Request, res: Response): void => {
     res.send(bot.commands.map(c => c.info));
+});
+
+router.post('/admin', (req: Request, res: Response): void => {
+    fetch('https://discordapp.com/api/users/@me',
+    {
+        headers: {
+            'Authorization': `Bearer ${req.cookies.token}`,
+            'User-Agent': 'Discord-Bot Izel'
+        }
+    })
+    .then((resp): Promise<any> => resp.json())
+    .then((user: any): any => {
+        let Tguild: Guild = bot.client.guilds.get(req.query.guild);
+        if(!Tguild.member(user.id) || !Tguild.member(user.id).hasPermission('ADMINISTRATOR') || !req.body.prefix)
+            return res.send('do you are have stupid');
+
+        bot.servers.updateOne({ id: Tguild.id }, {
+            $set: {
+                prefix: req.body.prefix
+            }
+        })
+    })
+    .catch((err: Error): void => {
+        res.send(new Error(err.message))
+    });
 });
 
 export default router;

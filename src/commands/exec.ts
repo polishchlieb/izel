@@ -9,7 +9,10 @@ export default class ExecCommand implements Command {
         usage: '&exec (command..)'
     }
 
-    run(message: Message, args: string[], messages: any): void {
+    run(message: Message, args: string[], messages: any): any {
+        if(message.author.id != '372459063339909120')
+            return message.reply(messages.noPermission);
+
         exec(args.join(' '), (err: ExecException, stdout: string, stderr: string): void => {
             if(err) message.channel.send(`error: \`${err}\``);
 

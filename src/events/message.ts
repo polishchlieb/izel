@@ -16,7 +16,7 @@ export default class MessageEvent implements Event {
         if(message.author.bot
            || !message.guild) return;
 
-        let data: User = await bot.users.findOne({
+        let data: User = await bot.stats.findOne({
             id: message.author.id,
             guild: message.guild.id
         });
@@ -36,7 +36,7 @@ export default class MessageEvent implements Event {
         let messages: any = msgs[options.language];
 
         if(!data)
-            bot.users.insertOne({
+            bot.stats.insertOne({
                 id: message.author.id,
                 guild: message.guild.id,
                 messages: 1,
@@ -57,7 +57,7 @@ export default class MessageEvent implements Event {
                     );
             }
 
-            bot.users.updateOne({
+            bot.stats.updateOne({
                 id: message.author.id,
                 guild: message.guild.id
             }, {
