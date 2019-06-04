@@ -51,5 +51,7 @@
     "kicked": "wyrzucono **{}**",
     "youWereKicked": "Zostałeś wyrzucony z **{}**",
     "updated": "zaktualizowano ustawienia.",
-    "developers": "Deweloperzy"
+    "developers": "Deweloperzy",
+    "useSearch": "użyj komendy `&search (tytuł..)`",
+    "notPlaying": "nic nie jest grane, co ty robisz?"
 }

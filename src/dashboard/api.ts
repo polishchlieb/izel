@@ -117,7 +117,7 @@ router.get('/guilds', (req: Request, res: Response): void => {
             let matches: any[] = [];
 
             data.forEach((guild: any): void => {
-                if(bot.client.guilds.get(guild.id))
+                if (bot.client.guilds.get(guild.id))
                     matches.push(guild);
             });
 
@@ -125,51 +125,43 @@ router.get('/guilds', (req: Request, res: Response): void => {
         });
 });
 
-router.get('/guild', (req: Request, res: Response) => {
-    fetch('https://discordapp.com/api/users/@me',
-        {
-            headers: {
-                'Authorization': `Bearer ${req.cookies.token}`,
-                'User-Agent': 'Discord-Bot Izel'
-            }
-        })
+router.get('/guild', async (req: Request, res: Response): Promise<void> => {
+    let user = await fetch('https://discordapp.com/api/users/@me',
+    {
+        headers: {
+            'Authorization': `Bearer ${req.cookies.token}`,
+            'User-Agent': 'Discord-Bot Izel'
+        }
+    })
         .then((resp): Promise<any> => resp.json())
-        .then((user: any): void => {
-            let Tguild: Guild = bot.client.guilds.get(req.query.guild);
 
-            bot.stats
-                .find({ guild: Tguild.id })
-                .sort({ messages: -1 })
-                .limit(10)
-                .toArray()
-                .then((guild: any[]): void => {
-                    let result: any[] = [];
+    let Tguild: Guild = bot.client.guilds.get(req.query.guild);
 
-                    guild.forEach((user: any): void => {
-                        let member: GuildMember = Tguild.member(user.id);
-                        if(member) {
-                            result.push({
-                                id: member.id,
-                                tag: member.user.tag,
-                                av: `${member.user.displayAvatarURL}?size=128`,
-                                messages: user.messages,
-                                level: user.level
-                            });
-                        }
+    bot.stats.find({ guild: Tguild.id }).sort({ messages: -1 }).limit(10).toArray()
+        .then((guild: any[]): void => {
+            let result: any[] = [];
+
+            guild.forEach((user: any): void => {
+                let member: GuildMember = Tguild.member(user.id);
+                if(member) {
+                    result.push({
+                        id: member.id,
+                        tag: member.user.tag,
+                        av: `https://cdn.discordapp.com/avatars/${member.id}/${member.user.avatar}?size=128`,
+                        messages: user.messages,
+                        level: user.level
                     });
+                }
+            });
 
-                    res.send({
-                        id: Tguild.id,
-                        top: result,
-                        guildName: Tguild.name,
-                        userID: user.id,
-                        admin: Tguild.member(user.id).hasPermission('ADMINISTRATOR') ?
-                            bot.servers.findOne({ id: Tguild.id }) : null
-                    });
-                });
-        })
-        .catch((err: Error): void => {
-            res.send(new Error(err.message))
+            res.send({
+                id: Tguild.id,
+                top: result,
+                guildName: Tguild.name,
+                userID: user.id,
+                admin: Tguild.member(user.id).hasPermission('ADMINISTRATOR') ?
+                    bot.servers.findOne({ id: Tguild.id }) : null
+            });
         });
 });
 
@@ -193,9 +185,10 @@ router.post('/admin', (req: Request, res: Response): void => {
 
         bot.servers.updateOne({ id: Tguild.id }, {
             $set: {
-                prefix: req.body.prefix
+                prefix: req.body.prefix,
+                language: req.body.language == 'polski' ? 'pl' : 'en'
             }
-        })
+        });
     })
     .catch((err: Error): void => {
         res.send(new Error(err.message))

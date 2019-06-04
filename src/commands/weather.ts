@@ -13,7 +13,7 @@ export default class WeatherCommand implements Command {
 
     run(message: Message, args: string[], messages: any): void {
         fetch(`http://api.openweathermap.org/data/2.5/weather?APPID=${openWeatherApi}&units=metric&q=${encodeURIComponent(args.join(' '))}`)
-            .then((res: Response): any => res.json())
+            .then((res: Response): Promise<any> => res.json())
             .then((data: any): any => {
                 if(data.cod != 200)
                     return message.reply(messages.cityNotFound);

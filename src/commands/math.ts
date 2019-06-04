@@ -15,7 +15,7 @@ export default class MathCommand implements Command {
             return message.reply(`${messages.use}: \`${this.info.usage}\``);
 
         let file: WriteStream = createWriteStream('temp.jpg');
-        get(`http://latex.codecogs.com/png.latex?` /*+ '%5Cbg_white%20'*/ + `%5Chuge%20${encodeURIComponent(args.join(' '))}%24`, async (response: IncomingMessage): Promise<void> => {
+        get(`http://latex.codecogs.com/png.latex?%5Cbg_white%20%5Chuge%20${encodeURIComponent(args.join(' '))}%24`, async (response: IncomingMessage): Promise<void> => {
             await response.pipe(file);
             message.channel.send({
                 file: './temp.jpg'

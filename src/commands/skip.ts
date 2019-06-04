@@ -9,7 +9,7 @@ export default class SkipCommand implements Command {
         usage: '&skip'
     }
 
-    run(message: Message, args: string[], messages: any): any {
+    run(message: Message, _args: string[], messages: any): any {
         if(!message.member.voiceChannel)
             message.reply(messages.connectVoice);
 

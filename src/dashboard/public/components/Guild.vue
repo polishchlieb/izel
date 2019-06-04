@@ -26,7 +26,13 @@
 
                 <v-container>
                     Prefix: <input type="text" v-model="a_prefix"><br>
-                    <button @click="save">Save</button>
+                    Language:
+                    <select v-model="a_language" name="language">
+                        <option :v-for="language in languages" :value="language">{{ language }}</option>
+                    </select><br>
+                    <button @click="save">Save</button><br>
+
+                    <div class="update">{{ update }}</div>
                 </v-container>
             </v-card>
         </v-flex>
@@ -41,7 +47,11 @@ export default {
             top: [],
             guildname: null,
             admin: null,
-            a_prefix: ''
+            update: '',
+
+            a_prefix: '',
+            languages: ['polski', 'English'],
+            a_language: null
         };
     },
     methods: {
@@ -54,16 +64,22 @@ export default {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        prefix: this.a_prefix
+                        prefix: this.a_prefix,
+                        language: this.a_language
                     })
                 }
             );
+
+            this.update = 'updated (chyba)';
+            setTimeout(() => this.update = '', 2000);
         }
     },
     mounted: function() {
         this.guildname = this.$props.guild.guildName;
         this.top = this.$props.guild.top;
         this.admin = this.$props.guild.admin;
+        this.a_prefix = this.$props.guild.prefix;
+        this.a_language = this.$props.guild.language;
     }
 }
 </script>
@@ -95,5 +111,8 @@ export default {
 .score {
     width: 100px;
     text-align: center;
+}
+.update {
+    color: #26d326;
 }
 </style>

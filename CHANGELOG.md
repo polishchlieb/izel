@@ -15,6 +15,7 @@
 - (probably) Fixed `ban, calc` commands
 - Added database interfaces
 - Updated `ranking` command
+- Bugfixes
 
 ## 2.4.1
 - Fixed `ranking, top` commands

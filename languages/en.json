@@ -52,5 +52,6 @@
     "kicked": "kicked **{}**",
     "youWereKicked": "You were kicked from **{}**",
     "updated": "updated the guild",
-    "developers": "Developers"
+    "developers": "Developers",
+    "useSearch": "use `&search (title..)` instead"
 }
