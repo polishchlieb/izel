@@ -147,7 +147,7 @@ router.get('/guild', async (req: Request, res: Response): Promise<void> => {
                     result.push({
                         id: member.id,
                         tag: member.user.tag,
-                        av: `https://cdn.discordapp.com/avatars/${member.id}/${member.user.avatar}?size=128`,
+                        av: `${member.user.displayAvatarURL}?size=128`,
                         messages: user.messages,
                         level: user.level
                     });
