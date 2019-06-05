@@ -27,7 +27,7 @@
                 <v-container>
                     Prefix: <input type="text" v-model="a_prefix"><br>
                     Language:
-                    <select v-model="a_language" name="language">
+                    <select v-model="a_language">
                         <option :v-for="language in languages" :value="language">{{ language }}</option>
                     </select><br>
                     <button @click="save">Save</button><br>

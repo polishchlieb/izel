@@ -47,14 +47,14 @@ export default class MessageEvent implements Event {
             if(new Date().getTime() - data.cooldown >= 10000) {
                 data.messages += 1;
                 data.cooldown = new Date().getTime();
-            }
 
-            if(data.messages % 200 == 0) {
-                data.level += 1;
-                if(options.ranking)
-                    message.reply(
-                        messages.nextLevel.replace('{}', data.level)
-                    );
+                if(data.messages % 200 == 0) {
+                    data.level += 1;
+                    if(options.ranking)
+                        message.reply(
+                            messages.nextLevel.replace('{}', data.level)
+                        );
+                }
             }
 
             bot.stats.updateOne({
