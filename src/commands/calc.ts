@@ -13,8 +13,11 @@ export default class MathCommand implements Command {
 
     async run(message: Message, args: string[]): Promise<void> {
         let result: any = calc(args.join(' '), this.scope);
-        if(typeof result == 'object')
-            message.reply('```' + JSON.stringify(result, null, 2) + '```');
-        else message.reply(result);
+
+        if(typeof result == 'object') {
+            result = JSON.parse(JSON.stringify(result));
+            message.channel.send(`**${result.mathjs}**\n${Object.keys(result).slice(1).map((key: string): string => `${key}: ${result[key]}`).join('\n')}`);
+        }
+        else message.channel.send(result);
     }
 }

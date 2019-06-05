@@ -1,5 +1,12 @@
 # Changelog
 
+# 2.5 - (something)
+## 2.5.0 (btw, this is probably the biggest update ever)
+- Fixed `rank, ranking, math` commands
+- Added `profile, exec, stats, language, prefix, stop` commands
+- Added some useless administrator tools to the webpanel
+- Some database updates
+
 # 2.4 - the voice update
 ## 2.4.2
 - Added `permissions` command
@@ -8,25 +15,25 @@
 - (probably) Fixed `ban, calc` commands
 - Added database interfaces
 - Updated `ranking` command
+- Bugfixes
 
 ## 2.4.1
 - Fixed `ranking, top` commands
 - Added some messages to `play` command
 - Made `join` command able to work
-- Added `ban` command
-- Added `serverinfo` command
+- Added `ban, serverinfo` commands
 - Updated `README.md`
 
 ## 2.4.0
 - Added commands: `join, play, stop, skip`
-- Added `say, dice` commands (well, not into music)
-- Added `ranking` command (well, this one too)
+- Added `say, dice` commands
+- Added `ranking` command
 
 # Older updates
 ## 2.3.4:
 - Added `prune` command
 - Bug fixes
-- Added default avatar into webpanel
+- Added the discord's default avatar to the webpanel
 - Just another "typescriptization" (thonk)
 - Fixed commands page
 - We are going to add music aww (again something special)

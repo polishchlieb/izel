@@ -8,8 +8,10 @@ export default class ChooseCommand implements Command {
         usage: '&choose something/something/..'
     }
 
-    run(message: Message, args: string[], messages: any): void {
+    run(message: Message, args: string[], messages: any): any {
         let choose: string[] = args.join(' ').split('/');
+        if(choose.length == 0)
+            return message.reply(`${messages.use} \`${this.info.usage}\``);
         let random: string = choose[Math.floor(Math.random() * choose.length)].trim();
 
         message.reply(`${messages.choose} **${random}** :thinking:`);

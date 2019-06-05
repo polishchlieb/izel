@@ -19,13 +19,20 @@
                 </v-list>
             </v-card>
 
-            <v-card v-if="isAdmin">
+            <v-card v-if="admin">
                 <v-toolbar flat class="primary">
                     <v-toolbar-title>Administrator</v-toolbar-title>
                 </v-toolbar>
 
                 <v-container>
-                    admin, masz opa!
+                    Prefix: <input type="text" v-model="a_prefix"><br>
+                    Language:
+                    <select v-model="a_language">
+                        <option :v-for="language in languages" :value="language">{{ language }}</option>
+                    </select><br>
+                    <button @click="save">Save</button><br>
+
+                    <div class="update">{{ update }}</div>
                 </v-container>
             </v-card>
         </v-flex>
@@ -39,13 +46,40 @@ export default {
         return {
             top: [],
             guildname: null,
-            isAdmin: false
+            admin: null,
+            update: '',
+
+            a_prefix: '',
+            languages: ['polski', 'English'],
+            a_language: null
         };
+    },
+    methods: {
+        save() {
+            fetch(`/api/admin?guild=${this.$props.guild.id}`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        prefix: this.a_prefix,
+                        language: this.a_language
+                    })
+                }
+            );
+
+            this.update = 'updated (chyba)';
+            setTimeout(() => this.update = '', 2000);
+        }
     },
     mounted: function() {
         this.guildname = this.$props.guild.guildName;
         this.top = this.$props.guild.top;
-        this.isAdmin = this.$props.guild.isAdmin;
+        this.admin = this.$props.guild.admin;
+        this.a_prefix = this.$props.guild.prefix;
+        this.a_language = this.$props.guild.language;
     }
 }
 </script>
@@ -77,5 +111,8 @@ export default {
 .score {
     width: 100px;
     text-align: center;
+}
+.update {
+    color: #26d326;
 }
 </style>

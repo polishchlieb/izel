@@ -1,8 +1,8 @@
 require('mongodb').MongoClient.connect('mongodb://localhost:27017/izel', {
     useNewUrlParser: true
 })
-    .then(db => {
+    .then(conn => {
         console.log('Initialization complete. You can run your bot now.');
-        db.close();
+        conn.close();
     })
     .catch(console.error);

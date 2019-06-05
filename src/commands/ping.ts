@@ -10,6 +10,6 @@ export default class PingCommand implements Command {
     }
 
     run(message: Message): void {
-        message.reply(`Pong! \`${Math.floor(bot.client.ping)}ms\``);
+        message.reply(`pong! \`${Math.floor(bot.client.ping)}ms\``);
     }
 }

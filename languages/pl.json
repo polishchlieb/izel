@@ -4,8 +4,8 @@
     "help": "Pomoc",
     "helpDescription": "W podanym linku znajdziesz listę komend.",
     "requestedBy": "dla",
-    "myPrefix": "Mój prefix na tym serwerze to",
-    "setPrefix": "Ustawiono prefix na",
+    "myPrefix": "mój prefix na tym serwerze to",
+    "setPrefix": "ustawiono prefix na",
     "nextLevel": "zdobyłeś poziom {}, gratulacje!",
     "messages": "wiadomosci",
     "level": "POZIOM",
@@ -50,5 +50,8 @@
     "couldNotKick": "nie mogę, on jest silniejszy!..",
     "kicked": "wyrzucono **{}**",
     "youWereKicked": "Zostałeś wyrzucony z **{}**",
-    "updated": "zaktualizowano ustawienia."
+    "updated": "zaktualizowano ustawienia.",
+    "developers": "Deweloperzy",
+    "useSearch": "użyj komendy `&search (tytuł..)`",
+    "notPlaying": "nic nie jest grane, co ty robisz?"
 }

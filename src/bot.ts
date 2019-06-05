@@ -1,4 +1,4 @@
-import { Client } from 'discord.js'
+import { Client, StreamDispatcher } from 'discord.js'
 import { loadCommands, loadEvents, loadDashboard } from './utils/loader';
 import Command from './interfaces/command';
 import Event from './interfaces/event';
@@ -10,12 +10,16 @@ export default class Bot {
     commands: Command[] = [];
     events: Event[] = [];
 
-    users: Collection<User>;
+    stats: Collection<User>;
+    users: Collection; // TODO: Type
     servers: Collection<Server>;
     permissions: Collection<Permission>;
     tags: Collection<Tag>;
 
-    music: any = {};
+    music: { [k: string]: {
+        dispatcher?: StreamDispatcher;
+        queue: string[];
+    } } = {};
 
     async start(token: string): Promise<void> {
         process.on('unhandledRejection', console.error);
@@ -23,6 +27,7 @@ export default class Bot {
         let conn: MongoClient = await MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true });
         let database: Database = conn.db('izel');
 
+        this.stats = database.collection('stats');
         this.users = database.collection('users');
         this.servers = database.collection('servers');
         this.permissions = database.collection('permissions');

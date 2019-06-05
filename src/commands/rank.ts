@@ -1,5 +1,5 @@
 import Command from '../interfaces/command';
-import { Message, Attachment, User, GuildMember } from 'discord.js';
+import { Message, Attachment, GuildMember } from 'discord.js';
 import bot from '..';
 import { createCanvas, loadImage, Image, Canvas } from 'canvas';
 import { User as DatabaseUser } from '../interfaces/databaseStructures';
@@ -24,7 +24,7 @@ export default class RankCommand implements Command {
         if(!member || !message.guild.member(member))
             member = message.member;
 
-        let data: DatabaseUser = await bot.users.findOne({
+        let data: DatabaseUser = await bot.stats.findOne({
             id: member.user.id,
             guild: message.guild.id
         });
@@ -45,7 +45,11 @@ export default class RankCommand implements Command {
         ctx.drawImage(image, 40, 30, 160, 160);
 
         ctx.font = '50px Fredoka One';
-        ctx.fillText(member.displayName, 730 - ctx.measureText(member.displayName).width, 65);
+
+        let size = ctx.measureText(member.displayName).width;
+        if(size > 500)
+            size = 500;
+        ctx.fillText(member.displayName, 730 - size, 65, 500);
 
         ctx.fillRect(230, 150, ((data.messages - 200 * data.level) / 200) * 525, 40);
 

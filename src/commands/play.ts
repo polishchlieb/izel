@@ -28,18 +28,18 @@ export default class PlayCommand implements Command {
     run(message: Message, args: string[], messages: any): any {
         if(!args[0])
             return message.reply(messages.specifyURL);
-
         if(!message.member.voiceChannel)
             return message.reply(messages.connectVoice);
-
+        if(!args[0].match(/^(http(s)?:\/\/)?(w{3}\.)?youtu(be\.com|\.be)?\/.+/gm))
+            return message.reply(messages.useSearch);
         if(!bot.music[message.guild.id])
             bot.music[message.guild.id] = {
                 queue: []
             };
 
-        message.reply(messages.queued);
 
         bot.music[message.guild.id].queue.push(args[0]);
+        message.reply(messages.queued);
 
         if(!message.guild.voiceConnection || !bot.music[message.guild.id].dispatcher)
             message.member.voiceChannel.join().then((vc: VoiceConnection): void => {
