@@ -3,7 +3,7 @@
 # 2.5 - (something)
 ## 2.5.0 (btw, this is probably the biggest update ever)
 - Fixed `rank, ranking, math` commands
-- Added `profile, exec, stats, language, prefix, stop, autorole, channel` commands
+- Added `profile, exec, stats, language, prefix, stop, autorole` commands
 - Updated `permissions` command
 - Added some useless administrator tools to the webpanel
 - Some database updates
