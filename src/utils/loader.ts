@@ -42,10 +42,11 @@ import PrefixCommand from '../commands/prefix';
 import StatsCommand from '../commands/stats';
 import ExecCommand from '../commands/exec';
 import ProfileCommand from '../commands/profile';
+import AutoRoleCommand from '../commands/autorole';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
-        new GuildDeleteEvent, new GuildMemberAddEvent, new GuildMemberRemoveEvent);
+        new GuildDeleteEvent, new GuildMemberAddEvent/*, new GuildMemberRemoveEvent*/);
     bot.events.forEach((event: Event): void => {
         bot.client.on(event.name, event.run);
     });
@@ -62,7 +63,8 @@ export const loadCommands = (bot: Bot): void => {
         new SkipCommand, new SayCommand, new DiceCommand, new RankingCommand,
         new QueueCommand, new BanCommand, new ServerInfoCommand,
         new PermissionsCommand, new KickCommand, new StopCommand,
-        new PrefixCommand, new StatsCommand, new ExecCommand, new ProfileCommand);
+        new PrefixCommand, new StatsCommand, new ExecCommand, new ProfileCommand,
+        new AutoRoleCommand);
 
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }

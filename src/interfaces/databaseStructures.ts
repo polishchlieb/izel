@@ -4,7 +4,7 @@ export interface Permission {
     _id?: string;
 }
 
-export interface User {
+export interface StatUser {
     id: string;
     level: number;
     messages: number;
@@ -19,6 +19,7 @@ export interface Server {
     ranking: boolean;
     prefix: string;
     _id?: string;
+    autorole?: string;
 }
 
 export interface Tag {
@@ -27,3 +28,5 @@ export interface Tag {
     content: string;
     _id?: string;
 }
+
+export interface User {}

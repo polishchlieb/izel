@@ -1,5 +1,5 @@
 import Command from '../interfaces/command';
-import { Message, Collection, GuildMember } from 'discord.js';
+import { Message, GuildMember } from 'discord.js';
 
 export default class BanCommand implements Command {
     info = {

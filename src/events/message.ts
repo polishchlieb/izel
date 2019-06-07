@@ -1,8 +1,8 @@
-import { Message } from 'discord.js';
+import { Message, GuildChannel } from 'discord.js';
 import Event from '../interfaces/event';
 import bot from '..';
 import Command from '../interfaces/command';
-import { User, Server } from '../interfaces/databaseStructures';
+import { StatUser, Server } from '../interfaces/databaseStructures';
 
 const msgs: any = {
     pl: require('../../languages/pl.json'),
@@ -16,7 +16,7 @@ export default class MessageEvent implements Event {
         if(message.author.bot
            || !message.guild) return;
 
-        let data: User = await bot.stats.findOne({
+        let data: StatUser = await bot.stats.findOne({
             id: message.author.id,
             guild: message.guild.id
         });
@@ -33,7 +33,14 @@ export default class MessageEvent implements Event {
                 ranking: true
             });
 
-        let messages: any = msgs[options.language];
+        let messages: any;
+
+        if(message.guild.id == '485437978315849748') {
+            if((message.channel as GuildChannel).parent.id = '544504580302438421')
+                messages = msgs.en;
+            else if((message.channel as GuildChannel).parent.id = '544504706005860362')
+                messages = msgs.pl;
+        } else messages = msgs[options.language];
 
         if(!data)
             bot.stats.insertOne({

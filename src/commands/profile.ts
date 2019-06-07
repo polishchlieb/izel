@@ -1,7 +1,7 @@
 import Command from '../interfaces/command';
 import { Message, Attachment } from 'discord.js';
 import { createCanvas, Canvas } from 'canvas';
-import { User } from '../interfaces/databaseStructures';
+import { StatUser } from '../interfaces/databaseStructures';
 import bot from '..';
 
 export default class ProfileCommand implements Command {
@@ -19,7 +19,7 @@ export default class ProfileCommand implements Command {
         ctx.fillText(message.member.displayName, 10, 30);
 
         let coins: number = (await bot.stats.find({ id: message.author.id })
-            .toArray()).map((u: User): number => u.messages)
+            .toArray()).map((u: StatUser): number => u.messages)
             .reduce((prev: number, curr: number): number => prev + curr);
         ctx.fillText(`${coins} punkcikow loncznie`, 10, 60);
 

@@ -54,5 +54,6 @@
     "updated": "updated the guild",
     "developers": "Developers",
     "useSearch": "use `&search (title..)` instead",
-    "communityServer": "Community Server"
+    "communityServer": "Community Server",
+    "noSuchRole": "couldn't find such role"
 }

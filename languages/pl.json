@@ -54,5 +54,6 @@
     "developers": "Deweloperzy",
     "useSearch": "użyj komendy `&search (tytuł..)`",
     "notPlaying": "nic nie jest grane, co ty robisz?",
-    "communityServer": "Serwer społeczności izela"
+    "communityServer": "Serwer społeczności izela",
+    "noSuchRole": "nie jestem w stanie znaleźć takiej roli, hmmm"
 }
