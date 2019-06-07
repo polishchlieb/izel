@@ -5,7 +5,7 @@ import { hostname, platform, uptime, cpus, CpuInfo } from 'os';
 export default class StatsCommand implements Command {
     info = {
         names: ['stats'],
-        description: 'Displays bot stats (just for nerds)',
+        description: 'Displays bot stats (especially for nerds)',
         usage: '&stats'
     }
 

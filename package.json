@@ -17,6 +17,7 @@
 		"type": "git",
 		"url": "git+https://github.com/polishchlieb/izel"
 	},
+	"authors": ["chlebek", "Pizza"],
 	"author": "chlebek",
 	"license": "MIT",
 	"dependencies": {

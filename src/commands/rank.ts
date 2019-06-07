@@ -2,7 +2,7 @@ import Command from '../interfaces/command';
 import { Message, Attachment, GuildMember } from 'discord.js';
 import bot from '..';
 import { createCanvas, loadImage, Image, Canvas } from 'canvas';
-import { User as DatabaseUser } from '../interfaces/databaseStructures';
+import { StatUser } from '../interfaces/databaseStructures';
 
 let bg: Image, fg: Image;
 (async () => {
@@ -24,7 +24,7 @@ export default class RankCommand implements Command {
         if(!member || !message.guild.member(member))
             member = message.member;
 
-        let data: DatabaseUser = await bot.stats.findOne({
+        let data: StatUser = await bot.stats.findOne({
             id: member.user.id,
             guild: message.guild.id
         });

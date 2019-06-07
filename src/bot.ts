@@ -3,14 +3,14 @@ import { loadCommands, loadEvents, loadDashboard } from './utils/loader';
 import Command from './interfaces/command';
 import Event from './interfaces/event';
 import { MongoClient, Collection, Db as Database } from 'mongodb';
-import { User, Server, Permission, Tag } from './interfaces/databaseStructures';
+import { StatUser, Server, Permission, Tag } from './interfaces/databaseStructures';
 
 export default class Bot {
     client: Client = new Client({ disableEveryone: true });
     commands: Command[] = [];
     events: Event[] = [];
 
-    stats: Collection<User>;
+    stats: Collection<StatUser>;
     users: Collection; // TODO: Type
     servers: Collection<Server>;
     permissions: Collection<Permission>;
