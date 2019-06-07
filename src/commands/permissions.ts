@@ -49,12 +49,12 @@ export default class MathCommand implements Command {
             else if(args[2] && args[2].toLowerCase() == 'adduser') {
                 if(!args[3] || !args[3].match(/<@[0-9]{18}>/))
                     message.reply('mention somebody, dont be shy');
-                let action: Permission = await bot.permissions.findOne({ action: args[1], user_ids: [] });
+                let action: Permission = await bot.permissions.findOne({ action: args[1] });
                 action.user_ids.push(args[3].substring(2, 20));
                 bot.permissions.updateOne({ action: args[1] }, action);
             }
             else {
-                let action: Permission = await bot.permissions.findOne({ action: args[1], user_ids: [] });
+                let action: Permission = await bot.permissions.findOne({ action: args[1] });
                 if(!action) message.reply('action doesn\'t exist');
                 message.channel.send(new RichEmbed()
                     .setTitle(`Action: ${args[1]}`)

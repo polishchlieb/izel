@@ -13,18 +13,28 @@ export default class AutoRoleCommand implements Command {
         if(!message.member.hasPermission('MANAGE_ROLES'))
             return message.reply(messages.noPermission);
         
-        let role: Role = message.guild.roles.find(
-            (r: Role): boolean => r.name.toLowerCase() == args.join(' ').toLowerCase()
-        );
-        if(!role)
-            return message.reply(messages.noSuchRole);
+        if(args[0] == 'remove')
+            bot.servers.updateOne({ id: message.guild.id }, {
+                $set: {
+                    autorole: null
+                }
+            }).then((): void => {
+                message.react('✅');
+            });
+        else {
+            let role: Role = message.guild.roles.find(
+                (r: Role): boolean => r.name.toLowerCase() == args.join(' ').toLowerCase()
+            );
+            if(!role)
+                return message.reply(messages.noSuchRole);
 
-        bot.servers.updateOne({ id: message.guild.id }, {
-            $set: {
-                autorole: role.id
-            }
-        }).then((): void => {
-            message.react('✅');
-        });
+            bot.servers.updateOne({ id: message.guild.id }, {
+                $set: {
+                    autorole: role.id
+                }
+            }).then((): void => {
+                message.react('✅');
+            });
+        }
     }
 }
