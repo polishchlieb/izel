@@ -6,6 +6,7 @@
 - Added `profile, exec, stats, language, prefix, stop` commands
 - Added some useless administrator tools to the webpanel
 - Some database updates
+- Updated `help` command
 
 # 2.4 - the voice update
 ## 2.4.2

@@ -25,8 +25,8 @@
                 </v-toolbar>
 
                 <v-container>
-                    Prefix: <input type="text" v-model="a_prefix"><br>
-                    Language:
+                    <span>Prefix:</span> <input type="text" v-model="a_prefix"><br>
+                    <span>Language:</span>
                     <select v-model="a_language">
                         <option :v-for="language in languages" :value="language">{{ language }}</option>
                     </select><br>
