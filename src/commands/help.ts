@@ -17,6 +17,7 @@ export default class HelpCommand implements Command {
             .setURL('http://izel.chlebe.tk/commands')
             .setThumbnail(bot.client.user.avatarURL)
             .addField('Webpanel', 'http://izel.chlebe.tk/')
+            .addField(messages.communityServer, 'https://discord.gg/kDgxGQ6')
             .addField(messages.developers, '<@372459063339909120> (main),\n<@271728660963262464> (webpanel)')
             .setFooter(`${messages.requestedBy} ${message.member.displayName}`, message.author.avatarURL));
     }

@@ -53,5 +53,6 @@
     "youWereKicked": "You were kicked from **{}**",
     "updated": "updated the guild",
     "developers": "Developers",
-    "useSearch": "use `&search (title..)` instead"
+    "useSearch": "use `&search (title..)` instead",
+    "communityServer": "Community Server"
 }
