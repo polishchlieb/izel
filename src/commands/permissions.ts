@@ -60,7 +60,7 @@ export default class MathCommand implements Command {
             if(!args[1] || !args[1].match(/<@[0-9]{18}>/))
                 message.reply(messages.mentionSomebody);
 
-            let user: User = bot.client.users.get(args[1].substring(2, 20));
+            let user: User = message.mentions.members.first().user;
             message.channel.send(new RichEmbed()
                 .setTitle(`User: ${user.username}`)
                 .setDescription(
@@ -69,6 +69,7 @@ export default class MathCommand implements Command {
                             p.user_ids.includes(user.id)
                         ).map((p: Permission): string => p.action)
                 )
+                .setThumbnail(user.avatarURL)
                 .setColor('RED')
                 .setFooter(`${messages.requestedBy} ${message.member.displayName}`, message.author.avatarURL));
         }
