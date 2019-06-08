@@ -8,6 +8,9 @@ module.exports = {
     entry: [
         './src/dashboard/public/app.js'
     ],
+    performance: {
+        hints: false
+    },
     output: {
         path: resolve(__dirname, 'dist', 'dashboard', 'public'),
         filename: '[name].js'
