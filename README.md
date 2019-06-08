@@ -2,7 +2,7 @@
     <img src="https://i.imgur.com/epINEbt.png">
 </p>
 <p align="center">
-    <img src="https://img.shields.io/badge/version-2.0.2-blue.svg">
+    <img src="https://img.shields.io/badge/version-2.5.1-blue.svg">
 </p>
 
 # Note

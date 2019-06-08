@@ -55,5 +55,11 @@
     "developers": "Developers",
     "useSearch": "use `&search (title..)` instead",
     "communityServer": "Community Server",
-    "noSuchRole": "couldn't find such role"
+    "noSuchRole": "couldn't find such role",
+    "placeholders": "Placeholders",
+    "permExists": "permissions already exists",
+    "mentionSomebody": "mention somebody, don't be shy",
+    "noSuchPerm": "couldn't find such permission",
+    "mustBeText": "selected channel has to be a text channel",
+    "endsIn": "Ends in"
 }

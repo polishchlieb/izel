@@ -41,7 +41,7 @@ export default class TagCommand implements Command {
 
             message.reply(messages.tagAdded);
         } else {
-            message.reply(':shrug:');
+            message.reply('🤷');
         }
     }
 }

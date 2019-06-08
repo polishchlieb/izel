@@ -20,6 +20,10 @@ export interface Server {
     prefix: string;
     _id?: string;
     autorole?: string;
+    greeting?: {
+        channel: string,
+        content: string;
+    }
 }
 
 export interface Tag {

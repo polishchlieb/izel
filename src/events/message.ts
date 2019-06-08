@@ -40,6 +40,7 @@ export default class MessageEvent implements Event {
                 messages = msgs.en;
             else if((message.channel as GuildChannel).parent.id = '544504706005860362')
                 messages = msgs.pl;
+            else messages = msgs[options.language];
         } else messages = msgs[options.language];
 
         if(!data)
