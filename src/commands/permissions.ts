@@ -65,9 +65,9 @@ export default class MathCommand implements Command {
                 .setTitle(`User: ${user.username}`)
                 .setDescription(
                     (await bot.permissions.find().toArray())
-                        .filter((perm: Permission): boolean =>
-                            perm.user_ids.includes(user.id)
-                        )
+                        .filter((p: Permission): boolean =>
+                            p.user_ids.includes(user.id)
+                        ).map((p: Permission): string => p.action)
                 )
                 .setColor('RED')
                 .setFooter(`${messages.requestedBy} ${message.member.displayName}`, message.author.avatarURL));

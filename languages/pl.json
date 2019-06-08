@@ -60,5 +60,6 @@
     "permExists": "to uprawnienie już istnieje",
     "mentionSomeone": "oznacz kogoś, najwyżej się obrazi",
     "noSuchPerm": "nie ma takiego uprawnienia",
-    "mustBeVoice": "kanał musi być tekstowy"
+    "mustBeVoice": "kanał musi być tekstowy",
+    "endsIn": "Koniec za "
 }

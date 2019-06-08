@@ -33,6 +33,8 @@ export default class GreetingCommand implements Command {
                 channel: channel.id,
                 content: args.join(' ')
             }}
+        }).then((): void => {
+            message.react('✅');
         });
     }
 }

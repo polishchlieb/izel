@@ -60,5 +60,6 @@
     "permExists": "permissions already exists",
     "mentionSomebody": "mention somebody, don't be shy",
     "noSuchPerm": "couldn't find such permission",
-    "mustBeText": "selected channel has to be a text channel"
+    "mustBeText": "selected channel has to be a text channel",
+    "endsIn": "Ends in"
 }

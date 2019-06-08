@@ -13,7 +13,7 @@ export default class GuildMemberAddEvent implements Event {
 
         if(autorole && member.guild.roles.has(autorole))
             member.addRole(autorole);
-        
+
         if(!greeting) return;
         let channel: GuildChannel = member.guild.channels.get(greeting.channel);
         if(greeting && channel && channel instanceof TextChannel)
