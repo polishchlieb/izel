@@ -1,6 +1,9 @@
 # Changelog
 
 # 2.5 - (something)
+## 2.5.1
+- Updated `permissions` command
+
 ## 2.5.0 (btw, this is probably the biggest update ever)
 - Fixed `rank, ranking, math` commands
 - Added `profile, exec, stats, language, prefix, stop, autorole` commands

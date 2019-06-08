@@ -55,5 +55,10 @@
     "useSearch": "użyj komendy `&search (tytuł..)`",
     "notPlaying": "nic nie jest grane, co ty robisz?",
     "communityServer": "Serwer społeczności izela",
-    "noSuchRole": "nie jestem w stanie znaleźć takiej roli, hmmm"
+    "noSuchRole": "nie jestem w stanie znaleźć takiej roli, hmmm",
+    "placeholders": "Zamienniki",
+    "permExists": "to uprawnienie już istnieje",
+    "mentionSomeone": "oznacz kogoś, najwyżej się obrazi",
+    "noSuchPerm": "nie ma takiego uprawnienia",
+    "mustBeVoice": "kanał musi być tekstowy"
 }
