@@ -57,7 +57,7 @@ export default class MathCommand implements Command {
                     .setFooter(`${messages.requestedBy} ${message.member.displayName}`, message.author.avatarURL));
             }
         } else if(args[0] == 'user') {
-            if(!args[1] || !args[1].match(/<@[0-9]{18}>/))
+            if(!message.mentions.members.first())
                 message.reply(messages.mentionSomebody);
 
             let user: User = message.mentions.members.first().user;
@@ -68,6 +68,7 @@ export default class MathCommand implements Command {
                         .filter((p: Permission): boolean =>
                             p.user_ids.includes(user.id)
                         ).map((p: Permission): string => p.action)
+                         .join('\n')
                 )
                 .setThumbnail(user.avatarURL)
                 .setColor('RED')
