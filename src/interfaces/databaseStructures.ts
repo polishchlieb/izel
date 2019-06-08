@@ -20,7 +20,7 @@ export interface Server {
     prefix: string;
     _id?: string;
     autorole?: string;
-    greeting: {
+    greeting?: {
         channel: string,
         content: string;
     }
