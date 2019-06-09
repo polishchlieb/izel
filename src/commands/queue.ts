@@ -18,11 +18,17 @@ export default class QueueCommand implements Command {
                 new RichEmbed()
                     .setTitle(messages.queue)
                     .setDescription(
-                        `[${messages.nowPlaying}] ${title} ${messages.queryRequested}. ${requester}`
-                        + server.queue
-                            .map((v: QueueElement, i: number): string => `${i}. ${v.title}. ${messages.queryRequested} ${v.requester}`)
-                            .join('\n')
+`
+_${messages.nowPlaying}:_
+${title} | \`${messages.queryRequested} ${requester}\`
+
+${server.queue
+    .map((v: QueueElement, i: number): string => `${i + 1}. ${v.title}. ${messages.queryRequested} ${v.requester}`)
+    .join('\n')}
+`
                     )
+                    .setFooter(`${messages.requestedBy} ${message.member.displayName}`, message.author.avatarURL)
+                    .setColor('RANDOM')
             );
         }
     }

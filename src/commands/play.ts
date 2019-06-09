@@ -55,7 +55,7 @@ export default class PlayCommand implements Command {
                 title: args[0],
                 link: args[0],
                 thumbnail: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/facebook/92/thinking-face_1f914.png'
-            }
+            };
         } else {
             try {
                 const result: any = await this.search(args.join(' '));
@@ -64,9 +64,9 @@ export default class PlayCommand implements Command {
                     link: result.link,
                     thumbnail: result.thumbnail,
                     channel: result.channel
-                }
+                };
             } catch {
-                return message.reply(messages.noResults)
+                return message.reply(messages.noResults);
             }
         }
         if(!bot.music[message.guild.id])
@@ -85,9 +85,11 @@ export default class PlayCommand implements Command {
             .setURL(queryObj.link)
             .addField(messages.queryRequested, queryObj.requester, true)
             .addField(messages.positionQueue, bot.music[message.guild.id].queue.length, true)
+            .setFooter(`${messages.requestedBy} ${message.member.displayName}`, message.author.avatarURL);
 
-        if(queryObj.channel) respEmbed.addField(messages.videoChannel, queryObj.channel, true)
-        message.channel.send(respEmbed)
+        if(queryObj.channel)
+            respEmbed.addField(messages.videoChannel, queryObj.channel, true);
+        message.channel.send(respEmbed);
 
         if(!message.guild.voiceConnection || !bot.music[message.guild.id].dispatcher)
             message.member.voiceChannel.join().then((vc: VoiceConnection): void => {
