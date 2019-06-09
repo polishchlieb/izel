@@ -2,7 +2,7 @@ import Command from '../interfaces/command';
 import { Message, VoiceConnection, RichEmbed } from 'discord.js';
 import * as ytdl from 'ytdl-core';
 import bot from '..';
-import fetch, { Response } from 'node-fetch';
+import fetch from 'node-fetch';
 
 const { youtubeApi }: { youtubeApi: string } = require('../../config.json');
 

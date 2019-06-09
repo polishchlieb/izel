@@ -1,6 +1,6 @@
 {
 	"name": "izel",
-	"version": "2.5.1",
+	"version": "2.5.2",
 	"description": "multifunctional Discord bot",
 	"main": "compile/index.js",
 	"scripts": {
