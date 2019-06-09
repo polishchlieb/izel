@@ -65,5 +65,6 @@
     "mentionSomebody": "oznacz kogoś, najwyżej się obrazi",
     "noSuchPerm": "nie ma takiego uprawnienia",
     "mustBeVoice": "kanał musi być tekstowy",
-    "endsIn": "Koniec za "
+    "endsIn": "Koniec za",
+    "nothingPlaying": "nic nie jest grane"
 }

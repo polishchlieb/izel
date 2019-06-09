@@ -44,6 +44,7 @@ import ExecCommand from '../commands/exec';
 import ProfileCommand from '../commands/profile';
 import AutoRoleCommand from '../commands/autorole';
 import GreetingCommand from '../commands/greeting';
+import PlayingCommand from '../commands/playing';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
@@ -65,7 +66,7 @@ export const loadCommands = (bot: Bot): void => {
         new QueueCommand, new BanCommand, new ServerInfoCommand,
         new PermissionsCommand, new KickCommand, new StopCommand,
         new PrefixCommand, new StatsCommand, new ExecCommand, new ProfileCommand,
-        new AutoRoleCommand, new GreetingCommand);
+        new AutoRoleCommand, new GreetingCommand, new PlayingCommand);
 
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }

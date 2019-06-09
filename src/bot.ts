@@ -4,6 +4,7 @@ import Command from './interfaces/command';
 import Event from './interfaces/event';
 import { MongoClient, Collection, Db as Database } from 'mongodb';
 import { StatUser, Server, Permission, Tag, User } from './interfaces/databaseStructures';
+import { MusicServer } from './interfaces/music';
 
 export default class Bot {
     client: Client = new Client({ disableEveryone: true });
@@ -16,16 +17,7 @@ export default class Bot {
     permissions: Collection<Permission>;
     tags: Collection<Tag>;
 
-    music: { [k: string]: {
-        dispatcher?: StreamDispatcher;
-        queue: {
-            link: string,
-            thumbnail: string,
-            title: string,
-            channel: string,
-            requester: string
-        }[];
-    } } = {};
+    music: { [k: string]: MusicServer } = {};
 
     async start(token: string): Promise<void> {
         process.on('unhandledRejection', console.error);
