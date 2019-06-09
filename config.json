@@ -1,6 +1,7 @@
 {
     "token": "",
     "openWeatherApi": "",
+    "youtubeApi": "",
     "id": "",
     "secret": "",
     "callback": ""
