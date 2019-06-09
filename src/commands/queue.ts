@@ -19,11 +19,11 @@ export default class QueueCommand implements Command {
                     .setTitle(messages.queue)
                     .setDescription(
 `
-_${messages.nowPlaying}:_
+__${messages.nowPlaying}:__
 ${title} | \`${messages.queryRequested} ${requester}\`
 
 ${server.queue
-    .map((v: QueueElement, i: number): string => `${i + 1}. ${v.title}. ${messages.queryRequested} ${v.requester}`)
+    .map((v: QueueElement, i: number): string => `${i + 1}. ${v.title} | \`${messages.queryRequested} ${v.requester}\``)
     .join('\n')}
 `
                     )
