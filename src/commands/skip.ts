@@ -1,6 +1,7 @@
 import Command from '../interfaces/command';
 import { Message } from 'discord.js';
 import bot from '..';
+import { MusicServer } from '../interfaces/music';
 
 export default class SkipCommand implements Command {
     info = {
@@ -13,7 +14,7 @@ export default class SkipCommand implements Command {
         if(!message.member.voiceChannel)
             message.reply(messages.connectVoice);
 
-        let server: any = bot.music[message.guild.id];
+        let server: MusicServer = bot.music[message.guild.id];
         if(server.dispatcher) {
             server.dispatcher.end();
             message.reply(messages.skipped);

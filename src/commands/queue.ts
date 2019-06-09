@@ -13,7 +13,7 @@ export default class QueueCommand implements Command {
     run(message: Message, _args: string[], messages: any): void {
         let server: MusicServer = bot.music[message.guild.id];
         if(server) {
-            let { title, requester } = server.playing;
+            let { title, requester }: QueueElement = server.playing;
             message.channel.send(
                 new RichEmbed()
                     .setTitle(messages.queue)

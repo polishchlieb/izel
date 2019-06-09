@@ -3,6 +3,7 @@ import { Message, VoiceConnection, RichEmbed } from 'discord.js';
 import * as ytdl from 'ytdl-core';
 import bot from '..';
 import fetch, { Response } from 'node-fetch';
+import { QueueElement } from '../interfaces/music';
 
 const { youtubeApi }: { youtubeApi: string } = require('../../config.json');
 
@@ -43,13 +44,13 @@ export default class PlayCommand implements Command {
     }
 
     async run(message: Message, args: string[], messages: any): Promise<string|Message|Message[]> {
-        let queryObj: any;
+        let queryObj: QueueElement;
 
         if(!args[0])
             return message.reply(messages.specifyURL);
         if(!message.member.voiceChannel)
             return message.reply(messages.connectVoice);
-        if(args[0].match(/^(http(s)?:\/\/)?(w{3}\.)?youtu(be\.com|\.be)?\/.+/gm)) { // link
+        if(args[0].match(/^(http(s)?:\/\/)?(w{3}\.)?youtu(be\.com|\.be)?\/.+/gm)) {
             queryObj = {
                 title: args[0],
                 link: args[0],
@@ -73,9 +74,8 @@ export default class PlayCommand implements Command {
                 queue: []
             };
 
-        bot.music[message.guild.id].queue.push(queryObj);
-        
         queryObj.requester = message.author.username;
+        bot.music[message.guild.id].queue.push(queryObj);
 
         let respEmbed: RichEmbed = new RichEmbed()
             .setAuthor(messages.queued, message.author.avatarURL)
