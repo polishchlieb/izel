@@ -26,6 +26,7 @@ export default class GiveawayCommand implements Command {
                 .setColor('RANDOM')
                 .setDescription(`
                 ${args.join(' ')}
+
                 ${messages.reactGiveaway.replace('{}', reaction)}
                 ${messages.endsIn} ${time.raw}
                 `)
