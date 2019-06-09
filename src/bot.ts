@@ -18,7 +18,13 @@ export default class Bot {
 
     music: { [k: string]: {
         dispatcher?: StreamDispatcher;
-        queue: string[];
+        queue: {
+            link: string,
+            thumbnail: string,
+            title: string,
+            channel: string,
+            requester: string
+        }[];
     } } = {};
 
     async start(token: string): Promise<void> {

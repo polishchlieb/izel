@@ -5,9 +5,9 @@
 	"main": "compile/index.js",
 	"scripts": {
 		"build": "rm -rf dist && tsc && webpack --config webpack.config.prod.js",
-		"test": "npm run build && npm start",
+		"test": "npm run build && node dist",
 		"test-dev": "webpack-dev-server --port 3000 --config webpack.config.dev.js",
-		"start": "node dist"
+		"start": "NODE_ENV=production node dist"
 	},
 	"keywords": [
 		"discord.js",
@@ -17,7 +17,10 @@
 		"type": "git",
 		"url": "git+https://github.com/polishchlieb/izel"
 	},
-	"authors": ["chlebek", "Pizza"],
+	"authors": [
+		"chlebek",
+		"Pizza"
+	],
 	"author": "chlebek",
 	"license": "MIT",
 	"dependencies": {
