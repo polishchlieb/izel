@@ -5,7 +5,7 @@ import { MusicServer } from '../interfaces/music';
 
 export default class StopCommand implements Command {
     info = {
-        names: ['stop'],
+        names: ['stop', 'leave'],
         description: 'Stops playing',
         usage: '&stop',
         category: 'music'
@@ -17,8 +17,8 @@ export default class StopCommand implements Command {
 
         let server: MusicServer = bot.music[message.guild.id];
         if(server.dispatcher) {
-            delete bot.music[message.guild.id];
             message.member.voiceChannel.leave();
+            delete bot.music[message.guild.id];
             message.reply(messages.stopped);
         } else message.reply(messages.notPlaying);
     }
