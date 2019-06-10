@@ -3,8 +3,6 @@
 # 2.5 - (something)
 ## 2.5.2
 - `play` command finally works (at least a bit)
-- Updated `queue` command
-- Added `playing` command
 
 ## 2.5.1
 - Fixed `permissions` command

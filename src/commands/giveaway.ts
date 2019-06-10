@@ -7,8 +7,7 @@ export default class GiveawayCommand implements Command {
     info = {
         names: ['giveaway'],
         description: 'Calls a giveaway',
-        usage: '&giveaway (time) (topic..)',
-        category: 'tool'
+        usage: '&giveaway (time) (topic..)'
     }
 
     async run(message: Message, args: string[], messages: any): Promise<any> {

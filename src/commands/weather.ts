@@ -8,8 +8,7 @@ export default class WeatherCommand implements Command {
     info = {
         names: ['weather'],
         description: 'chmurki or sloneczko',
-        usage: '&weather (city)',
-        category: 'tool'
+        usage: '&weather (city)'
     }
 
     run(message: Message, args: string[], messages: any): void {

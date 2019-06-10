@@ -7,8 +7,7 @@ export default class PrefixCommand implements Command {
     info = {
         names: ['prefix'],
         description: 'Shows/sets the prefix (replace trailing space with \\_)',
-        usage: '&prefix { new prefix.. }',
-        category: 'admin'
+        usage: '&prefix { new prefix.. }'
     }
 
     async run(message: Message, args: string[], messages: any): Promise<any> {

@@ -7,8 +7,7 @@ export default class MathCommand implements Command {
     info = {
         names: ['permissions'],
         description: 'only for the izel\'s government',
-        usage: '&permissions (...)',
-        category: 'developer'
+        usage: '&permissions (...)'
     }
 
     async run(message: Message, args: string[], messages: any): Promise<any> {

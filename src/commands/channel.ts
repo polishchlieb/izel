@@ -7,8 +7,7 @@ export default class ChannelCommand implements Command {
     info = {
         names: ['channel', 'stat'],
         description: 'Creates member-count channel',
-        usage: '&channel (ping)',
-        category: 'admin'
+        usage: '&channel (ping)'
     }
 
     run(message: Message, args: string[], messages: any): void {

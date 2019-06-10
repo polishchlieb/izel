@@ -5,8 +5,7 @@ export default class ServerInfoCommand implements Command {
     info = {
         names: ['serverinfo'],
         description: 'Shows info about the server',
-        usage: '&serverinfo',
-        category: 'tool'
+        usage: '&serverinfo'
     }
 
     run(message: Message, _args: string[], messages: any): void {
