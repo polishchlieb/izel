@@ -5,7 +5,7 @@ import { MusicServer, QueueElement } from '../interfaces/music';
 
 export default class PlayingCommand implements Command {
     info = {
-        names: ['playing', 'np', 'nowplaying'],
+        names: ['np', 'playing', 'nowplaying'],
         description: 'Shows currently playing song',
         usage: '&np',
         category: 'music'

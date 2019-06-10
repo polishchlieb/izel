@@ -5,7 +5,7 @@ import { MusicServer } from '../interfaces/music';
 
 export default class StopCommand implements Command {
     info = {
-        names: ['stop', 'leave'],
+        names: ['leave', 'stop'],
         description: 'Stops playing',
         usage: '&stop',
         category: 'music'
