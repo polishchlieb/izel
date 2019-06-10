@@ -40,6 +40,7 @@
     "skipped": "skipped song",
     "nowPlaying": "Now playing",
     "notPlaying": "not playing any song",
+    "playingTime": "at",
     "stopped": "stopped playing",
     "randomness": "Randomness intensifies.. ( ͡° ͜ʖ ͡°)",
     "queue": "Queue",
@@ -65,5 +66,6 @@
     "mentionSomebody": "mention somebody, don't be shy",
     "noSuchPerm": "couldn't find such permission",
     "mustBeText": "selected channel has to be a text channel",
-    "endsIn": "Ends in"
+    "endsIn": "Ends in",
+    "nothingPlaying": "nothing is playing right now"
 }

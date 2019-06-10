@@ -5,7 +5,8 @@ export default class ChooseCommand implements Command {
     info = {
         names: ['choose'],
         description: 'choose cheese',
-        usage: '&choose something/something/..'
+        usage: '&choose something/something/..',
+        category: 'tool'
     }
 
     run(message: Message, args: string[], messages: any): any {

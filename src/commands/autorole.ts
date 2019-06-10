@@ -5,8 +5,9 @@ import bot from '..';
 export default class AutoRoleCommand implements Command {
     info = {
         names: ['autorole'],
-        description: 'Auto rolllle (also called Ra\'Ank)',
-        usage: '&autorole (role name..)'
+        description: 'Auto role (also called Ra\'Ank)',
+        usage: '&autorole (role name..)',
+        category: 'admin'
     }
 
     run(message: Message, args: string[], messages: any): any {

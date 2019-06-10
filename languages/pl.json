@@ -58,6 +58,7 @@
     "developers": "Deweloperzy",
     "nowPlaying": "Teraz grane",
     "notPlaying": "nic nie jest grane, co ty robisz?",
+    "playingTime": "Czas",
     "communityServer": "Serwer społeczności izela",
     "noSuchRole": "nie jestem w stanie znaleźć takiej roli, hmmm",
     "placeholders": "Zamienniki",
@@ -65,5 +66,6 @@
     "mentionSomebody": "oznacz kogoś, najwyżej się obrazi",
     "noSuchPerm": "nie ma takiego uprawnienia",
     "mustBeVoice": "kanał musi być tekstowy",
-    "endsIn": "Koniec za "
+    "endsIn": "Koniec za",
+    "nothingPlaying": "nic nie jest grane"
 }
