@@ -9,9 +9,10 @@ const { youtubeApi }: { youtubeApi: string } = require('../../config.json');
 
 export default class PlayCommand implements Command {
     info = {
-        names: ['play'],
+        names: ['play', 'p'],
         description: 'Plays music',
-        usage: '&play (link)'
+        usage: '&play (link|title)',
+        category: 'music'
     }
 
     play(vc: VoiceConnection, message: Message, messages: any): void {

@@ -6,7 +6,8 @@ export default class RankingCommand implements Command {
     info = {
         names: ['ranking'],
         description: 'Switches ranking',
-        usage: '&ranking (on / off)'
+        usage: '&ranking (on / off)',
+        category: 'admin'
     }
 
     async run(message: Message, args: string[], messages: any): Promise<any> {

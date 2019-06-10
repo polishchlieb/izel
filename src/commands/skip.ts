@@ -5,9 +5,10 @@ import { MusicServer } from '../interfaces/music';
 
 export default class SkipCommand implements Command {
     info = {
-        names: ['skip'],
+        names: ['skip', 's'],
         description: 'Skips current song',
-        usage: '&skip'
+        usage: '&skip',
+        category: 'music'
     }
 
     run(message: Message, _args: string[], messages: any): any {

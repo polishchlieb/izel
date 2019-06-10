@@ -7,7 +7,8 @@ export default class TagCommand implements Command {
     info = {
         names: ['tag'],
         description: 'taggo',
-        usage: '&tag (title) {description..}'
+        usage: '&tag (title) {description..}',
+        category: 'tool'
     }
 
     async run(message: Message, args: string[], messages: any): Promise<any> {
