@@ -1,5 +1,6 @@
 import Command from '../interfaces/command';
 import { Message, GuildMember } from 'discord.js';
+import Messages from '../interfaces/messages';
 
 export default class BanCommand implements Command {
     info = {
@@ -9,7 +10,7 @@ export default class BanCommand implements Command {
         category: 'admin'
     }
 
-    run(message: Message, args: string[], messages: any): any {
+    run(message: Message, args: string[], messages: Messages): any {
         if(!message.member.hasPermission('BAN_MEMBERS'))
             return message.reply(messages.noPermission);
         if(args.length == 0)
@@ -23,12 +24,11 @@ export default class BanCommand implements Command {
         if(!member.bannable)
             return message.reply(messages.couldNotBan);
 
-        member.ban().then((member: GuildMember): void => {
-            member.user.send(
-                messages.youWereBanned.replace('{}', message.guild.name)
-                + args.length > 0 ? ': ' + args.join(' ') : ''
-            );
-
+        member.user.send(
+            messages.youWereBanned.replace('{}', message.guild.name)
+            + (args.length > 0) ? ': ' + args.join(' ') : ''
+        ).then((): void => {
+            member.ban();
             message.reply(messages.banned.replace('{}', member.user.username));
         });
     }

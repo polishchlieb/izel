@@ -67,5 +67,6 @@
     "noSuchPerm": "couldn't find such permission",
     "mustBeText": "selected channel has to be a text channel",
     "endsIn": "Ends in",
-    "nothingPlaying": "nothing is playing right now"
+    "nothingPlaying": "nothing is playing right now",
+    "mustBeVoice": "selected channel has to be a voice channel"
 }
