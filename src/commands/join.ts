@@ -5,8 +5,7 @@ export default class JoinCommand implements Command {
     info = {
         names: ['join'],
         description: 'rowniez tylko dla rzadu',
-        usage: '&join',
-        category: 'developer'
+        usage: '&join'
     }
 
     run(message: Message, _args: string[], messages: any): any {

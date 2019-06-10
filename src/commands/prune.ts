@@ -5,8 +5,7 @@ export default class PruneCommand implements Command {
     info = {
         names: ['prune'],
         description: 'Removes messages',
-        usage: '&prune (count)',
-        category: 'admin'
+        usage: '&prune (count)'
     }
 
     run(message: Message, args: string[], messages: any): any {

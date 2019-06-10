@@ -6,8 +6,7 @@ export default class StatsCommand implements Command {
     info = {
         names: ['stats'],
         description: 'Displays bot stats (especially for nerds)',
-        usage: '&stats',
-        category: 'stats'
+        usage: '&stats'
     }
 
     run(message: Message, _args: string[], messages: any): void {

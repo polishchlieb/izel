@@ -6,8 +6,7 @@ export default class PingCommand implements Command {
     info = {
         names: ['ping'],
         description: 'Shows bot ping',
-        usage: '&ping',
-        category: 'tool'
+        usage: '&ping'
     }
 
     run(message: Message): void {

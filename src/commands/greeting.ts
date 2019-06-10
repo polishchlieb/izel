@@ -6,8 +6,7 @@ export default class GreetingCommand implements Command {
     info = {
         names: ['greeting'],
         description: 'Sets server\'s greeting',
-        usage: '&greeting (channel mention / placeholders) { text.. }',
-        category: 'admin'
+        usage: '&greeting (channel mention / placeholders) { text.. }'
     }
 
     async run(message: Message, args: string[], messages: any): Promise<any> {
