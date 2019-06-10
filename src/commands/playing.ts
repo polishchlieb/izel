@@ -7,7 +7,8 @@ export default class PlayingCommand implements Command {
     info = {
         names: ['playing', 'np', 'nowplaying'],
         description: 'Shows currently playing song',
-        usage: '&np'
+        usage: '&np',
+        category: 'music'
     }
 
     run(message: Message, args: string[], messages: any): any {

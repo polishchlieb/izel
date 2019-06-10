@@ -7,7 +7,8 @@ export default class QueueCommand implements Command {
     info = {
         names: ['queue', 'q'],
         description: 'Shows the queue',
-        usage: '&queue'
+        usage: '&queue',
+        category: 'music'
     }
 
     run(message: Message, _args: string[], messages: any): void {

@@ -7,7 +7,8 @@ export default class EvalCommand implements Command {
     info = {
         names: ['eval'],
         description: 'tylko dla rzadu',
-        usage: '&eval (code)'
+        usage: '&eval (code)',
+        category: 'developer'
     }
 
     set: any = {};

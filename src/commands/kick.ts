@@ -5,7 +5,8 @@ export default class KickCommand implements Command {
     info = {
         names: ['kick'],
         description: 'Kicks someone',
-        usage: '&kick (ping) { reason }'
+        usage: '&kick (ping) { reason }',
+        category: 'admin'
     }
 
     run(message: Message, args: string[], messages: any): any {

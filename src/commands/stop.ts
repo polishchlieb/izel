@@ -7,7 +7,8 @@ export default class StopCommand implements Command {
     info = {
         names: ['stop'],
         description: 'Stops playing',
-        usage: '&stop'
+        usage: '&stop',
+        category: 'music'
     }
 
     run(message: Message, _args: string[], messages: any): any {

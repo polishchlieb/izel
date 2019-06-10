@@ -7,7 +7,8 @@ export default class SayCommand implements Command {
     info = {
         names: ['say'],
         description: 'only for the izel\'s government',
-        usage: '&say something'
+        usage: '&say something',
+        category: 'developer'
     }
 
     async run(message: Message, args: string[], messages: any): Promise<any> {

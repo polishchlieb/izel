@@ -5,7 +5,8 @@ export default class BanCommand implements Command {
     info = {
         names: ['ban'],
         description: 'bannin crazy',
-        usage: '&ban (ping | name..)'
+        usage: '&ban (ping | name..)',
+        category: 'admin'
     }
 
     run(message: Message, args: string[], messages: any): any {
