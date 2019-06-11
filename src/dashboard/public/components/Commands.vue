@@ -80,8 +80,6 @@ export default {
                     let bb = this.categories.find(cat => cat.name == cmd.category);
                     bb.commands.push(cmd);
                 })
-
-                
             });
     }
 }
