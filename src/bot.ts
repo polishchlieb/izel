@@ -1,10 +1,11 @@
 import { Client } from 'discord.js'
-import { loadCommands, loadEvents, loadDashboard } from './utils/loader';
+import { loadCommands, loadEvents, loadDashboard, loadPlayer } from './utils/loader';
+
 import Command from './interfaces/command';
 import Event from './interfaces/event';
 import { MongoClient, Collection, Db as Database } from 'mongodb';
 import { StatUser, Server, Permission, Tag, User, Channel } from './interfaces/databaseStructures';
-import { MusicServer } from './interfaces/music';
+import { Player } from './interfaces/player';
 
 export default class Bot {
     client: Client = new Client({ disableEveryone: true });
@@ -17,8 +18,8 @@ export default class Bot {
     permissions: Collection<Permission>;
     tags: Collection<Tag>;
     channels: Collection<Channel>;
-
-    music: { [k: string]: MusicServer } = {};
+    
+    player: Player;
 
     async start(token: string): Promise<void> {
         process.on('unhandledRejection', console.error);
@@ -32,11 +33,13 @@ export default class Bot {
         this.permissions = database.collection('permissions');
         this.tags = database.collection('tags');
         this.channels = database.collection('channels');
+        this.player = {};
 
         loadEvents(this);
         loadCommands(this);
         loadDashboard();
 
-        this.client.login(token);
+        await this.client.login(token);
+        loadPlayer(this);
     }
 }
