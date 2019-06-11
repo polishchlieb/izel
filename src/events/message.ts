@@ -1,4 +1,4 @@
-import { Message, GuildChannel } from 'discord.js';
+import { Message } from 'discord.js';
 import Event from '../interfaces/event';
 import bot from '..';
 import Command from '../interfaces/command';
