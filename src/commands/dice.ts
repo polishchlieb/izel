@@ -5,7 +5,8 @@ export default class DiceCommand implements Command {
     info = {
         names: ['dice', 'random'],
         description: 'Gives some random number (0-10)',
-        usage: '&dice'
+        usage: '&dice',
+        category: 'tool'
     }
 
     reactions: string[] = ['0⃣', '1⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣', '8⃣', '9⃣', '🔟'];

@@ -1,9 +1,10 @@
-import { Message } from 'discord.js';
+import { Message, GuildChannel } from 'discord.js';
 import Event from '../interfaces/event';
 import bot from '..';
 import Command from '../interfaces/command';
 import { StatUser, Server } from '../interfaces/databaseStructures';
 import isGreeting from '../utils/isGreeting';
+import Messages from '../interfaces/messages';
 
 const msgs: any = {
     pl: require('../../languages/pl.json'),
@@ -67,7 +68,15 @@ export default class MessageEvent implements Event {
                 });
             }
         } else {
-            let messages = msgs[options.language];
+            let messages: Messages;
+            
+            if(message.guild.id == '485437978315849748' && (message.channel as GuildChannel).parent) {
+                if((message.channel as GuildChannel).parent.id == '544504580302438421')
+                    messages = msgs.en;
+                else if((message.channel as GuildChannel).parent.id == '544504706005860362')
+                    messages = msgs.pl;
+                else messages = msgs[options.language];
+            } else messages = msgs[options.language];
 
             let args: string[] = message.content
                 .substring(options.prefix.length)

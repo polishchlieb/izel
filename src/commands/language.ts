@@ -6,7 +6,8 @@ export default class LanguageCommand implements Command {
     info = {
         names: ['language', 'lang'],
         description: 'Changes the language',
-        usage: '&language (id)'
+        usage: '&language (id)',
+        category: 'admin'
     }
 
     available: string[] = ['pl', 'en'];

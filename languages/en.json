@@ -40,6 +40,7 @@
     "skipped": "skipped song",
     "nowPlaying": "Now playing",
     "notPlaying": "not playing any song",
+    "playingTime": "at",
     "stopped": "stopped playing",
     "randomness": "Randomness intensifies.. ( ͡° ͜ʖ ͡°)",
     "queue": "Queue",

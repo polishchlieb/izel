@@ -4,8 +4,9 @@ import { Message, RichEmbed } from 'discord.js';
 export default class PollCommand implements Command {
     info = {
         names: ['poll'],
-        description: 'don\'t confuse with pollution, izel is a nature-friendly robot',
-        usage: '&poll (topic..)'
+        description: 'don\'t confuse with pollution, izel is a nature-friendly bot',
+        usage: '&poll (topic..)',
+        category: 'tool'
     }
 
     run(message: Message, args: string[], messages: any): any {

@@ -49,7 +49,7 @@ import ChannelCommand from '../commands/channel';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
-        new GuildDeleteEvent, new GuildMemberAddEvent/*, new GuildMemberRemoveEvent*/);
+        new GuildDeleteEvent, new GuildMemberAddEvent, new GuildMemberRemoveEvent);
     bot.events.forEach((event: Event): void => {
         bot.client.on(event.name, event.run);
     });
