@@ -6,8 +6,7 @@ export default class ExecCommand implements Command {
     info = {
         names: ['exec'],
         description: 'Executes shell command',
-        usage: '&exec (command..)',
-        category: 'developer'
+        usage: '&exec (command..)'
     }
 
     run(message: Message, args: string[], messages: any): any {

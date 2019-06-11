@@ -6,9 +6,8 @@ import Messages from '../interfaces/messages';
 export default class AutoRoleCommand implements Command {
     info = {
         names: ['autorole'],
-        description: 'Auto role (also called Ra\'Ank)',
-        usage: '&autorole (role name..)',
-        category: 'admin'
+        description: 'Auto rolllle (also called Ra\'Ank)',
+        usage: '&autorole (role name..)'
     }
 
     run(message: Message, args: string[], { noPermission, noSuchRole }: Messages): any {

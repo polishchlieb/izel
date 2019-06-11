@@ -32,6 +32,6 @@ export default class Dashboard {
 
     start(): void {
         if(process.env.NODE_ENV == 'production') this.app.listen(80);
-        else this.app.listen(8090);
+        else this.app.listen(3000);
     }
 }

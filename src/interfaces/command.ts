@@ -5,7 +5,6 @@ export default interface Command {
     info: {
         names: string[],
         description: string,
-        usage: string,
-        category: string
+        usage: string
     }
 }

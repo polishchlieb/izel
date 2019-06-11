@@ -18,7 +18,16 @@ export default class Bot {
     tags: Collection<Tag>;
     channels: Collection<Channel>;
 
-    music: { [k: string]: MusicServer } = {};
+    music: { [k: string]: {
+        dispatcher?: StreamDispatcher;
+        queue: {
+            link: string,
+            thumbnail: string,
+            title: string,
+            channel: string,
+            requester: string
+        }[];
+    } } = {};
 
     async start(token: string): Promise<void> {
         process.on('unhandledRejection', console.error);

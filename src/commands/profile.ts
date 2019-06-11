@@ -8,8 +8,7 @@ export default class ProfileCommand implements Command {
     info = {
         names: ['profile'],
         description: 'Shows your profile',
-        usage: '&profile { ping }',
-        category: 'stats'
+        usage: '&profile { ping }'
     }
 
     async run(message: Message, args: string[], messages: any): Promise<void> {
