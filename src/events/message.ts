@@ -3,6 +3,7 @@ import Event from '../interfaces/event';
 import bot from '..';
 import Command from '../interfaces/command';
 import { StatUser, Server } from '../interfaces/databaseStructures';
+import isGreeting from '../utils/isGreeting';
 
 const msgs: any = {
     pl: require('../../languages/pl.json'),
@@ -15,6 +16,9 @@ export default class MessageEvent implements Event {
     async run(message: Message): Promise<void> {
         if(message.author.bot
            || !message.guild) return;
+
+        if(isGreeting(message.content))
+            message.react('👋');
 
         let data: StatUser = await bot.stats.findOne({
             id: message.author.id,
