@@ -7,6 +7,6 @@ const greetings: string[] =
  'z bogiem'];
 
 export default (content: string): boolean => {
-    content = content.toLowerCase();
-    return greetings.some((g: string): boolean => content.includes(g));
+    let args: string[] = content.toLowerCase().split(' ');
+    return greetings.some((g: string): boolean => args.includes(g));
 }

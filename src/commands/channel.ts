@@ -7,8 +7,12 @@ export default class ChannelCommand implements Command {
     info = {
         names: ['channel', 'stat'],
         description: 'Creates member-count channel',
+<<<<<<< HEAD
+        usage: '&channel (ping)'
+=======
         usage: '&channel (current name) (name..)',
         category: 'admin'
+>>>>>>> origin/develop
     }
 
     async run(message: Message, [ curr, ...arg ]: string[], messages: any): Promise<any> {

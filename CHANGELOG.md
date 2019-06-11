@@ -7,6 +7,7 @@
 - Added `playing` command
 - Added greetings
 - Commands in the webpanel look better (probably)
+- Optimization
 
 ## 2.5.1
 - Fixed `permissions` command
