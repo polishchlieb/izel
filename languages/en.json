@@ -65,5 +65,7 @@
     "mentionSomebody": "mention somebody, don't be shy",
     "noSuchPerm": "couldn't find such permission",
     "mustBeText": "selected channel has to be a text channel",
-    "endsIn": "Ends in"
+    "endsIn": "Ends in",
+    "nothingPlaying": "nothing is playing right now",
+    "mustBeVoice": "selected channel has to be a voice channel"
 }

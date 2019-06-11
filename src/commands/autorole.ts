@@ -1,6 +1,7 @@
 import Command from '../interfaces/command';
 import { Message, Role } from 'discord.js';
 import bot from '..';
+import Messages from '../interfaces/messages';
 
 export default class AutoRoleCommand implements Command {
     info = {
@@ -9,9 +10,9 @@ export default class AutoRoleCommand implements Command {
         usage: '&autorole (role name..)'
     }
 
-    run(message: Message, args: string[], messages: any): any {
+    run(message: Message, args: string[], { noPermission, noSuchRole }: Messages): any {
         if(!message.member.hasPermission('MANAGE_ROLES'))
-            return message.reply(messages.noPermission);
+            return message.reply(noPermission);
         
         if(args[0] == 'remove')
             bot.servers.updateOne({ id: message.guild.id }, {
@@ -26,7 +27,7 @@ export default class AutoRoleCommand implements Command {
                 (r: Role): boolean => r.name.toLowerCase() == args.join(' ').toLowerCase()
             );
             if(!role)
-                return message.reply(messages.noSuchRole);
+                return message.reply(noSuchRole);
 
             bot.servers.updateOne({ id: message.guild.id }, {
                 $set: {

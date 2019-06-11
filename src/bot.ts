@@ -1,9 +1,10 @@
-import { Client, StreamDispatcher } from 'discord.js'
+import { Client } from 'discord.js'
 import { loadCommands, loadEvents, loadDashboard } from './utils/loader';
 import Command from './interfaces/command';
 import Event from './interfaces/event';
 import { MongoClient, Collection, Db as Database } from 'mongodb';
-import { StatUser, Server, Permission, Tag, User } from './interfaces/databaseStructures';
+import { StatUser, Server, Permission, Tag, User, Channel } from './interfaces/databaseStructures';
+import { MusicServer } from './interfaces/music';
 
 export default class Bot {
     client: Client = new Client({ disableEveryone: true });
@@ -15,6 +16,7 @@ export default class Bot {
     servers: Collection<Server>;
     permissions: Collection<Permission>;
     tags: Collection<Tag>;
+    channels: Collection<Channel>;
 
     music: { [k: string]: {
         dispatcher?: StreamDispatcher;
@@ -38,6 +40,7 @@ export default class Bot {
         this.servers = database.collection('servers');
         this.permissions = database.collection('permissions');
         this.tags = database.collection('tags');
+        this.channels = database.collection('channels');
 
         loadEvents(this);
         loadCommands(this);

@@ -6,8 +6,9 @@ import { Server } from '../interfaces/databaseStructures';
 export default class PrefixCommand implements Command {
     info = {
         names: ['prefix'],
-        description: 'Shows/sets the prefix (replace trailing space with \\_)',
-        usage: '&prefix { new prefix.. }'
+        description: 'Shows/sets the prefix (replace trailing space with /_)',
+        usage: '&prefix { new prefix.. }',
+        category: 'admin'
     }
 
     async run(message: Message, args: string[], messages: any): Promise<any> {

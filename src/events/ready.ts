@@ -24,6 +24,5 @@ export default class ReadyEvent implements Event {
                     num = 0; break;
             }
         }, 150000);
-        
     }
 }

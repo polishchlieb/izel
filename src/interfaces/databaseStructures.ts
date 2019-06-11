@@ -33,4 +33,15 @@ export interface Tag {
     _id?: string;
 }
 
-export interface User {}
+export interface User {
+    _id?: string;
+}
+
+export interface Channel {
+    id: string;
+    name: string;
+    guild: string;
+    _id?: string;
+    // TODO (more than just member count)
+    // subs: string[];
+}
