@@ -4,6 +4,7 @@ import * as cookie from 'cookie-parser';
 import bot from '..';
 import { GuildMember, Guild } from 'discord.js';
 import * as bodyParser from 'body-parser';
+const { radios } = require('../../radios.json')
 
 const router: Router = Router();
 const { id, secret, callback }: { id: string, secret: string, callback: string } = require('../../config.json');
@@ -168,6 +169,10 @@ router.get('/guild', async (req: Request, res: Response): Promise<void> => {
 router.get('/commands', (req: Request, res: Response): void => {
     res.send(bot.commands.map(c => c.info));
 });
+
+router.get('/radios', (req: Request, res: Response): void => {
+    res.send(radios)
+})
 
 router.post('/admin', (req: Request, res: Response): void => {
     fetch('https://discordapp.com/api/users/@me',
