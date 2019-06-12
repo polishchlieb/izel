@@ -1,7 +1,6 @@
 import Command from '../interfaces/command';
 import { Message } from 'discord.js';
 import bot from '..';
-import { MusicServer } from '../interfaces/music';
 
 export default class SkipCommand implements Command {
     info = {
@@ -12,13 +11,16 @@ export default class SkipCommand implements Command {
     }
 
     run(message: Message, _args: string[], messages: any): any {
+        // TODO: ileś % słuchaczy musi wyrazić zgodę na skipa
         if(!message.member.voiceChannel)
             message.reply(messages.connectVoice);
 
-        let server: MusicServer = bot.music[message.guild.id];
-        if(server.dispatcher) {
-            server.dispatcher.end();
+        let player = bot.player.manager.get(message.guild.id);
+        if(player) {
+            player.stop();
             message.reply(messages.skipped);
-        } else message.reply(messages.notPlaying);
+        } if (!player) {
+            message.reply(messages.notPlaying)
+        }
     }
 }

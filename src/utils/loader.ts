@@ -46,10 +46,12 @@ import AutoRoleCommand from '../commands/autorole';
 import GreetingCommand from '../commands/greeting';
 import PlayingCommand from '../commands/playing';
 import ChannelCommand from '../commands/channel';
+import { PlayerManager } from 'discord.js-lavalink';
+import RadioCommand from '../commands/radio';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
-        new GuildDeleteEvent, new GuildMemberAddEvent, new GuildMemberRemoveEvent);
+        new GuildDeleteEvent, new GuildMemberAddEvent/*, new GuildMemberRemoveEvent*/);
     bot.events.forEach((event: Event): void => {
         bot.client.on(event.name, event.run);
     });
@@ -67,7 +69,8 @@ export const loadCommands = (bot: Bot): void => {
         new QueueCommand, new BanCommand, new ServerInfoCommand,
         new PermissionsCommand, new KickCommand, new StopCommand,
         new PrefixCommand, new StatsCommand, new ExecCommand, new ProfileCommand,
-        new AutoRoleCommand, new GreetingCommand, new PlayingCommand, new ChannelCommand);
+        new AutoRoleCommand, new GreetingCommand, new PlayingCommand, new ChannelCommand,
+        new RadioCommand);
 
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }
@@ -75,4 +78,18 @@ export const loadCommands = (bot: Bot): void => {
 export const loadDashboard = (): void => {
     new Dashboard;
     console.log(blue('Loaded dashboard\n'));
+}
+
+export const loadPlayer = (bot: Bot): void => {
+    bot.player.nodes = [
+        { host: 'localhost', port: 2333, password: 'totallydefaultpassword'}
+    ]
+
+    bot.player.manager = new PlayerManager(bot.client, bot.player.nodes, {
+        user: bot.client.user.id,
+        shards: 0
+    })
+
+    bot.player.queue = {};
+    bot.player.playing = {};
 }

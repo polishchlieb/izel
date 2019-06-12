@@ -25,6 +25,10 @@ export default class Dashboard {
             res.sendFile(join(__dirname, './public/index.html'));
         });
 
+        this.app.get('/radios', (req: e.Request, res: e.Response): void => {
+            res.sendFile(join(__dirname, './public/index.html'));
+        });
+
         this.app.use('/api', (req: any, res: e.Response, next: e.NextFunction) => {
             next();
         }, api);
