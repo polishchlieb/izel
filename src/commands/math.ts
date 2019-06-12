@@ -7,7 +7,8 @@ export default class MathCommand implements Command {
     info = {
         names: ['math', 'tex'],
         description: 'Pretties some math',
-        usage: '&math (..)'
+        usage: '&math (..)',
+        category: 'tool'
     }
 
     run(message: Message, args: string[], messages: any): any {

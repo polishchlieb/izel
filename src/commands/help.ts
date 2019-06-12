@@ -6,7 +6,8 @@ export default class HelpCommand implements Command {
     info = {
         names: ['help'],
         description: 'Shows help',
-        usage: '&help'
+        usage: '&help',
+        category: 'tool'
     }
 
     run(message: Message, args: string[], messages: any): void {

@@ -6,7 +6,8 @@ export default class MinecraftCommand implements Command {
     info = {
         names: ['minecraft', 'mc'],
         description: 'meinkampf server info',
-        usage: '&minecraft (server ip)'
+        usage: '&minecraft (server ip)',
+        category: 'tool'
     }
 
     run(message: Message, args: string[], messages: any): any {

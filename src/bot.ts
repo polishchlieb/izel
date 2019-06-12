@@ -1,4 +1,4 @@
-import { Client } from 'discord.js'
+import { Client, StreamDispatcher } from 'discord.js'
 import { loadCommands, loadEvents, loadDashboard } from './utils/loader';
 import Command from './interfaces/command';
 import Event from './interfaces/event';
@@ -18,16 +18,7 @@ export default class Bot {
     tags: Collection<Tag>;
     channels: Collection<Channel>;
 
-    music: { [k: string]: {
-        dispatcher?: StreamDispatcher;
-        queue: {
-            link: string,
-            thumbnail: string,
-            title: string,
-            channel: string,
-            requester: string
-        }[];
-    } } = {};
+    music: { [k: string]: MusicServer } = {};
 
     async start(token: string): Promise<void> {
         process.on('unhandledRejection', console.error);
