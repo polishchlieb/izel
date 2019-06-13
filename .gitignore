@@ -1,3 +1,4 @@
 /node_modules/**/*
 /dist/**/*
 Lavalink.jar
+spring.log
