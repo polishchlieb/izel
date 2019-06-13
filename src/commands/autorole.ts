@@ -9,7 +9,7 @@ export default class AutoRoleCommand implements Command {
         description: 'Auto role (also called Ra\'Ank)',
         usage: '&autorole (role name..)',
         category: 'admin'
-    }
+    };
 
     run(message: Message, args: string[], { noPermission, noSuchRole }: Messages): any {
         if(!message.member.hasPermission('MANAGE_ROLES'))

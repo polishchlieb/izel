@@ -16,7 +16,7 @@ export default class Dashboard {
         this.app.get('/', (req: e.Request, res: e.Response): void => {
             res.sendFile(join(__dirname, './public/index.html'));
         });
-        
+
         this.app.get('/dashboard', (req: e.Request, res: e.Response): void => {
             res.sendFile(join(__dirname, './public/index.html'));
         });

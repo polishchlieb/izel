@@ -1,6 +1,7 @@
 import Command from '../interfaces/command';
 import { Message, RichEmbed } from 'discord.js';
 import bot from '..';
+import Messages from '../interfaces/messages';
 
 export default class HelpCommand implements Command {
     info = {
@@ -8,9 +9,9 @@ export default class HelpCommand implements Command {
         description: 'Shows help',
         usage: '&help',
         category: 'tool'
-    }
+    };
 
-    run(message: Message, args: string[], messages: any): void {
+    run(message: Message, args: string[], messages: Messages): void {
         message.channel.send(new RichEmbed()
             .setTitle(messages.help)
             .setColor('RANDOM')

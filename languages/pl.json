@@ -69,5 +69,6 @@
     "mustBeText": "kanał musi być tekstowy",
     "mustBeVoice": "kanał musi być głosowy",
     "endsIn": "Koniec za",
-    "nothingPlaying": "nic nie jest grane"
+    "nothingPlaying": "nic nie jest grane",
+    "serverOffline": "Serwer jest wyłączony"
 }

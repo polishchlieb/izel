@@ -8,7 +8,7 @@ export default class PingCommand implements Command {
         description: 'Shows bot ping',
         usage: '&ping',
         category: 'tool'
-    }
+    };
 
     run(message: Message): void {
         message.reply(`pong! \`${Math.floor(bot.client.ping)}ms\``);

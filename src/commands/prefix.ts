@@ -2,6 +2,7 @@ import Command from '../interfaces/command';
 import { Message } from 'discord.js';
 import bot from '..';
 import { Server } from '../interfaces/databaseStructures';
+import Messages from '../interfaces/messages';
 
 export default class PrefixCommand implements Command {
     info = {
@@ -9,9 +10,9 @@ export default class PrefixCommand implements Command {
         description: 'Shows/sets the prefix (replace trailing space with /_)',
         usage: '&prefix { new prefix.. }',
         category: 'admin'
-    }
+    };
 
-    async run(message: Message, args: string[], messages: any): Promise<any> {
+    async run(message: Message, args: string[], messages: Messages): Promise<any> {
         if(!message.member.hasPermission('MANAGE_CHANNELS')
            && message.author.id != '372459063339909120')
             return message.reply(messages.noPermission);
