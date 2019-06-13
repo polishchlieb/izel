@@ -1,17 +1,20 @@
+import { GuildMember, Guild } from 'discord.js';
 import { Request, Response, Router } from 'express';
+import * as bodyParser from 'body-parser';
 import fetch from 'node-fetch';
 import * as cookie from 'cookie-parser';
+
 import bot from '..';
-import { GuildMember, Guild } from 'discord.js';
-import * as bodyParser from 'body-parser';
-const { radios } = require('../../radios.json')
+import Command from '../interfaces/command';
 
 const router: Router = Router();
-const { id, secret, callback }: { id: string, secret: string, callback: string } = require('../../config.json');
+const { id, secret, callback }: { id: string, secret: string, callback: string }
+    = require('../../config.json');
 const redirect: string = encodeURIComponent(callback);
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
+router.use(cookie());
 
 router.get('/login', (req: Request, res: Response): void => {
     res.redirect(`https://discordapp.com/api/oauth2/authorize?client_id=${id}&redirect_uri=${redirect}&response_type=code&scope=identify guilds`);
@@ -43,8 +46,6 @@ router.get('/callback', (req: Request, res: Response): any => {
         res.redirect('/');
     });
 });
-
-router.use(cookie());
 
 router.get('/logout', (req: Request, res: Response): void => {
     fetch(`https://discordapp.com/api/oauth2/token/revoke?token=${req.cookies.token}`,
@@ -166,13 +167,17 @@ router.get('/guild', async (req: Request, res: Response): Promise<void> => {
         });
 });
 
+let commands: Command['info'][];
 router.get('/commands', (req: Request, res: Response): void => {
-    res.send(bot.commands.map(c => c.info));
+    if(!commands)
+        commands = bot.commands.map(c => c.info);
+    res.send(commands);
 });
 
+const { radios } = require('../../radios.json');
 router.get('/radios', (req: Request, res: Response): void => {
-    res.send(radios)
-})
+    res.send(radios);
+});
 
 router.post('/admin', (req: Request, res: Response): void => {
     fetch('https://discordapp.com/api/users/@me',

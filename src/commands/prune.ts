@@ -1,5 +1,6 @@
 import Command from '../interfaces/command';
 import { Message, Collection } from 'discord.js';
+import Messages from '../interfaces/messages';
 
 export default class PruneCommand implements Command {
     info = {
@@ -7,9 +8,9 @@ export default class PruneCommand implements Command {
         description: 'Removes messages',
         usage: '&prune (count)',
         category: 'admin'
-    }
+    };
 
-    run(message: Message, args: string[], messages: any): any {
+    run(message: Message, args: string[], messages: Messages): any {
         if(!message.member.hasPermission('MANAGE_MESSAGES'))
             return message.reply(messages.noPermission);
         if(!message.guild.me.hasPermission('MANAGE_MESSAGES'))
@@ -21,7 +22,9 @@ export default class PruneCommand implements Command {
 
         message.channel.bulkDelete(count + 1)
             .then((msgs: Collection<string, Message>): void => {
-                message.reply(messages.deletedMessages.replace('{}', msgs.size - 1))
+                message.reply(
+                    messages.deletedMessages.replace('{}', (msgs.size - 1).toString())
+                );
             });
     }
 }

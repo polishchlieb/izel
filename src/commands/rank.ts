@@ -3,6 +3,7 @@ import { Message, Attachment, GuildMember } from 'discord.js';
 import bot from '..';
 import { createCanvas, loadImage, Image, Canvas } from 'canvas';
 import { StatUser } from '../interfaces/databaseStructures';
+import Messages from '../interfaces/messages';
 
 let bg: Image, fg: Image;
 (async () => {
@@ -16,9 +17,9 @@ export default class RankCommand implements Command {
         description: 'Shows your rank',
         usage: '&rank {mention}',
         category: 'stats'
-    }
+    };
 
-    async run(message: Message, _args: string[], messages: any): Promise<any> {
+    async run(message: Message, _args: string[], messages: Messages): Promise<any> {
         message.channel.startTyping();
 
         let member: GuildMember = message.mentions.members.first();
@@ -32,7 +33,10 @@ export default class RankCommand implements Command {
 
         if(!data) {
             message.channel.stopTyping();
-            return message.channel.send('somethin gon wrong');
+            return message.channel.send('somethin gon wrong')
+                .then((): void => {
+                    
+                })
         }
 
         let canvas: Canvas = createCanvas(800, 220);

@@ -10,9 +10,9 @@ export default class ProfileCommand implements Command {
         description: 'Shows your profile',
         usage: '&profile { ping }',
         category: 'stats'
-    }
+    };
 
-    async run(message: Message, args: string[], messages: any): Promise<void> {
+    async run(message: Message): Promise<void> {
         message.channel.startTyping();
         let canvas: Canvas = createCanvas(400, 400);
         let ctx = canvas.getContext('2d');

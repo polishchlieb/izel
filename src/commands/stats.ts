@@ -1,6 +1,7 @@
 import Command from '../interfaces/command';
 import { Message, RichEmbed } from 'discord.js';
 import { hostname, platform, uptime, cpus, CpuInfo } from 'os';
+import Messages from '../interfaces/messages';
 
 export default class StatsCommand implements Command {
     info = {
@@ -8,13 +9,13 @@ export default class StatsCommand implements Command {
         description: 'Displays bot stats (especially for nerds)',
         usage: '&stats',
         category: 'stats'
-    }
+    };
 
-    run(message: Message, _args: string[], messages: any): void {
+    run(message: Message, []: string[], { requestedBy }: Messages): void {
         message.channel.send(new RichEmbed()
             .setTitle('Stats')
             .setColor('RANDOM')
-            .setFooter(`${messages.requestedBy} ${message.member.displayName}`, message.author.avatarURL)
+            .setFooter(`${requestedBy} ${message.member.displayName}`, message.author.avatarURL)
             .addField('Hostname', hostname(), true)
             .addField('Platform', platform(), true)
             .addField('Uptime', Math.floor(uptime() / 3600) + 'h', true)

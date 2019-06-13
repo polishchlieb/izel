@@ -2,6 +2,7 @@ import Command from '../interfaces/command';
 import { Message, RichEmbed, GuildMember, Guild } from 'discord.js';
 import bot from '..';
 import { StatUser } from '../interfaces/databaseStructures';
+import Messages from '../interfaces/messages';
 
 export default class TopCommand implements Command {
     info = {
@@ -9,14 +10,14 @@ export default class TopCommand implements Command {
         description: 'Topka serwerkowa',
         usage: '&top { global }',
         category: 'stats'
-    }
+    };
 
-    async run(message: Message, args: string[], messages: any): Promise<void> {
+    async run(message: Message, args: string[], { top, messages }: Messages): Promise<void> {
         if(args[0] == 'global') {
             let data: StatUser[] = await bot.stats
                 .find().sort({ messages: -1 }).limit(10).toArray();
             let embed: RichEmbed = new RichEmbed()
-                .setTitle(messages.top)
+                .setTitle(top)
                 .setColor('RANDOM');
 
             data.forEach((user: StatUser, i: number): void => {
@@ -26,7 +27,7 @@ export default class TopCommand implements Command {
                     if(member)
                         embed.addField(
                             `${i + 1}. ${member.displayName} (${guild.name})`,
-                            `${user.messages} ${messages.messages}`
+                            `${user.messages} ${messages}`
                         );
                 }
             });
@@ -37,7 +38,7 @@ export default class TopCommand implements Command {
                 .find({ guild: message.guild.id }).sort({ messages: -1 })
                 .limit(10).toArray();
             let embed: RichEmbed = new RichEmbed()
-                .setTitle(messages.top)
+                .setTitle(top)
                 .setColor('RANDOM');
 
             data.forEach((user: StatUser, i: number): void => {
@@ -45,7 +46,7 @@ export default class TopCommand implements Command {
                 if(member)
                     embed.addField(
                         `${i + 1}. ${member.displayName}`,
-                        `${user.messages} ${messages.messages}`
+                        `${user.messages} ${messages}`
                     );
             });
 

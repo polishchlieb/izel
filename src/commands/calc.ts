@@ -8,7 +8,7 @@ export default class MathCommand implements Command {
         description: 'Calculates something',
         usage: '&calc (..)',
         category: 'tool'
-    }
+    };
 
     scope: any = {};
 

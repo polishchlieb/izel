@@ -2,6 +2,7 @@ import { Message } from 'discord.js';
 import Command from '../interfaces/command';
 import { get, IncomingMessage } from 'http';
 import { createWriteStream, WriteStream } from 'fs';
+import Messages from '../interfaces/messages';
 
 export default class MathCommand implements Command {
     info = {
@@ -9,11 +10,11 @@ export default class MathCommand implements Command {
         description: 'Pretties some math',
         usage: '&math (..)',
         category: 'tool'
-    }
+    };
 
-    run(message: Message, args: string[], messages: any): any {
+    run(message: Message, args: string[], { use }: Messages): any {
         if(args.length == 0)
-            return message.reply(`${messages.use}: \`${this.info.usage}\``);
+            return message.reply(`${use}: \`${this.info.usage}\``);
 
         let file: WriteStream = createWriteStream('temp.jpg');
         get(`http://latex.codecogs.com/png.latex?%5Cbg_white%20%5Chuge%20${encodeURIComponent(args.join(' '))}%24`, async (response: IncomingMessage): Promise<void> => {

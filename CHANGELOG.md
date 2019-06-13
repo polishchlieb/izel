@@ -1,5 +1,14 @@
 # Changelog
 
+# 2.6
+## 2.6.0
+- *Huge* music update
+    - Added radios
+    - Updated almost everything
+    - Replaced ytdl with Lavalink
+- Prettied some code
+- Updated `eval, weather` commands
+
 # 2.5 - (something)
 ## 2.5.2
 - `play` command finally works (at least a bit)
@@ -7,6 +16,7 @@
 - Added `playing` command
 - Added greetings
 - Commands in the webpanel look better (probably)
+- Optimization
 
 ## 2.5.1
 - Fixed `permissions` command
