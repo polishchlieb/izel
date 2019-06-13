@@ -1,6 +1,7 @@
 import Command from '../interfaces/command';
 import { Message } from 'discord.js';
 import { exec, ExecException } from 'child_process';
+import Messages from '../interfaces/messages';
 
 export default class ExecCommand implements Command {
     info = {
@@ -8,11 +9,11 @@ export default class ExecCommand implements Command {
         description: 'Executes shell command',
         usage: '&exec (command..)',
         category: 'developer'
-    }
+    };
 
-    run(message: Message, args: string[], messages: any): any {
+    run(message: Message, args: string[], { noPermission }: Messages): any {
         if(message.author.id != '372459063339909120')
-            return message.reply(messages.noPermission);
+            return message.reply(noPermission);
 
         exec(args.join(' '), (err: ExecException, stdout: string, stderr: string): void => {
             if(err) message.channel.send(`error: \`${err}\``);

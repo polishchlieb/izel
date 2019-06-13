@@ -1,5 +1,6 @@
 import Command from '../interfaces/command';
 import { Message, RichEmbed } from 'discord.js';
+import Messages from '../interfaces/messages';
 
 export default class ServerInfoCommand implements Command {
     info = {
@@ -7,9 +8,9 @@ export default class ServerInfoCommand implements Command {
         description: 'Shows info about the server',
         usage: '&serverinfo',
         category: 'tool'
-    }
+    };
 
-    run(message: Message, _args: string[], messages: any): void {
+    run(message: Message, []: string[], messages: Messages): void {
         message.channel.send(new RichEmbed()
             .setTitle(message.guild.name)
             .addField('ID', message.guild.id, true)
@@ -17,6 +18,6 @@ export default class ServerInfoCommand implements Command {
             .addField(messages.members, message.guild.memberCount, true)
             .addField(messages.channels, message.guild.channels.size, true)
             .addField(messages.region, message.guild.region, true)
-        )
+        );
     }
 }

@@ -2,6 +2,7 @@ import Command from '../interfaces/command';
 import { Message, RichEmbed } from 'discord.js';
 import bot from '..';
 import { Tag } from '../interfaces/databaseStructures';
+import Messages from '../interfaces/messages';
 
 export default class TagCommand implements Command {
     info = {
@@ -9,9 +10,9 @@ export default class TagCommand implements Command {
         description: 'taggo',
         usage: '&tag (title) {description..}',
         category: 'tool'
-    }
+    };
 
-    async run(message: Message, args: string[], messages: any): Promise<any> {
+    async run(message: Message, args: string[], messages: Messages): Promise<any> {
         if(args[0] == 'list') {
             message.channel.send(new RichEmbed()
                 .setTitle(messages.tags)

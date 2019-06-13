@@ -2,6 +2,7 @@ import { Message, RichEmbed, MessageReaction, User, Collection } from 'discord.j
 import Command from '../interfaces/command';
 import Time from '../utils/timeParser';
 import bot from '..';
+import Messages from '../interfaces/messages';
 
 export default class GiveawayCommand implements Command {
     info = {
@@ -9,9 +10,9 @@ export default class GiveawayCommand implements Command {
         description: 'Calls a giveaway',
         usage: '&giveaway (time) (topic..)',
         category: 'tool'
-    }
+    };
 
-    async run(message: Message, args: string[], messages: any): Promise<any> {
+    async run(message: Message, args: string[], messages: Messages): Promise<any> {
         if(args.length < 2)
             return message.reply(`${messages.use} ${this.info.usage}`);
 

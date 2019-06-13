@@ -1,6 +1,7 @@
 import Command from '../interfaces/command';
 import { Message, RichEmbed } from 'discord.js';
 import fetch, { Response } from 'node-fetch';
+import Messages from '../interfaces/messages';
 
 export default class MinecraftCommand implements Command {
     info = {
@@ -8,9 +9,9 @@ export default class MinecraftCommand implements Command {
         description: 'meinkampf server info',
         usage: '&minecraft (server ip)',
         category: 'tool'
-    }
+    };
 
-    run(message: Message, args: string[], messages: any): any {
+    run(message: Message, args: string[], messages: Messages): any {
         if(args.length != 1)
             return message.reply(`${messages.use} \`${this.info.usage}\``);
 
@@ -21,7 +22,7 @@ export default class MinecraftCommand implements Command {
                 if(!data.online)
                     message.channel.send(new RichEmbed()
                         .setTitle(args[0])
-                        .setDescription('Server is offline.'));
+                        .setDescription(messages.serverOffline));
 
                 else message.channel.send(new RichEmbed()
                     .setTitle(args[0])

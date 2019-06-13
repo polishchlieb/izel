@@ -1,6 +1,7 @@
 import Command from '../interfaces/command';
 import { Message } from 'discord.js';
 import bot from '..';
+import Messages from '../interfaces/messages';
 
 export default class SkipCommand implements Command {
     info = {
@@ -8,9 +9,9 @@ export default class SkipCommand implements Command {
         description: 'Skips current song',
         usage: '&skip',
         category: 'music'
-    }
+    };
 
-    run(message: Message, _args: string[], messages: any): any {
+    run(message: Message, []: string[], messages: Messages): any {
         // TODO: ileś % słuchaczy musi wyrazić zgodę na skipa
         if(!message.member.voiceChannel)
             message.reply(messages.connectVoice);

@@ -8,7 +8,7 @@ export default class BanCommand implements Command {
         description: 'bannin crazy',
         usage: '&ban (ping | name..)',
         category: 'admin'
-    }
+    };
 
     run(message: Message, args: string[], messages: Messages): any {
         if(!message.member.hasPermission('BAN_MEMBERS'))
