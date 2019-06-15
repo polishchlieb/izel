@@ -31,13 +31,15 @@
     "tags": "TAGI",
     "noBotPermission": "nie mam uprawnień by to zrobić.. :(",
     "deletedMessages": "usunięto {} wiadomości",
-    "specifyURL": "musisz podać adres piosnki ( ͡° ͜ʖ ͡°)",
+    "specifyURL": "musisz podać nazwe piosenki ( ͡° ͜ʖ ͡°)",
     "connectVoice": "musisz być na kanale głosowym ( ͡° ͜ʖ ͡°)",
     "noResults": "nie ma wyników ( ͡° ͜ʖ ͡°)",
     "positionQueue": "Pozycja w kolejce",
     "videoChannel": "Kanał",
     "queryRequested": "Dodane przez",
     "skipped": "pominięto piosnkę ( ͡° ͜ʖ ͡°)",
+    "skippedAlready": "już zagłosowałeś za pominięciem!",
+    "skippedNeed": "zagłosowano za pominięciem. potrzeba:",
     "stopped": "no i koniec festa ( ͡° ͜ʖ ͡°)",
     "radioDescription": "Lista dostępnych radiów:",
     "randomness": "Budzenie Einsteina, proszę czekać..",
@@ -70,5 +72,7 @@
     "mustBeVoice": "kanał musi być głosowy",
     "endsIn": "Koniec za",
     "nothingPlaying": "nic nie jest grane",
-    "serverOffline": "Serwer jest wyłączony"
+    "serverOffline": "Serwer jest wyłączony",
+    "noSuchNumber": "nie ma takiego numeru",
+    "djRole": "potrzebujesz roli DJ"
 }
