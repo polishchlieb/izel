@@ -12,16 +12,39 @@ export default class SkipCommand implements Command {
     };
 
     run(message: Message, []: string[], messages: Messages): any {
-        // TODO: ileś % słuchaczy musi wyrazić zgodę na skipa
         if(!message.member.voiceChannel)
             message.reply(messages.connectVoice);
 
         let player = bot.player.manager.get(message.guild.id);
-        if(player) {
-            player.stop();
-            message.reply(messages.skipped);
-        } if (!player) {
-            message.reply(messages.notPlaying)
+        let skipping = bot.player.settings[message.guild.id].skipping;
+
+        if (!player) {
+            return message.reply(messages.notPlaying)
+        }
+
+        if(message.member.voiceChannel.id == player.channel) {
+            if (message.member.roles.find('name', 'DJ') || message.member.permissions.hasPermission("ADMINISTRATOR")) {
+                if (player) {
+                    player.stop();
+                    return message.reply(messages.skipped);
+                }
+            }
+
+            if (skipping.indexOf(message.author.id) == -1) {
+                skipping.push(message.author.id);
+                if(skipping.length >= (message.member.voiceChannel.members.size-1)/2) {
+                    if (player) {
+                        player.stop();
+                        return message.reply(messages.skipped);
+                    }
+                } else {
+                    message.reply(messages.skippedNeed + ` ${skipping.length} / ${Math.ceil((message.member.voiceChannel.members.size - 1) / 2)}`)
+                }
+            } else {
+                message.reply(messages.skippedAlready)
+            }
+        } else {
+            message.reply(messages.connectVoice);
         }
     }
 }

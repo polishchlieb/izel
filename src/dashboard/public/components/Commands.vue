@@ -56,6 +56,10 @@ export default {
                     commands: []
                 },
                 {
+                    name: 'music (DJ)',
+                    commands: []
+                },
+                {
                     name: 'stats',
                     commands: []
                 },
