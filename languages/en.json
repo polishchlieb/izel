@@ -31,13 +31,15 @@
     "tags": "TAGS",
     "noBotPermission": "I don't have enough permissions.. :(",
     "deletedMessages": "deleted {} messages",
-    "specifyURL": "you need to specify the URL",
+    "specifyURL": "specify the song title please",
     "connectVoice": "you must be in a voice channel",
     "noResults": "no results :(",
     "positionQueue": "Position in queue",
     "videoChannel": "Channel",
     "queryRequested": "Requested by",
     "skipped": "skipped song",
+    "skippedAlready": "you already voted",
+    "skippedNeed": "voted to skip.",
     "nowPlaying": "Now playing",
     "notPlaying": "not playing any song",
     "playingTime": "at",
@@ -70,5 +72,7 @@
     "endsIn": "Ends in",
     "nothingPlaying": "nothing is playing right now",
     "mustBeVoice": "selected channel has to be a voice channel",
-    "serverOffline": "Server is offline"
+    "serverOffline": "Server is offline",
+    "noSuchNumber": "not found",
+    "djRole": "you have to have DJ role"
 }

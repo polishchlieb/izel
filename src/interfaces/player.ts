@@ -4,7 +4,13 @@ export interface Player {
     manager?: PlayerManager,
     nodes?: { host: string, port: number, password: string}[],
     queue?: { [k: string]: QueueTrack[] },
-    playing?: { [k: string]: QueueTrack }
+    playing?: { [k: string]: QueueTrack },
+    settings?: { [k: string]: Settings }
+}
+
+export interface Settings {
+    skipping: string[],
+    bass: boolean
 }
 
 export interface Track {

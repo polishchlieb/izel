@@ -1,5 +1,5 @@
 import Command from '../interfaces/command';
-import { Message, RichEmbed } from 'discord.js';
+import { Message, RichEmbed, CollectorFilter, MessageReaction, ReactionCollector, User } from 'discord.js';
 import bot from '..';
 import { getSongs } from '../utils/music';
 import { Track, QueueTrack } from '../interfaces/player';
@@ -47,8 +47,6 @@ export default class PlayCommand implements Command {
         if (args[0].match(/^(http(s)?:\/\/)/g)) {
             if (args[0].match(/^(http(s)?:\/\/)?(w{3}\.)?youtu(be\.com|\.be)?\/.+/gm)) {
                 thumbnail = `https://i.ytimg.com/vi/${track.info.identifier}/hqdefault.jpg`;
-            } else {
-                thumbnail = 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/facebook/92/thinking-face_1f914.png';
             }
         } else {
             thumbnail = `https://i.ytimg.com/vi/${track.info.identifier}/hqdefault.jpg`;
@@ -62,7 +60,7 @@ export default class PlayCommand implements Command {
             uri: track.info.uri,
             length: track.info.length,
             stream: track.info.isStream,
-            thumbnail
+            thumbnail: thumbnail
         });
 
         let respEmbed: RichEmbed = new RichEmbed()
@@ -73,8 +71,10 @@ export default class PlayCommand implements Command {
             .setURL(track.info.uri)
             .addField(messages.positionQueue, bot.player.queue[message.guild.id].length, true)
             .addField(messages.queryRequested, message.author.username, true)
+
         if(track.info.author)
             respEmbed.addField(messages.videoChannel, track.info.author);
+        
         respEmbed.setFooter(`${messages.requestedBy} ${message.member.displayName}`, message.author.avatarURL);
         message.channel.send(respEmbed);
 
@@ -85,6 +85,11 @@ export default class PlayCommand implements Command {
                 host: bot.player.nodes[0].host
             }, { selfdeaf: true })
 
+            bot.player.settings[message.guild.id] = {
+                skipping: [],
+                bass: false
+            }
+            
             this.play(player, message, messages)
         }
     }
@@ -93,6 +98,7 @@ export default class PlayCommand implements Command {
         const current: QueueTrack = bot.player.queue[message.guild.id].shift();
         current.started = Date.now();
         bot.player.playing[message.guild.id] = current;
+        bot.player.settings[message.guild.id].skipping = [];
 
         player.play(current.track);
 
@@ -107,7 +113,18 @@ export default class PlayCommand implements Command {
             respEmbed.addField(messages.videoChannel, current.channel, true);
 
         // TODO: favourite
-        message.channel.send(respEmbed);
+        message.channel.send(respEmbed)
+        /*.then((msg: Message) => {
+            msg.react('⭐');
+
+            const reactionFilter: CollectorFilter = (r: MessageReaction, user: User) => r.emoji.name == '⭐' && !user.bot;
+
+            const collector: ReactionCollector = msg.createReactionCollector(reactionFilter, { time: 360000});
+            collector.on('collect', (react: MessageReaction) => {
+                message.channel.send(`${react.users.last().toString()} siema`)
+            })
+
+        });*/
 
         player.once('end', (): void => {
             if(bot.player.queue[message.guild.id][0])
@@ -116,6 +133,7 @@ export default class PlayCommand implements Command {
                 bot.player.manager.leave(message.guild.id);
                 delete bot.player.queue[message.guild.id];
                 delete bot.player.playing[message.guild.id];
+                delete bot.player.settings[message.guild.id];
             }
         });
     }
