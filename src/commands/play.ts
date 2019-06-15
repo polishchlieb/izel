@@ -113,8 +113,8 @@ export default class PlayCommand implements Command {
             respEmbed.addField(messages.videoChannel, current.channel, true);
 
         // TODO: favourite
-        /*message.channel.send(respEmbed)
-        .then((msg: Message) => {
+        message.channel.send(respEmbed)
+        /*.then((msg: Message) => {
             msg.react('⭐');
 
             const reactionFilter: CollectorFilter = (r: MessageReaction, user: User) => r.emoji.name == '⭐' && !user.bot;
