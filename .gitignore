@@ -2,3 +2,4 @@
 /dist/**/*
 Lavalink.jar
 logs/
+config.json

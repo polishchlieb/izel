@@ -6,36 +6,43 @@ export default class GreetingCommand implements Command {
     info = {
         names: ['greeting'],
         description: 'Sets server\'s greeting',
-        usage: '&greeting (greeting / goodbye) (channel mention / placeholders) { text.. }',
+        usage: '&greeting (greeting / goodbye / placeholders) (channel mention) {text..}',
         category: 'admin'
     };
 
     async run(message: Message, args: string[], messages: any): Promise<any> {
-        if(!args[0])
-            return message.reply(`${messages.use} \`${this.info.usage}\``);
+        let [ type, mention, ...content ] = args;
 
+        if(!type || !mention)
+            return message.reply(`${messages.use} \`${this.info.usage}\``);
         if(!message.member.hasPermission('MANAGE_CHANNELS'))
             return message.reply(messages.noPermission);
 
-        if(args[0].toLowerCase() == 'placeholders')
+        if(type.toLowerCase() == 'placeholders')
             return message.channel.send(new RichEmbed()
                 .setTitle(messages.placeholders)
                 .setDescription('%m - user mention\n%u - username')
                 .setColor('RED')
-                .setFooter(`${messages.requestedBy} ${message.member.displayName}`, message.author.avatarURL));
+                .setFooter(
+                    `${messages.requestedBy} ${message.member.displayName}`,
+                    message.author.avatarURL
+                ));
 
-        if(!args[0].match(/<#[0-9]{18}>/))
+        if(!mention.match(/<#[0-9]{18}>/))
             return message.reply(`${messages.use} \`${this.info.usage}\``);
-        let channel: Channel = message.guild.channels.get(args.shift().substring(2, 20));
+        let channel: Channel = message.guild.channels.get(mention.substring(2, 20));
         if(!channel)
             return message.reply(`${messages.use} \`${this.info.usage}\``);
         if(channel.type != 'text')
             return message.reply(messages.mustBeText);
         
+        if(!content.length) // content.length == 0
+            return message.reply(`${messages.use} \`${this.info.usage}\``);
+       
         bot.servers.updateOne({ id: message.guild.id }, {
             $set: { greeting: {
                 channel: channel.id,
-                content: args.join(' ')
+                content
             }}
         }).then((): void => {
             message.react('✅');
