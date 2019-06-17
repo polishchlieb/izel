@@ -18,7 +18,7 @@ export default class GreetingCommand implements Command {
         if(!message.member.hasPermission('MANAGE_CHANNELS'))
             return message.reply(messages.noPermission);
 
-        if(type.toLowerCase() == 'placeholders')
+        if(type == 'placeholders')
             return message.channel.send(new RichEmbed()
                 .setTitle(messages.placeholders)
                 .setDescription('%m - user mention\n%u - username')
@@ -39,13 +39,15 @@ export default class GreetingCommand implements Command {
         if(!content.length) // content.length == 0
             return message.reply(`${messages.use} \`${this.info.usage}\``);
        
-        bot.servers.updateOne({ id: message.guild.id }, {
-            $set: { greeting: {
-                channel: channel.id,
-                content
-            }}
-        }).then((): void => {
-            message.react('✅');
-        });
+        if(type == 'greeting' || type == 'goodbye')
+            bot.servers.updateOne({ id: message.guild.id }, {
+                $set: { [type]: {
+                    channel: channel.id,
+                    content
+                }}
+            }).then((): void => {
+                message.react('✅');
+            });
+        else message.reply(`${messages.use} \`${this.info.usage}\``);
     }
 }
