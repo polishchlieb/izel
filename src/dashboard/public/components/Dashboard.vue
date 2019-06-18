@@ -1,66 +1,36 @@
 <template>
     <div>
-        <v-app dark>
-            <v-toolbar color="primary" app>
-                <v-toolbar-side-icon @click="drawer = !drawer">
-                    <v-icon v-if="drawer == true">
-                        arrow_back
-                    </v-icon>
-                </v-toolbar-side-icon>
-                <v-toolbar-title>izel</v-toolbar-title>
-                <v-spacer></v-spacer>
-                <v-toolbar-items class="hidden-sm-and-down">
-                    <v-btn flat @click="logout()">Logout</v-btn>
-                </v-toolbar-items>
-            </v-toolbar>
-            <v-navigation-drawer app v-model="drawer">                
-                <v-toolbar color="primary">
-                    <v-toolbar-title>Guilds</v-toolbar-title>
-                </v-toolbar>
-                <v-list>
-                    <v-list-tile avatar v-for="(guild, i) in guilds" :key="i" @click="select(guild.id)">
-                        <v-list-tile-avatar>
-                            <v-img v-if="guild.icon" :src="'https://cdn.discordapp.com/icons/'+guild.id+'/'+guild.icon+'.png'"></v-img>
-                            <v-img v-else src="https://discordapp.com/assets/28174a34e77bb5e5310ced9f95cb480b.png"></v-img>
-                        </v-list-tile-avatar>
-                        <v-list-tile-content>
-                            <v-list-tile-title>{{ guild.name }}</v-list-tile-title>
-                        </v-list-tile-content>
-                    </v-list-tile>
-                    <v-divider></v-divider>
-                    <v-list-tile @click="drawer = false; mode = 1">
-                        <v-list-tile-action>
-                            <v-icon>list</v-icon>
-                        </v-list-tile-action>
-                        <v-list-tile-content>
-                            <v-list-tile-title>Commands</v-list-tile-title>
-                        </v-list-tile-content>
-                    </v-list-tile>
-                </v-list>
-            </v-navigation-drawer>
-            
-            <v-content>
-                <v-container fluid>
-                    <Guild v-if="selected && mode == 0" :guild="selected"></Guild>
-                    <Commands v-if="mode == 1"></Commands>
-                </v-container>
-            </v-content>
-        </v-app>
+        <div class="top">
+            <span class="top-title">izel</span>
+            <span style="flex: 1 1;"></span>
+            <div class="top-btn" :class="{ selected: view <= 1 }" @click="viewSet(0)">Guilds</div>
+            <div class="top-btn" :class="{ selected: view == 3 }" @click="viewSet(3)">Radios</div>
+            <div class="top-btn" :class="{ selected: view == 2 }" @click="viewSet(2)">Commands</div>
+            <div class="top-btn logout" @click="logout()">Logout</div>
+        </div>
+        <Menu :user="userData" :guilds="guilds" v-if="view == 0"></Menu>
+        <Guild v-if="view == 1" :guild="selected"></Guild>
+        <Commands v-if="view == 2"></Commands>
+        <Radios v-if="view == 3"></Radios>
     </div>
 </template>
 
 <script>
-import Guild from './Guild.vue';
+import Menu from './dashboard/Menu.vue';
+import Guild from './dashboard/Guild.vue';
+
 import Commands from './Commands.vue';
+import Radios from './Radios.vue';
 
 export default {
+    components: { Menu, Guild, Commands, Radios },
     data: function() {
         return {
-            drawer: true,
             guilds: [],
-            selected: null,
+            selected: {},
             commandsSelected: null,
-            mode: 0
+            view: 0,
+            userData: null, // logged user data
         }
     },
     beforeMount: function() {
@@ -72,34 +42,87 @@ export default {
                 });
             });
     },
-    created: function() {
-        fetch('/api/check')
-            .then(resp => {
-                if(!resp.ok) {
-                    this.$router.push('/');
-                }
-            })
-            .catch(err => {
-                this.$router.push('/');
-            });
+    created: async function() {
+        const resp = await fetch('/api/check');
+        if(resp.ok) {
+            const data = await resp.json();
+            this.userData = data.data;
+        } else {
+            this.$router.push('/');
+        }
     },
     methods: {
         select(id) {
-            this.selected = null;
             fetch('/api/guild?guild=' + id)
                 .then(resp => resp.json())
                 .then(data => {
                     this.selected = data;
+                    this.viewSet(1);
                 });
-            this.drawer = false;
-            this.mode = 0;
+        },
+        viewSet(id) {
+            this.view = id;
         },
         logout() {
             window.location = '/api/logout';
         }
-    },
-    components: {
-        Guild, Commands
     }
 }
 </script>
+
+<style lang="scss" scoped>
+@media screen and (min-width: 512px) {
+    .top {
+        flex-direction: row;
+        position: sticky;
+    }
+}
+
+@media screen and (max-width: 512px) {
+    .top { flex-direction: column; }
+}
+.top {
+    background: #202225;
+    box-shadow: 2px 3px 3px rgba(0,0,0,.24);
+    display: flex;
+    top: 0;
+
+    .top-btn {
+        cursor: pointer;
+        padding: 20px;
+        transition: 200ms;
+        will-change: opacity;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    .top-title {
+        font-weight: 600;
+        padding: 20px;
+    }
+
+    .selected {
+        background: #1d5cb2;
+        will-change: background-color;
+
+        &:hover {
+            opacity: 1;
+            background: #194a8f;
+        }
+    }
+
+    .logout {
+        background: #d32a27;
+        will-change: background-color;
+
+        &:hover {
+            opacity: 1;
+            background: #b41f1f;
+        }
+    }
+}
+
+
+</style>
