@@ -1,17 +1,19 @@
 import { Message } from 'discord.js';
 import Command from '../interfaces/command';
 import bot from '..';
+import Messages from '../interfaces/messages';
 
 export default class LanguageCommand implements Command {
     info = {
         names: ['language', 'lang'],
         description: 'Changes the language',
-        usage: '&language (id)'
-    }
+        usage: '&language (id)',
+        category: 'admin'
+    };
 
     available: string[] = ['pl', 'en'];
 
-    run(message: Message, args: string[], messages: any): any {
+    run(message: Message, args: string[], messages: Messages): any {
         if(args.length != 1 || !this.available.includes(args[0]))
             return message.reply(`${messages.use}: \`${this.info.usage}\``);
         if(!message.member.hasPermission('ADMINISTRATOR') && message.author.id != '372459063339909120')

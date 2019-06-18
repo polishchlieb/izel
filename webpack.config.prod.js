@@ -1,15 +1,15 @@
-const { VueLoaderPlugin } = require("vue-loader");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-
-const webpack = require('webpack')
-
-const { resolve } = require("path");
+const { VueLoaderPlugin } = require('vue-loader');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { resolve } = require('path');
 
 module.exports = {
     mode: 'production',
     entry: [
         './src/dashboard/public/app.js'
     ],
+    performance: {
+        hints: false
+    },
     output: {
         path: resolve(__dirname, 'dist', 'dashboard', 'public'),
         filename: '[name].js'
@@ -26,6 +26,14 @@ module.exports = {
                     'vue-style-loader',
                     'css-loader'
                 ]
+            }, 
+            {
+                test: /\.scss$/,
+                use: [
+                    'vue-style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
@@ -40,15 +48,6 @@ module.exports = {
         new CopyWebpackPlugin([{
             from: './src/dashboard/public/index.html',
             to: '.'
-        }]),
-
-        /*
-        new HtmlWebpackPlugin({
-            title: 'izel',
-            template: './webpack-template.html',
-            inject: 'body',
-            alwaysWriteToDisk: true
-        }),
-        */
+        }])
     ],
-}
+};

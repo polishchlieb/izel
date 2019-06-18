@@ -1,0 +1,94 @@
+{
+    "radios": [
+        {
+            "title": "Evropa 2",
+            "country": "cz",
+            "stream": "http://ice.actve.net/fm-evropa2-aac"
+        },
+        {
+            "title": "RNE 1",
+            "country": "es",
+            "stream": "http://rne.rtveradio.cires21.com/rne/mp3/icecast.audio"
+        },
+        {
+            "title": "los40",
+            "country": "es",
+            "stream": "http://19983.live.streamtheworld.com/LOS40.mp3"
+        },
+        {
+            "title": "MAXIMA FM",
+            "country": "es",
+            "stream": "http://20043.live.streamtheworld.com/MAXIMAFM.mp3"
+        },
+        {
+            "title": "RAC105",
+            "country": "es",
+            "stream": "http://rac105.radiocat.net/;stream.nsv"
+        },
+        {
+            "title": "RMF Maxxx",
+            "country": "pl",
+            "stream": "https://files.kusmierz.be/rmf/maxxx.m3u"
+        },
+        {
+            "title": "RMF FM",
+            "country": "pl",
+            "stream": "https://files.kusmierz.be/rmf/rmf.m3u"
+        },
+        {
+            "title": "RMF Dance",
+            "country": "pl",
+            "stream": "https://files.kusmierz.be/rmf/dance.m3u"
+        },
+        {
+            "title": "Radio 5 Augustów",
+            "country": "pl",
+            "stream": "https://radio5.com.pl/player/?pl=winamp&c=Suwalki"
+        },
+        {
+            "title": "Radio ZET",
+            "country": "pl",
+            "stream": "http://r.dcs.redcdn.pl/sc/o2/Eurozet/live/audio.livx?audio=5"
+        },
+        {
+            "title": "Złote przeboje",
+            "country": "pl",
+            "stream": "http://www.radio.pionier.net.pl/stream.pls?radio=radio88"
+        },
+        {
+            "title": "Plus",
+            "country": "pl",
+            "stream": "http://plu-waw.cdn.eurozet.pl:8318/;stream"
+        },
+        {
+            "title": "NRK P1",
+            "country": "no",
+            "stream": "http://lyd.nrk.no/nrk_radio_p1_ostlandssendingen_mp3_m"
+        },
+        {
+            "title": "NRK P3",
+            "country": "no",
+            "stream": "http://lyd.nrk.no/nrk_radio_p3_mp3_h"
+        },
+        {
+            "title": "NRK mP3",
+            "country": "no",
+            "stream": "http://lyd.nrk.no/nrk_radio_mp3_mp3_h"
+        },
+        {
+            "title": "P4",
+            "country": "no",
+            "stream": "https://p4.p4groupaudio.com/P04_MM?args=web_01&referrer=1&station=1&codec=mp3&quality=medium&distributor=p4&player=radioplayer&playeros=linux"
+        },
+        {
+            "title": "P5 Hits",
+            "country": "no",
+            "stream": "https://p5n.p4groupaudio.com/P05AMM?args=web_01&referrer=2&station=2&codec=mp3&quality=medium&distributor=p4&player=radioplayer&playeros=linux"
+        },
+        {
+            "title": "NRJ",
+            "country": "no",
+            "stream": "https://nrj.p4groupaudio.com/NRJ_MM?args=web_01&referrer=13&station=13&codec=mp3&quality=medium&distributor=p4&player=radioplayer&playeros=linux"
+        }
+    ]
+}

@@ -6,10 +6,11 @@ export default class PingCommand implements Command {
     info = {
         names: ['ping'],
         description: 'Shows bot ping',
-        usage: '&ping'
-    }
+        usage: '&ping',
+        category: 'tool'
+    };
 
-    run(message: Message) {
-        message.reply(`Pong! \`${Math.floor(bot.client.ping)}ms\``);
+    run(message: Message): void {
+        message.reply(`pong! \`${Math.floor(bot.client.ping)}ms\``);
     }
 }

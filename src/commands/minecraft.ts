@@ -1,26 +1,28 @@
 import Command from '../interfaces/command';
 import { Message, RichEmbed } from 'discord.js';
 import fetch, { Response } from 'node-fetch';
+import Messages from '../interfaces/messages';
 
 export default class MinecraftCommand implements Command {
     info = {
         names: ['minecraft', 'mc'],
         description: 'meinkampf server info',
-        usage: '&minecraft (server ip)'
-    }
+        usage: '&minecraft (server ip)',
+        category: 'tool'
+    };
 
-    run(message: Message, args: string[], messages: any): any {
+    run(message: Message, args: string[], messages: Messages): any {
         if(args.length != 1)
             return message.reply(`${messages.use} \`${this.info.usage}\``);
 
         message.channel.startTyping();
         fetch(`http://mcapi.us/server/query?ip=${args[0]}`)
-            .then((res: Response) => res.json())
-            .then((data: any) => {
+            .then((res: Response): Promise<any> => res.json())
+            .then((data: any): void => {
                 if(!data.online)
                     message.channel.send(new RichEmbed()
                         .setTitle(args[0])
-                        .setDescription('Server is offline.'));
+                        .setDescription(messages.serverOffline));
 
                 else message.channel.send(new RichEmbed()
                     .setTitle(args[0])

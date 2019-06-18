@@ -6,14 +6,19 @@ export default class MathCommand implements Command {
     info = {
         names: ['calc'],
         description: 'Calculates something',
-        usage: 'calc (some math)'
-    }
+        usage: '&calc (..)',
+        category: 'tool'
+    };
 
     scope: any = {};
 
     async run(message: Message, args: string[]): Promise<void> {
-        let result = calc(args.join(' '), this.scope);
+        let result: any = calc(args.join(' '), this.scope);
 
-        message.reply(result);
+        if(typeof result == 'object') {
+            result = JSON.parse(JSON.stringify(result));
+            message.channel.send(`**${result.mathjs}**\n${Object.keys(result).slice(1).map((key: string): string => `${key}: ${result[key]}`).join('\n')}`);
+        }
+        else message.channel.send(result);
     }
 }

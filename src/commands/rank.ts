@@ -1,7 +1,9 @@
 import Command from '../interfaces/command';
-import { Message, Attachment, User, GuildMember } from 'discord.js';
+import { Message, Attachment, GuildMember } from 'discord.js';
 import bot from '..';
 import { createCanvas, loadImage, Image, Canvas } from 'canvas';
+import { StatUser } from '../interfaces/databaseStructures';
+import Messages from '../interfaces/messages';
 
 let bg: Image, fg: Image;
 (async () => {
@@ -13,24 +15,28 @@ export default class RankCommand implements Command {
     info = {
         names: ['rank'],
         description: 'Shows your rank',
-        usage: 'rank'
-    }
+        usage: '&rank {mention}',
+        category: 'stats'
+    };
 
-    async run(message: Message, _args: string[], messages: any): Promise<any> {
+    async run(message: Message, _args: string[], messages: Messages): Promise<any> {
         message.channel.startTyping();
 
         let member: GuildMember = message.mentions.members.first();
         if(!member || !message.guild.member(member))
             member = message.member;
 
-        let data: any = await bot.users.findOne({
+        let data: StatUser = await bot.stats.findOne({
             id: member.user.id,
             guild: message.guild.id
         });
 
         if(!data) {
             message.channel.stopTyping();
-            return message.channel.send('somethin gon wrong');
+            return message.channel.send('somethin gon wrong')
+                .then((): void => {
+                    
+                })
         }
 
         let canvas: Canvas = createCanvas(800, 220);
@@ -44,7 +50,11 @@ export default class RankCommand implements Command {
         ctx.drawImage(image, 40, 30, 160, 160);
 
         ctx.font = '50px Fredoka One';
-        ctx.fillText(member.displayName, 730 - ctx.measureText(member.displayName).width, 65);
+
+        let size = ctx.measureText(member.displayName).width;
+        if(size > 500)
+            size = 500;
+        ctx.fillText(member.displayName, 730 - size, 65, 500);
 
         ctx.fillRect(230, 150, ((data.messages - 200 * data.level) / 200) * 525, 40);
 
@@ -55,7 +65,7 @@ export default class RankCommand implements Command {
 
         ctx.fillStyle = '#ffffff';
         ctx.fillText(lvl, 485.5 - ctx.measureText(lvl).width / 2, 180);
-		
+
         message.channel.send('', new Attachment(canvas.createPNGStream(), ''));
 
         message.channel.stopTyping();

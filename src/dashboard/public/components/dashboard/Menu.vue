@@ -1,0 +1,99 @@
+<template>
+    <div class="container">
+        <h1>¡Bienvenidos!</h1>
+        <img class="av" :src="`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}?size=512`">
+        <div class="username">{{ user.username }}#{{ user.discriminator }}</div>
+
+        <h4>your guilds</h4>
+        <div class="guilds">
+            <div class="guild"
+            @click="$parent.select(guild.id)"
+            v-for="(guild, i) in guilds" :key=i>
+                <img class="icon" v-if="guild.icon" :src="`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128`">
+                <img class="icon" v-else src="http://www.deusens.com/wp-content/uploads/2017/04/Hiperdino-Portfolio.png">
+                <span class="name">{{ guild.name }}</span>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    props: ['user', 'guilds']
+}
+</script>
+
+<style lang="scss" scoped>
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-weight: 300;
+    font-size: 2rem;
+    margin: 30px;
+}
+
+.av {
+	width: 120px;
+	margin: auto;
+	height: 120px;
+	display: block;
+	border-radius: 120px;
+}
+
+.username {
+	text-align: center;
+	width: auto;
+	display: block;
+	margin: 10px;
+	font-size: 200%;
+}
+
+@media screen and (min-width: 1024px) {
+    .guilds {
+        grid-template-columns: repeat(3, 33%)
+    }
+}
+.guilds {
+    width: 60%;
+    display: grid;
+}
+
+.guild {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-items: space-evenly;
+    align-items: center;
+    border-radius: 5px;
+    background: #2b2f33;
+
+    transition: 200ms;
+    will-change: background-color;
+    cursor: pointer;
+
+    &:hover {
+        background: #1d5cb2;
+    }
+}
+
+.icon {
+    width: 60px;
+	margin: auto;
+	height: 60px;
+	display: block;
+    padding: 5px 5px 5px 5px;
+	border-radius: 120px;
+}
+
+.name {
+    padding: 5px;
+    font-weight: bolder;
+}
+
+</style>

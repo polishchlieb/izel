@@ -1,27 +1,21 @@
 <template>
-    <div>
-        <v-app dark>
+    <div class="login-ct">
+        <!--<v-app dark>
             <v-layout align-center justify-center>
                 <v-flex xs12 sm4 text-xs-center column>
+        -->
                     <div>
-                        <v-img height="200" contain :src="image"></v-img>
+                        <img height="200" contain :src="image">
                     </div>
                     <div>
-                        <v-img height="100" contain :src="betterlogo"></v-img>
+                        <img height="100" contain :src="betterlogo">
                     </div>
                     <div>
-                        <a href="/api/login">
-                            <v-btn large color="primary">Login with Discord
-                                <v-icon right dark>arrow_forward</v-icon>
-                            </v-btn>
-                        </a>
-                        <a class="a" href="/commands">
-                            <div class="commands">Command list</div>
-                        </a>
+                        <div class="btn icon-btn" @click="open('/api/login')">
+                            <img width="25px" src="https://discordapp.com/assets/28174a34e77bb5e5310ced9f95cb480b.png">
+                            <span>Login with Discord</span>
+                        </div>
                     </div>
-                </v-flex>
-            </v-layout>
-        </v-app>
     </div>
 </template>
 
@@ -41,17 +35,51 @@ export default {
             .then(resp => {
                 if(resp.ok) this.$router.push({ path: '/dashboard' });
             });
+    },
+    methods: {
+        open(url) {
+            window.location = url;
+        }
     }
 }
 </script>
 
-<style>
+<style lang="scss">
+.login-ct {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+
 .a {
     text-decoration: none;
 }
 
 .commands {
     color: gray;
+}
 
+.icon-btn {
+    background: #7289DA;
+    margin: auto;
+    padding: 18px 10px !important;
+    width: 250px;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    & span {
+        font-size: 1em !important;
+        text-decoration: none;
+    }
+
+    & img {
+        justify-content: left;
+    }
 }
 </style>

@@ -1,41 +1,42 @@
 import { Message, RichEmbed, MessageReaction, User, Collection } from 'discord.js';
 import Command from '../interfaces/command';
-import parseTime from '../utils/timeParser';
+import Time from '../utils/timeParser';
 import bot from '..';
+import Messages from '../interfaces/messages';
 
 export default class GiveawayCommand implements Command {
     info = {
         names: ['giveaway'],
         description: 'Calls a giveaway',
-        usage: '&giveaway (time) (topic..)'
-    }
+        usage: '&giveaway (time) (topic..)',
+        category: 'tool'
+    };
 
-    reactions: string[] = ['🍞'];
-
-    async run(message: Message, args: string[], messages: any): Promise<any> {
+    async run(message: Message, args: string[], messages: Messages): Promise<any> {
         if(args.length < 2)
             return message.reply(`${messages.use} ${this.info.usage}`);
 
-        let time: number | false = parseTime(args.shift());
-        if(!time)
+        let time: Time = new Time(args.shift());
+        if(time.invalid)
             return message.reply(`${messages.use} ${this.info.usage}`);
 
-        let reaction: string
-            = this.reactions[Math.floor(Math.random() * this.reactions.length)];
+        let reaction: string = '🍞';
 
-        let giveaway: Message | Message[] = await message.channel.send(
+        let giveaway: Message = await message.channel.send(
             new RichEmbed()
                 .setTitle('GIVEAWAY')
                 .setColor('RANDOM')
-                .setDescription(`${args.join(' ')}\n${messages.reactGiveaway.replace('{}', reaction)}`)
-        );
-        if(!(giveaway instanceof Message)) return;
-        
+                .setDescription(`
+                ${args.join(' ')}
+
+                ${messages.reactGiveaway.replace('{}', reaction)}
+                ${messages.endsIn} ${time.raw}
+                `)
+        ) as Message;
+
         giveaway.react(reaction);
 
         setTimeout((): void => {
-            if(!(giveaway instanceof Message)) return;
-
             giveaway.reactions
                 .find((r: MessageReaction): boolean => {
                     return r.emoji.toString() == reaction;
@@ -59,6 +60,6 @@ export default class GiveawayCommand implements Command {
                     
                     message.channel.send(`${winner.toString()} ${messages.won.replace('{}', args.join(' '))}`);
                 });
-        }, time);
+        }, time.ms);
     }
 }

@@ -24,30 +24,76 @@ import WeatherCommand from '../commands/weather';
 import LanguageCommand from '../commands/language';
 import GiveawayCommand from '../commands/giveaway';
 import PingCommand from '../commands/ping';
+import TagCommand from '../commands/tag';
+import JoinCommand from '../commands/join';
+import PruneCommand from '../commands/prune';
+import PlayCommand from '../commands/play';
+import SkipCommand from '../commands/skip';
+import SayCommand from '../commands/say';
+import DiceCommand from '../commands/dice';
+import RankingCommand from '../commands/ranking';
+import QueueCommand from '../commands/queue';
+import BanCommand from '../commands/ban';
+import ServerInfoCommand from '../commands/serverinfo';
+import PermissionsCommand from '../commands/permissions';
+import KickCommand from '../commands/kick';
+import StopCommand from '../commands/stop';
+import PrefixCommand from '../commands/prefix';
+import StatsCommand from '../commands/stats';
+import ExecCommand from '../commands/exec';
+import ProfileCommand from '../commands/profile';
+import AutoRoleCommand from '../commands/autorole';
+import GreetingCommand from '../commands/greeting';
+import PlayingCommand from '../commands/playing';
+import ChannelCommand from '../commands/channel';
+import { PlayerManager } from 'discord.js-lavalink';
+import RadioCommand from '../commands/radio';
+import RemoveCommand from '../commands/remove';
+import ClearqueueCommand from '../commands/clearqueue';
+import BassCommand from '../commands/bass';
 
 export const loadEvents = (bot: Bot): void => {
-    bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent, new GuildDeleteEvent,
-        new GuildMemberAddEvent, new GuildMemberRemoveEvent);
+    bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
+        new GuildDeleteEvent, new GuildMemberAddEvent/*, new GuildMemberRemoveEvent*/);
     bot.events.forEach((event: Event): void => {
         bot.client.on(event.name, event.run);
     });
-    
+
     console.log(blue(`Loaded ${bot.events.length} events`));
 }
 
 export const loadCommands = (bot: Bot): void => {
-    bot.commands.push(new RankCommand, new TopCommand, new EvalCommand, new MathCommand,
-        new PollCommand, new HelpCommand, new MinecraftCommand,
+    bot.commands.push(new RankCommand, new TopCommand, new EvalCommand,
+        new MathCommand, new PollCommand, new HelpCommand, new MinecraftCommand,
         new ChooseCommand, new WeatherCommand, new LanguageCommand,
-        new GiveawayCommand, new PingCommand, new MathCommand, new CalcCommand);
-    
+        new GiveawayCommand, new PingCommand, new MathCommand, new CalcCommand,
+        new TagCommand, new JoinCommand, new PruneCommand, new PlayCommand,
+        new SkipCommand, new SayCommand, new DiceCommand, new RankingCommand,
+        new QueueCommand, new BanCommand, new ServerInfoCommand,
+        new PermissionsCommand, new KickCommand, new StopCommand,
+        new PrefixCommand, new StatsCommand, new ExecCommand, new ProfileCommand,
+        new AutoRoleCommand, new GreetingCommand, new PlayingCommand, new ChannelCommand,
+        new RadioCommand, new RemoveCommand, new ClearqueueCommand, new BassCommand);
+
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }
 
 export const loadDashboard = (): void => {
-    const dashboard: Dashboard = new Dashboard;
-    dashboard.init();
-    dashboard.start();
-
+    new Dashboard;
     console.log(blue('Loaded dashboard\n'));
+}
+
+export const loadPlayer = (bot: Bot): void => {
+    bot.player.nodes = [
+        { host: 'localhost', port: 2333, password: 'totallydefaultpassword'}
+    ]
+
+    bot.player.manager = new PlayerManager(bot.client, bot.player.nodes, {
+        user: bot.client.user.id,
+        shards: 0
+    })
+
+    bot.player.queue = {};
+    bot.player.playing = {};
+    bot.player.settings = {};
 }
