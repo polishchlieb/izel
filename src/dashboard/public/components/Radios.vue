@@ -1,6 +1,5 @@
 <template>
     <div>
-        <v-app dark>
             <div class="command-ct">
                 <h1>Radios</h1>
                 <h2>Use &amp;radio &lt;name&gt;, &amp; is your prefix</h2>
@@ -15,7 +14,6 @@
                     </div>
                 </div>
             </div>
-        </v-app>
     </div>
 </template>
 
@@ -75,6 +73,9 @@ h2 {
 .table {
     display: flex;
 }
+
+
+
 .item {
     display: flex;
     flex-direction: row;
@@ -82,7 +83,7 @@ h2 {
 }
 
 .name {
-    width: 20em;
+    width: 15em;
     font-weight: bolder;
     padding: 15px;
 }
@@ -99,6 +100,7 @@ h2 {
     padding: 15px;
     background: #1d6d9e;
     font-weight: bolder;
+    border-radius: 3px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 </style>

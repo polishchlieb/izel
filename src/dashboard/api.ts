@@ -161,6 +161,7 @@ router.get('/guild', async (req: Request, res: Response): Promise<void> => {
                 top: result,
                 guildName: Tguild.name,
                 userID: user.id,
+                icon: Tguild.iconURL,
                 admin: Tguild.member(user.id).hasPermission('ADMINISTRATOR') ?
                     bot.servers.findOne({ id: Tguild.id }) : null
             });
