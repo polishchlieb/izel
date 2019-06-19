@@ -6,5 +6,5 @@ export default interface Command {
         names: string[],
         description: string,
         usage: string
-    }
+    };
 }

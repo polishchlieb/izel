@@ -1,6 +1,5 @@
 <template id="commands">
     <div>
-        <v-app dark>
             <div class="command-ct">
                 <h1>Commands</h1>
                 <div class="table">
@@ -17,24 +16,6 @@
                     </div>
                 </div>
             </div>
-        </v-app>
-            <!--<v-layout>
-                <v-flex xs12 sm10 offset-sm1 column>
-                    <v-card id="commands">
-                        <v-toolbar flat class="primary">
-                            <v-toolbar-title>Commands</v-toolbar-title>
-                        </v-toolbar>
-
-                        <v-list>
-                            <div v-for="(command, i) in commands" :key="i" class="flex-list">
-                                <div class="usage">{{ command.usage }}</div>
-                                <div class="description">{{ command.description }}</div>
-                                {{ command.category }}
-                            </div>
-                        </v-list>
-                    </v-card>
-                </v-flex>
-            </v-layout>-->
     </div>
 </template>
 
@@ -109,7 +90,7 @@ h1 {
 }
 
 .name {
-    width: 10em;
+    width: 5em;
     font-weight: bolder;
     padding: 15px;
 }
