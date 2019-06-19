@@ -1,6 +1,12 @@
 # Changelog
 
 # 2.6
+## 2.6.1
+- Updated dashboard
+- Added goodbyes (`greeting goodbye ...`)
+- Bugfixes
+- Prettied some code
+
 ## 2.6.0
 - *Huge* music update
     - Added radios
