@@ -3,6 +3,7 @@ import { Message, RichEmbed } from 'discord.js';
 import bot from '..';
 import { Permission } from '../interfaces/databaseStructures';
 import Messages from '../interfaces/messages';
+const { developerMode } = require('../../config.json');
 
 export default class EvalCommand implements Command {
     info = {
@@ -15,6 +16,8 @@ export default class EvalCommand implements Command {
     scope: any = {};
 
     async run(message: Message, [ flag, ...expr ]: string[], { use }: Messages): Promise<any> {
+        if(!developerMode) return;
+        
         let permissions: Permission = await bot.permissions.findOne({
             action: 'eval'
         });
