@@ -1,5 +1,6 @@
 import bot from "..";
 import fetch from "node-fetch";
+import { URLSearchParams } from 'url';
 
 export const getSongs = async(query: string): Promise<any> => {
     const node = bot.player.nodes[0];
