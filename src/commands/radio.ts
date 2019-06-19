@@ -2,6 +2,7 @@ import Command from '../interfaces/command';
 import { Message, RichEmbed } from 'discord.js';
 import PlayCommand from './play';
 import Messages from '../interfaces/messages';
+const { dashboard } = require('../../config.json');
 
 const { radios }: { radios: any[] } = require('../../radios.json')
 
@@ -18,8 +19,8 @@ export default class RadioCommand implements Command {
             return message.channel.send(new RichEmbed()
                 .setTitle('Radio')
                 .setColor('RANDOM')
-                .setDescription(messages.radioDescription +'\nhttp://izel.chlebe.tk/radios')
-                .setURL('http://izel.chlebe.tk/radios')
+                .setDescription(messages.radioDescription +'\n'+dashboard+'/radios')
+                .setURL(dashboard+'/radios')
                 .setFooter(`${messages.requestedBy} ${message.member.displayName}`, message.author.avatarURL));
         
         let query: string = arg.join(' ').toLowerCase();
