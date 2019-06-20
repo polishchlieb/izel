@@ -6,12 +6,14 @@
 - Added goodbyes (`greeting goodbye ...`)
 - Bugfixes
 - Prettied some code
+- Added developer mode and custom dashboard url
 
 ## 2.6.0
 - *Huge* music update
     - Added radios
     - Updated almost everything
     - Replaced ytdl with Lavalink
+    - Added `bass` command
 - Prettied some code
 - Updated `eval, weather` commands
 
