@@ -6,12 +6,12 @@
 
         <h4>your guilds</h4>
         <div class="guilds">
-            <div class="guild"
-            @click="$parent.select(guild.id)"
-            v-for="(guild, i) in guilds" :key=i>
+            <div class="guild" @click="$parent.select(guild.id)" v-for="(guild, i) in guilds" :key="i">
                 <img class="icon" v-if="guild.icon" :src="`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128`">
                 <img class="icon" v-else src="http://www.deusens.com/wp-content/uploads/2017/04/Hiperdino-Portfolio.png">
-                <span class="name">{{ guild.name }}</span>
+                <span class="name">
+                    {{ guild.name }}
+                </span>
             </div>
         </div>
     </div>

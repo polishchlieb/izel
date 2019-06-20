@@ -6,9 +6,34 @@
             "stream": "http://ice.actve.net/fm-evropa2-aac"
         },
         {
+            "title": "Canal Fiesta",
+            "country": "es",
+            "stream": "http://195.55.74.203/rtva/canalfiestaradio_master.mp3"
+        },
+        {
+            "title": "hit fm",
+            "country": "es",
+            "stream": "http://hitfm.kissfmradio.cires21.com/hitfm.mp3"
+        },
+        {
             "title": "RNE 1",
             "country": "es",
             "stream": "http://rne.rtveradio.cires21.com/rne/mp3/icecast.audio"
+        },
+        {
+            "title": "RNE 3",
+            "country": "es",
+            "stream": "http://radio3.rtveradio.cires21.com/radio3.mp3"
+        },
+        {
+            "title": "RNE 5",
+            "country": "es",
+            "stream": "http://radio5.rtveradio.cires21.com/radio5.mp3"
+        },
+        {
+            "title": "Flaixbac",
+            "country": "es",
+            "stream": "http://radiostream.radioflaixbac.cat:8004/;"
         },
         {
             "title": "los40",
@@ -56,9 +81,70 @@
             "stream": "http://www.radio.pionier.net.pl/stream.pls?radio=radio88"
         },
         {
-            "title": "Plus",
+            "title": "Radio Plus",
             "country": "pl",
             "stream": "http://plu-waw.cdn.eurozet.pl:8318/;stream"
+        },
+        {
+            "title": "RMF Maxxx 2004",
+            "country": "pl",
+            "stream": "https://files.kusmierz.be/rmf/rmf_maxxx_2004.m3u"
+        }, {
+            "title": "RMF Maxxx 2005",
+            "country": "pl",
+            "stream": "https://files.kusmierz.be/rmf/rmf_maxxx_2005.m3u"
+        }, {
+            "title": "RMF Maxxx 2006",
+            "country": "pl",
+            "stream": "https://files.kusmierz.be/rmf/rmf_maxxx_2006.m3u"
+        }, {
+            "title": "RMF Maxxx 2007",
+            "country": "pl",
+            "stream": "https://files.kusmierz.be/rmf/rmf_maxxx_2007.m3u"
+        }, {
+            "title": "RMF Maxxx 2008",
+            "country": "pl",
+            "stream": "https://files.kusmierz.be/rmf/rmf_maxxx_2008.m3u"
+        }, {
+            "title": "RMF Maxxx 2009",
+            "country": "pl",
+            "stream": "https://files.kusmierz.be/rmf/rmf_maxxx_2009.m3u"
+        }, {
+            "title": "RMF Maxxx 2010",
+            "country": "pl",
+            "stream": "https://files.kusmierz.be/rmf/rmf_maxxx_2010.m3u"
+        }, {
+            "title": "RMF Maxxx 2011",
+            "country": "pl",
+            "stream": "https://files.kusmierz.be/rmf/rmf_maxxx_2011.m3u"
+        }, {
+            "title": "RMF Maxxx 2012",
+            "country": "pl",
+            "stream": "https://files.kusmierz.be/rmf/rmf_maxxx_2012.m3u"
+        }, {
+            "title": "RMF Maxxx 2013",
+            "country": "pl",
+            "stream": "https://files.kusmierz.be/rmf/rmf_maxxx_2013.m3u"
+        }, {
+            "title": "RMF Maxxx 2014",
+            "country": "pl",
+            "stream": "https://files.kusmierz.be/rmf/rmf_maxxx_2014.m3u"
+        }, {
+            "title": "RMF Maxxx 2015",
+            "country": "pl",
+            "stream": "https://files.kusmierz.be/rmf/rmf_maxxx_2015.m3u"
+        }, {
+            "title": "RMF Maxxx 2016",
+            "country": "pl",
+            "stream": "https://files.kusmierz.be/rmf/rmf_maxxx_2016.m3u"
+        }, {
+            "title": "RMF Maxxx 2017",
+            "country": "pl",
+            "stream": "https://files.kusmierz.be/rmf/rmf_maxxx_2017.m3u"
+        }, {
+            "title": "RMF Maxxx 2018",
+            "country": "pl",
+            "stream": "https://files.kusmierz.be/rmf/rmf_maxxx_2018.m3u"
         },
         {
             "title": "NRK P1",
