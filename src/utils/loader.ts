@@ -53,7 +53,7 @@ import BassCommand from '../commands/bass';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
-        new GuildDeleteEvent, new GuildMemberAddEvent/*, new GuildMemberRemoveEvent*/);
+        new GuildDeleteEvent, new GuildMemberAddEvent, new GuildMemberRemoveEvent);
     bot.events.forEach((event: Event): void => {
         bot.client.on(event.name, event.run);
     });
@@ -84,13 +84,13 @@ export const loadDashboard = (): void => {
 
 export const loadPlayer = (bot: Bot): void => {
     bot.player.nodes = [
-        { host: 'localhost', port: 2333, password: 'totallydefaultpassword'}
-    ]
+        { host: 'localhost', port: 2333, password: 'totallydefaultpassword' }
+    ];
 
     bot.player.manager = new PlayerManager(bot.client, bot.player.nodes, {
         user: bot.client.user.id,
         shards: 0
-    })
+    });
 
     bot.player.queue = {};
     bot.player.playing = {};
