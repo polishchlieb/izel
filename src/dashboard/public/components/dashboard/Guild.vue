@@ -97,7 +97,7 @@ export default {
     padding: 10px;
 }
 .av {
-	width: 30px;
+	min-width: 30px;
 	margin: auto;
     display: block;
 	height: 30px;
