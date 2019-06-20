@@ -8,9 +8,9 @@ import bot from '..';
 import Command from '../interfaces/command';
 
 const router: Router = Router();
-const { id, secret, callback }: { id: string, secret: string, callback: string }
+const { id, secret, dashboard }: { id: string, secret: string, dashboard: string }
     = require('../../config.json');
-const redirect: string = encodeURIComponent(callback);
+const redirect: string = encodeURIComponent(dashboard+'/api/callback');
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());

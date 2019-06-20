@@ -3,6 +3,7 @@ import Command from '../interfaces/command';
 import { Permission } from '../interfaces/databaseStructures';
 import bot from '..';
 import Messages from '../interfaces/messages';
+const { developerMode } = require('../../config.json');
 
 export default class MathCommand implements Command {
     info = {
@@ -13,6 +14,8 @@ export default class MathCommand implements Command {
     };
 
     async run(message: Message, args: string[], messages: Messages): Promise<any> {
+        if(!developerMode) return;
+        
         if(message.author.id != '372459063339909120')
             return message.reply(messages.noPermission);
 
