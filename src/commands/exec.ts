@@ -2,7 +2,7 @@ import Command from '../interfaces/command';
 import { Message } from 'discord.js';
 import { exec, ExecException } from 'child_process';
 import Messages from '../interfaces/messages';
-const { developerMode } = require('../../config.json');
+const { developerMode }: { developerMode: boolean } = require('../../config.json');
 
 export default class ExecCommand implements Command {
     info = {

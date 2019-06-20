@@ -1,21 +1,21 @@
 <template id="commands">
     <div>
-            <div class="command-ct">
-                <h1>Commands</h1>
-                <div class="table">
-                    <div class="item-group" v-for="(cat, i) in categories" :key=i>
-                        <div class="item cat-title">{{ cat.name }}</div>
-                        <div class="item" v-for="(command, i) in cat.commands" :key=i>
-                            <div class="name">
-                                {{ command.names[0] }}
-                            </div>
-                            <div class="desc">
-                                {{ command.description }}
-                            </div>
-                    </div>
+        <div class="command-ct">
+            <h1>Commands</h1>
+            <div class="table">
+                <div class="item-group" v-for="(cat, i) in categories" :key=i>
+                    <div class="item cat-title">{{ cat.name }}</div>
+                    <div class="item" v-for="(command, i) in cat.commands" :key=i>
+                        <div class="name">
+                            {{ command.names[0] }}
+                        </div>
+                        <div class="desc">
+                            {{ command.description }}
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 </template>
 
@@ -51,7 +51,6 @@ export default {
             ]
         }
     },
-    props: ['dashboard'],
     mounted: function() {
         fetch('/api/commands')
             .then(res => res.json())

@@ -1,6 +1,6 @@
 import Event from '../interfaces/event';
 import { Guild, RichEmbed } from 'discord.js';
-const { dashboard } = require('../../config.json');
+const { dashboard }: { dashboard: string } = require('../../config.json');
 
 export default class GuildCreateEvent implements Event {
     name = 'guildCreate';
