@@ -1,8 +1,8 @@
-import Command from "../interfaces/command";
-import { Message } from "discord.js";
-import Messages from "../interfaces/messages";
-import bot from "..";
-import { Player } from "discord.js-lavalink";
+import Command from '../interfaces/command';
+import { Message } from 'discord.js';
+import Messages from '../interfaces/messages';
+import bot from '..';
+import { Player } from 'discord.js-lavalink';
 
 export default class BassCommand implements Command {
     info = {
@@ -15,12 +15,11 @@ export default class BassCommand implements Command {
     run(message: Message, args: string[], messages: Messages) {
         const player: Player = bot.player.manager.get(message.guild.id);
         
-        if (!player) {
+        if(!player)
             return message.reply(messages.notPlaying)
-        }
 
-        let mode = bot.player.settings[message.guild.id].bass;
-        if (message.member.voiceChannel.id == player.channel) {
+        let mode: boolean = bot.player.settings[message.guild.id].bass;
+        if(message.member.voiceChannel.id == player.channel) {
             if (message.member.roles.find('name', 'DJ') || message.member.permissions.hasPermission("ADMINISTRATOR")) {
                 if(!mode) {
                     setTimeout(() => player.volume(600), 3000);
