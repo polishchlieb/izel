@@ -31,7 +31,7 @@ export default class WeatherCommand implements Command {
                         message.author.avatarURL
                     )
                     .setThumbnail(`http://openweathermap.org/img/w/${data.weather[0].icon}.png`)
-                    .setDescription(messages.weather[data.weather[0].id.toString()]));
+                    .setDescription(messages.weatherDescriptions[data.weather[0].id.toString()]));
             });
     }
 }
