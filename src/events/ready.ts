@@ -1,7 +1,6 @@
 import { green, yellow } from 'colors';
 import Event from '../interfaces/event';
 import bot from '..';
-import fetch, { Response } from 'node-fetch';
 
 const { version }: { version: string } = require('../../package.json');
 
@@ -13,7 +12,7 @@ export default class ReadyEvent implements Event {
         let data: any = await fetch('https://raw.githubusercontent.com/polishchlieb/izel/master/package.json')
             .then((res: Response): Promise<any> => res.json());
         if(data.version != version)
-            console.log(yellow(`Update is available: version ${version}`))
+            console.log(yellow(`Update is available: version ${version}\n`));
         
         console.log(green('Bot is ready'));
         console.log(green(`Running on ${bot.client.guilds.size} servers`));

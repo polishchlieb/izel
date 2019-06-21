@@ -2,7 +2,8 @@
 
 # 2.6
 ## 2.6.2
-- Added update check
+- Added auto update check
+- Updated `weather` command
 
 ## 2.6.1
 - Updated dashboard
