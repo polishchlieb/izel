@@ -1,11 +1,19 @@
-import { green } from 'colors';
+import { green, yellow } from 'colors';
 import Event from '../interfaces/event';
 import bot from '..';
+
+const { version }: { version: string } = require('../../package.json');
 
 export default class ReadyEvent implements Event {
     name = 'ready';
 
-    run(): void {
+    async run(): Promise<void> {
+        console.log(yellow('Checking for updates..'));
+        let data: any = await fetch('https://raw.githubusercontent.com/polishchlieb/izel/master/package.json')
+            .then((res: Response): Promise<any> => res.json());
+        if(data.version != version)
+            console.log(yellow(`Update is available: version ${version}\n`));
+        
         console.log(green('Bot is ready'));
         console.log(green(`Running on ${bot.client.guilds.size} servers`));
         console.log(green(`Serving ${bot.client.users.size} users\n`));
