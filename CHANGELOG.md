@@ -1,6 +1,9 @@
 # Changelog
 
 # 2.6
+## 2.6.2
+- Added update check
+
 ## 2.6.1
 - Updated dashboard
 - Added goodbyes (`greeting goodbye ...`)
