@@ -1,4 +1,5 @@
 import { green, yellow } from 'colors';
+import fetch, { Response } from 'node-fetch';
 import Event from '../interfaces/event';
 import bot from '..';
 
