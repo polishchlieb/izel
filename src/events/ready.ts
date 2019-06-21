@@ -13,7 +13,8 @@ export default class ReadyEvent implements Event {
         let data: any = await fetch('https://raw.githubusercontent.com/polishchlieb/izel/master/package.json')
             .then((res: Response): Promise<any> => res.json());
         if(data.version != version)
-            console.log(yellow(`Update is available: version ${version}\n`));
+            console.log(yellow(`Update is available: version ${version}`));
+        console.log('');
         
         console.log(green('Bot is ready'));
         console.log(green(`Running on ${bot.client.guilds.size} servers`));
