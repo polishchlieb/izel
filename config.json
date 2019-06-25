@@ -1,8 +1,9 @@
 {
-    "token": "NTkxNjg2Mzg2MTg1MjczMzgx.XQ0auw.uO12pYBjCfWrzUGxxrN84Ulhyqs",
-    "openWeatherApi": "121a5f2255696f766cba3aeb00c73fad",
-    "id": "591686386185273381",
-    "secret": "H1xd_7APs73ObNV6WXy1OszRY3Hv-ICg",
-    "dashboard": "https://localhost",
-    "developerMode": true
+    "token": "",
+    "openWeatherApi": "",
+    "id": "",
+    "secret": "",
+    "dashboard": "",
+    "developerMode": true,
+    "invite": ""
 }
