@@ -1,5 +1,5 @@
 import Command from '../interfaces/command';
-import { Message, RichEmbed, CollectorFilter, MessageReaction, ReactionCollector, User } from 'discord.js';
+import { Message, RichEmbed } from 'discord.js';
 import bot from '..';
 import { getSongs } from '../utils/music';
 import { Track, QueueTrack } from '../interfaces/player';

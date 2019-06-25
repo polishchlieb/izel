@@ -15,7 +15,7 @@ export default class StopCommand implements Command {
     run(message: Message, []: string[], messages: Messages): any {
         if(!message.member.voiceChannel)
             return message.reply(messages.connectVoice);
-
+        
         let player: Player = bot.player.manager.get(message.guild.id);
         if(player) {
             bot.player.manager.leave(message.guild.id);

@@ -2,7 +2,7 @@ import Command from '../interfaces/command';
 import { Message, RichEmbed } from 'discord.js';
 import bot from '..';
 import Messages from '../interfaces/messages';
-const { dashboard }: { dashboard: string } = require('../../config.json');
+const { dashboard, invite }: { dashboard: string, invite: string } = require('../../config.json');
 
 export default class HelpCommand implements Command {
     info = {
@@ -22,6 +22,7 @@ export default class HelpCommand implements Command {
             .addField('Webpanel', dashboard)
             .addField(messages.communityServer, 'https://discord.gg/kDgxGQ6')
             .addField(messages.developers, '<@372459063339909120>\n<@271728660963262464>')
+            .addField('Invitelink', invite)
             .setFooter(
                 `${messages.requestedBy} ${message.member.displayName}`,
                 message.author.avatarURL
