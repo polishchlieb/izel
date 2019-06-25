@@ -33,10 +33,7 @@ export default class RankCommand implements Command {
 
         if(!data) {
             message.channel.stopTyping();
-            return message.channel.send('somethin gon wrong')
-                .then((): void => {
-                    
-                })
+            return message.channel.send('somethin gon wrong');
         }
 
         let canvas: Canvas = createCanvas(800, 220);
