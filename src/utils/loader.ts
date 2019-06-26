@@ -1,6 +1,7 @@
 import { blue } from 'colors';
-import Event from '../interfaces/event';
+import { PlayerManager } from 'discord.js-lavalink';
 
+import Event from '../interfaces/event';
 import Bot from '../bot';
 import Dashboard from '../dashboard';
 
@@ -45,11 +46,11 @@ import AutoRoleCommand from '../commands/autorole';
 import GreetingCommand from '../commands/greeting';
 import PlayingCommand from '../commands/playing';
 import ChannelCommand from '../commands/channel';
-import { PlayerManager } from 'discord.js-lavalink';
 import RadioCommand from '../commands/radio';
 import RemoveCommand from '../commands/remove';
 import ClearqueueCommand from '../commands/clearqueue';
 import BassCommand from '../commands/bass';
+import AvatarCommand from '../commands/avatar';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
@@ -72,7 +73,8 @@ export const loadCommands = (bot: Bot): void => {
         new PermissionsCommand, new KickCommand, new StopCommand,
         new PrefixCommand, new StatsCommand, new ExecCommand, new ProfileCommand,
         new AutoRoleCommand, new GreetingCommand, new PlayingCommand, new ChannelCommand,
-        new RadioCommand, new RemoveCommand, new ClearqueueCommand, new BassCommand);
+        new RadioCommand, new RemoveCommand, new ClearqueueCommand, new BassCommand,
+        new AvatarCommand);
 
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }

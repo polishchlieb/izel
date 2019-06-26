@@ -21,36 +21,16 @@
 
 <script>
 export default {
-    data: function() {
-        return {
-            categories: [
-                {
-                    name: 'admin',
-                    commands: []
-                },
-                {
-                    name: 'developer',
-                    commands: []
-                },
-                {
-                    name: 'music',
-                    commands: []
-                },
-                {
-                    name: 'music (DJ)',
-                    commands: []
-                },
-                {
-                    name: 'stats',
-                    commands: []
-                },
-                {
-                    name: 'tool',
-                    commands: []
-                }
-            ]
-        }
-    },
+    data: () => ({
+        categories: [
+            { name: 'admin', commands: [] },
+            { name: 'developer', commands: [] },
+            { name: 'music', commands: [] },
+            { name: 'music (DJ)', commands: [] },
+            { name: 'stats', commands: [] },
+            { name: 'tool', commands: [] }
+        ]
+    }),
     mounted: function() {
         fetch('/api/commands')
             .then(res => res.json())
@@ -59,14 +39,14 @@ export default {
                     if(a.names[0] < b.names[0]) return -1;
                     if(a.names[0] > b.names[0]) return 1;
                     return 0;
-                })
+                });
                 resp.forEach(cmd => {
                     let bb = this.categories.find(cat => cat.name == cmd.category);
                     bb.commands.push(cmd);
-                })
+                });
             });
     }
-}
+};
 </script>
 
 <style scoped>

@@ -1,5 +1,4 @@
-/node_modules/**/*
-/dist/**/*
-Lavalink.jar
-logs/
-config.json
+/node_modules/
+/dist/
+/Lavalink.jar
+/logs/

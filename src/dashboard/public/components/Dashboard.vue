@@ -24,15 +24,13 @@ import Radios from './Radios.vue';
 
 export default {
     components: { Menu, Guild, Commands, Radios },
-    data: function() {
-        return {
-            guilds: [],
-            selected: {},
-            commandsSelected: null,
-            view: 0,
-            userData: null, // logged user data
-        }
-    },
+    data: () => ({
+        guilds: [],
+        selected: {},
+        commandsSelected: null,
+        view: 0,
+        userData: null, // logged user data
+    }),
     beforeMount: function() {
         fetch('/api/guilds')
             .then(resp => resp.json())
@@ -47,9 +45,7 @@ export default {
         if(resp.ok) {
             const data = await resp.json();
             this.userData = data.data;
-        } else {
-            this.$router.push('/');
-        }
+        } else this.$router.push('/');
     },
     methods: {
         select(id) {
@@ -67,7 +63,7 @@ export default {
             window.location = '/api/logout';
         }
     }
-}
+};
 </script>
 
 <style lang="scss" scoped>

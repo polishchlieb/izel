@@ -137,5 +137,6 @@
         "802": "Scattered clouds: 25-50%",
         "803": "Broken clouds: 51-84%",
         "804": "Overcast clouds: 85-100%"
-    }
+    },
+    "removed": "Removed track: {}"
 }

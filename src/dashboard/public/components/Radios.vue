@@ -19,11 +19,9 @@
 
 <script>
 export default {
-    data: function() {
-        return {
-            categories: []
-        }
-    },
+    data: () => ({
+        categories: []
+    }),
     mounted: function() {
         fetch('/api/radios')
             .then(res => res.json())
