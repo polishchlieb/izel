@@ -6,7 +6,8 @@ export default class AvatarCommand implements Command {
     info = {
         names: ['avatar', 'av'],
         description: 'Displays avatar',
-        usage: '&avatar (mention)'
+        usage: '&avatar (mention)',
+        category: 'tool'
     };
 
     run(message: Message, []: string[], messages: Messages): void {
