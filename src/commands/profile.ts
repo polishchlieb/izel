@@ -53,7 +53,7 @@ export default class ProfileCommand implements Command {
             [0] + 1;
         ctx.fillText(`numer ${global_top}`, 158, 364);
 
-        let coins: number = (await bot.stats.find({ id: message.author.id })
+        let coins: number = (await bot.stats.find({ id: member.user.id })
             .toArray()).map((u: StatUser): number => u.messages)
             .reduce((prev: number, curr: number): number => prev + curr);
         ctx.fillText(`${coins} pienionzkuw`, 112, 424);
