@@ -5,7 +5,7 @@
             <div class="table">
                 <div class="item-group" v-for="(cat, i) in categories" :key=i>
                     <div class="item cat-title">{{ cat.name }}</div>
-                    <div class="item" v-for="(command, i) in cat.commands" :key=i>
+                    <div class="item appear" v-for="(command, i) in cat.commands" :key=i>
                         <div class="name">
                             {{ command.names[0] }}
                         </div>
@@ -50,6 +50,16 @@ export default {
 </script>
 
 <style scoped>
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+
 h1 {
     font-weight: 300;
     font-size: 3rem;
@@ -65,7 +75,7 @@ h1 {
 .item {
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid hsla(0,0%,100%,.04);
+    border-bottom: 1px solid hsla(0, 0%, 100%, .04);
 }
 
 .name {

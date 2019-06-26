@@ -6,7 +6,7 @@
             <div class="table">
                 <div class="item-group" v-for="(cat, i) in categories" :key="i">
                     <div class="item cat-title">{{ cat.name }}</div>
-                    <div class="item" v-for="(radio, i) in cat.radios" :key="i">
+                    <div class="item appear" v-for="(radio, i) in cat.radios" :key="i">
                         <div class="name">
                             {{ radio.title }}
                         </div>
@@ -64,12 +64,10 @@ h2 {
     display: flex;
 }
 
-
-
 .item {
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid hsla(0,0%,100%,.04);
+    border-bottom: 1px solid hsla(0, 0%, 100%, .04);
 }
 
 .name {

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="header">
-            <img class="icon" :src="`${guild.icon}?size=512`">
+            <img class="icon appear" :src="`${guild.icon}?size=512`">
             <div class="title">
                 {{ guild.guildName }}
             </div>

@@ -1,14 +1,14 @@
 <template>
     <div class="login-ct">
         <div>
-            <img height="200" contain :src="image">
+            <img height="200" contain :src="image" class="appear">
         </div>
         <div>
-            <img height="100" contain :src="betterlogo">
+            <img height="100" contain :src="betterlogo" class="appear">
         </div>
         <div>
             <div class="btn icon-btn" @click="open('/api/login')">
-                <img width="25px" src="https://discordapp.com/assets/28174a34e77bb5e5310ced9f95cb480b.png">
+                <img width="25px" src="https://discordapp.com/assets/28174a34e77bb5e5310ced9f95cb480b.png" class="appear">
                 <span>Login with Discord</span>
             </div>
         </div>
