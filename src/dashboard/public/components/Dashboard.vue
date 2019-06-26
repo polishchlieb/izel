@@ -49,7 +49,7 @@ export default {
     },
     methods: {
         select(id) {
-            fetch('/api/guild?guild=' + id)
+            fetch(`/api/guild?guild=${id}`)
                 .then(resp => resp.json())
                 .then(data => {
                     this.selected = data;
@@ -67,16 +67,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@media screen and (min-width: 512px) {
-    .top {
-        flex-direction: row;
-        position: sticky;
-    }
-}
-
-@media screen and (max-width: 512px) {
-    .top { flex-direction: column; }
-}
 .top {
     background: #202225;
     box-shadow: 2px 3px 3px rgba(0,0,0,.24);

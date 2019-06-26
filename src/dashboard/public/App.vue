@@ -29,6 +29,21 @@ export default {
 </script>
 
 <style lang="scss">
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+
+.appear {
+    animation: fadeIn .3s both;
+    -webkit-animation: fadeIn .3s both;
+}
+
 html, body {
     height: 100%;
     margin: 0;
