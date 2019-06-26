@@ -20,12 +20,10 @@ import Image from '../assets/izel.png';
 import BetterLogo from '../assets/better-logo.png';
 
 export default {
-    data: function() {
-        return {
-            betterlogo: BetterLogo,
-            image: Image
-        };
-    },
+    data: () => ({
+        betterlogo: BetterLogo,
+        image: Image
+    }),
     created: function() {
         fetch('/api/check')
             .then(resp => {
@@ -37,7 +35,7 @@ export default {
             window.location = url;
         }
     }
-}
+};
 </script>
 
 <style lang="scss">

@@ -13,7 +13,7 @@ export default class WeatherCommand implements Command {
         category: 'tool'
     };
 
-    run(message: Message, args: string[], messages: Messages): void {
+    run(message: Message, args: string[], messages: Messages): any {
         fetch(`http://api.openweathermap.org/data/2.5/weather?APPID=${openWeatherApi}&units=metric&q=${encodeURIComponent(args.join(' '))}`)
             .then((res: Response): Promise<any> => res.json())
             .then((data: any): any => {
