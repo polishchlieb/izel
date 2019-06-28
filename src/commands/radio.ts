@@ -9,7 +9,7 @@ const { radios }: { radios: any[] } = require('../../radios.json')
 
 export default class RadioCommand implements Command {
     info = {
-        names: ['radio'],
+        names: ['radio', 'r'],
         description: 'Select or list available radios',
         usage: '&radio',
         category: 'music'
