@@ -98,7 +98,7 @@ export default {
 }
 
 .rank {
-    font-size: 150%;
+    font-size: 120%;
     color: lightblue;
     padding: 10px;
 }
