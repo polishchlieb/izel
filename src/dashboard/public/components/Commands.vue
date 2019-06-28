@@ -24,7 +24,6 @@ export default {
     data: () => ({
         categories: [
             { name: 'admin', commands: [] },
-            { name: 'developer', commands: [] },
             { name: 'music', commands: [] },
             { name: 'music (DJ)', commands: [] },
             { name: 'stats', commands: [] },
@@ -42,7 +41,8 @@ export default {
                 });
                 resp.forEach(cmd => {
                     let bb = this.categories.find(cat => cat.name == cmd.category);
-                    bb.commands.push(cmd);
+                    if(!bb || bb.name == 'developer') return;
+                    else bb.commands.push(cmd);
                 });
             });
     }
