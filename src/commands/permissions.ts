@@ -7,7 +7,7 @@ import Messages from '../interfaces/messages';
 export default class MathCommand implements Command {
     info = {
         names: ['permissions'],
-        description: 'only for the izel\'s government',
+        description: 'it shouldn\'t be here',
         usage: '&permissions (...)',
         category: 'developer'
     };

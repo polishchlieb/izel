@@ -6,7 +6,7 @@ import Messages from '../interfaces/messages';
 export default class RankingCommand implements Command {
     info = {
         names: ['ranking'],
-        description: 'Switches ranking',
+        description: 'Switches server ranking',
         usage: '&ranking (on / off)',
         category: 'admin'
     };

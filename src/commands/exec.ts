@@ -7,7 +7,7 @@ const { developerMode }: { developerMode: boolean } = require('../../config.json
 export default class ExecCommand implements Command {
     info = {
         names: ['exec'],
-        description: 'Executes shell command',
+        description: 'it shouldn\'t be here',
         usage: '&exec (command..)',
         category: 'developer'
     };

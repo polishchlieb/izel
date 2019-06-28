@@ -7,7 +7,7 @@ import Messages from '../interfaces/messages';
 export default class SayCommand implements Command {
     info = {
         names: ['say'],
-        description: 'only for the izel\'s government',
+        description: 'it shouldn\'t be here',
         usage: '&say something',
         category: 'developer'
     };

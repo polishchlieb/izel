@@ -8,7 +8,7 @@ const { openWeatherApi }: { openWeatherApi: string } = require('../../config.jso
 export default class WeatherCommand implements Command {
     info = {
         names: ['weather'],
-        description: 'chmurki or sloneczko',
+        description: 'Weather information for chosen city',
         usage: '&weather (city)',
         category: 'tool'
     };

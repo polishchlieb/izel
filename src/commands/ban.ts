@@ -5,7 +5,7 @@ import Messages from '../interfaces/messages';
 export default class BanCommand implements Command {
     info = {
         names: ['ban'],
-        description: 'bannin crazy',
+        description: 'Bannin crazy',
         usage: '&ban (ping | name..)',
         category: 'admin'
     };

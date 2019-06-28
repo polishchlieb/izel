@@ -8,7 +8,7 @@ import Messages from '../interfaces/messages';
 export default class QueueCommand implements Command {
     info = {
         names: ['queue', 'q'],
-        description: 'Shows the queue',
+        description: 'Shows the music queue',
         usage: '&queue',
         category: 'music'
     };
