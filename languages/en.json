@@ -138,5 +138,6 @@
         "803": "Broken clouds: 51-84%",
         "804": "Overcast clouds: 85-100%"
     },
-    "removed": "Removed track: {}"
+    "removed": "Removed track: {}",
+    "availableLanguages": "Available languages:"
 }
