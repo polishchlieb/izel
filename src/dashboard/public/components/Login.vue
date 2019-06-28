@@ -1,21 +1,17 @@
 <template>
     <div class="login-ct">
-        <!--<v-app dark>
-            <v-layout align-center justify-center>
-                <v-flex xs12 sm4 text-xs-center column>
-        -->
-                    <div>
-                        <img height="200" contain :src="image">
-                    </div>
-                    <div>
-                        <img height="100" contain :src="betterlogo">
-                    </div>
-                    <div>
-                        <div class="btn icon-btn" @click="open('/api/login')">
-                            <img width="25px" src="https://discordapp.com/assets/28174a34e77bb5e5310ced9f95cb480b.png">
-                            <span>Login with Discord</span>
-                        </div>
-                    </div>
+        <div>
+            <img height="200" contain :src="image" class="appear">
+        </div>
+        <div>
+            <img height="100" contain :src="betterlogo" class="appear">
+        </div>
+        <div>
+            <div class="btn icon-btn" @click="open('/api/login')">
+                <img width="25px" src="https://discordapp.com/assets/28174a34e77bb5e5310ced9f95cb480b.png" class="appear">
+                <span>Login with Discord</span>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -24,12 +20,10 @@ import Image from '../assets/izel.png';
 import BetterLogo from '../assets/better-logo.png';
 
 export default {
-    data: function() {
-        return {
-            betterlogo: BetterLogo,
-            image: Image
-        }
-    },
+    data: () => ({
+        betterlogo: BetterLogo,
+        image: Image
+    }),
     created: function() {
         fetch('/api/check')
             .then(resp => {
@@ -41,7 +35,7 @@ export default {
             window.location = url;
         }
     }
-}
+};
 </script>
 
 <style lang="scss">

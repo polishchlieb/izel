@@ -1,4 +1,4 @@
-/node_modules/**/*
-/dist/**/*
-Lavalink.jar
-logs/
+/node_modules/
+/dist/
+/Lavalink.jar
+/logs/

@@ -1,6 +1,7 @@
 import { blue } from 'colors';
-import Event from '../interfaces/event';
+import { PlayerManager } from 'discord.js-lavalink';
 
+import Event from '../interfaces/event';
 import Bot from '../bot';
 import Dashboard from '../dashboard';
 
@@ -25,7 +26,6 @@ import LanguageCommand from '../commands/language';
 import GiveawayCommand from '../commands/giveaway';
 import PingCommand from '../commands/ping';
 import TagCommand from '../commands/tag';
-import JoinCommand from '../commands/join';
 import PruneCommand from '../commands/prune';
 import PlayCommand from '../commands/play';
 import SkipCommand from '../commands/skip';
@@ -46,15 +46,15 @@ import AutoRoleCommand from '../commands/autorole';
 import GreetingCommand from '../commands/greeting';
 import PlayingCommand from '../commands/playing';
 import ChannelCommand from '../commands/channel';
-import { PlayerManager } from 'discord.js-lavalink';
 import RadioCommand from '../commands/radio';
 import RemoveCommand from '../commands/remove';
 import ClearqueueCommand from '../commands/clearqueue';
 import BassCommand from '../commands/bass';
+import AvatarCommand from '../commands/avatar';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
-        new GuildDeleteEvent, new GuildMemberAddEvent/*, new GuildMemberRemoveEvent*/);
+        new GuildDeleteEvent, new GuildMemberAddEvent, new GuildMemberRemoveEvent);
     bot.events.forEach((event: Event): void => {
         bot.client.on(event.name, event.run);
     });
@@ -67,13 +67,14 @@ export const loadCommands = (bot: Bot): void => {
         new MathCommand, new PollCommand, new HelpCommand, new MinecraftCommand,
         new ChooseCommand, new WeatherCommand, new LanguageCommand,
         new GiveawayCommand, new PingCommand, new MathCommand, new CalcCommand,
-        new TagCommand, new JoinCommand, new PruneCommand, new PlayCommand,
+        new TagCommand, new PruneCommand, new PlayCommand,
         new SkipCommand, new SayCommand, new DiceCommand, new RankingCommand,
         new QueueCommand, new BanCommand, new ServerInfoCommand,
         new PermissionsCommand, new KickCommand, new StopCommand,
         new PrefixCommand, new StatsCommand, new ExecCommand, new ProfileCommand,
         new AutoRoleCommand, new GreetingCommand, new PlayingCommand, new ChannelCommand,
-        new RadioCommand, new RemoveCommand, new ClearqueueCommand, new BassCommand);
+        new RadioCommand, new RemoveCommand, new ClearqueueCommand, new BassCommand,
+        new AvatarCommand);
 
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }
@@ -85,13 +86,13 @@ export const loadDashboard = (): void => {
 
 export const loadPlayer = (bot: Bot): void => {
     bot.player.nodes = [
-        { host: 'localhost', port: 2333, password: 'totallydefaultpassword'}
-    ]
+        { host: 'localhost', port: 2333, password: 'totallydefaultpassword' }
+    ];
 
     bot.player.manager = new PlayerManager(bot.client, bot.player.nodes, {
         user: bot.client.user.id,
         shards: 0
-    })
+    });
 
     bot.player.queue = {};
     bot.player.playing = {};

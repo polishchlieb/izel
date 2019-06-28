@@ -9,7 +9,7 @@ import Messages from '../interfaces/messages';
 const msgs: any = {
     pl: require('../../languages/pl.json'),
     en: require('../../languages/en.json')
-}
+};
 
 export default class MessageEvent implements Event {
     name = 'message';

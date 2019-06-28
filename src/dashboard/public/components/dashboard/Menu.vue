@@ -1,17 +1,17 @@
 <template>
     <div class="container">
-        <h1>¡Bienvenidos!</h1>
-        <img class="av" :src="`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}?size=512`">
-        <div class="username">{{ user.username }}#{{ user.discriminator }}</div>
+        <h1>{{ greeting }}</h1>
+        <img class="av appear" :src="`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}?size=512`">
+        <div class="username appear">{{ user.username }}#{{ user.discriminator }}</div>
 
         <h4>your guilds</h4>
         <div class="guilds">
-            <div class="guild"
-            @click="$parent.select(guild.id)"
-            v-for="(guild, i) in guilds" :key=i>
-                <img class="icon" v-if="guild.icon" :src="`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128`">
-                <img class="icon" v-else src="http://www.deusens.com/wp-content/uploads/2017/04/Hiperdino-Portfolio.png">
-                <span class="name">{{ guild.name }}</span>
+            <div class="guild appear" @click="$parent.select(guild.id)" v-for="(guild, i) in guilds" :key="i">
+                <img class="icon appear" v-if="guild.icon" :src="`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128`">
+                <img class="icon appear" v-else src="http://www.deusens.com/wp-content/uploads/2017/04/Hiperdino-Portfolio.png">
+                <span class="name">
+                    {{ guild.name }}
+                </span>
             </div>
         </div>
     </div>
@@ -19,8 +19,11 @@
 
 <script>
 export default {
-    props: ['user', 'guilds']
-}
+    props: ['user', 'guilds'],
+    data: () => ({
+        greeting: ['¡Bienvenidos!', 'witajcie towarzyszu'][Math.floor(Math.random() * 2)]
+    })
+};
 </script>
 
 <style lang="scss" scoped>
@@ -58,6 +61,7 @@ h1 {
         grid-template-columns: repeat(3, 33%)
     }
 }
+
 .guilds {
     width: 60%;
     display: grid;
@@ -76,6 +80,9 @@ h1 {
     transition: 200ms;
     will-change: background-color;
     cursor: pointer;
+
+    animation: fadeIn .3s both;
+	-webkit-animation: fadeIn .3s both;
 
     &:hover {
         background: #1d5cb2;

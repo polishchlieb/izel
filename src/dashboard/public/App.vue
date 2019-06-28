@@ -29,35 +29,50 @@ export default {
 </script>
 
 <style lang="scss">
-    html,body {
-        height: 100%;
-        margin: 0;
-    }
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
 
-    body {
-        background: #23272a;
-        color: white;
-        overflow-y: scroll;
-        font-family: 'Roboto Condensed', sans-serif;
-    }
+@keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
 
-    .btn {
-        outline: none;
-        border: none;
-        border-radius: 3px;
-        padding: 8px 24px;
-        box-shadow: 3px 3px 21px -4px rgba(0, 0, 0, 0.75);
-        transition: 300ms;
+.appear {
+    animation: fadeIn .3s both;
+    -webkit-animation: fadeIn .3s both;
+}
 
-        &:hover {
-            box-shadow: 3px 6px 21px 2px rgba(0, 0, 0, 0.75);
-        }
-    }
+html, body {
+    height: 100%;
+    margin: 0;
+}
 
-    .btn span {
-        font-size: 100%;
-        color: white;
-        font-weight: 500;
-        font-family: 'Roboto Condensed', sans-serif;
+body {
+    background: #23272a;
+    color: white;
+    overflow-y: scroll;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.btn {
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 24px;
+    box-shadow: 3px 3px 21px -4px rgba(0, 0, 0, 0.75);
+    transition: 300ms;
+
+    &:hover {
+        box-shadow: 3px 6px 21px 2px rgba(0, 0, 0, 0.75);
     }
+}
+
+.btn span {
+    font-size: 100%;
+    color: white;
+    font-weight: 500;
+    font-family: 'Roboto Condensed', sans-serif;
+}
 </style>

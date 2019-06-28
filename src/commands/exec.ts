@@ -2,6 +2,7 @@ import Command from '../interfaces/command';
 import { Message } from 'discord.js';
 import { exec, ExecException } from 'child_process';
 import Messages from '../interfaces/messages';
+const { developerMode }: { developerMode: boolean } = require('../../config.json');
 
 export default class ExecCommand implements Command {
     info = {
@@ -12,6 +13,8 @@ export default class ExecCommand implements Command {
     };
 
     run(message: Message, args: string[], { noPermission }: Messages): any {
+        if(!developerMode) return;
+        
         if(message.author.id != '372459063339909120')
             return message.reply(noPermission);
 

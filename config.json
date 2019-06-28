@@ -3,5 +3,7 @@
     "openWeatherApi": "",
     "id": "",
     "secret": "",
-    "callback": ""
+    "dashboard": "",
+    "developerMode": true,
+    "invite": ""
 }

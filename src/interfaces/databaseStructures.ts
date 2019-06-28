@@ -23,7 +23,11 @@ export interface Server {
     greeting?: {
         channel: string,
         content: string;
-    }
+    };
+    goodbye?: {
+        channel: string,
+        content: string
+    };
 }
 
 export interface Tag {

@@ -13,7 +13,7 @@ export default class WeatherCommand implements Command {
         category: 'tool'
     };
 
-    run(message: Message, args: string[], messages: Messages): void {
+    run(message: Message, args: string[], messages: Messages): any {
         fetch(`http://api.openweathermap.org/data/2.5/weather?APPID=${openWeatherApi}&units=metric&q=${encodeURIComponent(args.join(' '))}`)
             .then((res: Response): Promise<any> => res.json())
             .then((data: any): any => {
@@ -31,7 +31,7 @@ export default class WeatherCommand implements Command {
                         message.author.avatarURL
                     )
                     .setThumbnail(`http://openweathermap.org/img/w/${data.weather[0].icon}.png`)
-                    .setDescription(data.weather[0].main));
+                    .setDescription(messages.weatherDescriptions[data.weather[0].id.toString()]));
             });
     }
 }

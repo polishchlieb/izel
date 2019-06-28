@@ -1,8 +1,10 @@
 <template>
     <div class="container">
         <div class="header">
-            <img class="icon" :src="guild.icon+'?size=512'">
-            <div class="title">{{ guild.guildName }}</div>
+            <img class="icon appear" :src="`${guild.icon}?size=512`">
+            <div class="title">
+                {{ guild.guildName }}
+            </div>
         </div>
         <div class="tab">
             <div class="tab-title">Top</div>
@@ -12,7 +14,8 @@
                     <img class="av" width="30px" height="30px" :src="member.av">
                     <div class="nick">{{ member.tag }}</div>
                     <div class="progress">
-                        <span :style="{width: (member.messages/topScore)*100+'%'}"></span>
+                        <span :style="{ width: (member.messages / topScore) * 100 + '%' }">
+                        </span>
                     </div>
                     <span class="score">{{ member.messages }}</span>
                 </div>
@@ -25,14 +28,17 @@
 export default {
     props: ['guild'],
     mounted: function() {
-        this.guild.top.forEach((score => {
+        // TODO: Create progress bars based on user's points by user's level or something like that 
+        this.guild.top.forEach(score => {
             if(score.messages > this.topScore) this.topScore = score.messages;
-        }))
-        console.dir(this.guild)
+        });
+        // console.dir(this.guild);
     },
-    data: function() { return {
-        topScore: 0
-    } }
+    data: function() {
+        return {
+            topScore: 0
+        };
+    }
 }
 </script>
 
@@ -97,7 +103,7 @@ export default {
     padding: 10px;
 }
 .av {
-	width: 30px;
+	min-width: 30px;
 	margin: auto;
     display: block;
 	height: 30px;

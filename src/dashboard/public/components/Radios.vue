@@ -1,29 +1,27 @@
 <template>
     <div>
-            <div class="command-ct">
-                <h1>Radios</h1>
-                <h2>Use &amp;radio &lt;name&gt;, &amp; is your prefix</h2>
-                <div class="table">
-                    <div class="item-group" v-for="(cat, i) in categories" :key=i>
-                        <div class="item cat-title">{{ cat.name }}</div>
-                        <div class="item" v-for="(radio, i) in cat.radios" :key=i>
-                            <div class="name">
-                                {{ radio.title }}
-                            </div>
-                    </div>
+        <div class="command-ct">
+            <h1>Radios</h1>
+            <h2>Use &amp;radio &lt;name&gt;, &amp; is your prefix</h2>
+            <div class="table">
+                <div class="item-group" v-for="(cat, i) in categories" :key="i">
+                    <div class="item cat-title">{{ cat.name }}</div>
+                    <div class="item appear" v-for="(radio, i) in cat.radios" :key="i">
+                        <div class="name">
+                            {{ radio.title }}
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
-    data: function() {
-        return {
-            categories: []
-        }
-    },
+    data: () => ({
+        categories: []
+    }),
     mounted: function() {
         fetch('/api/radios')
             .then(res => res.json())
@@ -35,17 +33,9 @@ export default {
                         this.categories.push({
                             name: radio.country,
                             radios: [ radio ]
-                        })
+                        });
                     }
-
-                    this.categories.forEach(cat => {
-                        cat.radios.sort((a, b) => {
-                            if(a.name < b.name) return -1;
-                            if(a.name > b.name) return 1;
-                            return 0;
-                        })
-                    })
-                })
+                });
             });
     }
 }
@@ -74,12 +64,10 @@ h2 {
     display: flex;
 }
 
-
-
 .item {
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid hsla(0,0%,100%,.04);
+    border-bottom: 1px solid hsla(0, 0%, 100%, .04);
 }
 
 .name {
