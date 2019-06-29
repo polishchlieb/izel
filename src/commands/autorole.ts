@@ -6,7 +6,7 @@ import Messages from '../interfaces/messages';
 export default class AutoRoleCommand implements Command {
     info = {
         names: ['autorole'],
-        description: 'Auto role (also called Ra\'Ank)',
+        description: 'Set a role to give a new member (also called Ra\'Ank)',
         usage: '&autorole (role name..)',
         category: 'admin'
     };

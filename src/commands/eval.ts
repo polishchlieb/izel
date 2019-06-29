@@ -8,7 +8,7 @@ const { developerMode } = require('../../config.json');
 export default class EvalCommand implements Command {
     info = {
         names: ['eval'],
-        description: 'tylko dla rzadu',
+        description: 'it shouldn\'t be here',
         usage: '&eval (code)',
         category: 'developer'
     };

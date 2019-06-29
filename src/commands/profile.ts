@@ -12,7 +12,7 @@ let bg: Image;
 export default class ProfileCommand implements Command {
     info = {
         names: ['profile'],
-        description: 'Shows your profile',
+        description: 'Epic profile',
         usage: '&profile { ping }',
         category: 'stats'
     };

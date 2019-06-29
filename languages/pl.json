@@ -138,5 +138,6 @@
         "803": "Rozproszone chmury: 51-84%",
         "804": "Duże zachmurzenie: 85-100%"
     },
-    "removed": "Usunięto piosnkę: {}"
+    "removed": "Usunięto piosnkę: {}",
+    "availableLanguages": "Dostępne języki:"
 }

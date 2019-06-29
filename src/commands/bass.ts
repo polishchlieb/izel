@@ -7,7 +7,7 @@ import { Player } from 'discord.js-lavalink';
 export default class BassCommand implements Command {
     info = {
         names: ['bass'],
-        description: 'toggles bass boost',
+        description: 'Toggles bass boost',
         usage: 'bass',
         category: 'music (DJ)'
     };

@@ -7,7 +7,7 @@ export default class LanguageCommand implements Command {
     info = {
         names: ['language', 'lang'],
         description: 'Changes the language',
-        usage: '&language (id)',
+        usage: 'language (id)',
         category: 'admin'
     };
 
@@ -15,7 +15,7 @@ export default class LanguageCommand implements Command {
 
     run(message: Message, args: string[], messages: Messages): any {
         if(args.length != 1 || !this.available.includes(args[0]))
-            return message.reply(`${messages.use}: \`${this.info.usage}\``);
+            return message.reply(`${messages.use}: \`${this.info.usage}\`\n${messages.availableLanguages} \`${this.available.toString()}\``);
         if(!message.member.hasPermission('ADMINISTRATOR') && message.author.id != '372459063339909120')
             return message.reply(messages.noPermission);
 

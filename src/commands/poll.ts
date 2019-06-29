@@ -5,7 +5,7 @@ import Messages from '../interfaces/messages';
 export default class PollCommand implements Command {
     info = {
         names: ['poll'],
-        description: 'don\'t confuse with pollution, izel is a nature-friendly bot',
+        description: 'Don\'t confuse with pollution, izel is a nature-friendly bot',
         usage: '&poll (topic..)',
         category: 'tool'
     };

@@ -7,7 +7,7 @@ const { dashboard, invite }: { dashboard: string, invite: string } = require('..
 export default class HelpCommand implements Command {
     info = {
         names: ['help'],
-        description: 'Shows help',
+        description: 'Information about the bot and commands',
         usage: '&help',
         category: 'tool'
     };

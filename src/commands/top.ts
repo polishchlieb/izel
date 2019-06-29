@@ -7,7 +7,7 @@ import Messages from '../interfaces/messages';
 export default class TopCommand implements Command {
     info = {
         names: ['top', 'leaderboard'],
-        description: 'Topka serwerkowa',
+        description: 'Server activity top',
         usage: '&top { global }',
         category: 'stats'
     };

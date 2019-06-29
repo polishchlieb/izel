@@ -8,7 +8,7 @@ import { QueueTrack } from '../interfaces/player';
 export default class RemoveCommand implements Command {
     info = {
         names: ['remove', 'rm'],
-        description: 'Adds a song to the top of queue',
+        description: 'Removes a song from the queue',
         usage: 'remove (number)',
         category: 'music (DJ)'
     };
