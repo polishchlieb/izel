@@ -16,7 +16,7 @@ export default class MinecraftCommand implements Command {
             return message.reply(`${messages.use} \`${this.info.usage}\``);
 
         message.channel.startTyping();
-        fetch(`http://mcapi.us/server/query?ip=${args[0]}`)
+        fetch(`https://mcapi.us/server/status?ip=${args[0]}`)
             .then((res: Response): Promise<any> => res.json())
             .then((data: any): void => {
                 if(!data.online)
@@ -28,7 +28,7 @@ export default class MinecraftCommand implements Command {
                     .setTitle(args[0])
                     .addField(messages.players, `${data.players.now}/${data.players.max}`, true)
                     .addField('MOTD', data.motd, true)
-                    .addField(messages.version, data.version)
+                    .addField(messages.version, data.server.name)
                     .setColor('RANDOM')
                     .setFooter(`${messages.requestedBy} ${message.member.displayName}`, message.author.avatarURL)
                 );
