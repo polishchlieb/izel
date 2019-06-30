@@ -1,5 +1,15 @@
 # Changelog
 
+# 2.7
+## 2.7.0
+- Awesome profile
+- Awesome dashboard animations
+- Awesome new greetings
+- Created shortcut for radio: `r`
+- Fixed minecraft server info
+- `8ball`
+- `sue` commands (like Nougat's `pozwij`)
+
 # 2.6
 ## 2.6.2
 - Added auto update check
