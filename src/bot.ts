@@ -26,7 +26,7 @@ export default class Bot {
 
         let conn: MongoClient = await MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true });
         let database: Database = conn.db('izel');
-
+        
         this.stats = database.collection('stats');
         this.users = database.collection('users');
         this.servers = database.collection('servers');

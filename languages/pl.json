@@ -138,6 +138,24 @@
         "803": "Rozproszone chmury: 51-84%",
         "804": "Duże zachmurzenie: 85-100%"
     },
+    "ballAnswers": [
+        "jak najbardziej, jeszcze jak!",
+        "Raczej nie!",
+        "ty no nie wiem",
+        "chyba",
+        "zapytaj później",
+        "bardzo niewygodne pytanie",
+        "eee papryka"
+    ],
     "removed": "Usunięto piosnkę: {}",
-    "availableLanguages": "Dostępne języki:"
+    "availableLanguages": "Dostępne języki:",
+    "sue": "Sadownictwo",
+    "sueMention": "oznacz kogo pozywasz",
+    "sueQuestion": "podaj teraz powód",
+    "sueCancelled": "Nieprawidłowa odpowiedź, anulowano.",
+    "sueConfirmationSued": "Pozywasz",
+    "sueConfirmationReason": "Powód",
+    "sueConfirmationQuestion": "Wszystko się zgadza? tak/nie",
+    "sueConfirmed": "Pomyślnie pozwano",
+    "sued": "Zostałeś pozwany przez"
 }
