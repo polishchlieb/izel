@@ -138,6 +138,26 @@
         "803": "Broken clouds: 51-84%",
         "804": "Overcast clouds: 85-100%"
     },
+    "ballAnswers": [
+        "no",
+        "no lmfao",
+        "maybe",
+        "idk",
+        "ask again later",
+        "ofc",
+        "yes",
+        "dont ask me",
+        "sure"
+    ],
     "removed": "Removed track: {}",
-    "availableLanguages": "Available languages:"
+    "availableLanguages": "Available languages:",
+    "sue": "judge",
+    "sueMention": "mention the defendant",
+    "sueQuestion": "enter reason",
+    "sueCancelled": "incorrect answer, cancelled",
+    "sueConfirmationSued": "you sue",
+    "sueConfirmationReason": "for",
+    "sueConfirmationQuestion": "correct? yes/no",
+    "sueConfirmed": "sued",
+    "sued": "you have been sued by"
 }
