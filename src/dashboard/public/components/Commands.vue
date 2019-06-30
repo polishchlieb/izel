@@ -24,6 +24,7 @@ export default {
     data: () => ({
         categories: [
             { name: 'admin', commands: [] },
+            { name: 'games', commands: [] },
             { name: 'music', commands: [] },
             { name: 'music (DJ)', commands: [] },
             { name: 'stats', commands: [] },
