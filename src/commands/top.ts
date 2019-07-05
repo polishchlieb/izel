@@ -20,13 +20,15 @@ export default class TopCommand implements Command {
                 .setTitle(top)
                 .setColor('RANDOM');
 
+            let ii = 0;
             data.forEach((user: StatUser, i: number): void => {
                 let guild: Guild = bot.client.guilds.get(user.guild);
                 if(guild) {
                     let member: GuildMember = guild.member(user.id);
                     if(member)
+                        ii++;
                         embed.addField(
-                            `${i + 1}. ${member.displayName} (${guild.name})`,
+                            `${ii}. ${member.displayName} (${guild.name})`,
                             `${user.messages} ${messages}`
                         );
                 }
@@ -41,11 +43,13 @@ export default class TopCommand implements Command {
                 .setTitle(top)
                 .setColor('RANDOM');
 
+            let ii = 0;
             data.forEach((user: StatUser, i: number): void => {
                 let member: GuildMember = message.guild.member(user.id);
                 if(member)
+                    ii++;
                     embed.addField(
-                        `${i + 1}. ${member.displayName}`,
+                        `${ii}. ${member.displayName}`,
                         `${user.messages} ${messages}`
                     );
             });
