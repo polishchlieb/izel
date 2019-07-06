@@ -15,7 +15,7 @@ export default class SayCommand implements Command {
         // if(!permissions.user_ids.includes(message.author.id))
         //     return message.reply(noPermission);
         if(!message.member.hasPermission('MANAGE_MESSAGES'))
-            message.reply(noPermission);
+            return message.reply(noPermission);
 
         message.channel.send(new RichEmbed()
             .setColor('GREEN')
