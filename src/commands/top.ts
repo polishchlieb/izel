@@ -25,7 +25,7 @@ export default class TopCommand implements Command {
                 let guild: Guild = bot.client.guilds.get(user.guild);
                 if(guild) {
                     let member: GuildMember = guild.member(user.id);
-                    if(member) {
+                    if(member && guild.id != '264445053596991498') {
                         ii++;
                         embed.addField(
                             `${ii}. ${member.displayName} (${guild.name})`,
