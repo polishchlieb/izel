@@ -18,8 +18,7 @@ export default class QueueCommand implements Command {
         const queue = bot.player.queue[message.guild.id];
         const playing = bot.player.playing[message.guild.id];
         if (player) {
-            message.channel.send(
-                new RichEmbed()
+            const queueEmbed = new RichEmbed()
                 .setTitle(messages.queue)
                 .setDescription(
                     `
@@ -36,7 +35,10 @@ ${queue
                 )
                 .setFooter(`${messages.requestedBy} ${message.member.displayName}`, message.author.avatarURL)
                 .setColor('RANDOM')
-            );
+            if (bot.player.settings[message.guild.id].loop) queueEmbed.addField(messages.loop, '🔁', true)
+            message.channel.send(queueEmbed);
+        } else {
+            message.reply(messages.notPlaying);
         }
     }
 }

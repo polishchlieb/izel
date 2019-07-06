@@ -157,5 +157,6 @@
     "sueConfirmationReason": "Powód",
     "sueConfirmationQuestion": "Wszystko się zgadza? tak/nie",
     "sueConfirmed": "Pomyślnie pozwano",
-    "sued": "Zostałeś pozwany przez"
+    "sued": "Zostałeś pozwany przez",
+    "loop": "Powtarzanko odpalone"
 }

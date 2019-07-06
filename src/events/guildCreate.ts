@@ -5,13 +5,15 @@ const { dashboard }: { dashboard: string } = require('../../config.json');
 export default class GuildCreateEvent implements Event {
     name = 'guildCreate';
 
-    embed: RichEmbed = new RichEmbed()
+    /*embed: RichEmbed = new RichEmbed()
         .setTitle('Welcome!')
         .setColor('GREEN')
         .setDescription('ahoj comrade!')
         .setURL(dashboard);
-
+    */
+   
     async run(guild: Guild): Promise<void> {
-        guild.owner.send(this.embed);
+        // guild.owner.send(this.embed);
     }
+    
 }

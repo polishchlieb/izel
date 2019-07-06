@@ -25,12 +25,13 @@ export default class TopCommand implements Command {
                 let guild: Guild = bot.client.guilds.get(user.guild);
                 if(guild) {
                     let member: GuildMember = guild.member(user.id);
-                    if(member)
+                    if(member && guild.id != '264445053596991498') {
                         ii++;
                         embed.addField(
                             `${ii}. ${member.displayName} (${guild.name})`,
                             `${user.messages} ${messages}`
                         );
+                    }
                 }
             });
 
@@ -46,12 +47,13 @@ export default class TopCommand implements Command {
             let ii = 0;
             data.forEach((user: StatUser, i: number): void => {
                 let member: GuildMember = message.guild.member(user.id);
-                if(member)
+                if(member) {
                     ii++;
                     embed.addField(
                         `${ii}. ${member.displayName}`,
                         `${user.messages} ${messages}`
                     );
+                }
             });
 
             message.channel.send(embed);
