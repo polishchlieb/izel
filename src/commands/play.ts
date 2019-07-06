@@ -87,7 +87,8 @@ export default class PlayCommand implements Command {
 
             bot.player.settings[message.guild.id] = {
                 skipping: [],
-                bass: false
+                bass: false,
+                loop: false
             }
             
             this.play(player, message, messages)
@@ -96,6 +97,7 @@ export default class PlayCommand implements Command {
 
     play(player: Player, message: Message, messages: any): void {
         const current: QueueTrack = bot.player.queue[message.guild.id].shift();
+        const loop: boolean = bot.player.settings[message.guild.id].loop;
         current.started = Date.now();
         bot.player.playing[message.guild.id] = current;
         bot.player.settings[message.guild.id].skipping = [];
@@ -113,7 +115,7 @@ export default class PlayCommand implements Command {
             respEmbed.addField(messages.videoChannel, current.channel, true);
 
         // TODO: favourite
-        message.channel.send(respEmbed)
+        if (!loop) message.channel.send(respEmbed)
         /*.then((msg: Message) => {
             msg.react('⭐');
 
@@ -127,7 +129,11 @@ export default class PlayCommand implements Command {
         });*/
 
         player.once('end', (): void => {
-            if(bot.player.queue[message.guild.id][0])
+            if(bot.player.settings[message.guild.id].loop) {
+                bot.player.queue[message.guild.id].unshift(current);
+                this.play(player, message, messages);
+            }
+            else if(bot.player.queue[message.guild.id][0])
                 this.play(player, message, messages);
             else {
                 bot.player.manager.leave(message.guild.id);

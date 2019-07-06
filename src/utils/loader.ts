@@ -53,6 +53,7 @@ import BassCommand from '../commands/bass';
 import AvatarCommand from '../commands/avatar';
 import Eightballcommand from '../commands/8ball';
 import SueCommand from '../commands/sue';
+import LoopCommand from '../commands/loop';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
@@ -76,7 +77,7 @@ export const loadCommands = (bot: Bot): void => {
         new PrefixCommand, new StatsCommand, new ExecCommand, new ProfileCommand,
         new AutoRoleCommand, new GreetingCommand, new PlayingCommand, new ChannelCommand,
         new RadioCommand, new RemoveCommand, new ClearqueueCommand, new BassCommand,
-        new AvatarCommand, new Eightballcommand, new SueCommand);
+        new AvatarCommand, new Eightballcommand, new SueCommand, new LoopCommand);
 
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }

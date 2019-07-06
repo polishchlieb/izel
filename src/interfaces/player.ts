@@ -11,6 +11,7 @@ export interface Player {
 export interface Settings {
     skipping: string[];
     bass: boolean;
+    loop: boolean;
 }
 
 export interface Track {
