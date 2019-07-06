@@ -30,7 +30,10 @@ export default class MessageEvent implements Event {
             });
 
         if(!message.content.startsWith(options.prefix)) {
-            if(isGreeting(message.content)) message.react('👋');
+            if(isGreeting(message.content)
+               && message.guild.id != '264445053596991498') // 'Discord Bot List' server
+                message.react('👋');
+
             let data: StatUser = await bot.stats.findOne({
                 id: message.author.id,
                 guild: message.guild.id
