@@ -1,7 +1,7 @@
 import Command from '../interfaces/command';
 import { Message } from 'discord.js';
-import bot from '..';
-import { Permission } from '../interfaces/databaseStructures';
+// import bot from '..';
+// import { Permission } from '../interfaces/databaseStructures';
 import Messages from '../interfaces/messages';
 
 export default class SayCommand implements Command {
@@ -13,9 +13,12 @@ export default class SayCommand implements Command {
     };
 
     async run(message: Message, args: string[], { noPermission }: Messages): Promise<any> {
-        let permissions: Permission = await bot.permissions.findOne({ action: 'say' });
-        if(!permissions.user_ids.includes(message.author.id))
-            return message.reply(noPermission);
+        // let permissions: Permission = await bot.permissions.findOne({ action: 'say' });
+        // if(!permissions.user_ids.includes(message.author.id))
+        //     return message.reply(noPermission);
+        if(message.author.id != '372459063339909120'
+           && message.author.id != '271728660963262464')
+            message.reply(noPermission);
 
         message.channel.send(args.join(' '));
         message.delete();
