@@ -15,7 +15,7 @@ export default class TopCommand implements Command {
     async run(message: Message, args: string[], { top, messages }: Messages): Promise<void> {
         if(args[0] == 'global') {
             let data: StatUser[] = await bot.stats
-                .find().sort({ messages: -1 }).limit(10).toArray();
+                .find().sort({ messages: -1 }).toArray();
             let embed: RichEmbed = new RichEmbed()
                 .setTitle(top)
                 .setColor('RANDOM');
@@ -27,8 +27,9 @@ export default class TopCommand implements Command {
                     let member: GuildMember = guild.member(user.id);
                     if(member && guild.id != '264445053596991498') {
                         ii++;
+                        if(ii > 10) return;
                         embed.addField(
-                            `${ii}. ${member.displayName} (${guild.name})`,
+                            `${ii}. ${member.user.username} (${guild.name})`,
                             `${user.messages} ${messages}`
                         );
                     }
@@ -39,7 +40,7 @@ export default class TopCommand implements Command {
         } else {
             let data: StatUser[] = await bot.stats
                 .find({ guild: message.guild.id }).sort({ messages: -1 })
-                .limit(10).toArray();
+                .toArray();
             let embed: RichEmbed = new RichEmbed()
                 .setTitle(top)
                 .setColor('RANDOM');
@@ -49,6 +50,7 @@ export default class TopCommand implements Command {
                 let member: GuildMember = message.guild.member(user.id);
                 if(member) {
                     ii++;
+                    if (ii > 10) return;
                     embed.addField(
                         `${ii}. ${member.displayName}`,
                         `${user.messages} ${messages}`
