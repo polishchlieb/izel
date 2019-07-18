@@ -158,5 +158,6 @@
     "sueConfirmationQuestion": "Wszystko się zgadza? tak/nie",
     "sueConfirmed": "Pomyślnie pozwano",
     "sued": "Zostałeś pozwany przez",
-    "loop": "Powtarzanko odpalone"
+    "loop": "Powtarzanko odpalone",
+    "clickRoleStart": "Zacznijmy ( ͡° ͜ʖ ͡°), jak to wpisałeś to zakładam, że potrafisz to zrobić.. Nie potrafisz? Wpisz `papryka` i poczekaj na tutorial, który kiedyś tu będzie."
 }

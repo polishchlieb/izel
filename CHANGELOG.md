@@ -1,6 +1,10 @@
 # Changelog
 
 # 2.7
+## 2.7.1
+- Updated auto-update ( ͡° ͜ʖ ͡°)
+- Added `qr` command
+
 ## 2.7.0
 - Awesome profile
 - Awesome dashboard animations
@@ -8,7 +12,7 @@
 - Created shortcut for radio: `r`
 - Fixed minecraft server info
 - `8ball`
-- `sue` commands (like Nougat's `pozwij`)
+- `sue` command (like Nougat's `pozwij`)
 
 # 2.6
 ## 2.6.2
