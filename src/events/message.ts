@@ -29,7 +29,7 @@ export default class MessageEvent implements Event {
                 ranking: true
             });
 
-        if(!message.content.startsWith(options.prefix)) {
+        if(!message.content.startsWith(options.prefix) || message.content.startsWith('<@470345804075237396> ')) {
             if(isGreeting(message.content)
                && message.guild.id != '264445053596991498') // 'Discord Bot List' server
                 message.react('👋');
@@ -81,9 +81,11 @@ export default class MessageEvent implements Event {
                 else messages = msgs[options.language];
             } else messages = msgs[options.language];
 
-            let args: string[] = message.content
-                .substring(options.prefix.length)
-                .split(' ');
+            let args: string[];
+            if(message.content.startsWith('<@470345804075237396> '))
+                args = message.content.substring(22).split(' ');
+            else args = message.content.substring(options.prefix.length).split(' ');
+            
             let name: string = args.shift().toLowerCase();
             let command: Command = bot.commands.find((c: Command): boolean =>
                 c.info.names.includes(name)
