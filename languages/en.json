@@ -160,5 +160,6 @@
     "sueConfirmationQuestion": "correct? yes/no",
     "sueConfirmed": "sued",
     "sued": "you have been sued by",
-    "loop": "Loop is enabled"
+    "loop": "Loop is enabled",
+    "clickRoleStart": "So let's start ( ͡° ͜ʖ ͡°), I assume you know what to do if you entered this command.. You don't know? Type `papryka` and wait for a tutorial"
 }

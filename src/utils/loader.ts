@@ -55,6 +55,7 @@ import Eightballcommand from '../commands/8ball';
 import SueCommand from '../commands/sue';
 import LoopCommand from '../commands/loop';
 import EmbedCommand from '../commands/embed';
+import QrCommand from '../commands/qr';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
@@ -79,7 +80,7 @@ export const loadCommands = (bot: Bot): void => {
         new AutoRoleCommand, new GreetingCommand, new PlayingCommand, new ChannelCommand,
         new RadioCommand, new RemoveCommand, new ClearqueueCommand, new BassCommand,
         new AvatarCommand, new Eightballcommand, new SueCommand, new LoopCommand,
-        new EmbedCommand);
+        new EmbedCommand, new QrCommand);
 
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }

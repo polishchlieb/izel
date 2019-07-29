@@ -49,3 +49,12 @@ export interface Channel {
     // TODO (more than just member count)
     // subs: string[];
 }
+
+export interface ClickRole {
+    guild: string;
+    message: string;
+    reactions: {
+        [emojiname: string]: string // role id
+    };
+    _id?: string;
+}

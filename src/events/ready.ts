@@ -4,21 +4,24 @@ import Event from '../interfaces/event';
 import bot from '..';
 
 const { version }: { version: string } = require('../../package.json');
+const { developerMode }: { developerMode: boolean } = require('../../config.json');
 
 export default class ReadyEvent implements Event {
     name = 'ready';
 
     async run(): Promise<void> {
-        console.log(yellow('Checking for updates..'));
-        let data: any = await fetch('https://raw.githubusercontent.com/polishchlieb/izel/master/package.json')
-            .then((res: Response): Promise<any> => res.json());
-        if(data.version != version)
-            console.log(yellow(`Update is available: version ${data.version}`));
-        console.log('');
-        
-        console.log(green('Bot is ready'));
-        console.log(green(`Running on ${bot.client.guilds.size} servers`));
-        console.log(green(`Serving ${bot.client.users.size} users\n`));
+        if(!developerMode) {
+            console.log(yellow('Checking for updates..'));
+            let data: any = await fetch('https://raw.githubusercontent.com/polishchlieb/izel/master/package.json')
+                .then((res: Response): Promise<any> => res.json());
+            if(data.version != version)
+                console.log(yellow(`Update is available: version ${data.version}`));
+            console.log('');
+            
+            console.log(green('Bot is ready'));
+            console.log(green(`Running on ${bot.client.guilds.size} servers`));
+            console.log(green(`Serving ${bot.client.users.size} users\n`));
+        }
 
         let num: number = 0;
         setInterval((): void => {
