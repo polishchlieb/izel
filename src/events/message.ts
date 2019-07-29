@@ -54,7 +54,7 @@ export default class MessageEvent implements Event {
 
                     if(data.messages % 200 == 0) {
                         data.level += 1;
-                        if(options.ranking) {
+                        if(options.ranking && message.guild.id != '264445053596991498') {
                             let messages = msgs[options.language];
                             message.reply(
                                 messages.nextLevel.replace('{}', data.level)
