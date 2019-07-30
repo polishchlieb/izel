@@ -19,8 +19,14 @@ export default class PlayCommand implements Command {
 
         if(!args[0])
             return message.reply(messages.specifyURL);
-        if(!message.member.voiceChannel)
+        if (!message.member.voiceChannel)
             return message.reply(messages.connectVoice);
+        if (bot.player.manager.get(message.guild.id)) {
+            if(bot.player.manager.get(message.guild.id).channel != message.member.voiceChannel.id) {
+                return message.reply(messages.connectVoice);
+            }
+        }
+
         if(args[0].match(/^(http(s)?:\/\/)/g)) {
             try {
                 let results: any = await getSongs(args[0]);

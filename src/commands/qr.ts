@@ -1,6 +1,5 @@
 import Command from '../interfaces/command';
 import { Message, Attachment } from 'discord.js';
-import axios, { AxiosResponse } from 'axios';
 import Messages from '../interfaces/messages';
 import { createWriteStream, WriteStream } from 'fs';
 import { get, IncomingMessage } from 'http';

@@ -60,8 +60,10 @@ h2 {
     align-items: center;
 }
 
-.table {
+@media screen and (min-width: 1024px) {
+    .table {
     display: flex;
+}
 }
 
 .item {
