@@ -29,7 +29,7 @@ export default class MessageEvent implements Event {
                 ranking: true
             });
 
-        if(!message.content.startsWith(options.prefix) || message.content.startsWith('<@470345804075237396> ')) {
+        if(!message.content.startsWith(options.prefix) || !message.content.startsWith('<@470345804075237396> ')) {
             if(isGreeting(message.content)
                && message.guild.id != '264445053596991498') // 'Discord Bot List' server
                 message.react('👋');
