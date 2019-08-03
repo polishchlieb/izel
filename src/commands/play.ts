@@ -14,7 +14,7 @@ export default class PlayCommand implements Command {
         category: 'music'
     };
 
-    async run(message: Message, args: string[], messages: Messages): Promise<any> {
+    async run(message: Message, args: string[], messages: Messages, radioImg?: string): Promise<any> {
         let track: Track;
 
         if(!args[0])
@@ -50,7 +50,9 @@ export default class PlayCommand implements Command {
 
         let thumbnail: string;
 
-        if (args[0].match(/^(http(s)?:\/\/)/g)) {
+        if (radioImg) {
+            thumbnail = radioImg;
+        } else if (args[0].match(/^(http(s)?:\/\/)/g)) {
             if (args[0].match(/^(http(s)?:\/\/)?(w{3}\.)?youtu(be\.com|\.be)?\/.+/gm)) {
                 thumbnail = `https://i.ytimg.com/vi/${track.info.identifier}/hqdefault.jpg`;
             }
