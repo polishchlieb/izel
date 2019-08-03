@@ -30,7 +30,7 @@ export default class RadioCommand implements Command {
         let query: string = arg.join(' ').toLowerCase();
         let result: Radio = radios.find((r: Radio): boolean => r.title.toLowerCase() == query);
         if(result)
-            new PlayCommand().run(message, [result.stream], messages);
+            new PlayCommand().run(message, [result.stream], messages, result.img);
         else return message.reply(messages.noResults);
     }
 }
