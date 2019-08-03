@@ -6,7 +6,7 @@ export default class GreetingCommand implements Command {
     info = {
         names: ['greeting'],
         description: 'Sets server\'s greeting',
-        usage: '&greeting (greeting / goodbye / placeholders) (channel mention) {text..}',
+        usage: '&greeting (greeting / goodbye / placeholders) (channel mention) {text.. %m - mention, %u - username}',
         category: 'admin'
     };
 
@@ -43,7 +43,7 @@ export default class GreetingCommand implements Command {
             bot.servers.updateOne({ id: message.guild.id }, {
                 $set: { [type]: {
                     channel: channel.id,
-                    content
+                    content: content.join(' ')
                 }}
             }).then((): void => {
                 message.react('✅');
