@@ -12,10 +12,10 @@ export default class Eightballcommand implements Command {
 
     run(message: Message, [...arg]: string[], messages: Messages) {
         if (arg.length == 0)
-            message.reply(`${messages.use} ${this.info.usage}`)
+            return message.reply(`${messages.use} ${this.info.usage}`);
 
-        const answer: string = messages.ballAnswers[Math.floor(Math.random() * messages.ballAnswers.length)]
+        const answer: string = messages.ballAnswers[Math.floor(Math.random() * messages.ballAnswers.length)];
 
-        message.channel.send(`\🎱 ${answer}`)
+        message.channel.send(`\🎱 ${answer}`);
     }
 }
