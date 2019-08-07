@@ -13,8 +13,7 @@ export default class PrefixCommand implements Command {
     };
 
     async run(message: Message, args: string[], messages: Messages): Promise<any> {
-        if(!message.member.hasPermission('MANAGE_CHANNELS')
-           && message.author.id != '372459063339909120')
+        if(!message.member.hasPermission('MANAGE_CHANNELS'))
             return message.reply(messages.noPermission);
 
         if(args.length == 0) {

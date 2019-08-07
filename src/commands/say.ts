@@ -16,8 +16,7 @@ export default class SayCommand implements Command {
         // let permissions: Permission = await bot.permissions.findOne({ action: 'say' });
         // if(!permissions.user_ids.includes(message.author.id))
         //     return message.reply(noPermission);
-        if(message.author.id != '372459063339909120'
-           && message.author.id != '271728660963262464')
+        if(!message.member.hasPermission('MANAGE_MESSAGES'))
             return message.reply(noPermission);
 
         message.channel.send(args.join(' '));
