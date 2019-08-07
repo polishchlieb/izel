@@ -1,8 +1,6 @@
 import Command from '../interfaces/command';
 import { Message } from 'discord.js';
 import Messages from '../interfaces/messages';
-const { developerMode }: { developerMode: boolean } = require('../../config.json');
-
 
 export default class ExecCommand implements Command {
     info = {

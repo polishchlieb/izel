@@ -19,7 +19,8 @@ export default class WeatherCommand implements Command {
             .then((data: any): any => {
                 if(data.cod != 200)
                     return message.reply(messages.cityNotFound);
-
+                if (data.name == 'Kosovo' || data.name == 'Kosovo') return message.channel.send("kosovo je Srbija!!!");
+                
                 message.channel.send(new RichEmbed()
                     .setTitle(`${messages.weatherFor} ${data.name}`)
                     .setColor('RANDOM')
