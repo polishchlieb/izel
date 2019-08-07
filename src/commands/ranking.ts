@@ -12,8 +12,7 @@ export default class RankingCommand implements Command {
     };
 
     async run(message: Message, args: string[], messages: Messages): Promise<any> {
-        if(!message.member.hasPermission('ADMINISTRATOR')
-            && message.author.id != '372459063339909120')
+        if(!message.member.hasPermission('ADMINISTRATOR'))
             return message.reply(messages.noPermission);
 
         if(!args[0])

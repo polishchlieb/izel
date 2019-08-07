@@ -33,8 +33,7 @@ export default class TagCommand implements Command {
             if(!tag)
                 return message.reply(messages.tagNotFound);
             else message.channel.send(tag.content);
-        } else if(args.length > 1 && (message.member.hasPermission('MANAGE_MESSAGES')
-                  || message.author.id == '372459063339909120')) {
+        } else if(args.length > 1 && (message.member.hasPermission('MANAGE_MESSAGES'))) {
             bot.tags.insertOne({
                 server: message.guild.id,
                 title: args.shift(),
