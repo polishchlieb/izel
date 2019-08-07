@@ -1,6 +1,5 @@
 import Command from '../interfaces/command';
 import { Message } from 'discord.js';
-import { exec, ExecException } from 'child_process';
 import Messages from '../interfaces/messages';
 const { developerMode }: { developerMode: boolean } = require('../../config.json');
 
@@ -14,11 +13,13 @@ export default class ExecCommand implements Command {
     };
 
     run(message: Message, [ ...arg]: string[], messages: Messages): any {
+        if (arg.length == 0)
+            return message.reply(`${messages.use} ${this.info.usage}`);
         let command: string = arg.join(' ').toLowerCase();
         let result: { name: string, resp: string} = this.commands.find(a => command.startsWith(a.name));
 
         if (result) message.channel.send(`output: \`\`\`${result.resp}\`\`\``)
-        else message.channel.send(`output: \`\`\`bash: ${command}: nie znaleziono polecenia\`\`\``);
+        else message.channel.send(`output: \`\`\`bash: ${arg[0]}: nie znaleziono polecenia\`\`\``);
     }
 
     commands = [
