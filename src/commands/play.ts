@@ -14,7 +14,7 @@ export default class PlayCommand implements Command {
         category: 'music'
     };
 
-    async run(message: Message, args: string[], messages: Messages, radioImg?: string): Promise<any> {
+    async run(message: Message, args: string[], messages: Messages, radio?: { title: string, img: string }): Promise<any> {
         let track: Track;
 
         if(!args[0])
@@ -30,6 +30,7 @@ export default class PlayCommand implements Command {
         if(args[0].match(/^(http(s)?:\/\/)/g)) {
             try {
                 let results: any = await getSongs(args[0]);
+                if(radio) results[0].info.title = radio.title
                 track = results[0];
             } catch (err) {
                 return message.reply(err);
@@ -50,8 +51,8 @@ export default class PlayCommand implements Command {
 
         let thumbnail: string;
 
-        if (radioImg) {
-            thumbnail = radioImg;
+        if (radio) {
+            thumbnail = radio.img;
         } else if (args[0].match(/^(http(s)?:\/\/)/g)) {
             if (args[0].match(/^(http(s)?:\/\/)?(w{3}\.)?youtu(be\.com|\.be)?\/.+/gm)) {
                 thumbnail = `https://i.ytimg.com/vi/${track.info.identifier}/hqdefault.jpg`;
@@ -111,7 +112,7 @@ export default class PlayCommand implements Command {
         bot.player.settings[message.guild.id].skipping = [];
 
         player.play(current.track);
-
+        
         let respEmbed: RichEmbed = new RichEmbed()
             .setAuthor(messages.nowPlaying, message.author.avatarURL)
             .setColor('#0977b6')

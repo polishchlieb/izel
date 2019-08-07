@@ -30,7 +30,11 @@ export default class PlayingCommand implements Command {
                 .setTitle(playing.title)
                 .setURL(playing.uri)
                 .addField(messages.queryRequested, playing.requester, true)
-                .addField(messages.playingTime, `${now}/${len}`, true)
+            if(!playing.stream) {
+                respEmbed.addField(messages.playingTime, `${now}/${len}`, true)
+            } else {
+                respEmbed.addField(messages.playingTime, `${now}/idk`, true);
+            }
             if(playing.channel)
                 respEmbed.addField(messages.videoChannel, playing.channel, true);
             message.channel.send(respEmbed);
@@ -40,10 +44,21 @@ export default class PlayingCommand implements Command {
     calculate(timestamp): string {
         let length: number = Math.floor(timestamp / 1000);
 
-        let minutes: number = Math.floor(length / 60);
-        let seconds: number = length % 60;
-        let time: string = `${minutes}:${("0" + seconds).slice(-2)}`;
+        let hours: number = Math.floor(length / 3600);
 
-        return time;
+        if(hours > 0) {
+            let minutes: number = (Math.floor(length / 60)) - 60*hours;
+            let seconds: number = length % 60;
+            return `${hours}:${("0" + minutes).slice(-2)}:${("0" + seconds).slice(-2)}`;
+        } else {
+            let minutes: number = Math.floor(length / 60);
+            let seconds: number = length % 60;
+            return `${minutes}:${("0" + seconds).slice(-2)}`;
+        }
+        
+
+        //if (hours > 0) return `${hours}:${minutes}:${("0" + seconds).slice(-2)}`;
+        //else 
+        
     }
 }
