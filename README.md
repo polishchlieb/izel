@@ -2,11 +2,11 @@
     <img src="https://i.imgur.com/epINEbt.png">
 </p>
 <p align="center">
-    <img src="https://img.shields.io/badge/version-2.7-blue.svg">
+    <img src="https://img.shields.io/badge/version-2.8-blue.svg">
 </p>
 
 # Note
-I recommend using `node-opus` package instead of `opusscript`. Opus didn't work for me so I selected an alternative.
+I recommend using `node-opus` package instead of `opusscript`
 
 # Setup
 - Things you need to install:

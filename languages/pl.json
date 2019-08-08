@@ -159,5 +159,9 @@
     "sueConfirmed": "Pomyślnie pozwano",
     "sued": "Zostałeś pozwany przez",
     "loop": "Powtarzanko odpalone",
-    "clickRoleStart": "Zacznijmy ( ͡° ͜ʖ ͡°), jak to wpisałeś to zakładam, że potrafisz to zrobić.. Nie potrafisz? Wpisz `papryka` i poczekaj na tutorial, który kiedyś tu będzie."
+    "clickRoleStart": "Zacznijmy ( ͡° ͜ʖ ͡°), jak to wpisałeś to zakładam, że potrafisz to zrobić.. Nie potrafisz? Wpisz `papryka` i poczekaj na tutorial, który kiedyś tu będzie.",
+    "usePapryka": "Wygląda na to, że nie wiesz jak tego używać. Nie myle się? Wpisz `papryka` i czekaj na tutorial.",
+    "cancelled": "Anulowano.",
+    "noSuchEmoji": "Nie mogę znaleźć takiej emotki nube",
+    "reactForRole": "Zareaguj by dostać rolę"
 }
