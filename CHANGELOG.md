@@ -1,5 +1,10 @@
 # Changelog
 
+# 2.8
+## 2.8.0
+- Finally added clickrole uh oh
+- There should be two points for this kappa
+
 # 2.7
 ## 2.7.1
 - Updated auto-update ( ͡° ͜ʖ ͡°)
