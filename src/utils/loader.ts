@@ -11,6 +11,8 @@ import GuildCreateEvent from '../events/guildCreate';
 import GuildDeleteEvent from '../events/guildDelete';
 import GuildMemberAddEvent from '../events/guildMemberAdd';
 import GuildMemberRemoveEvent from '../events/guildMemberRemove';
+import MessageReactionAddEvent from '../events/messageReactionAdd';
+import MessageReactionRemoveEvent from '../events/messageReactionAdd';
 
 import RankCommand from '../commands/rank';
 import TopCommand from '../commands/top';
@@ -56,10 +58,12 @@ import SueCommand from '../commands/sue';
 import LoopCommand from '../commands/loop';
 import EmbedCommand from '../commands/embed';
 import QrCommand from '../commands/qr';
+import ClickroleCommand from '../commands/clickrole';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
-        new GuildDeleteEvent, new GuildMemberAddEvent, new GuildMemberRemoveEvent);
+        new GuildDeleteEvent, new GuildMemberAddEvent, new GuildMemberRemoveEvent,
+        new MessageReactionAddEvent, new MessageReactionRemoveEvent);
     bot.events.forEach((event: Event): void => {
         bot.client.on(event.name, event.run);
     });
@@ -80,7 +84,7 @@ export const loadCommands = (bot: Bot): void => {
         new AutoRoleCommand, new GreetingCommand, new PlayingCommand, new ChannelCommand,
         new RadioCommand, new RemoveCommand, new ClearqueueCommand, new BassCommand,
         new AvatarCommand, new Eightballcommand, new SueCommand, new LoopCommand,
-        new EmbedCommand, new QrCommand);
+        new EmbedCommand, new QrCommand, new ClickroleCommand);
 
     console.log(blue(`Loaded ${bot.commands.length} commands`));
 }

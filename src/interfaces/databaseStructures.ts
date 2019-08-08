@@ -51,10 +51,6 @@ export interface Channel {
 }
 
 export interface ClickRole {
-    guild: string;
     message: string;
-    reactions: {
-        [emojiname: string]: string // role id
-    };
-    _id?: string;
+    roles: [string, string][];
 }

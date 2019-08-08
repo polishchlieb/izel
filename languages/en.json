@@ -161,5 +161,9 @@
     "sueConfirmed": "sued",
     "sued": "you have been sued by",
     "loop": "Loop is enabled",
-    "clickRoleStart": "So let's start ( ͡° ͜ʖ ͡°), I assume you know what to do if you entered this command.. You don't know? Type `papryka` and wait for a tutorial"
+    "clickRoleStart": "So let's start ( ͡° ͜ʖ ͡°), I assume you know what to do if you entered this command.. You don't know? Type `papryka` and wait for a tutorial",
+    "usePapryka": "Looks like you don't know how to use it, type `papryka` and wait for a tutorial if it's true",
+    "cancelled": "Cancelled.",
+    "noSuchEmoji": "I can't recognize that emoji",
+    "reactForRole": "React to get the role"
 }
