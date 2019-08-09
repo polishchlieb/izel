@@ -4,6 +4,7 @@ import { PlayerManager } from 'discord.js-lavalink';
 import Event from '../interfaces/event';
 import Bot from '../bot';
 import Dashboard from '../dashboard';
+import { ClickRoles } from '../interfaces/databaseStructures';
 
 import MessageEvent from '../events/message';
 import ReadyEvent from '../events/ready';
@@ -13,6 +14,7 @@ import GuildMemberAddEvent from '../events/guildMemberAdd';
 import GuildMemberRemoveEvent from '../events/guildMemberRemove';
 import MessageReactionAddEvent from '../events/messageReactionAdd';
 import MessageReactionRemoveEvent from '../events/messageReactionAdd';
+import { TextChannel, Channel, CollectorFilter, MessageReaction, User, ReactionCollector } from 'discord.js';
 
 import RankCommand from '../commands/rank';
 import TopCommand from '../commands/top';
@@ -58,7 +60,7 @@ import SueCommand from '../commands/sue';
 import LoopCommand from '../commands/loop';
 import EmbedCommand from '../commands/embed';
 import QrCommand from '../commands/qr';
-import ClickroleCommand from '../commands/clickrole';
+import ClickroleCommand, { catchReaction } from '../commands/clickrole';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
@@ -107,4 +109,19 @@ export const loadPlayer = (bot: Bot): void => {
     bot.player.queue = {};
     bot.player.playing = {};
     bot.player.settings = {};
+}
+
+export const loadClickrole = (bot: Bot): void => {
+    bot.clickRole.find({})
+    .forEach(role => {
+        let channel: Channel = bot.client.channels.get(role.channel);
+        if(channel && channel instanceof TextChannel) {
+            channel.fetchMessage(role.message)
+            .then(message => {
+                const filter: CollectorFilter = (r: MessageReaction, user: User) => !user.bot;
+                const reactCollector: ReactionCollector = message.createReactionCollector(filter);
+                reactCollector.on('collect', r => catchReaction(r, message, role))
+            })
+        }
+    })
 }

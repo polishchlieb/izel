@@ -52,5 +52,12 @@ export interface Channel {
 
 export interface ClickRole {
     message: string;
-    roles: [string, string][];
+    channel: string;
+    roles: ClickRoles[];
+}
+
+export interface ClickRoles {
+    emoji: string,
+    id: string,
+    name: string
 }
