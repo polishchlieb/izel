@@ -161,9 +161,11 @@
     "sueConfirmed": "sued",
     "sued": "you have been sued by",
     "loop": "Loop is enabled",
-    "clickRoleStart": "So let's start ( ͡° ͜ʖ ͡°), now use `(emoji) (role name)`, ex. `:frog: User`, then use `papryka` to confirm. `papryka` also cancels",
+    "clickRoleStart": "So let's start ( ͡° ͜ʖ ͡°), now use `(emoji) (role name)`, ex. `:frog: User`. `cancel` to cancel",
     "usePapryka": "Looks like you don't know how to use it, try again",
     "cancelled": "Cancelled.",
     "noSuchEmoji": "I can't recognize that emoji",
-    "reactForRole": "React to get the role"
+    "reactForRole": "React to get the role",
+    "itMayNotWork": "It may not work, because the bot has no permission to give someone that role.",
+    "usePaprykaTC": "Use `papryka` to confirm"
 }

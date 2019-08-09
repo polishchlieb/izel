@@ -159,9 +159,11 @@
     "sueConfirmed": "Pomyślnie pozwano",
     "sued": "Zostałeś pozwany przez",
     "loop": "Powtarzanko odpalone",
-    "clickRoleStart": "Zacznijmy ( ͡° ͜ʖ ͡°), Najpierw użyj `(emoji) (nazwa roli)`, np. `:frog: Użytkownik`, następnie użyj `papryka` aby zatwierdzić. Jeżeli się rozmyśliłeś, `papryka` też anuluje",
+    "clickRoleStart": "Zacznijmy ( ͡° ͜ʖ ͡°), Najpierw użyj `(emoji) (nazwa roli)`, np. `:frog: Użytkownik`. Jeżeli się rozmyśliłeś, użyj `anuluj`",
     "usePapryka": "Wygląda na to, że nie wiesz jak tego używać. Spróbuj jeszcze raz",
     "cancelled": "Anulowano.",
     "noSuchEmoji": "Nie mogę znaleźć takiej emotki nube",
-    "reactForRole": "Zareaguj by dostać rolę"
+    "reactForRole": "Zareaguj by dostać rolę",
+    "itMayNotWork": "To może nie działać, ponieważ bot nie ma możliwości dania komuś tej roli.",
+    "usePaprykaTC": "Użyj `papryka` aby potwierdzić"
 }
