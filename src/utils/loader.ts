@@ -122,6 +122,9 @@ export const loadClickrole = (bot: Bot): void => {
                 const reactCollector: ReactionCollector = message.createReactionCollector(filter);
                 reactCollector.on('collect', r => catchReaction(r, message, role))
             })
+            .catch(err => {
+                bot.clickRole.deleteOne(role);
+            })
         }
     })
 }
