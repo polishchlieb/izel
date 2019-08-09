@@ -31,29 +31,47 @@ export default class ClickroleCommand implements Command {
                 return collector.stop();
 
             let [ emoji, ...rn ]: string[] = m.content.split(' ');
-            if(!emoji || !rn.length)
+            if(!emoji || !rn.length) {
+                collector.stop();
                 return message.channel.send(messages.usePapryka);
+            }
 
             let rolename: string = rn.join(' ');
             let role: Role = message.guild.roles.find(
                 (r: Role): boolean => r.name.toLowerCase() == rolename.toLowerCase()
             );
 
-            if(!role) 
+            if(!role) {
+                collector.stop();
                 return message.channel.send(messages.noSuchRole);
-            else if(emoji == '❌')
+            }
+                
+            
+            if(role.position > message.member.highestRole.position) {
+                collector.stop();
+                return message.channel.send(messages.noPermission); // najwyższa rola ustawiającego jest wyższa od chcącej sie ustawić roli
+            }
+
+            if(!message.guild.members.get(bot.client.user.id).hasPermission('MANAGE_ROLES') 
+                || role.position >= message.guild.members.get(bot.client.user.id).highestRole.position) {
+                message.channel.send(`❗ ${messages.itMayNotWork}`)
+                }
+
+            if(emoji == '❌')
                 return message.channel.send('wait that\'s illegal');
             else if(emoji.length == 2)
-                roles.push({ emoji, id: role.id, name: role.name }), message.react('✅');
-            else if(/<:\w{2,}:\d{14,}>/.test(emoji)) {
-                let id: string = emoji.match(/(?<=<:\w{2,}:)(\d{14,})(?=>)/)[0];
-                if(!bot.client.emojis.get(id))
-                    return message.channel.send(messages.noSuchEmoji);
-
-                roles.push({ emoji, id: role.id, name: role.name });
-                message.react('✅');
+                roles.push({ emoji, id: role.id, name: role.name }), m.react('✅'), m.channel.send(messages.usePaprykaTC);
+            else {
+                m.react(emoji)
+                .then(() => {
+                    roles.push({ emoji, id: role.id, name: role.name });;
+                    m.channel.send(messages.usePaprykaTC)
+                })
+                .catch(() => {
+                    collector.stop();
+                    message.channel.send(messages.noSuchEmoji)
+                });
             }
-            else return message.channel.send(messages.noSuchEmoji);
         });
         
         collector.on('end', (): any => {
@@ -68,9 +86,7 @@ export default class ClickroleCommand implements Command {
                 ))
                 .then((m: Message): void => {
                     roles.forEach(({ emoji }: ClickRoles): void => {
-                        if(emoji.length == 2) m.react(emoji);
-                        else m.react(bot.client.emojis.get(emoji));
-                        m.react('❌')
+                        m.react(emoji).then(() => m.react('❌'));
                     });
 
                     const clicc = {
