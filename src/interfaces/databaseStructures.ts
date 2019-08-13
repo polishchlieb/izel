@@ -7,7 +7,8 @@ export interface Permission {
 export interface StatUser {
     id: string;
     level: number;
-    messages: number;
+    points: number;
+    messages?: number;
     guild: string;
     cooldown: number;
     _id?: string;
@@ -28,6 +29,17 @@ export interface Server {
         channel: string,
         content: string
     };
+    selfCategories?: string[]
+    selfroles?: Selfrole[]
+}
+
+export interface Selfrole {
+    pos: number; // selfrole position
+    id: string; // selfrole id
+    name: string; // selfrole name
+    category: string; // selfrole category
+    color: string; // hex string ex. #abcdef
+    user: boolean; // if user has this role
 }
 
 export interface Tag {

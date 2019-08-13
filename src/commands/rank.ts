@@ -39,28 +39,31 @@ export default class RankCommand implements Command {
         let canvas: Canvas = createCanvas(800, 220);
         let ctx = canvas.getContext('2d');
 
-        let text: string = `${data.messages} ${messages.messages}`;
+        let text: string = `${data.points} ${messages.points}`;
         let image: Image = await loadImage(member.user.displayAvatarURL);
         let lvl: string = `${messages.level} ${data.level}`;
 
         ctx.drawImage(bg, 0, 0);
         ctx.drawImage(image, 40, 30, 160, 160);
 
-        ctx.font = '50px Fredoka One';
+        ctx.font = '50px Roboto Condensed';
 
         let size = ctx.measureText(member.displayName).width;
         if(size > 500)
             size = 500;
+
+        ctx.fillStyle = '#ffffff'
         ctx.fillText(member.displayName, 730 - size, 65, 500);
 
-        ctx.fillRect(230, 150, ((data.messages - 200 * data.level) / 200) * 525, 40);
+        ctx.fillStyle = '#000000'
+        ctx.fillRect(230, 150, ((data.points - (Math.pow(data.level-1, 2) * 100)) / ((Math.pow(data.level, 2) * 100) - (Math.pow(data.level-1, 2) * 100))) * 525, 40);
 
         ctx.drawImage(fg, 0, 0);
 
-        ctx.font = '30px Fredoka One';
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '30px Roboto Condensed';
         ctx.fillText(text, 730 - ctx.measureText(text).width, 110);
 
-        ctx.fillStyle = '#ffffff';
         ctx.fillText(lvl, 485.5 - ctx.measureText(lvl).width / 2, 180);
 
         message.channel.send('', new Attachment(canvas.createPNGStream(), ''));
