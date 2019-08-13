@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="command-ct">
-            <h1>Radios</h1>
+            <h1>{{ $root.$data.strings.radios }}</h1>
             <h2>Use &amp;radio &lt;name&gt;, &amp; is your prefix</h2>
             <div class="table">
                 <div class="item-group" v-for="(cat, i) in categories" :key="i">
