@@ -61,11 +61,13 @@ import LoopCommand from '../commands/loop';
 import EmbedCommand from '../commands/embed';
 import QrCommand from '../commands/qr';
 import ClickroleCommand, { catchReaction } from '../commands/clickrole';
+import RawEvent from '../events/raw';
 
 export const loadEvents = (bot: Bot): void => {
     bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
         new GuildDeleteEvent, new GuildMemberAddEvent, new GuildMemberRemoveEvent,
-        new MessageReactionAddEvent, new MessageReactionRemoveEvent);
+        new MessageReactionAddEvent, new MessageReactionRemoveEvent,
+        new RawEvent);
     bot.events.forEach((event: Event): void => {
         bot.client.on(event.name, event.run);
     });

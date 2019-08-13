@@ -1,9 +1,9 @@
 import Event from '../interfaces/event';
 import { ClickRole } from '../interfaces/databaseStructures';
 import bot from '..';
-import { Guild, GuildChannel } from 'discord.js';
+import { Guild } from 'discord.js';
 
-export default class MessageReactionAddEvent implements Event {
+export default class RawEvent implements Event {
     name = 'raw';
 
     async run({ d, t }: { d: any, t: string }): Promise<void> {
