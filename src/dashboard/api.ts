@@ -6,6 +6,8 @@ import * as cookie from 'cookie-parser';
 
 import bot from '..';
 import Command from '../interfaces/command';
+import { StatUser } from '../interfaces/databaseStructures';
+import { json } from 'express';
 
 const router: Router = Router();
 const { id, secret, dashboard }: { id: string, secret: string, dashboard: string }
@@ -114,17 +116,19 @@ router.get('/guilds', (req: Request, res: Response): void => {
             'User-Agent': 'Discord-Bot Izel'
         }
     })
-        .then((resp): Promise<any> => resp.json())
-        .then((data: any[]): void => {
-            let matches: any[] = [];
-
-            data.forEach((guild: any): void => {
-                if (bot.client.guilds.get(guild.id))
-                    matches.push(guild);
-            });
-
-            res.send(matches);
+    .then((resp): Promise<any> => resp.json())
+    .then((data: any[]): any => {
+        let matches: any[] = [];
+        data.forEach((guild: any): void => {
+            if (bot.client.guilds.get(guild.id)) {
+                matches.push(guild);
+            }
         });
+
+        res.send({
+            guilds: matches,
+        });
+    });
 });
 
 router.get('/guild', async (req: Request, res: Response): Promise<void> => {
@@ -139,18 +143,22 @@ router.get('/guild', async (req: Request, res: Response): Promise<void> => {
 
     let Tguild: Guild = bot.client.guilds.get(req.query.guild);
 
-    bot.stats.find({ guild: Tguild.id }).sort({ messages: -1 }).limit(10).toArray()
+    bot.stats.find({ guild: Tguild.id }).sort({ points: -1 }).limit(20).toArray()
         .then((guild: any[]): void => {
             let result: any[] = [];
 
-            guild.forEach((user: any): void => {
+            let ii = 0;
+            guild.forEach((user: StatUser): void => {
                 let member: GuildMember = Tguild.member(user.id);
                 if(member) {
+                    ii++;
+                    if(ii > 25) return;
+
                     result.push({
                         id: member.id,
-                        tag: member.user.tag,
+                        tag: member.user.username,
                         av: `${member.user.displayAvatarURL}?size=128`,
-                        messages: user.messages,
+                        points: user.points,
                         level: user.level
                     });
                 }
@@ -162,12 +170,205 @@ router.get('/guild', async (req: Request, res: Response): Promise<void> => {
                 guildName: Tguild.name,
                 userID: user.id,
                 icon: Tguild.iconURL,
-                admin: Tguild.member(user.id).hasPermission('ADMINISTRATOR') ?
-                    bot.servers.findOne({ id: Tguild.id }) : null
+                admin: Tguild.member(user.id).hasPermission('ADMINISTRATOR')
             });
         });
 });
+// SELFROLES
+router.get('/roles', async (req: Request, res: Response): Promise<any> => {
+    if(!req.query.guild || !req.query.id) return res.status(400).send({ err: "no guild"});
+    try {
+        let guild = await bot.servers.findOne({ id: req.query.guild });
+        let resp = [];
+        await guild.selfCategories.forEach(category => {
+            resp.push({ name: category, roles: [] })
+        })
+        await guild.selfroles.forEach(async role => {
+            try {
+                let member = await bot.client.guilds.get(req.query.guild).fetchMember(req.query.id);
+                if(member.roles.get(role.id)) {
+                    role.user = true;
+                    await resp.find(cat => cat.name == role.category).roles.push(role);
+                } else {
+                    role.user = false;
+                    await resp.find(cat => cat.name == role.category).roles.push(role);
+                }
+            } catch {
+                res.status(300).send({ err: "oopsie" });                
+            } finally {
+                await res.send(resp);
+            }
+        })
+    } catch(e) {
+        res.status(300).send({ err: e });
+    }
+})
 
+router.use(json())
+
+router.post('/roles', async (req: Request, res: Response): Promise<any> => {
+    if (!req.body.guild || !req.body.role ) return res.status(400).send({ err: "no guild" });
+    let user = await fetch('https://discordapp.com/api/users/@me', {
+        headers: {
+            'Authorization': `Bearer ${req.cookies.token}`,
+            'User-Agent': 'Discord-Bot Izel'
+        }
+    })
+    .then((resp): Promise<any> => resp.json())
+    try {
+        let guild = await bot.servers.findOne({ id: req.body.guild });
+        let role = guild.selfroles.find(role => role.id == req.body.role )
+        if(!role) {
+            return res.status(400).send({ err: "nice try" });
+        }
+        let member = await bot.client.guilds.get(req.body.guild).fetchMember(user.id);
+        if(member.roles.get(role.id)) {
+            member.removeRole(role.id)
+            .then(() => res.send({added: false}))
+            .catch((e) => res.status(300).send(e));
+        } else {
+            member.addRole(role.id)
+            .then(() => res.send({added: true}))
+            .catch((e) => res.status(300).send(e));
+        }
+    } catch(e) {
+        res.status(300).send({ err: e });
+    }
+})
+
+// settings
+router.get('/admin', async (req: Request, res: Response): Promise<any> => {
+    if (!req.query.guild) return res.status(400).send({ err: "no guild" });
+    let user = await fetch('https://discordapp.com/api/users/@me', {
+        headers: {
+            'Authorization': `Bearer ${req.cookies.token}`,
+            'User-Agent': 'Discord-Bot Izel'
+        }
+    })
+    .then((resp): Promise<any> => resp.json());
+
+    try {
+        let guild = await bot.servers.findOne({ id: req.query.guild });
+        let member = await bot.client.guilds.get(guild.id).fetchMember(user.id);
+        if(member.hasPermission("ADMINISTRATOR")) {
+            let server = bot.client.guilds.get(guild.id);
+            let botuser = await server.fetchMember(bot.client.user.id);
+            const aroles = server.roles.filter(role => role.position < botuser.highestRole.position)
+            .map(k => { return {
+                id: k.id,
+                name: k.name,
+                pos: k.position,
+                color: k.hexColor
+            }});
+            aroles.forEach(role => {
+                if(role.color == '#000000') role.color = '#ffffff';
+            })
+
+            aroles.sort((a, b) => b.pos - a.pos);
+            const channels = server.channels
+            .filter(channel => channel.type == "text")
+            .map(k => { return { 
+                id: k.id, 
+                name: k.name, 
+                pos: k.position
+            }})
+            let autoroleData = { id: "", name: "", color: "" };
+            const autorole = await server.roles.get(guild.autorole);
+            if(autorole) {
+                autoroleData.name = autorole.name;
+                autoroleData.id = autorole.id;
+                autoroleData.color = autorole.hexColor;
+            } 
+
+            let clickroles = [];
+            if(guild.selfCategories) {
+                await guild.selfCategories.forEach(category => {
+                    clickroles.push({ name: category, roles: [] })
+                })
+
+                await guild.selfroles.forEach(async role => {
+                    try {
+                        await clickroles.find(cat => cat.name == role.category).roles.push(role);
+                    } catch {
+                        res.status(300).send({ err: "oopsie" });
+                    }
+                })
+            }
+
+            await res.send({
+                autorole: autoroleData,
+                greeting: guild.greeting,
+                goodbye: guild.goodbye,
+                selfroles: clickroles,
+                roles: aroles,
+                channels
+            })
+            // do zwrócenia: (autorole, greeting, goodbye, selfroles), role dostępne, kanały dostępne
+        } else {
+            res.sendStatus(403);
+        }
+    } catch(e) {
+        res.status(300).send({ err: e });
+    }
+})
+
+router.post('/admin', async (req: Request, res: Response): Promise<any> => {
+    if (!req.body.action || !req.body.value || !req.body.guild) return res.status(400).send({ err: "no guild" });
+    let user = await fetch('https://discordapp.com/api/users/@me', {
+        headers: {
+            'Authorization': `Bearer ${req.cookies.token}`,
+            'User-Agent': 'Discord-Bot Izel'
+        }
+    })
+    .then((resp): Promise<any> => resp.json());
+
+    try {
+        let guild = await bot.servers.findOne({ id: req.body.guild });
+        let member = await bot.client.guilds.get(guild.id).fetchMember(user.id);
+        if (member.hasPermission("ADMINISTRATOR")) {
+            let server = await bot.client.guilds.get(guild.id);
+            if(req.body.action.id == 'autorole') {
+                let role = server.roles.get(req.body.value);
+                if(role) {
+                    bot.servers.updateOne({ id: guild.id }, { $set: {
+                        autorole: req.body.value
+                    }})
+                    res.send({ok: 'set'})
+                }
+            } else if (req.body.action.id == 'welcome') {
+
+            } else if (req.body.action.id == 'goodbye') {
+
+            } else if (req.body.action.id == 'selfrole') {
+                if(req.body.action.name == "addRole") {
+                    guild.selfroles.push({ id: req.body.value.role.id, name: req.body.value.role.name, color: req.body.value.role.color, category: req.body.value.category, pos:0, user: null});
+                    bot.servers.updateOne({id: guild.id}, { $set: guild })
+                    res.send({ok: 'set'});
+                } else if (req.body.action.name == "addCat") {
+                    if (!guild.selfCategories) guild.selfCategories = [];
+                    if (!guild.selfroles) guild.selfroles = [];
+                    guild.selfCategories.push(req.body.value);
+                    bot.servers.updateOne({ id: guild.id }, { $set: guild })
+                    res.send({ ok: 'set' });
+                } else if (req.body.action.name == "removeRole") {
+                    guild.selfroles = guild.selfroles.filter(role => role.id != req.body.value)
+                    bot.servers.updateOne({ id: guild.id }, { $set: guild })
+                    res.send({ ok: 'set' });
+                } else if (req.body.action.name == "removeCat") {
+                    guild.selfCategories = guild.selfCategories.filter(cat => cat != req.body.value);
+                    guild.selfroles = guild.selfroles.filter(role => role.category != req.body.value);
+                    bot.servers.updateOne({ id: guild.id }, { $set: guild })
+                    res.send({ ok: 'set' });
+                }
+            }
+        } else {
+            res.sendStatus(403);
+        }
+    } catch(e) {
+        res.status(300).send({ err: e });
+    }
+})
+// other
 let commands: Command['info'][];
 router.get('/commands', (req: Request, res: Response): void => {
     if(!commands)
@@ -180,7 +381,7 @@ router.get('/radios', (req: Request, res: Response): void => {
     res.send(radios);
 });
 
-router.post('/admin', (req: Request, res: Response): void => {
+/*router.post('/admin', (req: Request, res: Response): void => {
     fetch('https://discordapp.com/api/users/@me',
     {
         headers: {
@@ -204,6 +405,6 @@ router.post('/admin', (req: Request, res: Response): void => {
     .catch((err: Error): void => {
         res.send(new Error(err.message))
     });
-});
+});*/
 
 export default router;

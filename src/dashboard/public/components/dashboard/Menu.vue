@@ -1,17 +1,22 @@
 <template>
     <div class="container">
-        <h1>{{ greeting }}</h1>
+        <h1>{{ $root.$data.strings.welcome }}</h1>
         <img class="av appear" :src="`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}?size=512`">
         <div class="username appear">{{ user.username }}#{{ user.discriminator }}</div>
-
-        <h4>your guilds</h4>
+        <h4>{{ $root.$data.strings.guilds }}</h4>
         <div class="guilds">
             <div class="guild appear" @click="$parent.select(guild.id)" v-for="(guild, i) in guilds" :key="i">
-                <img class="icon appear" v-if="guild.icon" :src="`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128`">
-                <img class="icon appear" v-else src="http://www.deusens.com/wp-content/uploads/2017/04/Hiperdino-Portfolio.png">
-                <span class="name">
-                    {{ guild.name }}
-                </span>
+                <div class="guildbar">
+                    <div class="leftbar" v-if="(guild.permissions & 8) == 8">Admin</div>
+                    <div class="icon-ct">
+                        <img class="icon appear" v-if="guild.icon" :src="`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128`">
+                        <img class="icon appear" v-else src="http://www.deusens.com/wp-content/uploads/2017/04/Hiperdino-Portfolio.png">
+                    </div>       
+                    <span class="name">
+                        {{ guild.name }}
+                    </span>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -21,7 +26,6 @@
 export default {
     props: ['user', 'guilds'],
     data: () => ({
-        greeting: ['¡Bienvenidos!', 'witajcie towarzyszu'][Math.floor(Math.random() * 2)]
     })
 };
 </script>
@@ -58,7 +62,7 @@ h1 {
 
 @media screen and (min-width: 1024px) {
     .guilds {
-        grid-template-columns: repeat(3, 33%)
+        grid-template-columns: repeat(2, 25%)
     }
 }
 
@@ -68,12 +72,9 @@ h1 {
 }
 
 .guild {
-    margin: 10px;
     display: flex;
-    flex-direction: column;
-    padding: 10px;
-    justify-items: space-evenly;
-    align-items: center;
+
+    margin: 10px;
     border-radius: 5px;
     background: #2b2f33;
 
@@ -88,6 +89,25 @@ h1 {
         background: #1d5cb2;
     }
 }
+.leftbar {
+    width: 100%;
+    padding: 3px;
+    background: #d33131;
+    border-radius: 15px;
+    text-align: center;
+    margin: 5px;
+    font-weight: 600;
+    font-size: .8em;
+}
+
+.guildbar {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+    justify-items: center;
+    align-items: center;
+}
 
 .icon {
     width: 60px;
@@ -99,6 +119,7 @@ h1 {
 }
 
 .name {
+    text-align: center;
     padding: 5px;
     font-weight: bolder;
 }

@@ -21,6 +21,7 @@ export default class MessageEvent implements Event {
         let options: Server = await bot.servers.findOne({
             id: message.guild.id
         });
+
         if(!options)
             bot.servers.insertOne(options = {
                 id: message.guild.id,
@@ -43,16 +44,18 @@ export default class MessageEvent implements Event {
                 bot.stats.insertOne({
                     id: message.author.id,
                     guild: message.guild.id,
-                    messages: 1,
-                    level: 0,
+                    level: 1,
+                    points: 1,
                     cooldown: new Date().getTime()
                 });
             else {
-                if(new Date().getTime() - data.cooldown >= 10000) {
-                    data.messages += 1;
+                if(new Date().getTime() - data.cooldown >= 60000) {
+                    const tg = determinePoints();
+                    data.points += tg;
                     data.cooldown = new Date().getTime();
 
-                    if(data.messages % 200 == 0) {
+                    let curLevel = 0.1 * Math.sqrt(data.points);
+                    if (curLevel > data.level) {
                         data.level += 1;
                         if(options.ranking && message.guild.id != '264445053596991498') {
                             let messages = msgs[options.language];
@@ -94,6 +97,40 @@ export default class MessageEvent implements Event {
             if(command)
                 command.run(message, args, messages);
             else message.react('❓');
+        }
+    }
+}
+
+function determinePoints(): number {
+    const now = new Date(Date.now());
+    const weekday = now.getDay();
+    const hour = now.getHours();
+    const month = now.getMonth();
+
+    let rndm = Math.floor(Math.random() * (10 - 5 + 1) + 5);
+
+    return Math.floor(rndm * days(weekday, hour, month));
+}
+
+function days(weekday, hour, month): number {
+    if (weekday > 5 || month == 6 || month == 7) { // weekend bądź wakacje
+        switch (true) {
+            case (hour < 3): return 0.7; break;
+            case (hour < 9): return 1; break;
+            case (hour < 11): return 0.7; break;
+            case (hour < 14): return 0.9; break;
+            case (hour < 19): return 0.7; break;
+            case (hour < 24): return 0.5; break;
+            default: return 1; break;
+        }
+    } else { // tydzień
+        switch (true) {
+            case (hour < 2): return 0.9; break;
+            case (hour < 6): return 1; break;
+            case (hour < 14): return 0.9; break;
+            case (hour < 18): return 0.7; break;
+            case (hour < 24): return 0.5; break;
+            default: return 1; break;
         }
     }
 }

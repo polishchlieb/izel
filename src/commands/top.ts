@@ -12,10 +12,10 @@ export default class TopCommand implements Command {
         category: 'stats'
     };
 
-    async run(message: Message, args: string[], { top, messages }: Messages): Promise<void> {
+    async run(message: Message, args: string[], { top, points }: Messages): Promise<void> {
         if(args[0] == 'global') {
             let data: StatUser[] = await bot.stats
-                .find().sort({ messages: -1 }).toArray();
+                .find().sort({ points: -1 }).toArray();
             let embed: RichEmbed = new RichEmbed()
                 .setTitle(top)
                 .setColor('RANDOM');
@@ -30,7 +30,7 @@ export default class TopCommand implements Command {
                         if(ii > 10) return;
                         embed.addField(
                             `${ii}. ${member.user.username} (${guild.name})`,
-                            `${user.messages} ${messages}`
+                            `${user.points} ${points}`
                         );
                     }
                 }
@@ -39,7 +39,7 @@ export default class TopCommand implements Command {
             message.channel.send(embed);
         } else {
             let data: StatUser[] = await bot.stats
-                .find({ guild: message.guild.id }).sort({ messages: -1 })
+                .find({ guild: message.guild.id }).sort({ points: -1 })
                 .toArray();
             let embed: RichEmbed = new RichEmbed()
                 .setTitle(top)
@@ -53,7 +53,7 @@ export default class TopCommand implements Command {
                     if (ii > 10) return;
                     embed.addField(
                         `${ii}. ${member.displayName}`,
-                        `${user.messages} ${messages}`
+                        `${user.points} ${points}`
                     );
                 }
             });

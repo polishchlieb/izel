@@ -3,10 +3,10 @@
         <div class="top">
             <span class="top-title">izel</span>
             <span style="flex: 1 1;"></span>
-            <div class="top-btn" :class="{ selected: view <= 1 }" @click="viewSet(0)">Guilds</div>
-            <div class="top-btn" :class="{ selected: view == 3 }" @click="viewSet(3)">Radios</div>
-            <div class="top-btn" :class="{ selected: view == 2 }" @click="viewSet(2)">Commands</div>
-            <div class="top-btn logout" @click="logout()">Logout</div>
+            <div class="top-btn" :class="{ selected: view <= 1 }" @click="viewSet(0)">{{ $root.$data.strings.guilds }}</div>
+            <div class="top-btn" :class="{ selected: view == 3 }" @click="viewSet(3)">{{ $root.$data.strings.radios }}</div>
+            <div class="top-btn" :class="{ selected: view == 2 }" @click="viewSet(2)">{{ $root.$data.strings.commands }}</div>
+            <div class="top-btn logout" @click="logout()">{{ $root.$data.strings.logout }}</div>
         </div>
         <Menu :user="userData" :guilds="guilds" v-if="view == 0"></Menu>
         <Guild v-if="view == 1" :guild="selected"></Guild>
@@ -31,21 +31,29 @@ export default {
         view: 0,
         userData: null, // logged user data
     }),
-    beforeMount: function() {
-        fetch('/api/guilds')
-            .then(resp => resp.json())
-            .then(data => {
-                data.forEach(guild => {
-                    this.guilds.push(guild);
-                });
-            });
-    },
     created: async function() {
+        // check if logged in
         const resp = await fetch('/api/check');
         if(resp.ok) {
             const data = await resp.json();
             this.userData = data.data;
+
+            fetch('/api/guilds?id='+this.userData.id)
+            .then(resp => resp.json())
+            .then(data => {
+                data.guilds.forEach(guild => {
+                    this.guilds.push(guild);
+                });
+            });
         } else this.$router.push('/');
+
+        // locale
+        this.$root.$data.locale = this.userData.locale;
+        if(this.userData.locale == 'pl') { // polski
+            this.$root.$data.strings = require('../strings/pl');;
+        } else { // english
+            this.$root.$data.strings = require('../strings/en');
+        }
     },
     methods: {
         select(id) {
