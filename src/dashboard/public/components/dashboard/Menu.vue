@@ -62,7 +62,7 @@ h1 {
 
 @media screen and (min-width: 1024px) {
     .guilds {
-        grid-template-columns: repeat(2, 25%)
+        grid-template-columns: repeat(3, 33%)
     }
 }
 
