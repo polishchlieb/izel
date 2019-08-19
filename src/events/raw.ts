@@ -10,7 +10,9 @@ export default class RawEvent implements Event {
         if(t != 'MESSAGE_REACTION_ADD' && t != 'MESSAGE_REACTION_REMOVE')
             return;
 
-        let clickrole: ClickRole = await bot.clickRole.findOne({ channel: d.channel_id });
+        let clickrole: ClickRole = await bot.clickRole.findOne({
+            message: d.message_id
+        });
         if(!clickrole) return;
 
         let guild: Guild = bot.client.guilds.get(d.guild_id);

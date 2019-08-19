@@ -1,6 +1,6 @@
 import { Client } from 'discord.js'
 import {
-    loadCommands, loadEvents, loadDashboard, loadPlayer, loadClickrole
+    loadCommands, loadEvents, loadDashboard, loadPlayer
 } from './utils/loader';
 
 import Command from './interfaces/command';
@@ -50,6 +50,5 @@ export default class Bot {
 
         await this.client.login(token);
         loadPlayer(this);
-        loadClickrole(this);
     }
 }

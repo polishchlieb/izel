@@ -64,6 +64,5 @@ export interface Channel {
 
 export interface ClickRole {
     message: string;
-    channel: string;
     roles: { [k: string]: string };
 }
