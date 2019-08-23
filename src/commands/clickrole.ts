@@ -74,6 +74,10 @@ export default class ClickroleCommand implements Command {
                 ))
 
                 .then((m: Message): void => {
+                    roles.forEach(({ emoji }: { emoji: string }) => {
+                        m.react(emoji);
+                    });
+
                     bot.clickRole.insertOne({
                         message: m.id,
                         roles: db_roles
