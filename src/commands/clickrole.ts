@@ -23,8 +23,10 @@ export default class ClickroleCommand implements Command {
             { time: 900000 }
         );
 
+        // declare some variables to easily use them
         let roles: any[] = [];
         let db_roles: { [k: string]: string } = {};
+        let emojis: string[] = [];
 
         collector.on('collect', (m: Message): any => {
             if(m.content == 'papryka')
@@ -48,7 +50,8 @@ export default class ClickroleCommand implements Command {
 
             if(emoji.length == 2 && twemoji.test(emoji)) {
                 roles.push({ emoji, role: role.name });
-                db_roles[emoji] = role.id; 
+                db_roles[emoji] = role.id;
+                emojis.push(emoji);
 
                 m.react('✅');
             } else {
@@ -57,6 +60,7 @@ export default class ClickroleCommand implements Command {
 
                 roles.push({ emoji: e.toString(), role: role.name });
                 db_roles[e.id] = role.id;
+                emojis.push(e.id);
 
                 m.react('✅');
             }
@@ -72,9 +76,8 @@ export default class ClickroleCommand implements Command {
                 .setDescription(
                     roles.map((v): string => `${v.emoji} ${v.role}`).join('\n')
                 ))
-
                 .then((m: Message): void => {
-                    roles.forEach(({ emoji }: { emoji: string }) => {
+                    emojis.forEach((emoji: string): void => {
                         m.react(emoji);
                     });
 
