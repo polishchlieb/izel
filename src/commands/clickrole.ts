@@ -48,7 +48,7 @@ export default class ClickroleCommand implements Command {
             //    || role.position >= message.guild.members.get(bot.client.user.id).highestRole.position) {
             //     message.channel.send(`❗ ${messages.itMayNotWork}`);
 
-            if(emoji.length == 2 && twemoji.test(emoji)) {
+            if(twemoji.test(emoji)) {
                 roles.push({ emoji, role: role.name });
                 db_roles[emoji] = role.id;
                 emojis.push(emoji);
