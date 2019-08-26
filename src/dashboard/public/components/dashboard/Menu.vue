@@ -38,7 +38,7 @@ export default {
 <style lang="scss" scoped>
 .container {
     margin: auto;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 
