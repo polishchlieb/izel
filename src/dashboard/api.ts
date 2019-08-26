@@ -328,12 +328,23 @@ router.post('/admin', async (req: Request, res: Response): Promise<any> => {
         if (member.hasPermission("ADMINISTRATOR")) {
             let server = await bot.client.guilds.get(guild.id);
             if(req.body.action.id == 'autorole') {
-                let role = server.roles.get(req.body.value);
-                if(role) {
-                    bot.servers.updateOne({ id: guild.id }, { $set: {
-                        autorole: req.body.value
-                    }})
-                    res.send({ok: 'set'})
+                if(req.body.action.name == 'set') {
+                    let role = server.roles.get(req.body.value);
+                    if (role) {
+                        bot.servers.updateOne({ id: guild.id }, {
+                            $set: {
+                                autorole: req.body.value
+                            }
+                        })
+                        res.send({ ok: 'set' })
+                    }
+                } else if (req.body.action.name == 'remove') {
+                    bot.servers.updateOne({ id: guild.id }, {
+                        $set: {
+                            autorole: null
+                        }
+                    })
+                    res.send({ ok: 'remvd'})
                 }
             } else if (req.body.action.id == 'welcome') {
 
