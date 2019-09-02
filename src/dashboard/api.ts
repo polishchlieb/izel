@@ -157,7 +157,7 @@ router.get('/guild', async (req: Request, res: Response): Promise<void> => {
                     result.push({
                         id: member.id,
                         tag: member.user.username,
-                        av: `${member.user.displayAvatarURL}?size=128`,
+                        av: `${member.user.displayAvatarURL.replace("?size=2048", "")}?size=256`,
                         points: user.points,
                         level: user.level
                     });
