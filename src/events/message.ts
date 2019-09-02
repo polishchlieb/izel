@@ -6,18 +6,21 @@ import { StatUser, Server } from '../interfaces/databaseStructures';
 import isGreeting from '../utils/isGreeting';
 import Messages from '../interfaces/messages';
 
-const msgs: any = {
+const msgs: { pl: Messages, en: Messages } = {
     pl: require('../../languages/pl.json'),
     en: require('../../languages/en.json')
 };
 
+const { id }: { id: string } = require('../../config.json');
+
 export default class MessageEvent implements Event {
     name = 'message';
 
-    async run(message: Message): Promise<void> {
+    async run(message: Message): Promise<any> {
         if(message.author.bot
            || !message.guild) return;
 
+        
         let options: Server = await bot.servers.findOne({
             id: message.guild.id
         });
@@ -30,7 +33,12 @@ export default class MessageEvent implements Event {
                 ranking: true
             });
 
-        if(!message.content.startsWith(options.prefix) && !message.content.startsWith('<@470345804075237396> ')) {
+        if(!message.content.startsWith(options.prefix) && 
+           !(message.content.startsWith(`<@${id}> `) || message.content.startsWith(`<@!${id}> `))) {
+            if(message.content === `<@${id}>`
+               || message.content === `<@!${id}>`)
+                return message.channel.send(`${msgs[options.language].myPrefix} ${options.prefix}`);
+ 
             if(isGreeting(message.content)
                && message.guild.id != '264445053596991498') // 'Discord Bot List' server
                 message.react('👋');

@@ -1,5 +1,5 @@
 import Event from '../interfaces/event';
-import { ClickRole } from '../interfaces/databaseStructures';
+import { Clickrole } from '../interfaces/databaseStructures';
 import bot from '..';
 import { Guild } from 'discord.js';
 
@@ -12,7 +12,7 @@ export default class RawEvent implements Event {
         if(d.user_id == bot.client.user.id)
             return;
 
-        let clickrole: ClickRole = await bot.clickRole.findOne({
+        let clickrole: Clickrole = await bot.clickRole.findOne({
             message: d.message_id
         });
         if(!clickrole) return;
