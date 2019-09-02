@@ -44,6 +44,10 @@ export default {
                 data.guilds.forEach(guild => {
                     this.guilds.push(guild);
                 });
+                this.guilds.sort((a, b) => {
+                    if((a.permissions & 8) == 8) return -1;
+                    else return 1;
+                })
             });
         } else this.$router.push('/');
 
