@@ -101,7 +101,6 @@ export default {
     props: ['guild'],
     components: { RankPosition, Roles, Settings },
     mounted: function() {
-        // TODO: Create progress bars based on user's points by user's level or something like that 
         this.guild.top.forEach(score => {
             if(score.points > this.topScore) this.topScore = score.points;
         });
