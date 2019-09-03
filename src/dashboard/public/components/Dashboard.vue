@@ -78,7 +78,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .top {
     background: #202225;
     box-shadow: 2px 3px 3px rgba(0,0,0,.24);
