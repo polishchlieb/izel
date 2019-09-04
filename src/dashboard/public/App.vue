@@ -9,6 +9,7 @@ import Dashboard from './components/Dashboard.vue';
 import Login from './components/Login.vue';
 import Commands from './components/Commands.vue';
 import Radios from './components/Radios.vue';
+import Ranking from './components/Ranking.vue';
 
 const router = new VueRouter({
     mode: 'history',
@@ -16,7 +17,8 @@ const router = new VueRouter({
         { path: '/', component: Login },
         { path: '/dashboard', component: Dashboard },
         { path: '/commands', component: Commands },
-        { path: '/radios', component: Radios }
+        { path: '/radios', component: Radios },
+        { path: '/ranking/:id', component: Ranking }
     ]
 });
 

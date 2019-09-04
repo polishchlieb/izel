@@ -167,5 +167,6 @@
     "noSuchEmoji": "I can't recognize that emoji",
     "reactForRole": "React to get the role",
     "itMayNotWork": "It may not work, because the bot has no permission to give someone that role.",
-    "usePaprykaTC": "Use `papryka` to confirm"
+    "usePaprykaTC": "Use `papryka` to confirm",
+    "dashboardAd": "you can check the top using our dashboard"
 }
