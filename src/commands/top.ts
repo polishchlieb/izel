@@ -56,10 +56,10 @@ export default class TopCommand implements Command {
                         `${ii}. ${member.displayName}`,
                         `${user.points} ${points}`
                     );
-                    embed.addField(dashboardAd, `${dashboard}/ranking/${message.guild.id}`)
                 }
             });
 
+            embed.addField(dashboardAd, `${dashboard}/ranking/${message.guild.id}`)
             message.channel.send(embed);
         }
     }
