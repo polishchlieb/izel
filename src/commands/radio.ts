@@ -3,8 +3,8 @@ import { Message, RichEmbed } from 'discord.js';
 import PlayCommand from './play';
 import Messages from '../interfaces/messages';
 import Radio from '../interfaces/radio';
-const { dashboard }: { dashboard: string } = require('../../config.json');
 
+const { dashboard }: { dashboard: string } = require('../../config.json');
 const { radios }: { radios: any[] } = require('../../radios.json')
 
 export default class RadioCommand implements Command {

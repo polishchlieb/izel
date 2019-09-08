@@ -6,16 +6,16 @@ export default class GreetingCommand implements Command {
     info = {
         names: ['greeting'],
         description: 'Sets server\'s greeting',
-        usage: '&greeting (greeting / goodbye / placeholders) (channel mention) {text.. %m - mention, %u - username}',
+        usage: '&greeting (greeting / goodbye / placeholders) { channel mention } {text..}',
         category: 'admin'
     };
 
     async run(message: Message, args: string[], messages: any): Promise<any> {
         let [ type, mention, ...content ] = args;
 
-        if(!type || !mention)
+        if (!type)
             return message.reply(`${messages.use} \`${this.info.usage}\``);
-        if(!message.member.hasPermission('MANAGE_CHANNELS'))
+        if (!message.member.hasPermission('MANAGE_CHANNELS'))
             return message.reply(messages.noPermission);
 
         if(type == 'placeholders')
@@ -28,18 +28,18 @@ export default class GreetingCommand implements Command {
                     message.author.avatarURL
                 ));
 
-        if(!mention.match(/<#[0-9]{18}>/))
+        if (!mention || !mention.match(/<#\d+>/))
             return message.reply(`${messages.use} \`${this.info.usage}\``);
         let channel: Channel = message.guild.channels.get(mention.substring(2, 20));
-        if(!channel)
+        if (!channel)
             return message.reply(`${messages.use} \`${this.info.usage}\``);
-        if(channel.type != 'text')
+        if (channel.type != 'text')
             return message.reply(messages.mustBeText);
         
-        if(!content.length) // content.length == 0
+        if (!content.length) // content.length == 0
             return message.reply(`${messages.use} \`${this.info.usage}\``);
        
-        if(type == 'greeting' || type == 'goodbye')
+        if (type == 'greeting' || type == 'goodbye')
             bot.servers.updateOne({ id: message.guild.id }, {
                 $set: { [type]: {
                     channel: channel.id,

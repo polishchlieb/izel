@@ -10,7 +10,7 @@ export default class MathCommand implements Command {
         category: 'tool'
     };
 
-    scope: any = {};
+    private scope: any = {};
 
     async run(message: Message, args: string[]): Promise<void> {
         let result: any = calc(args.join(' '), this.scope);
