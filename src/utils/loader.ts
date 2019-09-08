@@ -1,8 +1,8 @@
-import { blue } from 'colors';
+import { blue, yellow, reset } from 'colors';
 import { PlayerManager } from 'discord.js-lavalink';
 
 import Event from '../interfaces/event';
-import Bot from '../bot';
+import bot from '..';
 import Dashboard from '../dashboard';
 
 import MessageEvent from '../events/message';
@@ -11,6 +11,7 @@ import GuildCreateEvent from '../events/guildCreate';
 import GuildDeleteEvent from '../events/guildDelete';
 import GuildMemberAddEvent from '../events/guildMemberAdd';
 import GuildMemberRemoveEvent from '../events/guildMemberRemove';
+import RawEvent from '../events/raw';
 
 import RankCommand from '../commands/rank';
 import TopCommand from '../commands/top';
@@ -57,53 +58,65 @@ import LoopCommand from '../commands/loop';
 import EmbedCommand from '../commands/embed';
 import QrCommand from '../commands/qr';
 import ClickroleCommand from '../commands/clickrole';
-import RawEvent from '../events/raw';
 
-export const loadEvents = (bot: Bot): void => {
-    bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
-        new GuildDeleteEvent, new GuildMemberAddEvent, new GuildMemberRemoveEvent,
-        new RawEvent);
-    bot.events.forEach((event: Event): void => {
-        bot.client.on(event.name, event.run);
-    });
+export default class Loader {
+    public load(): void {
+        Loader.loadEvents();
+        Loader.loadCommands();
+        Loader.loadPlayer();
+        Loader.loadDashboard();
+    }
 
-    console.log(blue(`Loaded ${bot.events.length} events`));
-}
+    private static loadEvents(): void {
+        bot.events.push(new ReadyEvent, new MessageEvent, new GuildCreateEvent,
+            new GuildDeleteEvent, new GuildMemberAddEvent, new GuildMemberRemoveEvent,
+            new RawEvent);
+        bot.events.forEach((event: Event): void => {
+            bot.client.on(event.name, event.run);
+        });
+    
+        console.log(blue(`Loaded ${bot.events.length} events`));
+    }
 
-export const loadCommands = (bot: Bot): void => {
-    bot.commands.push(new RankCommand, new TopCommand, new EvalCommand,
-        new MathCommand, new PollCommand, new HelpCommand, new MinecraftCommand,
-        new ChooseCommand, new WeatherCommand, new LanguageCommand,
-        new GiveawayCommand, new PingCommand, new MathCommand, new CalcCommand,
-        new TagCommand, new PruneCommand, new PlayCommand,
-        new SkipCommand, new SayCommand, new DiceCommand, new RankingCommand,
-        new QueueCommand, new BanCommand, new ServerInfoCommand,
-        new PermissionsCommand, new KickCommand, new StopCommand,
-        new PrefixCommand, new StatsCommand, new ExecCommand, new ProfileCommand,
-        new AutoRoleCommand, new GreetingCommand, new PlayingCommand, new ChannelCommand,
-        new RadioCommand, new RemoveCommand, new ClearqueueCommand, new BassCommand,
-        new AvatarCommand, new Eightballcommand, new SueCommand, new LoopCommand,
-        new EmbedCommand, new QrCommand, new ClickroleCommand);
+    private static loadCommands(): void {
+        bot.commands.push(new RankCommand, new TopCommand, new EvalCommand,
+            new MathCommand, new PollCommand, new HelpCommand, new MinecraftCommand,
+            new ChooseCommand, new WeatherCommand, new LanguageCommand,
+            new GiveawayCommand, new PingCommand, new MathCommand, new CalcCommand,
+            new TagCommand, new PruneCommand, new PlayCommand,
+            new SkipCommand, new SayCommand, new DiceCommand, new RankingCommand,
+            new QueueCommand, new BanCommand, new ServerInfoCommand,
+            new PermissionsCommand, new KickCommand, new StopCommand,
+            new PrefixCommand, new StatsCommand, new ExecCommand, new ProfileCommand,
+            new AutoRoleCommand, new GreetingCommand, new PlayingCommand, new ChannelCommand,
+            new RadioCommand, new RemoveCommand, new ClearqueueCommand, new BassCommand,
+            new AvatarCommand, new Eightballcommand, new SueCommand, new LoopCommand,
+            new EmbedCommand, new QrCommand, new ClickroleCommand);
+    
+        console.log(blue(`Loaded ${bot.commands.length} commands`));
+    }
 
-    console.log(blue(`Loaded ${bot.commands.length} commands`));
-}
+    private static loadPlayer(): void {
+        bot.player.nodes = [
+            { host: 'localhost', port: 2333, password: 'totallydefaultpassword' }
+        ];
 
-export const loadDashboard = (): void => {
-    new Dashboard;
-    console.log(blue('Loaded dashboard\n'));
-}
+        try {
+            bot.player.manager = new PlayerManager(bot.client, bot.player.nodes, {
+                user: bot.client.user.id,
+                shards: 0
+            });
+        } catch(e) {
+            console.log(yellow('Warning: ') + reset('the player will not work.'));
+        }
+    
+        bot.player.queue = {};
+        bot.player.playing = {};
+        bot.player.settings = {};
+    }
 
-export const loadPlayer = (bot: Bot): void => {
-    bot.player.nodes = [
-        { host: 'localhost', port: 2333, password: 'totallydefaultpassword' }
-    ];
-
-    bot.player.manager = new PlayerManager(bot.client, bot.player.nodes, {
-        user: bot.client.user.id,
-        shards: 0
-    });
-
-    bot.player.queue = {};
-    bot.player.playing = {};
-    bot.player.settings = {};
+    private static loadDashboard(): void {
+        new Dashboard;
+        console.log(blue('Loaded dashboard\n'));
+    }
 }

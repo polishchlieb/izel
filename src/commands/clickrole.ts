@@ -13,7 +13,7 @@ export default class ClickroleCommand implements Command {
     };
 
     run(message: Message, []: string[], messages: Messages): any {
-        if(!message.member.hasPermission('MANAGE_ROLES') && !message.member.hasPermission('ADMINISTRATOR'))
+        if (!message.member.hasPermission('MANAGE_ROLES') && !message.member.hasPermission('ADMINISTRATOR'))
             return message.channel.send(messages.noPermission);
 
         message.channel.send(messages.clickRoleStart);
@@ -67,7 +67,7 @@ export default class ClickroleCommand implements Command {
         });
         
         collector.on('end', (): any => {
-            if(roles.length == 0)
+            if (roles.length == 0)
                 return message.channel.send(messages.cancelled);
 
             message.channel.send(new RichEmbed()
@@ -81,7 +81,7 @@ export default class ClickroleCommand implements Command {
                         m.react(emoji);
                     });
 
-                    bot.clickRole.insertOne({
+                    bot.clickrole.insertOne({
                         message: m.id,
                         roles: db_roles
                     });

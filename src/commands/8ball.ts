@@ -8,7 +8,7 @@ export default class Eightballcommand implements Command {
         description: 'Gives you an answer',
         usage: '8ball <question>',
         category: 'games'
-    }
+    };
 
     run(message: Message, [...arg]: string[], messages: Messages) {
         if (arg.length == 0)
