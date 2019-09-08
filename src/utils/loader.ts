@@ -1,4 +1,4 @@
-import { blue } from 'colors';
+import { blue, yellow, reset } from 'colors';
 import { PlayerManager } from 'discord.js-lavalink';
 
 import Event from '../interfaces/event';
@@ -100,11 +100,15 @@ export default class Loader {
         bot.player.nodes = [
             { host: 'localhost', port: 2333, password: 'totallydefaultpassword' }
         ];
-    
-        bot.player.manager = new PlayerManager(bot.client, bot.player.nodes, {
-            user: bot.client.user.id,
-            shards: 0
-        });
+
+        try {
+            bot.player.manager = new PlayerManager(bot.client, bot.player.nodes, {
+                user: bot.client.user.id,
+                shards: 0
+            });
+        } catch(e) {
+            console.log(yellow('Warning: ') + reset('the player will not work.'));
+        }
     
         bot.player.queue = {};
         bot.player.playing = {};
