@@ -17,11 +17,11 @@ export default class ReadyEvent implements Event {
             if(data.version != version)
                 console.log(yellow(`Update is available: version ${data.version}`));
             console.log('');
-            
-            console.log(green('Bot is ready'));
-            console.log(green(`Running on ${bot.client.guilds.size} servers`));
-            console.log(green(`Serving ${bot.client.users.size} users\n`));
         }
+
+        console.log(green('Bot is ready'));
+        console.log(green(`Running on ${bot.client.guilds.size} servers`));
+        console.log(green(`Serving ${bot.client.users.size} users\n`));
 
         let num: number = 0;
         setInterval((): void => {
