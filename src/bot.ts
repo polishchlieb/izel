@@ -17,17 +17,17 @@ export default class Bot {
     public commands: Command[] = [];
     public events: Event[] = [];
 
-    stats: Collection<StatUser>;
-    users: Collection<User>;
-    servers: Collection<Server>;
-    permissions: Collection<Permission>;
-    tags: Collection<Tag>;
-    channels: Collection<Channel>;
-    clickRole: Collection<Clickrole>;
+    public stats: Collection<StatUser>;
+    public users: Collection<User>;
+    public servers: Collection<Server>;
+    public permissions: Collection<Permission>;
+    public tags: Collection<Tag>;
+    public channels: Collection<Channel>;
+    public clickRole: Collection<Clickrole>;
     
-    player: Player;
+    public player: Player;
 
-    async start(token: string): Promise<void> {
+    public async start(token: string): Promise<void> {
         process.on('unhandledRejection', console.error);
 
         let conn: MongoClient = await MongoClient.connect(mongoURI, { useNewUrlParser: true });
