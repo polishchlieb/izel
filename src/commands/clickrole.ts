@@ -81,7 +81,7 @@ export default class ClickroleCommand implements Command {
                         m.react(emoji);
                     });
 
-                    bot.clickRole.insertOne({
+                    bot.clickrole.insertOne({
                         message: m.id,
                         roles: db_roles
                     });

@@ -12,7 +12,7 @@ export default class RawEvent implements Event {
         if(d.user_id == bot.client.user.id)
             return;
 
-        let clickrole: Clickrole = await bot.clickRole.findOne({
+        let clickrole: Clickrole = await bot.clickrole.findOne({
             message: d.message_id
         });
         if(!clickrole) return;

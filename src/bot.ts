@@ -23,7 +23,7 @@ export default class Bot {
     public permissions: Collection<Permission>;
     public tags: Collection<Tag>;
     public channels: Collection<Channel>;
-    public clickRole: Collection<Clickrole>;
+    public clickrole: Collection<Clickrole>;
     
     public player: Player;
 
@@ -39,7 +39,7 @@ export default class Bot {
         this.permissions = database.collection('permissions');
         this.tags = database.collection('tags');
         this.channels = database.collection('channels');
-        this.clickRole = database.collection('clickRole');
+        this.clickrole = database.collection('clickRole');
 
         this.player = {};
 
