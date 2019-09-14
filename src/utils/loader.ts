@@ -58,6 +58,7 @@ import LoopCommand from '../commands/loop';
 import EmbedCommand from '../commands/embed';
 import QrCommand from '../commands/qr';
 import ClickroleCommand from '../commands/clickrole';
+import OkoCommand from '../commands/oko';
 
 export default class Loader {
     public load(): void {
@@ -91,7 +92,7 @@ export default class Loader {
             new AutoRoleCommand, new GreetingCommand, new PlayingCommand, new ChannelCommand,
             new RadioCommand, new RemoveCommand, new ClearqueueCommand, new BassCommand,
             new AvatarCommand, new Eightballcommand, new SueCommand, new LoopCommand,
-            new EmbedCommand, new QrCommand, new ClickroleCommand);
+            new EmbedCommand, new QrCommand, new ClickroleCommand, new OkoCommand);
     
         console.log(blue(`Loaded ${bot.commands.length} commands`));
     }
