@@ -21,7 +21,7 @@ export default class PrefixCommand implements Command {
                 id: message.guild.id
             });
 
-            message.reply(`${messages.myPrefix} \`${guild.prefix}\``);
+            message.channel.send(`${messages.myPrefix} \`${guild.prefix}\``);
         } else {
             bot.servers.updateOne({
                 id: message.guild.id

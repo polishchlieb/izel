@@ -56,7 +56,7 @@ export default class RankCommand implements Command {
         ctx.fillText(member.displayName, 730 - size, 65, 500);
 
         ctx.fillStyle = '#000000'
-        ctx.fillRect(230, 150, ((data.points - (Math.pow(data.level-1, 2) * 100)) / ((Math.pow(data.level, 2) * 100) - (Math.pow(data.level-1, 2) * 100))) * 525, 40);
+        ctx.fillRect(230, 150, ((data.points - (Math.pow(data.level - 1, 2) * 100)) / ((Math.pow(data.level, 2) * 100) - (Math.pow(data.level - 1, 2) * 100))) * 525, 40);
 
         ctx.drawImage(fg, 0, 0);
 

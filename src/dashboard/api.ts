@@ -1,5 +1,5 @@
 import { GuildMember, Guild } from 'discord.js';
-import { Request, Response, Router } from 'express';
+import { Request, Response, Router, response } from 'express';
 import * as bodyParser from 'body-parser';
 import fetch from 'node-fetch';
 import * as cookie from 'cookie-parser';
@@ -157,7 +157,7 @@ router.get('/guild', async (req: Request, res: Response): Promise<void> => {
                     result.push({
                         id: member.id,
                         tag: member.user.username,
-                        av: `${member.user.displayAvatarURL}?size=128`,
+                        av: `${member.user.displayAvatarURL.replace("?size=2048", "")}?size=256`,
                         points: user.points,
                         level: user.level
                     });
@@ -328,12 +328,23 @@ router.post('/admin', async (req: Request, res: Response): Promise<any> => {
         if (member.hasPermission("ADMINISTRATOR")) {
             let server = await bot.client.guilds.get(guild.id);
             if(req.body.action.id == 'autorole') {
-                let role = server.roles.get(req.body.value);
-                if(role) {
-                    bot.servers.updateOne({ id: guild.id }, { $set: {
-                        autorole: req.body.value
-                    }})
-                    res.send({ok: 'set'})
+                if(req.body.action.name == 'set') {
+                    let role = server.roles.get(req.body.value);
+                    if (role) {
+                        bot.servers.updateOne({ id: guild.id }, {
+                            $set: {
+                                autorole: req.body.value
+                            }
+                        })
+                        res.send({ ok: 'set' })
+                    }
+                } else if (req.body.action.name == 'remove') {
+                    bot.servers.updateOne({ id: guild.id }, {
+                        $set: {
+                            autorole: null
+                        }
+                    })
+                    res.send({ ok: 'remvd'})
                 }
             } else if (req.body.action.id == 'welcome') {
 
@@ -381,6 +392,40 @@ router.get('/radios', (req: Request, res: Response): void => {
     res.send(radios);
 });
 
+router.get('/ranking/:id', async (req: Request, res: Response): Promise<void> => {
+    let guild: Guild = bot.client.guilds.get(req.params.id);
+
+    if(!guild) {
+        res.sendStatus(400);
+    }
+
+    bot.stats.find({ guild: guild.id }).sort({ points: -1 }).limit(20).toArray()
+        .then((resp: any[]): void => {
+            let result: any[] = [];
+            let ii = 0;
+            resp.forEach((user: StatUser): void => {
+                let member: GuildMember = guild.member(user.id);
+                if (member) {
+                    ii++;
+                    if (ii > 20) return;
+
+                    result.push({
+                        id: member.id,
+                        tag: member.user.username,
+                        av: `${member.user.displayAvatarURL.replace("?size=2048", "")}?size=256`,
+                        points: user.points,
+                        level: user.level
+                    });
+                }
+            });
+            res.send({
+                id: guild.id,
+                top: result,
+                guildName: guild.name,
+                icon: guild.iconURL
+            });
+        });
+});
 /*router.post('/admin', (req: Request, res: Response): void => {
     fetch('https://discordapp.com/api/users/@me',
     {

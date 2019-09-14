@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="width: 100%">
         <div v-if="roles.length">
             <div class="viewcard blu">
                 <div class="viewcardTitle">{{ $root.$data.strings.roles }}</div>

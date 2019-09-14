@@ -13,16 +13,16 @@ export default class GiveawayCommand implements Command {
     };
 
     async run(message: Message, args: string[], messages: Messages): Promise<any> {
-        if(args.length < 2)
+        if (args.length < 2)
             return message.reply(`${messages.use} ${this.info.usage}`);
 
         let time: Time = new Time(args.shift());
-        if(time.invalid)
+        if (time.invalid)
             return message.reply(`${messages.use} ${this.info.usage}`);
 
         let reaction: string = '🍞';
 
-        let giveaway: Message = await message.channel.send(
+        const giveaway = await message.channel.send(
             new RichEmbed()
                 .setTitle('GIVEAWAY')
                 .setColor('RANDOM')
@@ -50,9 +50,8 @@ export default class GiveawayCommand implements Command {
                         })
                         .random();
 
-                    if(!winner)
-                        return message.reply(messages.nobodyReacted);
-                    if(!(giveaway instanceof Message)) return;
+                    if (!winner) return message.reply(messages.nobodyReacted);
+                    if (!(giveaway instanceof Message)) return;
                     
                     giveaway.edit(new RichEmbed()
                         .setTitle(messages.giveawayEnded)

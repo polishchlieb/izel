@@ -62,7 +62,7 @@ export interface Channel {
     // subs: string[];
 }
 
-export interface ClickRole {
+export interface Clickrole {
     message: string;
     roles: { [k: string]: string };
 }

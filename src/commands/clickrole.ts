@@ -13,7 +13,7 @@ export default class ClickroleCommand implements Command {
     };
 
     run(message: Message, []: string[], messages: Messages): any {
-        if(!message.member.hasPermission('MANAGE_ROLES') && !message.member.hasPermission('ADMINISTRATOR'))
+        if (!message.member.hasPermission('MANAGE_ROLES') && !message.member.hasPermission('ADMINISTRATOR'))
             return message.channel.send(messages.noPermission);
 
         message.channel.send(messages.clickRoleStart);
@@ -23,8 +23,10 @@ export default class ClickroleCommand implements Command {
             { time: 900000 }
         );
 
+        // declare some variables to easily use them
         let roles: any[] = [];
         let db_roles: { [k: string]: string } = {};
+        let emojis: string[] = [];
 
         collector.on('collect', (m: Message): any => {
             if(m.content == 'papryka')
@@ -46,9 +48,10 @@ export default class ClickroleCommand implements Command {
             //    || role.position >= message.guild.members.get(bot.client.user.id).highestRole.position) {
             //     message.channel.send(`❗ ${messages.itMayNotWork}`);
 
-            if(emoji.length == 2 && twemoji.test(emoji)) {
+            if(twemoji.test(emoji)) {
                 roles.push({ emoji, role: role.name });
-                db_roles[emoji] = role.id; 
+                db_roles[emoji] = role.id;
+                emojis.push(emoji);
 
                 m.react('✅');
             } else {
@@ -57,13 +60,14 @@ export default class ClickroleCommand implements Command {
 
                 roles.push({ emoji: e.toString(), role: role.name });
                 db_roles[e.id] = role.id;
+                emojis.push(e.id);
 
                 m.react('✅');
             }
         });
         
         collector.on('end', (): any => {
-            if(roles.length == 0)
+            if (roles.length == 0)
                 return message.channel.send(messages.cancelled);
 
             message.channel.send(new RichEmbed()
@@ -72,9 +76,12 @@ export default class ClickroleCommand implements Command {
                 .setDescription(
                     roles.map((v): string => `${v.emoji} ${v.role}`).join('\n')
                 ))
-
                 .then((m: Message): void => {
-                    bot.clickRole.insertOne({
+                    emojis.forEach((emoji: string): void => {
+                        m.react(emoji);
+                    });
+
+                    bot.clickrole.insertOne({
                         message: m.id,
                         roles: db_roles
                     });

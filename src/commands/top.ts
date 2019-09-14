@@ -3,6 +3,7 @@ import { Message, RichEmbed, GuildMember, Guild } from 'discord.js';
 import bot from '..';
 import { StatUser } from '../interfaces/databaseStructures';
 import Messages from '../interfaces/messages';
+const { dashboard } = require('../../config.json');
 
 export default class TopCommand implements Command {
     info = {
@@ -12,7 +13,7 @@ export default class TopCommand implements Command {
         category: 'stats'
     };
 
-    async run(message: Message, args: string[], { top, points }: Messages): Promise<void> {
+    async run(message: Message, args: string[], { top, points, dashboardAd }: Messages): Promise<void> {
         if(args[0] == 'global') {
             let data: StatUser[] = await bot.stats
                 .find().sort({ points: -1 }).toArray();
@@ -58,6 +59,7 @@ export default class TopCommand implements Command {
                 }
             });
 
+            embed.addField(dashboardAd, `${dashboard}/ranking/${message.guild.id}`)
             message.channel.send(embed);
         }
     }

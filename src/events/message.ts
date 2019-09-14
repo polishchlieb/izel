@@ -6,17 +6,18 @@ import { StatUser, Server } from '../interfaces/databaseStructures';
 import isGreeting from '../utils/isGreeting';
 import Messages from '../interfaces/messages';
 
-const msgs: any = {
+const msgs: { pl: Messages, en: Messages } = {
     pl: require('../../languages/pl.json'),
     en: require('../../languages/en.json')
 };
 
+const { id }: { id: string } = require('../../config.json');
+
 export default class MessageEvent implements Event {
     name = 'message';
 
-    async run(message: Message): Promise<void> {
-        if(message.author.bot
-           || !message.guild) return;
+    async run(message: Message): Promise<any> {
+        if (message.author.bot || !message.guild) return;
 
         let options: Server = await bot.servers.findOne({
             id: message.guild.id
@@ -30,9 +31,11 @@ export default class MessageEvent implements Event {
                 ranking: true
             });
 
-        if(!message.content.startsWith(options.prefix) && !message.content.startsWith('<@470345804075237396> ')) {
-            if(isGreeting(message.content)
-               && message.guild.id != '264445053596991498') // 'Discord Bot List' server
+        if (!message.content.startsWith(options.prefix) && !(message.content.startsWith(`<@${id}> `) || message.content.startsWith(`<@!${id}> `))) {
+            if (message.content === `<@${id}>` || message.content === `<@!${id}>`)
+                return message.channel.send(`${msgs[options.language].myPrefix} ${options.prefix}`);
+ 
+            if (isGreeting(message.content) && message.guild.id != '264445053596991498') // 'Discord Bot List' server
                 message.react('👋');
 
             let data: StatUser = await bot.stats.findOne({
@@ -40,7 +43,7 @@ export default class MessageEvent implements Event {
                 guild: message.guild.id
             });
 
-            if(!data)
+            if (!data)
                 bot.stats.insertOne({
                     id: message.author.id,
                     guild: message.guild.id,
@@ -49,7 +52,7 @@ export default class MessageEvent implements Event {
                     cooldown: new Date().getTime()
                 });
             else {
-                if(new Date().getTime() - data.cooldown >= 60000) {
+                if (new Date().getTime() - data.cooldown >= 60000) {
                     const tg = determinePoints();
                     data.points += tg;
                     data.cooldown = new Date().getTime();
@@ -76,10 +79,10 @@ export default class MessageEvent implements Event {
         } else {
             let messages: Messages;
             
-            if(message.guild.id == '485437978315849748' && (message.channel as GuildChannel).parent) {
-                if((message.channel as GuildChannel).parent.id == '544504580302438421')
+            if (message.guild.id == '485437978315849748' && (message.channel as GuildChannel).parent) {
+                if ((message.channel as GuildChannel).parent.id == '544504580302438421')
                     messages = msgs.en;
-                else if((message.channel as GuildChannel).parent.id == '544504706005860362')
+                else if ((message.channel as GuildChannel).parent.id == '544504706005860362')
                     messages = msgs.pl;
                 else messages = msgs[options.language];
             } else messages = msgs[options.language];
@@ -89,8 +92,8 @@ export default class MessageEvent implements Event {
                 args = message.content.substring(22).split(' ');
             else args = message.content.substring(options.prefix.length).split(' ');
             
-            let name: string = args.shift().toLowerCase();
-            let command: Command = bot.commands.find((c: Command): boolean =>
+            const name: string = args.shift().toLowerCase();
+            const command: Command = bot.commands.find((c: Command): boolean =>
                 c.info.names.includes(name)
             );
 
@@ -101,7 +104,7 @@ export default class MessageEvent implements Event {
     }
 }
 
-function determinePoints(): number {
+const determinePoints = (): number => {
     const now = new Date(Date.now());
     const weekday = now.getDay();
     const hour = now.getHours();
@@ -112,25 +115,25 @@ function determinePoints(): number {
     return Math.floor(rndm * days(weekday, hour, month));
 }
 
-function days(weekday, hour, month): number {
-    if (weekday > 5 || month == 6 || month == 7) { // weekend bądź wakacje
+const days = (weekday, hour, month): number => {
+    if (weekday > 5 || month == 6 || month == 7) { // weekend or summer holidays
         switch (true) {
-            case (hour < 3): return 0.7; break;
-            case (hour < 9): return 1; break;
-            case (hour < 11): return 0.7; break;
-            case (hour < 14): return 0.9; break;
-            case (hour < 19): return 0.7; break;
-            case (hour < 24): return 0.5; break;
-            default: return 1; break;
+            case (hour < 3): return 0.7;
+            case (hour < 9): return 1;
+            case (hour < 11): return 0.7;
+            case (hour < 14): return 0.9;
+            case (hour < 19): return 0.7;
+            case (hour < 24): return 0.5;
+            default: return 1;
         }
     } else { // tydzień
         switch (true) {
-            case (hour < 2): return 0.9; break;
-            case (hour < 6): return 1; break;
-            case (hour < 14): return 0.9; break;
-            case (hour < 18): return 0.7; break;
-            case (hour < 24): return 0.5; break;
-            default: return 1; break;
+            case (hour < 2): return 0.9;
+            case (hour < 6): return 1;
+            case (hour < 14): return 0.9;
+            case (hour < 18): return 0.7;
+            case (hour < 24): return 0.5;
+            default: return 1;
         }
     }
 }

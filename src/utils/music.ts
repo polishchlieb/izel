@@ -3,13 +3,13 @@ import fetch, { Response } from 'node-fetch';
 import { URLSearchParams } from 'url';
 
 export const getSongs = async (query: string): Promise<any> => {
-    const node = bot.player.nodes[0];
+    const { host, port, password } = bot.player.nodes[0];
     const params: URLSearchParams = new URLSearchParams;
     params.append('identifier', query);
 
-    return await fetch(`http://${node.host}:${node.port}/loadtracks?${params.toString()}`,
+    return await fetch(`http://${host}:${port}/loadtracks?${params.toString()}`,
         {
-            headers: { Authorization: node.password }
+            headers: { Authorization: password }
         }
     )
         .then((resp: Response): Promise<any> => resp.json())

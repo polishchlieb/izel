@@ -26,5 +26,8 @@ module.exports = {
     addCat: "Dodaj kategorię",
     addRole: "Dodaj rolę",
     removeRole: "Usuń rolę",
-    removeCat: "Usuń kategorię"
+    removeCat: "Usuń kategorię",
+    confirm: "Potwierdź",
+    thx: "dziękujemy za używanie izela",
+    remove: "Usuń"
 }

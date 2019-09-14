@@ -44,6 +44,10 @@ export default {
                 data.guilds.forEach(guild => {
                     this.guilds.push(guild);
                 });
+                this.guilds.sort((a, b) => {
+                    if((a.permissions & 8) == 8) return -1;
+                    else return 1;
+                })
             });
         } else this.$router.push('/');
 
@@ -74,7 +78,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .top {
     background: #202225;
     box-shadow: 2px 3px 3px rgba(0,0,0,.24);

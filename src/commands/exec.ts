@@ -20,7 +20,7 @@ export default class ExecCommand implements Command {
         else message.channel.send(`output: \`\`\`bash: ${arg[0]}: nie znaleziono polecenia\`\`\``);
     }
 
-    commands = [
+    private commands = [
         {
             name: "help",
             resp: `GNU bash, wersja 5.0.7(1)-release (x86_64-pc-linux-gnu)

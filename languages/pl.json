@@ -159,11 +159,12 @@
     "sueConfirmed": "Pomyślnie pozwano",
     "sued": "Zostałeś pozwany przez",
     "loop": "Powtarzanko odpalone",
-    "clickRoleStart": "Zacznijmy ( ͡° ͜ʖ ͡°) Zakładam, że wiesz, co robisz. Nie wiesz? Wpisz `papryka` i czekaj na tutorial.",
+    "clickRoleStart": "Zacznijmy ( ͡° ͜ʖ ͡°) skrobnij se tu tutoriala: https://youtu.be/JrQwetaLNHY",
     "usePapryka": "Wygląda na to, że nie wiesz jak tego używać. Spróbuj jeszcze raz",
     "cancelled": "Anulowano.",
     "noSuchEmoji": "Nie mogę znaleźć takiej emotki nube",
     "reactForRole": "Zareaguj by dostać rolę",
     "itMayNotWork": "To może nie działać, ponieważ bot nie ma możliwości dania komuś tej roli.",
-    "usePaprykaTC": "Użyj `papryka` aby potwierdzić"
+    "usePaprykaTC": "Użyj `papryka` aby potwierdzić",
+    "dashboardAd": "Możesz też sprawdzić ranking na"
 }
