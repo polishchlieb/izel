@@ -4,7 +4,6 @@
             <h1>{{ $root.$data.strings.welcome }}</h1>
             <img class="av appear" :src="`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}?size=512`">
             <div class="username appear">{{ user.username }}#{{ user.discriminator }}</div>
-            <span>{{ $root.$data.strings.thx }}</span>
         </div>
         <div class="main">
             <h4>{{ $root.$data.strings.guilds }}</h4>
@@ -22,7 +21,6 @@
                 </div>
                 </div>
             </div>
-            <span>&copy; izel corp 2019 (<a href="https://github.com/polishchlieb">polishchlieb</a> & <a href="https://github.com/pizza61">pizza61</a>)</span>
         </div>
     </div>
 </template>
