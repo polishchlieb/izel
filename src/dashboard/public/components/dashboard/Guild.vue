@@ -79,10 +79,10 @@
                         <div class="popupButton red" @click="popupclose()">{{ $root.$data.strings.cancel }}</div>
                     </div>
                     <div class="popupContent" v-if="popupType == 3 /* 2 - dodawanie roli, 3 - dodawanie kategorii*/">
-                        <input class="popupInput" placeholder="type" v-model="popupData">
+                        <input class="popupInput" placeholder="uwu" v-model="popupData">
                         <div class="popupButtons">
-                            <div class="popupButton dblu" @click="popupclose(); $refs.settings.popupReturn(3, popupData)">{{ $root.$data.strings.confirm }}</div>
                             <div class="popupButton red" @click="popupclose()">{{ $root.$data.strings.cancel }}</div>
+                            <div class="popupButton dblu" @click="popupclose(); $refs.settings.popupReturn(3, popupData)">{{ $root.$data.strings.confirm }}</div>
                         </div>
                     </div>
                 </div>
@@ -146,11 +146,12 @@ export default {
 }
 
 .dblu {
-    background: #0a62c5;
+    background: #2e66a7;
 }
 
 .red {
-    background: linear-gradient(90deg, rgba(213,51,61,1) 0%, rgb(248, 64, 64) 100%);
+    background: #8b262f;
+    //background: linear-gradient(90deg, rgba(213,51,61,1) 0%, rgb(248, 64, 64) 100%);
 }
 
 .container {
@@ -343,8 +344,9 @@ export default {
     border-radius: 3px;
 }
 .popupHeader {
-    background: #1d5cb2;
-    border-radius: 3px;
+    background: #2e66a7;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -374,9 +376,10 @@ export default {
     font: inherit;
 }
 .popupButton {
-    padding: 10px;
+    padding: 15px;
     text-align: center;
-    border-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
     cursor: pointer;
     transition: 150ms;
 
@@ -412,7 +415,6 @@ export default {
 .listPos {
     cursor: pointer;
     padding: 15px;
-    font-weight: 600;
     border-bottom: 1px solid #2b2f33;
     transition: 100ms;
 

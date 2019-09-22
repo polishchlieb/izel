@@ -2,14 +2,14 @@
     <div>
         <div class="command-ct">
             <h1>{{ $root.$data.strings.radios }}</h1>
-            <h2>Use &amp;radio &lt;name&gt;, &amp; is your prefix</h2>
-            <div class="table">
-                <div class="item-group" v-for="(cat, i) in categories" :key="i">
-                    <div class="item cat-title">{{ cat.name }}</div>
-                    <div class="item appear" v-for="(radio, i) in cat.radios" :key="i">
-                        <div class="name">
-                            {{ radio.title }}
+            <input type="text" class="search" v-model="search" placeholder="search for radios">
+            <div class="container">
+                <div class="radios">
+                    <div class="radio" v-for="(radio, i) in filtered" :key="i">
+                        <div class="radio-imgct">
+                            <img :src="radio.img" class="radio-img" alt="no icon oof">
                         </div>
+                        <div class="radio-name">{{ radio.title }}</div>
                     </div>
                 </div>
             </div>
@@ -20,28 +20,32 @@
 <script>
 export default {
     data: () => ({
-        categories: []
+        radios: [],
+        search: ''
     }),
+    computed: {
+        filtered: function() {
+            return this.radios.filter(item => item.title.toLowerCase().indexOf(this.search.toLowerCase()) > -1)
+        }
+    },
     mounted: function() {
         fetch('/api/radios')
             .then(res => res.json())
             .then(resp => {
                 resp.forEach(radio => {
-                    let bb = this.categories.find(cat => cat.name == radio.country);
-                    if(bb) bb.radios.push(radio);
-                    if(!bb) {
-                        this.categories.push({
-                            name: radio.country,
-                            radios: [ radio ]
-                        });
-                    }
+                    this.radios.push(radio);
                 });
+                this.radios.sort((a, b) => {
+                        if(a.country < b.country) return -1;
+                        if(a.country > b.country) return 1;
+                        return 0;
+                    })
             });
     }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 h1 {
     font-weight: 300;
     font-size: 3rem;
@@ -60,37 +64,66 @@ h2 {
     align-items: center;
 }
 
-@media screen and (min-width: 1024px) {
-    .table {
+.search {
+    width: 90%;
+    background: none;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    font-size: 2em;
+    padding: 5px;
+    color: #d6d4d4; // #b8b4b4;
+    font-weight: 200;
+    border-bottom: 1px #4f4f55 solid;
+}
+.search::placeholder {
+    color: #b8b4b4;
+    font-style: italic;
+}
+
+.radios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
+}
+
+.container, .radios {
+    width: 100%;
+}
+
+.radio {
+    margin: 5px;
+    padding: 10px;
     display: flex;
-}
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &:hover > .radio-imgct {
+        background: #1d5cb2;
+    }
 }
 
-.item {
+.radio-imgct {
+    width: 64px;
+    height: 64px;
+    background: rgb(51, 56, 59);
+    border-radius: 16px;
+    padding: 5px;
+    display: block;
     display: flex;
-    flex-direction: row;
-    border-bottom: 1px solid hsla(0, 0%, 100%, .04);
+    align-items: center;
+    justify-content: center;
+    transition: 200ms;
+    will-change: background;
+}
+.radio-img {
+    width: 64px;
+    border-radius: 16px;
 }
 
-.name {
-    width: 15em;
-    font-weight: bolder;
-    padding: 15px;
-}
-
-.desc {
-    padding: 15px;
-}
-
-.cat {
-    padding: 15px;
-}
-
-.cat-title {
-    padding: 15px;
-    background: #1d6d9e;
-    font-weight: bolder;
-    border-radius: 3px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+.radio-name {
+    padding-top: 10px;
+    font-size: 1.2em;
+    user-select: none;
 }
 </style>
