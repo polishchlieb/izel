@@ -35,6 +35,11 @@ export default {
                 resp.forEach(radio => {
                     this.radios.push(radio);
                 });
+                this.radios.sort((a, b) => {
+                        if(a.country < b.country) return -1;
+                        if(a.country > b.country) return 1;
+                        return 0;
+                    })
             });
     }
 }
