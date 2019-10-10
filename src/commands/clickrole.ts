@@ -16,7 +16,8 @@ export default class ClickroleCommand implements Command {
         if (!message.member.hasPermission('MANAGE_ROLES') && !message.member.hasPermission('ADMINISTRATOR'))
             return message.channel.send(messages.noPermission);
 
-        message.channel.send(messages.clickRoleStart);
+        message.author.send(messages.clickRoleStart);
+        message.react('🗨');
 
         const collector: MessageCollector = message.channel.createMessageCollector(
             (m: Message): boolean => m.author.id == message.author.id,
@@ -29,12 +30,16 @@ export default class ClickroleCommand implements Command {
         let emojis: string[] = [];
 
         collector.on('collect', (m: Message): any => {
+            setTimeout(() => {
+                m.delete();
+            }, 1000);
+
             if(m.content == 'papryka')
                 return collector.stop();
 
             let [ emoji, ...rn ]: string[] = m.content.split(' ');
             if(!emoji || !rn.length)
-                return message.channel.send(messages.usePapryka);
+                return message.author.send(messages.usePapryka);
 
             let rolename: string = rn.join(' ');
             let role: Role = message.guild.roles.find(
@@ -42,11 +47,7 @@ export default class ClickroleCommand implements Command {
             );
 
             if(!role)
-                return message.channel.send(messages.noSuchRole);
-
-            // if(!message.guild.members.get(bot.client.user.id).hasPermission('MANAGE_ROLES') 
-            //    || role.position >= message.guild.members.get(bot.client.user.id).highestRole.position) {
-            //     message.channel.send(`❗ ${messages.itMayNotWork}`);
+                return message.author.send(messages.noSuchRole);
 
             if(twemoji.test(emoji)) {
                 roles.push({ emoji, role: role.name });
@@ -68,7 +69,7 @@ export default class ClickroleCommand implements Command {
         
         collector.on('end', (): any => {
             if (roles.length == 0)
-                return message.channel.send(messages.cancelled);
+                return message.author.send(messages.cancelled);
 
             message.channel.send(new RichEmbed()
                 .setTitle(messages.reactForRole)
