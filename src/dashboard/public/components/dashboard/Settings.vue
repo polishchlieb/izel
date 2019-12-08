@@ -15,15 +15,20 @@
                 </div>
             </div>
         </div>
-        <!-- TODO bo mi sie nie chcialo teraz
         <div class="tab">
             <div class="tab-title">{{ $root.$data.strings.greeting }}</div>
-            <div class="tab-content"></div>
+            <div class="tab-content">
+                <input type="text" v-model="greeting">
+                <div class="button blu" @click="setGreeting(this.greeting)">{{ $root.$data.strings.change }}</div>
+            </div>
         </div>
         <div class="tab">
             <div class="tab-title">{{ $root.$data.strings.goodbye }}</div>
-            <div class="tab-content"></div>
-        </div>-->
+            <div class="tab-content">
+                <input type="text" v-model="goodbye">
+                <div class="button blu" @click="setGoodbye(this.goodbye)">{{ $root.$data.strings.change }}</div>
+            </div>
+        </div>
         <div class="tab">
             <div class="tab-title">{{ $root.$data.strings.roles }}</div>
             <div class="tab-content">
@@ -59,7 +64,9 @@ export default {
     props: ['guild'], // id, user
     data: function() {
         return {
-            settings: {}
+            settings: {},
+            greeting: '',
+            goodbye: ''
         }
     },
     beforeMount: function() {
@@ -106,7 +113,7 @@ export default {
                     }
                 })
             } else if (type == 3) { // dodawanie kategorii (tekst)
-                 fetch('/api/admin', {
+                fetch('/api/admin', {
                     method: "POST",
 	                headers: { 'Content-Type': 'application/json' },
 	                body: JSON.stringify({guild: this.$props.guild.id, action: {id: "selfrole", name: "addCat"}, value: data})
@@ -143,7 +150,7 @@ export default {
 	            body: JSON.stringify({guild: this.$props.guild.id, action: {id: "selfrole", name: "removeRole"}, value: id})
             })
             .then(resp => {
-                if(resp.ok) {
+                if (resp.ok) {
                     this.$parent.notifytoggle(this.$root.$data.strings.success, 1);
                     this.reload();
                 } else {
@@ -166,6 +173,12 @@ export default {
                     this.$parent.notifytoggle(this.$root.$data.strings.error, 0);
                 }
             })
+        },
+        setGreeting(content) {
+
+        },
+        setGoodbye(content) {
+
         }
     }
 }
