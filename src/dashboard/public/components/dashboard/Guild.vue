@@ -56,7 +56,7 @@
                             <div class="listPos" v-for="(role, i) in popupData" :key="i" :style="{color: role.color}"
                             @click="popupclose(); $refs.settings.popupReturn(0, role)"
                             >{{ role.name }}</div>
-                            <div class="norole listPos">{{ $root.$data.strings.norole }}</div>
+                            <div class="norole">{{ $root.$data.strings.norole }}</div>
                         </div>
                         <div class="popupButton red" @click="popupclose()">{{ $root.$data.strings.cancel }}</div>
                     </div>
@@ -65,7 +65,7 @@
                             <div class="listPos" v-for="(role, i) in popupData" :key="i" :style="{color: role.color}"
                             @click="popupclose(); $refs.settings.popupReturn(0, role)"
                             >{{ role.name }}</div>
-                            <div class="norole listPos">{{ $root.$data.strings.norole }}</div>
+                            <div class="norole">{{ $root.$data.strings.norole }}</div>
                         </div>
                         <div class="popupButton red" @click="popupclose()">{{ $root.$data.strings.cancel }}</div>
                     </div>
@@ -74,14 +74,16 @@
                             <div class="listPos" v-for="(role, i) in popupData.roles" :key="i" :style="{color: role.color}"
                             @click="popupclose(); $refs.settings.popupReturn(2, {role: role, cat: popupData.cat})"
                             >{{ role.name }}</div>
-                            <div class="norole listPos">{{ $root.$data.strings.norole }}</div>
+                            <div class="norole">{{ $root.$data.strings.norole }}</div>
                         </div>
                         <div class="popupButton red" @click="popupclose()">{{ $root.$data.strings.cancel }}</div>
                     </div>
                     <div class="popupContent" v-if="popupType == 3 /* 2 - dodawanie roli, 3 - dodawanie kategorii*/">
-                        <input class="popupInput" placeholder="type" v-model="popupData">
-                        <div class="popupButton red" @click="popupclose()">{{ $root.$data.strings.cancel }}</div>
-                        <div class="popupButton blu" @click="popupclose(); $refs.settings.popupReturn(3, popupData)">{{ $root.$data.strings.change }}</div>
+                        <input class="popupInput" placeholder="uwu" v-model="popupData">
+                        <div class="popupButtons">
+                            <div class="popupButton red" @click="popupclose()">{{ $root.$data.strings.cancel }}</div>
+                            <div class="popupButton dblu" @click="popupclose(); $refs.settings.popupReturn(3, popupData)">{{ $root.$data.strings.confirm }}</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -99,7 +101,6 @@ export default {
     props: ['guild'],
     components: { RankPosition, Roles, Settings },
     mounted: function() {
-        // TODO: Create progress bars based on user's points by user's level or something like that 
         this.guild.top.forEach(score => {
             if(score.points > this.topScore) this.topScore = score.points;
         });
@@ -144,8 +145,13 @@ export default {
     transition: 100ms;
 }
 
+.dblu {
+    background: #2e66a7;
+}
+
 .red {
-    background: linear-gradient(90deg, rgba(213,51,61,1) 0%, rgb(248, 64, 64) 100%);
+    background: #8b262f;
+    //background: linear-gradient(90deg, rgba(213,51,61,1) 0%, rgb(248, 64, 64) 100%);
 }
 
 .container {
@@ -177,10 +183,6 @@ export default {
 	border-radius: 120px;
 }
 
-.menu {
-    margin-right: 20px;
-}
-
 .menuoption {
     & i {
         padding: 5px;
@@ -192,15 +194,6 @@ export default {
     padding: 10px 40px 10px 10px;
     align-items: center;
     transition: 100ms;
-
-    &:first-child {
-        border-top-left-radius: 6px;
-        border-top-right-radius: 6px;
-    }
-    &:last-child {
-        border-bottom-left-radius: 6px;
-        border-bottom-right-radius: 6px;
-    }
 
     &:not(.selected):hover {
         background: #282b2e;
@@ -265,11 +258,39 @@ export default {
     .popup {
         width: 100%;
     }
+
+    .menu {
+        display: flex;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .menuoption {
+        flex-grow: 1;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
 }
 
 @media screen and (min-width: 1024px) {
     .popup {
         width: 25%;
+    }
+
+    .menu {
+        margin-right: 20px;
+    }
+
+    .menuoption {
+        &:first-child {
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+
+        &:last-child {
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
     }
 }
 
@@ -323,8 +344,9 @@ export default {
     border-radius: 3px;
 }
 .popupHeader {
-    background: #1d5cb2;
-    border-radius: 3px;
+    background: #2e66a7;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -354,9 +376,10 @@ export default {
     font: inherit;
 }
 .popupButton {
-    padding: 10px;
+    padding: 15px;
     text-align: center;
-    border-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
     cursor: pointer;
     transition: 150ms;
 
@@ -368,11 +391,12 @@ export default {
         transform: scale(0.9);
     }
 }
-
-.norole {
-    font-weight: normal;
-    border: none;
-    background: #222;
+.popupButtons {
+    display: flex;
+    
+    & .popupButton {
+        flex-grow: 1;
+    }
 }
 
 .list {
@@ -380,10 +404,17 @@ export default {
     height: 60vh;
     position: relative;
 }
+.norole {
+    padding: 15px;
+    transition: 100ms;
+    user-select: none;
+    font-style: italic;
+    background: #2e3135;
+}
+
 .listPos {
     cursor: pointer;
     padding: 15px;
-    font-weight: 600;
     border-bottom: 1px solid #2b2f33;
     transition: 100ms;
 

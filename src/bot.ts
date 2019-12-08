@@ -1,38 +1,37 @@
 import { Client } from 'discord.js'
-import {
-    loadCommands, loadEvents, loadDashboard, loadPlayer
-} from './utils/loader';
+import Loader from './utils/loader';
 
 import Command from './interfaces/command';
 import Event from './interfaces/event';
-import { MongoClient, Collection, Db as Database } from 'mongodb';
+import { MongoClient, Collection, Db } from 'mongodb';
 import {
     StatUser, Server, Permission,
-    Tag, User, Channel, ClickRole
+    Tag, User, Channel, Clickrole
 } from './interfaces/databaseStructures';
 import { Player } from './interfaces/player';
 
+const { mongoURI }: { mongoURI: string } = require('../config.json');
+
 export default class Bot {
-    client: Client = new Client({ disableEveryone: true });
-    commands: Command[] = [];
-    events: Event[] = [];
+    public client: Client = new Client({ disableEveryone: true });
+    public commands: Command[] = [];
+    public events: Event[] = [];
 
-    // TODO: Create 'db' property here
-    stats: Collection<StatUser>;
-    users: Collection<User>;
-    servers: Collection<Server>;
-    permissions: Collection<Permission>;
-    tags: Collection<Tag>;
-    channels: Collection<Channel>;
-    clickRole: Collection<ClickRole>;
+    public stats: Collection<StatUser>;
+    public users: Collection<User>;
+    public servers: Collection<Server>;
+    public permissions: Collection<Permission>;
+    public tags: Collection<Tag>;
+    public channels: Collection<Channel>;
+    public clickrole: Collection<Clickrole>;
     
-    player: Player;
+    public player: Player;
 
-    async start(token: string): Promise<void> {
+    public async start(token: string): Promise<void> {
         process.on('unhandledRejection', console.error);
 
-        let conn: MongoClient = await MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true });
-        let database: Database = conn.db('izel');
+        let conn: MongoClient = await MongoClient.connect(mongoURI, { useNewUrlParser: true });
+        let database: Db = conn.db('izel');
         
         this.stats = database.collection('stats');
         this.users = database.collection('users');
@@ -40,15 +39,13 @@ export default class Bot {
         this.permissions = database.collection('permissions');
         this.tags = database.collection('tags');
         this.channels = database.collection('channels');
-        this.clickRole = database.collection('clickRole');
+        this.clickrole = database.collection('clickRole');
 
         this.player = {};
 
-        loadEvents(this);
-        loadCommands(this);
-        loadDashboard();
-
         await this.client.login(token);
-        loadPlayer(this);
+        
+        const loader: Loader = new Loader();
+        loader.load();
     }
 }

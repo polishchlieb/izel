@@ -26,7 +26,7 @@ export default class BanCommand implements Command {
 
         member.user.send(
             messages.youWereBanned.replace('{}', message.guild.name)
-            + (args.length > 0) ? ': ' + args.join(' ') : ''
+            + ((args.length > 0) ? ': ' + args.join(' ') : '')
         ).then((): void => {
             member.ban();
             message.reply(messages.banned.replace('{}', member.user.username));

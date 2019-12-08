@@ -16,21 +16,12 @@ export default class EvalCommand implements Command {
     scope: any = {};
 
     async run(message: Message, [ flag, ...expr ]: string[], { use }: Messages): Promise<any> {
-        if(!developerMode) return;
-        
-        let permissions: Permission = await bot.permissions.findOne({
-            action: 'eval'
-        });
-        if(!permissions)
-            return message.reply('ERROR 404: BRAIN NOT FOUND');
-        if(!permissions.user_ids.includes(message.author.id))
-            return message.reply('masz cos lepszego do roboty');
+        if (!developerMode) return;
 
-        if(!flag && expr.length == 0)
+        if (!flag && expr.length == 0)
             return message.reply(`${use} \`${this.info.usage}\``);
 
-        if(flag != 'silent')
-            expr.unshift(flag);
+        if (flag != 'silent') expr.unshift(flag);
 
         let value: any;
         try {
@@ -40,20 +31,13 @@ export default class EvalCommand implements Command {
                 message.channel.send(new RichEmbed()
                     .setTitle('Evaluation Failed')
                     .addField('Error', e.message)
-                    .setColor('RED'))
-                    .then((msg: Message): void => {
-                        setTimeout((): any => msg.delete(), 5000);
-                    });
+                    .setColor('RED'));
         } finally {
-            if(flag != 'silent')
-                if(typeof value != 'undefined')
-                    message.channel.send(new RichEmbed()
-                        .setTitle('Evaluated')
-                        .addField('Value', value)
-                        .setColor('GREEN'))
-                        .then((msg: Message): void => {
-                            setTimeout((): any => msg.delete(), 5000);
-                        });
+            if(flag != 'silent' && typeof value != 'undefined')
+                message.channel.send(new RichEmbed()
+                    .setTitle('Evaluated')
+                    .addField('Value', value)
+                    .setColor('GREEN'));
         }
     }
 }

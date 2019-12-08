@@ -3,7 +3,7 @@ const greetings: string[] =
  'witajże', 'witajze', '<@470345804075237396>', 'izel',
  'dziendobry', 'dzieńdobry', 'hail', 'halt', 'priviet', 
  'priwiet', 'halo', 'aloha','ahoj', 'elo', 'hej', 'dobry wieczór', 'dobry wieczor',
-  'hejka', 'heja', 'siemka', 'eluwa', 'serwus', 'siemano'];
+ 'hejka', 'heja', 'siemka', 'eluwa', 'serwus', 'siemano', 'siemaneczko', 'wiataj'];
 
 export default (content: string): boolean => {
     content = content.toLowerCase();

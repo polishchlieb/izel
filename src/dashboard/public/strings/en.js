@@ -25,5 +25,8 @@ module.exports = {
     addCat: "Add category",
     addRole: "Add role",
     removeRole: "Remove role",
-    removeCat: "Remove category"
+    removeCat: "Remove category",
+    confirm: "Confirm",
+    thx: "thank you for using izel",
+    remove: "Remove"
 }

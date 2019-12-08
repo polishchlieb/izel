@@ -12,14 +12,14 @@ export default class MinecraftCommand implements Command {
     };
 
     run(message: Message, args: string[], messages: Messages): any {
-        if(args.length != 1)
+        if (args.length != 1)
             return message.reply(`${messages.use} \`${this.info.usage}\``);
 
         message.channel.startTyping();
         fetch(`https://mcapi.us/server/status?ip=${args[0]}`)
             .then((res: Response): Promise<any> => res.json())
             .then((data: any): void => {
-                if(!data.online)
+                if (!data.online)
                     message.channel.send(new RichEmbed()
                         .setTitle(args[0])
                         .setDescription(messages.serverOffline));

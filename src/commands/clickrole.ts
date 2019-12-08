@@ -13,26 +13,33 @@ export default class ClickroleCommand implements Command {
     };
 
     run(message: Message, []: string[], messages: Messages): any {
-        if(!message.member.hasPermission('MANAGE_ROLES') && !message.member.hasPermission('ADMINISTRATOR'))
+        if (!message.member.hasPermission('MANAGE_ROLES') && !message.member.hasPermission('ADMINISTRATOR'))
             return message.channel.send(messages.noPermission);
 
-        message.channel.send(messages.clickRoleStart);
+        message.author.send(messages.clickRoleStart);
+        message.react('🗨');
 
         const collector: MessageCollector = message.channel.createMessageCollector(
             (m: Message): boolean => m.author.id == message.author.id,
             { time: 900000 }
         );
 
+        // declare some variables to easily use them
         let roles: any[] = [];
         let db_roles: { [k: string]: string } = {};
+        let emojis: string[] = [];
 
         collector.on('collect', (m: Message): any => {
+            setTimeout(() => {
+                m.delete();
+            }, 1000);
+
             if(m.content == 'papryka')
                 return collector.stop();
 
             let [ emoji, ...rn ]: string[] = m.content.split(' ');
             if(!emoji || !rn.length)
-                return message.channel.send(messages.usePapryka);
+                return message.author.send(messages.usePapryka);
 
             let rolename: string = rn.join(' ');
             let role: Role = message.guild.roles.find(
@@ -40,15 +47,12 @@ export default class ClickroleCommand implements Command {
             );
 
             if(!role)
-                return message.channel.send(messages.noSuchRole);
+                return message.author.send(messages.noSuchRole);
 
-            // if(!message.guild.members.get(bot.client.user.id).hasPermission('MANAGE_ROLES') 
-            //    || role.position >= message.guild.members.get(bot.client.user.id).highestRole.position) {
-            //     message.channel.send(`❗ ${messages.itMayNotWork}`);
-
-            if(emoji.length == 2 && twemoji.test(emoji)) {
+            if(twemoji.test(emoji)) {
                 roles.push({ emoji, role: role.name });
-                db_roles[emoji] = role.id; 
+                db_roles[emoji] = role.id;
+                emojis.push(emoji);
 
                 m.react('✅');
             } else {
@@ -57,14 +61,15 @@ export default class ClickroleCommand implements Command {
 
                 roles.push({ emoji: e.toString(), role: role.name });
                 db_roles[e.id] = role.id;
+                emojis.push(e.id);
 
                 m.react('✅');
             }
         });
         
         collector.on('end', (): any => {
-            if(roles.length == 0)
-                return message.channel.send(messages.cancelled);
+            if (roles.length == 0)
+                return message.author.send(messages.cancelled);
 
             message.channel.send(new RichEmbed()
                 .setTitle(messages.reactForRole)
@@ -72,9 +77,12 @@ export default class ClickroleCommand implements Command {
                 .setDescription(
                     roles.map((v): string => `${v.emoji} ${v.role}`).join('\n')
                 ))
-
                 .then((m: Message): void => {
-                    bot.clickRole.insertOne({
+                    emojis.forEach((emoji: string): void => {
+                        m.react(emoji);
+                    });
+
+                    bot.clickrole.insertOne({
                         message: m.id,
                         roles: db_roles
                     });
