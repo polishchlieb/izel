@@ -168,5 +168,11 @@
     "reactForRole": "React to get the role",
     "itMayNotWork": "It may not work, because the bot has no permission to give someone that role.",
     "usePaprykaTC": "Use `papryka` to confirm",
-    "dashboardAd": "you can check the top using our dashboard"
+    "dashboardAd": "you can check the top using our dashboard",
+    "giveaway": {
+        "stage1": "pls mention the channels that you want to create a giveaway in",
+        "stage2": "now pls give me the giveaway's time (with units: d, h, m, s)",
+        "stage3": "pls type the giveaway's topic",
+        "stage4": "pls type winners count"
+    }
 }

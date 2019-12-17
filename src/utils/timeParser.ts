@@ -9,7 +9,7 @@ export default class Time {
     constructor(raw: string) {
         this.raw = raw;
 
-        if (!/[0-9]+(?=s|m|h|d)/g.test(raw))
+        if (!/^[0-9]+(?=s|m|h|d)$/g.test(raw))
             this.invalid = true;
         else {
             let parsed: string[] = raw.match(/[0-9]+|(s|m|h|d)/g);

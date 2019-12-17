@@ -13,24 +13,70 @@ export default class GiveawayCommand implements Command {
     };
 
     async run(message: Message, args: string[], messages: Messages): Promise<any> {
-        if (args.length < 2)
-            return message.reply(`${messages.use} ${this.info.usage}`);
+        const filter = (m: Message) =>
+            m.author.id == message.author.id && message.channel.id == m.channel.id;
 
-        let time: Time = new Time(args.shift());
-        if (time.invalid)
-            return message.reply(`${messages.use} ${this.info.usage}`);
+        const collector = message.channel.createMessageCollector(filter, {
+            time: 120000
+        });
 
-        let reaction: string = '🍞';
+        let stage = 1;
+        const data = {
+            channel: '',
+            time: <Time>null,
+            topic: '',
+            winners: 0,
+            finished: false
+        };
+
+        message.reply(messages.giveaway.stage1);
+
+        collector.on('collect', (m) => {
+            if (stage == 1) {
+                if (!m.mentions.channels.size)
+                    return m.react('❓');
+
+                data.channel = m.mentions.channels.first().id;
+                m.react('✅');
+                m.reply(messages.giveaway.stage2);
+            } else if (stage == 2) {
+                let time: Time = new Time(m.content);
+                if (time.invalid)
+                    return m.reply('❓');
+
+                data.time = time;
+                m.react('✅');
+                m.reply(messages.giveaway.stage3);
+            } else if (stage == 3) {
+                data.topic = m.content;
+                m.react('✅');
+                m.reply(messages.giveaway.stage4);
+            } else if (stage == 4) {
+                let winners = parseInt(m.content);
+                if (isNaN(winners))
+                    return m.reply('❓');
+
+                data.winners = winners;
+                data.finished = true;
+                m.react('✅');
+                collector.stop();
+            }
+        });
+
+        if (!data.finished)
+            return;
+
+        const reaction: string = '🍞';
 
         const giveaway = await message.channel.send(
             new RichEmbed()
-                .setTitle('GIVEAWAY')
+                .setTitle('Giveaway')
                 .setColor('RANDOM')
                 .setDescription(`
                 ${args.join(' ')}
 
                 ${messages.reactGiveaway.replace('{}', reaction)}
-                ${messages.endsIn} ${time.raw}
+                ${messages.endsIn} ${data.time.raw}
                 `)
         ) as Message;
 
@@ -43,12 +89,12 @@ export default class GiveawayCommand implements Command {
                 })
                 .fetchUsers()
                 .then((users: Collection<string, User>): any => {
-                    let winner: User = users
+                    let winner: User[] = users
                         .filter((u: User): boolean => {
                             return message.guild.members.has(u.id)
                                 && bot.client.user.id != u.id;
                         })
-                        .random();
+                        .random(data.winners);
 
                     if (!winner) return message.reply(messages.nobodyReacted);
                     if (!(giveaway instanceof Message)) return;
@@ -59,6 +105,6 @@ export default class GiveawayCommand implements Command {
                     
                     message.channel.send(`${winner.toString()} ${messages.won.replace('{}', args.join(' '))}`);
                 });
-        }, time.ms);
+        }, data.time.ms);
     }
 }
