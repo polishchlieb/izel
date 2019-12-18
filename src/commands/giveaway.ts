@@ -12,7 +12,7 @@ export default class GiveawayCommand implements Command {
         category: 'tool'
     };
 
-    async run(message: Message, args: string[], messages: Messages): Promise<any> {
+    async run(message: Message, []: string[], messages: Messages): Promise<any> {
         const filter = (m: Message) =>
             m.author.id == message.author.id && message.channel.id == m.channel.id;
 
@@ -20,7 +20,7 @@ export default class GiveawayCommand implements Command {
             time: 120000
         });
 
-        let stage = 1;
+        let stage: number = 1;
         const data = {
             channel: '',
             time: <Time>null,
@@ -31,7 +31,7 @@ export default class GiveawayCommand implements Command {
 
         message.reply(messages.giveaway.stage1);
 
-        collector.on('collect', (m) => {
+        collector.on('collect', (m: Message): any => {
             if (stage == 1) {
                 if (!m.mentions.channels.size)
                     return m.react('❓');
@@ -73,7 +73,7 @@ export default class GiveawayCommand implements Command {
                 .setTitle('Giveaway')
                 .setColor('RANDOM')
                 .setDescription(`
-                ${args.join(' ')}
+                ${data.topic}
 
                 ${messages.reactGiveaway.replace('{}', reaction)}
                 ${messages.endsIn} ${data.time.raw}
@@ -89,21 +89,22 @@ export default class GiveawayCommand implements Command {
                 })
                 .fetchUsers()
                 .then((users: Collection<string, User>): any => {
-                    let winner: User[] = users
+                    let winners: User[] = users
                         .filter((u: User): boolean => {
                             return message.guild.members.has(u.id)
                                 && bot.client.user.id != u.id;
                         })
                         .random(data.winners);
 
-                    if (!winner) return message.reply(messages.nobodyReacted);
+                    if (!winners) return message.reply(messages.nobodyReacted);
                     if (!(giveaway instanceof Message)) return;
                     
+                    let str: string = winners.map(w => w.toString()).join(', ');
                     giveaway.edit(new RichEmbed()
                         .setTitle(messages.giveawayEnded)
-                        .setDescription(`${messages.winner}: ${winner.toString()}`));
+                        .setDescription(`${messages.winner}: ${str}`));
                     
-                    message.channel.send(`${winner.toString()} ${messages.won.replace('{}', args.join(' '))}`);
+                    message.channel.send(`${str} ${messages.won.replace('{}', data.topic)}`);
                 });
         }, data.time.ms);
     }
