@@ -6,7 +6,7 @@ export default class BanCommand implements Command {
     info = {
         names: ['ban'],
         description: 'Bannin crazy',
-        usage: '&ban (ping) { reason }',
+        usage: '&ban (ping | userID) { reason }',
         category: 'admin'
     };
 
@@ -15,10 +15,10 @@ export default class BanCommand implements Command {
             return message.reply(messages.noPermission);
         if(!args.length)
             return message.reply(`${messages.use} \`${this.info.usage}\``);
-        if(!args[0].match(/<@[0-9]{17,}>/))
+        if(!message.mentions.members.first() && !message.guild.member(args[0]))
             return message.reply(`${messages.use} \`${this.info.usage}\``);
 
-        let member: GuildMember = message.guild.member(args[0].substring(2, 20) || message.guild.member(args[0].substring(2, 19)));
+        let member: GuildMember = message.mentions.members.first() || message.guild.member(args[0]);
         if(!member)
             return message.reply(messages.couldNotFind);
         if(!member.bannable)
