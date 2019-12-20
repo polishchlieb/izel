@@ -24,12 +24,9 @@ export default class KickCommand implements Command {
         if(!member.kickable)
             return message.reply(messages.couldNotKick);
 
-        member.kick().then((member: GuildMember): void => {
-            member.user.send(
-                messages.youWereKicked.replace('{}', message.guild.name)
-                + (args.length > 0) ? ': ' + args.join(' ') : ''
-            );
-
+        member.user.send(messages.youWereKicked.replace('{}', message.guild.name) + ((args.length) ? `: ${args.join(' ')}` : ''))
+        .then((): void => {
+            member.kick((args.length) ? `${args.join(' ')} | responsible moderator: ${message.author.tag}` : `No reason provided. | responsible moderator: ${message.author.tag}`);
             message.reply(messages.kicked.replace('{}', member.user.username));
         });
     }

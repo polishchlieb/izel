@@ -24,11 +24,9 @@ export default class BanCommand implements Command {
         if(!member.bannable)
             return message.reply(messages.couldNotBan);
 
-        member.user.send(
-            messages.youWereBanned.replace('{}', message.guild.name)
-            + ((args.length > 0) ? ': ' + args.join(' ') : '')
-        ).then((): void => {
-            member.ban();
+        member.user.send(messages.youWereBanned.replace('{}', message.guild.name) + ((args.length) ? `: ${args.join(' ')}` : ''))
+        .then((): void => {
+            member.ban((args.length) ? `${args.join(' ')} | responsible moderator: ${message.author.tag}` : `No reason provided. | responsible moderator: ${message.author.tag}`);
             message.reply(messages.banned.replace('{}', member.user.username));
         });
     }
