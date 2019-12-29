@@ -37,20 +37,26 @@ export default class GiveawayCommand implements Command {
                     return m.react('❓');
 
                 data.channel = m.mentions.channels.first().id;
+
                 m.react('✅');
                 m.reply(messages.giveaway.stage2);
+                stage++;
             } else if (stage == 2) {
                 let time: Time = new Time(m.content);
                 if (time.invalid)
                     return m.reply('❓');
 
                 data.time = time;
+                
                 m.react('✅');
                 m.reply(messages.giveaway.stage3);
+                stage++;
             } else if (stage == 3) {
                 data.topic = m.content;
+
                 m.react('✅');
                 m.reply(messages.giveaway.stage4);
+                stage++;
             } else if (stage == 4) {
                 let winners = parseInt(m.content);
                 if (isNaN(winners))
