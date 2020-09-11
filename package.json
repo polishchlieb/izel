@@ -43,7 +43,7 @@
 		"express": "^4.17.1",
 		"mathjs": "^5.10.3",
 		"mongodb": "^3.2.7",
-		"node-fetch": "^2.6.0",
+		"node-fetch": "^2.6.1",
 		"opusscript": "0.0.6",
 		"twemoji": "^12.1.2",
 		"vue": "^2.6.10",
