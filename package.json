@@ -41,7 +41,7 @@
 		"discord.js": "^11.5.1",
 		"discord.js-lavalink": "^2.2.2",
 		"express": "^4.17.1",
-		"mathjs": "^5.10.3",
+		"mathjs": "^7.5.1",
 		"mongodb": "^3.2.7",
 		"node-fetch": "^2.6.1",
 		"opusscript": "0.0.6",
